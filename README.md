@@ -9,6 +9,14 @@ Most recent update: <i>Jul-28-2021</i>
 
 ## R package for easy mapping of orthologous genes across a wide variety of species.
 
+# Installation
+
+``` r
+if(!"remotes" %in% rownames(installed.packages())) install.packages("remotes")
+
+remotes::install_github("neurogenomics/orthogene")
+```
+
 # Session Info
 
 <details>
