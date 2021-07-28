@@ -2,23 +2,31 @@
 #' 
 #' Maps genes across species and then converts them to the \code{ouput_species}.
 #' 
-#' @param obj Data object to be converted. Can be a matrix, data.frame, data.table.
-#' @param as_sparse If \code{obj} is a matrix, it can be converted to a sparse matrix.
+#' @param obj Data object to be converted. 
+#' Can be a matrix, data.frame, data.table. 
+#' @param convert_orths Convert row names to \code{output_species} orthologs. 
+#' @param as_sparse If \code{obj} is a matrix, 
+#' it can be converted to a sparse matrix. 
 #' @param sort_rows Sort rows alphanumerically.
 #' @inheritParams convert_orthologs 
+#' 
+#' @return Matrix with converted gene names as rows. 
+#' @export
+#' @importFrom methods is as
+#' 
 #' @examples
-#' data("cortex_mrna")
-#' exp_human <- convert_orthologs(obj=cortex_mrna$exp, input_species="mouse")
-map_matrix <- function(obj,
-                       input_species,
-                       output_species="human",
-                       drop_nonorths=TRUE,
-                       one_to_one_only=TRUE,
-                       convert_nonhuman_genes=TRUE, 
-                       as_sparse=FALSE,
-                       sort_rows=FALSE,
-                       verbose=TRUE){ 
-   if(is(obj,"matrix")){
+#' data("exp_mouse")
+#' exp_human <- map_matrix(obj=exp_mouse, input_species="mouse")
+map_matrix <- function(obj, 
+                       input_species, 
+                       output_species="human", 
+                       drop_nonorths=TRUE, 
+                       one_to_one_only=TRUE, 
+                       convert_orths=TRUE,  
+                       as_sparse=FALSE, 
+                       sort_rows=FALSE, 
+                       verbose=TRUE){  
+   if( is(obj,"matrix") | is(obj,"Matrix") |  is(obj,"data.frame") | is(obj,"data.table")){
      rowDat <- data.frame(gene=rownames(obj), check.names = FALSE)
    }  
     
@@ -34,7 +42,7 @@ map_matrix <- function(obj,
     obj <- tryCatch({obj[orths$Gene_orig,]},
                     error=function(e){ obj[orths$Gene,]
                     })
-    if(convert_nonhuman_genes) rownames(obj) <- orths$Gene 
+    if(convert_orths) rownames(obj) <- orths$Gene 
     
     if(as_sparse){
       messager("Converting obj to sparseMatrix.",v=verbose)

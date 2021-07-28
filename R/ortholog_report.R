@@ -11,21 +11,22 @@
 #' @param round_digits Number of digits to round to when printing percentages. 
 #' @inheritParams convert_orthologs
 #' 
+#' @return List of ortholog report statistics 
 #' @export
 #' @importFrom dplyr n_distinct  
 #' @examples
 #' orth.fly <- ortholog_report(target_species = "fly",
 #'                             reference_species="human")
 #' orth.zeb <- ortholog_report(target_species = "zebrafish", 
-#'                                   reference_species="human")
+#'                             reference_species="human")
 #' orth.mus <- ortholog_report(target_species = "mouse", 
-#'                                   reference_species="human") 
-ortholog_report <- function(target_species="mouse",
-                            reference_species="human",
-                            drop_nonorths=TRUE,
-                            one_to_one_only=TRUE,
-                            round_digits=1,
-                            return_report=TRUE){
+#'                             reference_species="human") 
+ortholog_report <- function(target_species="mouse", 
+                            reference_species="human", 
+                            drop_nonorths=TRUE, 
+                            one_to_one_only=TRUE, 
+                            round_digits=1, 
+                            return_report=TRUE){ 
   ### Avoid confusing Biocheck
   Taxonomy <- NULL
    

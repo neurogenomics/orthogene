@@ -1,14 +1,16 @@
-#' Gene expression data
+#' Gene expression data: mouse 
 #' 
-#' Single-cell RNA-seq gene expression matrix \code{"exp"} and 
-#' associated per-cell metadata \code{"annot"} from mouse brain.
+#' Mean pseudobulk single-cell RNA-seq gene expression matrix.
 #' 
-#' Data originally comes from Zeisel et al., 2015 (Science).
+#' Data originally comes from Zeisel et al., 2018 (Cell).
 #' 
-#' @source \href{https://pubmed.ncbi.nlm.nih.gov/25700174/}{Publication}
-#' @examples 
-#' \dontrun{
-#' cortex_mrna <- ewceData::cortex_mrna()
-#' usethis::use_data(cortex_mrna, overwrite = TRUE)
+#' @source \href{https://pubmed.ncbi.nlm.nih.gov/30096314/}{Publication}
+#' \code{
+#' ctd <- ewceData::ctd()
+#' exp_mouse <- as(ctd[[1]]$mean_exp, "sparseMatrix")
+#' usethis::use_data(exp_mouse, overwrite = TRUE)
 #' }
-"cortex_mrna"
+#' @format sparse matrix
+#' @usage data("exp_mouse")
+"exp_mouse"
+ 

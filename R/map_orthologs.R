@@ -5,17 +5,20 @@
 #' 
 #' @inheritParams convert_orthologs
 #' 
+#' @return Ortholog map data.frame
 #' @export
 #' @importFrom dplyr rename
+#' @importFrom stats setNames
+#' 
 #' @examples 
-#' data("cortex_mrna")
-#' gene_df <- data.frame(Gene=rownames(cortex_mrna$exp))
+#' data("exp_mouse")
+#' gene_df <- data.frame(Gene=rownames(exp_mouse))
 #' gene_map <- map_orthologs(gene_df=gene_df,  gene_col="Gene", input_species="mouse")
-map_orthologs <- function(gene_df,
-                          gene_col,
-                          input_species,
-                          output_species="human",
-                          verbose=TRUE){
+map_orthologs <- function(gene_df, 
+                          gene_col, 
+                          input_species, 
+                          output_species="human", 
+                          verbose=TRUE){ 
   messager("+ Searching for orthologs.",v=verbose)
   taxaID <- taxa_id_dict(species=input_species)
   taxaID_out <- taxa_id_dict(species=output_species)

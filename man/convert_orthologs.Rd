@@ -7,20 +7,22 @@
 convert_orthologs(
   gene_df,
   gene_col = "rownames",
-  input_species = "mouse",
+  input_species,
   output_species = "human",
-  drop_nonorths = FALSE,
+  drop_nonorths = TRUE,
   one_to_one_only = TRUE,
   genes_as_rownames = FALSE,
   return_dict = FALSE,
+  invert_dict = FALSE,
   verbose = TRUE
 )
 }
 \arguments{
 \item{gene_df}{Data.frame containing the genes symbols of the input species.}
 
-\item{gene_col}{Character string indicating either the input species' gene symbols are in a
-column with the input species gene symbols (\code{gene_col="<gene_col_name>"})
+\item{gene_col}{Character string indicating either the 
+input species' gene symbols are in a column with the 
+input species gene symbols (\code{gene_col="<gene_col_name>"}) 
 or are the row names (\code{gene_col="rownames"}).}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
@@ -28,25 +30,28 @@ See \code{taxa_id_dict()} for a full list of available species.}
 
 \item{output_species}{Name of the output species (e.g. "human").}
 
-\item{drop_nonorths}{Drop genes that don't have an ortholog in the \code{output_species}.}
+\item{drop_nonorths}{Drop genes that don't have an ortholog 
+in the \code{output_species}.}
 
-\item{one_to_one_only}{Drop genes that don't have a 1:1 mapping between input species and human
+\item{one_to_one_only}{Drop genes that don't have a 1:1 mapping 
+between input species and human 
 (i.e. drop genes with multiple human orthologs).}
 
-\item{genes_as_rownames}{Whether to return the data.frame with the row names
-set to the human orthologs.}
+\item{genes_as_rownames}{Whether to return the data.frame 
+with the row names set to the human orthologs.}
 
 \item{return_dict}{Return a dictionary (named list) of gene mappings, 
-where \code{names} are the original gene names and items are the new gene names. 
-If \code{return_dict=FALSE}, instead returns mappings as a data.frame.}
-
-\item{verbose}{Print messages.}
+where \code{names} are the original gene names and 
+ items are the new gene names. If \code{return_dict=FALSE}, 
+ instead returns mappings as a data.frame.}
 
 \item{invert_dict}{If \code{return_dict=TRUE}, setting \code{invert_dict} 
 switches the names and items in the dictionary.}
+
+\item{verbose}{Print messages.}
 }
 \value{
-Data.frame with the gene symbols of the input species ("Gene_orig")
+Data.frame with the gene symbols of the input species ("Gene_orig") 
 and converted human orthologs ("Gene").
 }
 \description{
@@ -54,7 +59,7 @@ Currently supports 20+ species.
 See \code{taxa_id_dict()} for a full list of available species.
 }
 \examples{
-data("cortex_mrna")
-gene_df <- convert_orthologs(gene_df = cortex_mrna$exp, 
+data("exp_mouse")
+gene_df <- convert_orthologs(gene_df = exp_mouse, input_species="mouse",
                              gene_col="rownames")
 }

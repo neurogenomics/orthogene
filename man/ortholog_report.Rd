@@ -18,15 +18,20 @@ ortholog_report(
 
 \item{reference_species}{Reference species.}
 
-\item{drop_nonorths}{Drop genes that don't have an ortholog in the \code{output_species}.}
+\item{drop_nonorths}{Drop genes that don't have an ortholog 
+in the \code{output_species}.}
 
-\item{one_to_one_only}{Drop genes that don't have a 1:1 mapping between input species and human
+\item{one_to_one_only}{Drop genes that don't have a 1:1 mapping 
+between input species and human 
 (i.e. drop genes with multiple human orthologs).}
 
 \item{round_digits}{Number of digits to round to when printing percentages.}
 
 \item{return_report}{Return just the ortholog mapping between two species (\code{FALSE}) 
 or return both the ortholog mapping as well a dataframe of the report statistics (\code{TRUE}).}
+}
+\value{
+List of ortholog report statistics
 }
 \description{
 \code{ewceData::mouse_to_human_homologs()} provides 15,604 1:1 mouse:human orthologs.
@@ -37,7 +42,7 @@ provide an improved 16,766 1:1 mouse:human orthologs.
 orth.fly <- ortholog_report(target_species = "fly",
                             reference_species="human")
 orth.zeb <- ortholog_report(target_species = "zebrafish", 
-                                  reference_species="human")
+                            reference_species="human")
 orth.mus <- ortholog_report(target_species = "mouse", 
-                                  reference_species="human") 
+                            reference_species="human") 
 }

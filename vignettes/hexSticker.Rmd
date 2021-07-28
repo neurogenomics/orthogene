@@ -12,15 +12,8 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(echo = T, fig.width = 7, fig.height = 5, root.dir=here::here())
+knitr::opts_chunk$set(echo = TRUE, fig.width = 7, fig.height = 5, root.dir=here::here())
 knitr::opts_knit$set(root.dir=here::here())
-```
-
-```{r setup, include=TRUE, message=FALSE} 
-library(hexSticker)
-
-library(dplyr)
-library(ggplot2)
 ```
 
 You can make awesome hex stickers for your R packages using [hexSticker](https://github.com/GuangchuangYu/hexSticker). 
@@ -34,8 +27,10 @@ Silhouettes from [phylopic](http://phylopic.org/).
 [ggpattern](https://coolbutuseless.github.io/package/ggpattern/) lets you fill objects with patterns or images.
 
 
-
-```{r, eval=F}
+```{r, eval=FALSE}
+library(hexSticker)
+library(dplyr)
+library(ggplot2)
 library(ggimage)
 library(ggpattern)# remotes::install_github("coolbutuseless/ggpattern")
 library(ggplot2)

@@ -16,6 +16,7 @@ List of HGNC gene symbols.
 Convert Ensembl IDs to HGNC gene symbols.
 }
 \examples{
-ensembl_IDs <- c("ENSG00000128573","ENSG00000176697","ENSG00000077279","ENSG00000131095" )
+ensembl_IDs <- c("ENSG00000128573","ENSG00000176697",
+                 "ENSG00000077279","ENSG00000131095" )
 gene_symbols <- ensembl_to_hgnc(ensembl_IDs)
 }

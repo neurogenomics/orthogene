@@ -9,13 +9,15 @@
 #' 
 #' @return Named list of taxa IDs to organism names.
 #' @export 
+#' @importFrom stats setNames
+#' 
 #' @examples 
 #' dict <- taxa_id_dict()
 #' full_dict <- taxa_id_dict(species=NULL) 
 #' print(full_dict[c("chimp","mouse")])
-taxa_id_dict <- function(species=c("human","chimp","monkey","mouse","rat",
-                                   "dog","cow","chicken",
-                                   "zebrafish","frog","fly","worm",
+taxa_id_dict <- function(species=c("human","chimp","monkey","mouse","rat", 
+                                   "dog","cow","chicken", 
+                                   "zebrafish","frog","fly","worm", 
                                    "rice")){ 
   dict <- setNames(homologene::taxData$tax_id,
                    homologene::taxData$name_txt)

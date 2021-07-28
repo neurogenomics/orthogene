@@ -15,8 +15,9 @@ map_orthologs(
 \arguments{
 \item{gene_df}{Data.frame containing the genes symbols of the input species.}
 
-\item{gene_col}{Character string indicating either the input species' gene symbols are in a
-column with the input species gene symbols (\code{gene_col="<gene_col_name>"})
+\item{gene_col}{Character string indicating either the 
+input species' gene symbols are in a column with the 
+input species gene symbols (\code{gene_col="<gene_col_name>"}) 
 or are the row names (\code{gene_col="rownames"}).}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
@@ -26,11 +27,14 @@ See \code{taxa_id_dict()} for a full list of available species.}
 
 \item{verbose}{Print messages.}
 }
+\value{
+Ortholog map data.frame
+}
 \description{
 Map orthologs from one species to another.
 }
 \examples{
-data("cortex_mrna")
-gene_df <- data.frame(Gene=rownames(cortex_mrna$exp))
+data("exp_mouse")
+gene_df <- data.frame(Gene=rownames(exp_mouse))
 gene_map <- map_orthologs(gene_df=gene_df,  gene_col="Gene", input_species="mouse")
 }

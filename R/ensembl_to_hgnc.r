@@ -5,8 +5,9 @@
 #'
 #' @param ensembl_ids List of ensembl IDs.
 #' @return List of HGNC gene symbols.
-#' @examples 
-#' ensembl_IDs <- c("ENSG00000128573","ENSG00000176697","ENSG00000077279","ENSG00000131095" )
+#' @examples
+#' ensembl_IDs <- c("ENSG00000128573","ENSG00000176697",
+#'                  "ENSG00000077279","ENSG00000131095" )
 #' gene_symbols <- ensembl_to_hgnc(ensembl_IDs)
 #' @importFrom AnnotationDbi mapIds
 #' @importFrom EnsDb.Hsapiens.v75 EnsDb.Hsapiens.v75

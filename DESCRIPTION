@@ -10,27 +10,35 @@ Authors@R:
            email = "brian_schilder@alumni.brown.edu",
            comment = c(ORCID = "0000-0001-5949-2191"))
     )      
-Description: R package for easy mapping of orthologous genes across a wide variety of species.
+Description: 
+    R package for easy mapping of orthologous genes across a wide variety of species. 
+    orthogene uses homologene to pull up-to-date interspecies gene orthologs mappings across 20+ species.
+    It also provides various utility functions to map common objects (e.g. gene expression matrices)
+    onto gene orthologs from another species. 
 URL: https://github.com/neurogenomics/orthogene 
 BugReports: https://github.com/neurogenomics/orthogene/issues 
-License:  GGPL-3 | file LICENSE 
-Depends: R(>= 4.1)
+License: Artistic-2.0 
+Depends: R (>= 4.1)
 VignetteBuilder: knitr
 biocViews:
+    Genetics, ComparativeGenomics, Preprocessing, 
+    Phylogenetics, Transcriptomics, GeneExpression
 Imports: 
-    dplyr,
-    data.table, 
-    ggplot2,  
+    dplyr,  
     methods, 
-    utils,
+    stats,
     homologene, 
     AnnotationDbi, 
     EnsDb.Hsapiens.v75 
 Suggests: 
-    remotes, 
-    knitr, 
-    BiocStyle, 
+    remotes,
+    knitr,
+    BiocStyle,
     markdown,
-    rmarkdown 
+    rmarkdown,
+    here,
+    utils,
+    testthat (>= 3.0.0)
 RoxygenNote: 7.1.1
 Encoding: UTF-8
+Config/testthat/edition: 3

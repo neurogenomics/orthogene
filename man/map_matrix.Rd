@@ -10,35 +10,44 @@ map_matrix(
   output_species = "human",
   drop_nonorths = TRUE,
   one_to_one_only = TRUE,
-  convert_nonhuman_genes = TRUE,
+  convert_orths = TRUE,
   as_sparse = FALSE,
   sort_rows = FALSE,
   verbose = TRUE
 )
 }
 \arguments{
-\item{obj}{Data object to be converted. Can be a matrix, data.frame, data.table.}
+\item{obj}{Data object to be converted. 
+Can be a matrix, data.frame, data.table.}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
 See \code{taxa_id_dict()} for a full list of available species.}
 
 \item{output_species}{Name of the output species (e.g. "human").}
 
-\item{drop_nonorths}{Drop genes that don't have an ortholog in the \code{output_species}.}
+\item{drop_nonorths}{Drop genes that don't have an ortholog 
+in the \code{output_species}.}
 
-\item{one_to_one_only}{Drop genes that don't have a 1:1 mapping between input species and human
+\item{one_to_one_only}{Drop genes that don't have a 1:1 mapping 
+between input species and human 
 (i.e. drop genes with multiple human orthologs).}
 
-\item{as_sparse}{If \code{obj} is a matrix, it can be converted to a sparse matrix.}
+\item{convert_orths}{Convert row names to \code{output_species} orthologs.}
+
+\item{as_sparse}{If \code{obj} is a matrix, 
+it can be converted to a sparse matrix.}
 
 \item{sort_rows}{Sort rows alphanumerically.}
 
 \item{verbose}{Print messages.}
 }
+\value{
+Matrix with converted gene names as rows.
+}
 \description{
 Maps genes across species and then converts them to the \code{ouput_species}.
 }
 \examples{
-data("cortex_mrna")
-exp_human <- convert_orthologs(obj=cortex_mrna$exp, input_species="mouse")
+data("exp_mouse")
+exp_human <- map_matrix(obj=exp_mouse, input_species="mouse")
 }

@@ -8,17 +8,17 @@ editor_options:
   chunk_output_type: inline
 ---
 
-```{r setup, include=F}
-knitr::opts_chunk$set(echo = T)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## R package for easy mapping of orthologous genes across a wide variety of species.
 
-`orthogene` uses [homologene](https://github.com/oganm/homologene) to pull up-to-date interspecies gene orthologs mappings across 20+ species. 
+`orthogene` uses [homologene](https://github.com/oganm/homologene) to pull up-to-date interspecies gene ortholog mappings across 20+ organisms.  
 
 # Installation
 
-```{r, eval=F}
+```{r, eval=FALSE}
 if(!"remotes" %in% rownames(installed.packages())) install.packages("remotes")
 
 remotes::install_github("neurogenomics/orthogene")
@@ -31,8 +31,8 @@ remotes::install_github("neurogenomics/orthogene")
 ```{r}
 library(orthogene)
 
-data("cortex_mrna")
-gene_df <- convert_orthologs(gene_df = cortex_mrna$exp,
+data("exp_mouse")
+gene_df <- convert_orthologs(gene_df = exp_mouse,
                              gene_col="rownames", 
                              input_species = "mouse")
 ```

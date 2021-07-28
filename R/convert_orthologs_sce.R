@@ -23,7 +23,8 @@
 #                         orths,
 #                         by="Gene_orig", sort=F)
 #   row.names(rowDat_orths) <- rowDat_orths$Gene
-#   if(sum(rowDat_orths$Gene_orig!=rowDat2$Gene_orig)>0) stop("Old gene names and new gene names do not match.")
+#   if(sum(rowDat_orths$Gene_orig!=rowDat2$Gene_orig)>0) 
+#    stop("Old gene names and new gene names do not match.")
 #   rowData(sce) <- rowDat_orths
 #   rownames(sce) <- rowDat_orths$Gene
 #   return(sce)
