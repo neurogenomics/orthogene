@@ -1,0 +1,36 @@
+Package: orthogene
+Type: Package
+Title: Interspecies gene mapping 
+Version: 0.1.0
+Authors@R:
+    c( 
+     person(given = "Brian",
+           family = "Schilder",
+           role = c("cre"),
+           email = "brian_schilder@alumni.brown.edu",
+           comment = c(ORCID = "0000-0001-5949-2191"))
+    )      
+Description: R package for easy mapping of orthologous genes across a wide variety of species.
+URL: https://github.com/neurogenomics/orthogene 
+BugReports: https://github.com/neurogenomics/orthogene/issues 
+License:  GGPL-3 | file LICENSE 
+Depends: R(>= 4.1)
+VignetteBuilder: knitr
+biocViews:
+Imports: 
+    dplyr,
+    data.table, 
+    ggplot2,  
+    methods, 
+    utils,
+    homologene, 
+    AnnotationDbi, 
+    EnsDb.Hsapiens.v75 
+Suggests: 
+    remotes, 
+    knitr, 
+    BiocStyle, 
+    markdown,
+    rmarkdown 
+RoxygenNote: 7.1.1
+Encoding: UTF-8
