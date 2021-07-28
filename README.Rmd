@@ -22,6 +22,15 @@ if(!"remotes" %in% rownames(installed.packages())) install.packages("remotes")
 remotes::install_github("neurogenomics/orthogene")
 ```
 
+# Quick example
+
+```{r}
+library(orthogene)
+
+data("cortex_mrna")
+gene_df <- convert_orthologs(gene_df = cortex_mrna$exp,
+                             gene_col="rownames")
+```
 
 # Session Info 
 
