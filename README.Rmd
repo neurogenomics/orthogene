@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = T)
 
 ## R package for easy mapping of orthologous genes across a wide variety of species.
 
+`orthogene` uses [homologene](https://github.com/oganm/homologene) to pull up-to-date interspecies gene orthologs mappings across 20+ species. 
+
 # Installation
 
 ```{r, eval=F}
@@ -24,13 +26,23 @@ remotes::install_github("neurogenomics/orthogene")
 
 # Quick example
 
+## Map genes
+
 ```{r}
 library(orthogene)
 
 data("cortex_mrna")
 gene_df <- convert_orthologs(gene_df = cortex_mrna$exp,
-                             gene_col="rownames")
+                             gene_col="rownames", 
+                             input_species = "mouse")
 ```
+
+## Check available organisms
+
+```{r}
+taxa_id_dict(NULL)
+```
+
 
 # Session Info 
 

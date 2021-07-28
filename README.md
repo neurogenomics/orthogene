@@ -9,6 +9,9 @@ Most recent update: <i>Jul-28-2021</i>
 
 ## R package for easy mapping of orthologous genes across a wide variety of species.
 
+`orthogene` uses [homologene](https://github.com/oganm/homologene) to
+pull up-to-date interspecies gene orthologs mappings across 20+ species.
+
 # Installation
 
 ``` r
@@ -19,12 +22,15 @@ remotes::install_github("neurogenomics/orthogene")
 
 # Quick example
 
+## Map genes
+
 ``` r
 library(orthogene)
 
 data("cortex_mrna")
 gene_df <- convert_orthologs(gene_df = cortex_mrna$exp,
-                             gene_col="rownames")
+                             gene_col="rownames", 
+                             input_species = "mouse")
 ```
 
     ## Converting genes: mouse ===> human
@@ -36,6 +42,49 @@ gene_df <- convert_orthologs(gene_df = cortex_mrna$exp,
     ## + Dropping genes that don't have 1:1 gene mappings...
 
     ## Genes dropped during inter-species conversion:  4,248  /  19,972  ( 21.27 %)
+
+## Check available organisms
+
+``` r
+taxa_id_dict(NULL)
+```
+
+    ##                  Mus musculus             Rattus norvegicus 
+    ##                         10090                         10116 
+    ##          Kluyveromyces lactis            Magnaporthe oryzae 
+    ##                         28985                        318829 
+    ##         Eremothecium gossypii          Arabidopsis thaliana 
+    ##                         33169                          3702 
+    ##                  Oryza sativa     Schizosaccharomyces pombe 
+    ##                          4530                          4896 
+    ##      Saccharomyces cerevisiae             Neurospora crassa 
+    ##                          4932                          5141 
+    ##        Caenorhabditis elegans             Anopheles gambiae 
+    ##                          6239                          7165 
+    ##       Drosophila melanogaster                   Danio rerio 
+    ##                          7227                          7955 
+    ## Xenopus (Silurana) tropicalis                 Gallus gallus 
+    ##                          8364                          9031 
+    ##                Macaca mulatta               Pan troglodytes 
+    ##                          9544                          9598 
+    ##                  Homo sapiens        Canis lupus familiaris 
+    ##                          9606                          9615 
+    ##                    Bos taurus                         human 
+    ##                          9913                          9606 
+    ##                         chimp                    chimpanzee 
+    ##                          9598                          9598 
+    ##                        monkey                       macaque 
+    ##                          9544                          9544 
+    ##                         mouse                           rat 
+    ##                         10090                         10116 
+    ##                           dog                           cow 
+    ##                          9615                          9913 
+    ##                       chicken                     zebrafish 
+    ##                          9031                          7955 
+    ##                          frog                           fly 
+    ##                          8364                          7227 
+    ##                          worm                          rice 
+    ##                          6239                          4530
 
 # Session Info
 

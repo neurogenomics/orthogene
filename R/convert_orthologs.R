@@ -29,11 +29,11 @@
 #' @importFrom dplyr select rename all_of 
 #' @examples 
 #' data("cortex_mrna")
-#' gene_df <- convert_orthologs(gene_df = cortex_mrna$exp, 
+#' gene_df <- convert_orthologs(gene_df = cortex_mrna$exp, input_species="mouse",
 #'                              gene_col="rownames")
 convert_orthologs <- function(gene_df,
                               gene_col="rownames",
-                              input_species="mouse",
+                              input_species,
                               output_species="human",
                               drop_nonorths=FALSE,
                               one_to_one_only=TRUE,
