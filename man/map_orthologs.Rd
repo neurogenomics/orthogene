@@ -5,36 +5,56 @@
 \title{Map orthologs}
 \usage{
 map_orthologs(
-  gene_df,
-  gene_col,
+  genes,
+  standardise_genes = FALSE,
   input_species,
   output_species = "human",
-  verbose = TRUE
+  method = c("homologene", "gorth"),
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
-\item{gene_df}{Data.frame containing the genes symbols of the input species.}
+\item{genes}{can be a mixture of any format
+(HGNC symbols, ENSEMBL, UCSC, etc.)
+and will be automatically converted to
+ standardised HGNC symbol format.}
 
-\item{gene_col}{Character string indicating either the 
-input species' gene symbols are in a column with the 
-input species gene symbols (\code{gene_col="<gene_col_name>"}) 
-or are the row names (\code{gene_col="rownames"}).}
+\item{standardise_genes}{If \code{TRUE} genes will first be standardised 
+to HGNC symbols using \code{gprofiler2::gconvert}. 
+This will add a new column to \code{gene_df} 
+called "input_gene_standard".}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
 See \code{taxa_id_dict()} for a full list of available species.}
 
 \item{output_species}{Name of the output species (e.g. "human").}
 
+\item{method}{R package to to use for gene mapping: 
+\code{"gorth"} (slower but more reference species) or 
+\code{"homologene"} (faster but fewer reference species).}
+
 \item{verbose}{Print messages.}
+
+\item{...}{Additional arguments to be passed to 
+\code{gprofiler2::gorth()} or 
+\code{homologene::homologene()}.}
 }
 \value{
-Ortholog map data.frame
+Ortholog map \code{data.frame} with at
+ least the columns "input_gene" and "ortholog_gene".
 }
 \description{
 Map orthologs from one species to another.
 }
+\details{
+\code{map_orthologs()} is a core function within 
+\code{convert_orthologs()}, but does not have many
+of the extra checks, such as \code{one_to_one_only})
+and \code{drop_nonorths}.
+}
 \examples{
 data("exp_mouse")
-gene_df <- data.frame(Gene=rownames(exp_mouse))
-gene_map <- map_orthologs(gene_df=gene_df,  gene_col="Gene", input_species="mouse")
+gene_map <- map_orthologs(genes=rownames(exp_mouse),
+                          input_species="mouse")
 }

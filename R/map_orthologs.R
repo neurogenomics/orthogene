@@ -1,34 +1,68 @@
-
-#' Map orthologs
+#' Map orthologs 
 #' 
 #' Map orthologs from one species to another.
 #' 
-#' @inheritParams convert_orthologs
+#' \code{map_orthologs()} is a core function within 
+#' \code{convert_orthologs()}, but does not have many
+#' of the extra checks, such as \code{one_to_one_only})
+#' and \code{drop_nonorths}. 
 #' 
-#' @return Ortholog map data.frame
+#' @param genes can be a mixture of any format
+#'  (HGNC symbols, ENSEMBL, UCSC, etc.)
+#'  and will be automatically converted to
+#'   standardised HGNC symbol format.
+#' @inheritParams convert_orthologs 
+#' 
+#' @return Ortholog map \code{data.frame} with at
+#'  least the columns "input_gene" and "ortholog_gene".
 #' @export
-#' @importFrom dplyr rename
-#' @importFrom stats setNames
 #' 
 #' @examples 
 #' data("exp_mouse")
-#' gene_df <- data.frame(Gene=rownames(exp_mouse))
-#' gene_map <- map_orthologs(gene_df=gene_df,  gene_col="Gene", input_species="mouse")
-map_orthologs <- function(gene_df, 
-                          gene_col, 
-                          input_species, 
-                          output_species="human", 
-                          verbose=TRUE){ 
-  messager("+ Searching for orthologs.",v=verbose)
-  taxaID <- taxa_id_dict(species=input_species)
-  taxaID_out <- taxa_id_dict(species=output_species)
-  input_genes <- gene_df[[gene_col]]
-  orths <- homologene::homologene(genes = input_genes,
-                                  inTax = unname(taxaID),
-                                  outTax = taxaID_out)
-  orths <- orths[orths[,1] %in% input_genes,]
-  orths_key <- setNames(orths[,2], orths[,1])
-  gene_df <- dplyr::rename(gene_df, Gene_orig=all_of(gene_col))
-  gene_df$Gene <- orths_key[input_genes]
-  return(gene_df)
+#' gene_map <- map_orthologs(genes=rownames(exp_mouse),
+#'                           input_species="mouse")
+map_orthologs <- function(genes,
+                          standardise_genes=FALSE,
+                          input_species,
+                          output_species="human",
+                          method=c("homologene","gorth"), 
+                          verbose=TRUE,
+                          ...){
+  messager("Converting",input_species,"==>",output_species,
+           "orthologs using",method[1],v=verbose)
+  
+  #### Standardise gene names first ####
+  if(standardise_genes){
+    messager("Standardising gene names first.",v=verbose)
+    syn_map <- map_genes(genes = genes, 
+                         species = input_species, 
+                         filter_na = FALSE, 
+                         verbose = verbose)
+    genes <- syn_map$name 
+  }
+ 
+  
+  #### Select mapping method ####
+  # Both methods will return a dataframe with at least the columns
+  # "input_gene" and "ortholog_gene" 
+  if(tolower(method[1])=="gorth"){
+    gene_map <- map_orthologs_gorth(genes=genes,
+                                    input_species=input_species, 
+                                    output_species=output_species, 
+                                    verbose=verbose,
+                                    ...) 
+  } 
+  if(tolower(method[1])=="homologene"){
+     gene_map <- map_orthologs_homologene(genes=genes,
+                                          input_species=input_species, 
+                                          output_species=output_species, 
+                                          verbose=verbose,
+                                          ...)
+  }  
+  #### Add back in original gene names ####
+  if(standardise_genes && exists("syn_map")){
+    gene_map <- add_synonyms(gene_map = gene_map,
+                             syn_map = syn_map)
+  } 
+  return(gene_map)
 }

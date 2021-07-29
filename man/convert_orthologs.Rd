@@ -7,14 +7,19 @@
 convert_orthologs(
   gene_df,
   gene_col = "rownames",
+  standardise_genes = FALSE,
   input_species,
   output_species = "human",
+  method = c("homologene", "gorth"),
   drop_nonorths = TRUE,
   one_to_one_only = TRUE,
   genes_as_rownames = FALSE,
+  as_sparse = FALSE,
+  sort_rows = FALSE,
   return_dict = FALSE,
   invert_dict = FALSE,
-  verbose = TRUE
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
@@ -23,12 +28,22 @@ convert_orthologs(
 \item{gene_col}{Character string indicating either the 
 input species' gene symbols are in a column with the 
 input species gene symbols (\code{gene_col="<gene_col_name>"}) 
-or are the row names (\code{gene_col="rownames"}).}
+or are the row names (\code{gene_col="rownames"}) or
+column names (\code{gene_col="colnames"}).}
+
+\item{standardise_genes}{If \code{TRUE} genes will first be standardised 
+to HGNC symbols using \code{gprofiler2::gconvert}. 
+This will add a new column to \code{gene_df} 
+called "input_gene_standard".}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
 See \code{taxa_id_dict()} for a full list of available species.}
 
 \item{output_species}{Name of the output species (e.g. "human").}
+
+\item{method}{R package to to use for gene mapping: 
+\code{"gorth"} (slower but more reference species) or 
+\code{"homologene"} (faster but fewer reference species).}
 
 \item{drop_nonorths}{Drop genes that don't have an ortholog 
 in the \code{output_species}.}
@@ -40,6 +55,11 @@ between input species and human
 \item{genes_as_rownames}{Whether to return the data.frame 
 with the row names set to the human orthologs.}
 
+\item{as_sparse}{If \code{obj} is a matrix, 
+it can be converted to a sparse matrix.}
+
+\item{sort_rows}{Sort rows alphanumerically.}
+
 \item{return_dict}{Return a dictionary (named list) of gene mappings, 
 where \code{names} are the original gene names and 
  items are the new gene names. If \code{return_dict=FALSE}, 
@@ -49,17 +69,22 @@ where \code{names} are the original gene names and
 switches the names and items in the dictionary.}
 
 \item{verbose}{Print messages.}
+
+\item{...}{Additional arguments to be passed to 
+\code{gprofiler2::gorth()} or 
+\code{homologene::homologene()}.}
 }
 \value{
 Data.frame with the gene symbols of the input species ("Gene_orig") 
 and converted human orthologs ("Gene").
 }
 \description{
-Currently supports 20+ species.
-See \code{taxa_id_dict()} for a full list of available species.
+Currently supports 700+ species.
+See \code{map_species()} for a full list of available species.
 }
 \examples{
 data("exp_mouse")
-gene_df <- convert_orthologs(gene_df = exp_mouse, input_species="mouse",
-                             gene_col="rownames")
+gene_df <- convert_orthologs(gene_df = exp_mouse,
+                             input_species="mouse",
+                             genes_as_rownames=TRUE)
 }

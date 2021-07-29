@@ -23,21 +23,7 @@ taxa_id_dict <- function(species=c("human","chimp","monkey","mouse","rat",
                    homologene::taxData$name_txt)
   ## Add some common names for ease of use
   dict <- c(dict,
-            "human"=9606,
-            "chimp"=9598,
-            "chimpanzee"=9598,
-            "monkey"=9544,
-            "macaque"=9544,
-            "mouse"=10090,
-            "rat"=10116,
-            "dog"=9615,
-            "cow"=9913,
-            "chicken"=9031,
-            "zebrafish"=7955,
-            "frog"=8364,
-            "fly"=7227,
-            "worm"=6239,
-            "rice"=4530)
+            common_species_names_dict())
   if(is.null(species)) return(dict) else  species <- tolower(species)
    
   if(!any(species %in% names(dict))){

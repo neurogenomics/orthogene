@@ -20,8 +20,7 @@ data("exp_mouse")
 }
 \description{
 Mean pseudobulk single-cell RNA-seq gene expression matrix.
-}
-\details{
+
 Data originally comes from Zeisel et al., 2018 (Cell).
 }
 \keyword{datasets}
