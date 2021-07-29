@@ -18,6 +18,9 @@ It also provides various utility functions to map common objects
 (e.g. data.frames, gene expression matrices, lists) 
 onto 1:1 gene orthologs from any other species. 
 
+
+## [Documentation website](https://neurogenomics.github.io/orthogene/) 
+
 # Installation
 
 ```{r, eval=FALSE}

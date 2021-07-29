@@ -19,6 +19,8 @@ It also provides various utility functions to map common objects
 (e.g. data.frames, gene expression matrices, lists) onto 1:1 gene
 orthologs from any other species.
 
+## [Documentation website](https://neurogenomics.github.io/orthogene/)
+
 # Installation
 
 ``` r
@@ -56,8 +58,6 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
     ## Converting genes: mouse ===> human
 
     ## Preparing gene_df.
-
-    ## Loading required package: Matrix
 
     ## Extracting genes from rownames.
 
@@ -284,33 +284,34 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] Matrix_1.3-4    orthogene_0.1.0
+    ## [1] orthogene_0.1.0
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] pillar_1.6.1              compiler_4.1.0           
     ##  [3] tools_4.1.0               digest_0.6.27            
-    ##  [5] lattice_0.20-44           viridisLite_0.4.0        
-    ##  [7] jsonlite_1.7.2            evaluate_0.14            
-    ##  [9] lifecycle_1.0.0           tibble_3.1.3             
-    ## [11] gtable_0.3.0              pkgconfig_2.0.3          
-    ## [13] rlang_0.4.11              DBI_1.1.1                
-    ## [15] curl_4.3.2                yaml_2.2.1               
-    ## [17] xfun_0.24                 httr_1.4.2               
-    ## [19] dplyr_1.0.7               stringr_1.4.0            
-    ## [21] knitr_1.33                htmlwidgets_1.5.3        
-    ## [23] generics_0.1.0            vctrs_0.3.8              
-    ## [25] grid_4.1.0                tidyselect_1.1.1         
-    ## [27] glue_1.4.2                homologene_1.4.68.19.3.27
-    ## [29] data.table_1.14.0         R6_2.5.0                 
-    ## [31] fansi_0.5.0               plotly_4.9.4.9000        
-    ## [33] rmarkdown_2.9             tidyr_1.1.3              
-    ## [35] gprofiler2_0.2.0          purrr_0.3.4              
-    ## [37] ggplot2_3.3.5             magrittr_2.0.1           
-    ## [39] scales_1.1.1              ellipsis_0.3.2           
-    ## [41] htmltools_0.5.1.1         assertthat_0.2.1         
-    ## [43] colorspace_2.0-2          utf8_1.2.2               
-    ## [45] stringi_1.7.3             lazyeval_0.2.2           
-    ## [47] munsell_0.5.0             crayon_1.4.1
+    ##  [5] viridisLite_0.4.0         jsonlite_1.7.2           
+    ##  [7] evaluate_0.14             lifecycle_1.0.0          
+    ##  [9] tibble_3.1.3              gtable_0.3.0             
+    ## [11] lattice_0.20-44           pkgconfig_2.0.3          
+    ## [13] rlang_0.4.11              Matrix_1.3-4             
+    ## [15] DBI_1.1.1                 curl_4.3.2               
+    ## [17] yaml_2.2.1                xfun_0.24                
+    ## [19] httr_1.4.2                dplyr_1.0.7              
+    ## [21] stringr_1.4.0             knitr_1.33               
+    ## [23] htmlwidgets_1.5.3         generics_0.1.0           
+    ## [25] vctrs_0.3.8               grid_4.1.0               
+    ## [27] tidyselect_1.1.1          data.table_1.14.0        
+    ## [29] glue_1.4.2                homologene_1.4.68.19.3.27
+    ## [31] R6_2.5.0                  fansi_0.5.0              
+    ## [33] plotly_4.9.4.9000         rmarkdown_2.9            
+    ## [35] tidyr_1.1.3               gprofiler2_0.2.0         
+    ## [37] purrr_0.3.4               ggplot2_3.3.5            
+    ## [39] magrittr_2.0.1            scales_1.1.1             
+    ## [41] ellipsis_0.3.2            htmltools_0.5.1.1        
+    ## [43] assertthat_0.2.1          colorspace_2.0-2         
+    ## [45] utf8_1.2.2                stringi_1.7.3            
+    ## [47] lazyeval_0.2.2            munsell_0.5.0            
+    ## [49] crayon_1.4.1
 
 </details>
 
