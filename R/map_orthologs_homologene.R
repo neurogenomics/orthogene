@@ -1,15 +1,18 @@
 #' Map orthologs: homologene
 #' 
 #' Map orthologs from one species to another 
-#' using \code{homologene::homologene()}.
+#' using \link[homologene]{homologene}.
+#' 
 #' 
 #' @param genes Gene list.
 #' @param ... Additional arguments to be passed
-#' to \code{homologene::homologene()}. 
+#' to \link[homologene]{homologene}. 
 #' @inheritParams convert_orthologs
+#' @inheritParams homologene::homologene
 #' 
 #' @return Ortholog map \code{data.frame}
 #' @importFrom homologene homologene  
+#' @keywords internal 
 map_orthologs_homologene <- function(genes, 
                                      input_species, 
                                      output_species="human", 

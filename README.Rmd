@@ -17,6 +17,14 @@ It also provides various utility functions to map common objects
 (e.g. data.frames, gene expression matrices, lists) 
 onto 1:1 gene orthologs from any other species. 
 
+In brief, `orthogene` lets you easily: 
+
+- [**`convert_orthologs`** between any two species](https://github.com/neurogenomics/orthogene#convert-orthologs) 
+- [**`map_species`** onto standard ontologies](https://github.com/neurogenomics/orthogene#map-species)  
+- [**`report_orthologs`** between any two species](https://github.com/neurogenomics/orthogene#report-orthologs) 
+- [**`map_genes`** onto standard ontologies]() 
+- [get **`all_genes`** from any species](all_genes) 
+
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/) 
 
@@ -31,6 +39,8 @@ remotes::install_github("neurogenomics/orthogene")
 ```{r setup}
 library(orthogene)
 
+# Setting to "homologene" for the purposes of quick demonstration.
+# We generally recommend using method="gprofiler" (default).
 method <- "homologene"
 ```
 
@@ -66,18 +76,18 @@ knitr::kable(pros_cons)
 
 
 
-# Quick example
+# Quick examples
 
 ## Convert orthologs 
 
-`convert_orthologs` is very flexible with its `gene_df` input,
-and can take a data.frame/data.table/tibble, (sparse) matrix, or list/vector containing genes.
+[`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) is very flexible with what users can supply as `gene_df`,
+and can take a `data.frame`/`data.table`/`tibble`, (sparse) `matrix`, or `list`/`vector` containing genes.
 
 Genes will be recognised in most formats (e.g. HGNC, Ensembl, UCSC) 
 and can even be a mixture of different formats. 
 
 All genes will be mapped to gene symbols, unless specified otherwise with the
-`...` arguments (see `?orthogene::convert_orthologs` for details).  
+`...` arguments (see `?orthogene::convert_orthologs` or [here](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) for details).  
 
 
 ```{r}
@@ -93,10 +103,10 @@ knitr::kable(as.matrix(head(gene_df)))
 
 ## Map species
 
-`map_species` lets you standardise species names from a wide variety of identifiers 
+[`map_species`](https://neurogenomics.github.io/orthogene/reference/map_species.html) lets you standardise species names from a wide variety of identifiers 
 (e.g. common name, taxonomy ID, Latin name, partial match). 
 
-All exposed `orthogene` functions (including `convert_orthologs`) 
+All exposed `orthogene` functions (including [`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html)) 
 use `map_species` under the hood, so you don't have to worry about 
 getting species names exactly right.   
 
@@ -105,7 +115,8 @@ You can check the full list of available species by simply running
 or checking [here](https://biit.cs.ut.ee/gprofiler/page/organism-list).
 
 ```{r}
-species <- map_species(species = c("human",9544,"mus musculus","fruit fly","Celegans"), 
+species <- map_species(species = c("human",9544,"mus musculus",
+                                   "fruit fly","Celegans"), 
                        output_format = "scientific_name")
 print(species)
 ```
@@ -115,20 +126,31 @@ print(species)
 It may be helpful to know the maximum expected number of orthologous 
 gene mappings from one species to another.
 
-`ortholog_report` generates a report that tells you this information 
+[`ortholog_report`](https://neurogenomics.github.io/orthogene/reference/report_orthologs.html) generates a report that tells you this information 
 genome-wide. 
 
 ```{r} 
-orth.zeb <- report_orthologs(target_species = "zebrafish",
+orth_zeb <- report_orthologs(target_species = "zebrafish",
                              reference_species = "human",
                              method_all_genes = method,
                              method_convert_orthologs = method) 
 ```
 
 
+## Map genes 
+
+[`map_genes`](https://neurogenomics.github.io/orthogene/reference/map_genes.html) finds matching *within-species* synonyms across a wide variety of gene naming conventions (e.g. HGNC symbols, ENSEMBL IDs, UCSC) and returns a table with standardised gene symbols (or whatever output format you prefer). 
+
+```{r}
+mapped_genes <- map_genes(genes=rownames(exp_mouse),
+                          species="mouse")
+```
+
+
+
 ## Get all genes 
 
-You can also quickly get all known genes from the genome of a given species.
+You can also quickly get all known genes from the genome of a given species with [`all_genes`](https://neurogenomics.github.io/orthogene/reference/all_genes.html). 
 
 ```{r}
 genome_mouse <- all_genes(species = "mouse", 

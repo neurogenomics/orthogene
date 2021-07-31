@@ -1,7 +1,7 @@
 #' Map orthologs: gprofiler
 #' 
 #' Map orthologs from one species to another
-#' using \code{gprofiler2::gorth()}. 
+#' using \link[gprofiler2]{gorth}. 
 #' 
 #' "\code{mthreshold} is used to set the maximum number 
 #' of ortholog names per gene to show. This is useful to handle
@@ -12,16 +12,19 @@
 #' - From \code{gprofiler2} vignette: 
 #' https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
 #' 
+#' Available namespaces for the \code{numeric_ns} argument can be found 
+#'\href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{here}.
 #' 
 #' @param genes Gene list.
-#' @param ... Additional arguments to be passed to
-#' \code{gprofiler2::gorth()}.
+#' @param ... Additional arguments to be passed to 
+#' \link[gprofiler2]{gorth}. 
 #' @inheritParams convert_orthologs
 #' @inheritParams gprofiler2::gorth
 #' 
 #' @return Ortholog map \code{data.frame}
 #' @importFrom gprofiler2 gorth 
 #' @importFrom  dplyr rename  
+#' @keywords internal 
 map_orthologs_gprofiler <- function(genes,
                                     input_species,
                                     output_species="human", 
@@ -30,9 +33,8 @@ map_orthologs_gprofiler <- function(genes,
                                     ...){
   ## Avoid confusing Biocheck
   input <- ortholog_name <- NULL;
-  # genes <- c("Klf4", "Sox2", "71950","ENSMUSG00000012396","ENSMUSG00000074637") 
   ### Can take any mixtures of gene name types/IDs
-  ### Namespaces to query: https://biit.cs.ut.ee/gprofiler/page/namespaces-list 
+  # genes <- c("Klf4", "Sox2", "71950","ENSMUSG00000012396","ENSMUSG00000074637")  
   source_organism <- map_species(species = input_species, 
                                  verbose = verbose)
   target_organism <- map_species(species = output_species, 

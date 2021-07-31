@@ -21,8 +21,4 @@ Named list of taxa IDs to organism names.
 Dictionary of NCBI taxonomy IDs mapped to 
 Latin and common names of 20+ organisms.
 }
-\examples{
-dict <- taxa_id_dict()
-full_dict <- taxa_id_dict(species=NULL) 
-print(full_dict[c("chimp","mouse")])
-}
+\keyword{internal}

@@ -26,15 +26,15 @@ corresponding target name.}
 
 \item{verbose}{Print messages.}
 
-\item{...}{Additional arguments to be passed to
-\code{gprofiler2::gorth()}.}
+\item{...}{Additional arguments to be passed to 
+\link[gprofiler2]{gorth}.}
 }
 \value{
 Ortholog map \code{data.frame}
 }
 \description{
 Map orthologs from one species to another
-using \code{gprofiler2::gorth()}.
+using \link[gprofiler2]{gorth}.
 }
 \details{
 "\code{mthreshold} is used to set the maximum number 
@@ -46,3 +46,4 @@ of ortholog names per gene to show. This is useful to handle
 - From \code{gprofiler2} vignette: 
 https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
 }
+\keyword{internal}

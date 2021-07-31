@@ -23,12 +23,13 @@ See \code{taxa_id_dict()} for a full list of available species.}
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed
-to \code{homologene::homologene()}.}
+to \link[homologene]{homologene}.}
 }
 \value{
 Ortholog map \code{data.frame}
 }
 \description{
 Map orthologs from one species to another 
-using \code{homologene::homologene()}.
+using \link[homologene]{homologene}.
 }
+\keyword{internal}

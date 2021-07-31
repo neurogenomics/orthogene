@@ -5,7 +5,7 @@ check_rownames_args <- function(gene_output,
   # When gene_output="rownames", 
   # check that other args are compatible
   if(tolower(gene_output) %in% gene_output_opts(rownames_opts = TRUE)){
-    if(!drop_nonorths){
+    if(drop_nonorths==FALSE){
       messager("WARNING:",
                "In order to set gene_output='rownames'",
                "must set drop_nonorths=TRUE.\n",
@@ -13,7 +13,7 @@ check_rownames_args <- function(gene_output,
                v=verbose)
       drop_nonorths <- TRUE
     }
-    if(!non121_strategy %in% c("dbs")){
+    if(!(non121_strategy_opts(non121_strategy = non121_strategy)=="dbs")){
       messager("WARNING:",
                "In order to set gene_output='rownames'",
                "must set non121_strategy='drop_both_species'.\n",
