@@ -3,6 +3,9 @@
 #' Add gene synonyms back into \code{gene_map}
 #' \code{data.frame}. 
 #' 
+#' \code{gene_map} is the output of 
+#' \link[orthogene]{convert_orthologs}.
+#' 
 #' @return \code{gene_map} \code{data.frame} 
 #' @importFrom dplyr rename mutate
 #' @importFrom stats setNames

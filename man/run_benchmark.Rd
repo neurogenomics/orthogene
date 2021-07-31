@@ -11,7 +11,7 @@ run_benchmark(
   run_convert_orthologs = TRUE,
   remove_failed_times = FALSE,
   save_path = tempfile(fileext = ".csv"),
-  mc.cores = 1,
+  mc_cores = 1,
   verbose = TRUE
 )
 }
@@ -30,9 +30,9 @@ no genes were returned, set time to \code{NA}.}
 
 \item{save_path}{Path to save results to.}
 
-\item{mc.cores}{Number of cores to parallelise species across.}
-
 \item{verbose}{Print messages.}
+
+\item{mc.cores}{Number of cores to parallelise species across.}
 }
 \value{
 \code{data.table} with benchmark results

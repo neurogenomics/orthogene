@@ -45,5 +45,8 @@ of ortholog names per gene to show. This is useful to handle
   
 - From \code{gprofiler2} vignette: 
 https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
+
+Available namespaces for the \code{numeric_ns} argument can be found 
+\href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{here}.
 }
 \keyword{internal}

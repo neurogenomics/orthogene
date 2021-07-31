@@ -13,4 +13,8 @@ add_synonyms(gene_map, syn_map)
 Add gene synonyms back into \code{gene_map}
 \code{data.frame}.
 }
+\details{
+\code{gene_map} is the output of 
+\link[orthogene]{convert_orthologs}.
+}
 \keyword{internal}

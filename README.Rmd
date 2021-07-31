@@ -8,6 +8,27 @@ editor_options:
   chunk_output_type: inline
 ---
 
+<!-- badges: start -->
+<row> 
+<!-- badger::badge_codecov() -->
+[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
+
+<!-- badger::badge_cran_checks() -->
+[![CRAN checks](https://cranchecks.info/badges/summary/orthogene)](https://cran.r-project.org/web/checks/check_results_orthogene.html)
+
+<!-- badger::badge_lifecycle("stable", "green") -->
+[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
+<!-- badger::badge_license() -->
+[![License: Artistic-2.0](https://img.shields.io/badge/license-Artistic--2.0-blue.svg)](https://cran.r-project.org/web/licenses/Artistic-2.0)
+
+<!-- badger::badge_last_commit()  -->
+[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
+
+</row>
+<!-- badges: end --> 
+
+
 ## Interspecies gene mapping 
 
 `orthogene` is an R package for easy mapping of orthologous genes across hundreds of species.   

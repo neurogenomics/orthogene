@@ -21,7 +21,7 @@ taxa_id_dict <- function(species=c("human","chimp","monkey","mouse","rat",
             common_species_names_dict())
   if(is.null(species)) return(dict) else  species <- tolower(species)
    
-  if(!any(species %in% names(dict))){
+  if(any(!species %in% names(dict))){
     missing_species <- species[!(species %in% names(dict))]
     messager("::WARNING:: Species '",paste(missing_species,collapse=", "),
             "' not found in taxa dict.") 

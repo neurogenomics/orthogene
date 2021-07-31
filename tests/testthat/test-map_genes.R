@@ -15,8 +15,9 @@ test_that("map_genes works", {
                           species="fly", 
                           filter_na=TRUE)
   
+  
   testthat::expect_gte(nrow(mapped_human), 100)
   testthat::expect_gte(nrow(mapped_mouse), 100)
   testthat::expect_gte(nrow(mapped_zebrafish), 100)
-  testthat::expect_gte(nrow(mapped_fly), 100)
+  testthat::expect_gte(nrow(mapped_fly), 100) 
 })

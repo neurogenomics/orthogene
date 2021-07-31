@@ -124,6 +124,8 @@ convert_orthologs <- function(gene_df,
                               verbose=TRUE,
                               ...){ 
 
+  #### Check gene_output ####
+  check_gene_output(gene_output = gene_output)
   #### Check one2one_strategy is a valid option ####
   one2one_strategy <- non121_strategy_opts(non121_strategy = non121_strategy)
   
@@ -149,8 +151,7 @@ convert_orthologs <- function(gene_df,
     #### Check gene_input ####
     genes <- extract_gene_list(gene_df = gene_df, 
                                gene_input = gene_input, 
-                               verbose = verbose)
-    n_input_genes <- length(unique(genes)) 
+                               verbose = verbose) 
     #### Map orthologs ####
     gene_map <- map_orthologs(genes = genes,  
                               input_species = input_species, 
@@ -162,8 +163,7 @@ convert_orthologs <- function(gene_df,
   } else {
     messager("Detected that gene_df was previously converted to orthologs.\n",
              "Skipping map_orthologs step.",v=verbose)
-    genes <- gene_df$input_gene
-    n_input_genes <- length(unique(genes))
+    genes <- gene_df$input_gene 
     gene_map <- gene_df
   } 
   
@@ -178,35 +178,19 @@ convert_orthologs <- function(gene_df,
                           non121_strategy =  non121_strategy,
                           verbose = verbose)  
   ##### Subset and add new genes cols/rownames ####
-  format_gene_df_out <- format_gene_df(gene_df = gene_df, 
-                                       gene_map = gene_map, 
-                                       genes = genes,
-                                       gene_input = gene_input,
-                                       gene_output = gene_output, 
-                                       drop_nonorths = drop_nonorths,
-                                       non121_strategy = non121_strategy,
-                                       as_sparse = as_sparse,
-                                       sort_rows = sort_rows,
-                                       standardise_genes = standardise_genes, 
-                                       verbose = verbose)
-  gene_df2 <- format_gene_df_out$gene_df2;
-  genes2 <- format_gene_df_out$genes2;  
-  #### Report ####
-  report_gene_map(gene_df2 = gene_df2, 
-                  n_input_genes = n_input_genes,
-                  verbose = verbose) 
-  #### Return ####
-  if(tolower(gene_output) %in% gene_output_opts(dict_opts = TRUE)){
-    ##### Return gene dictionary ####
-    dict <- as_dict(gene_output = gene_output, 
-                    gene_map = gene_map, 
-                    genes2 = genes2,
-                    verbose = verbose)
-    return(dict)
-  } else{
-    ##### Return gene_df ####  
-    return(gene_df2)
-  } 
+  gene_dat <- format_gene_df(gene_df = gene_df, 
+                             gene_map = gene_map, 
+                             genes = genes,
+                             gene_input = gene_input,
+                             gene_output = gene_output, 
+                             drop_nonorths = drop_nonorths,
+                             non121_strategy = non121_strategy,
+                             as_sparse = as_sparse,
+                             sort_rows = sort_rows,
+                             standardise_genes = standardise_genes, 
+                             verbose = verbose) 
+  #### Return #### 
+  return(gene_dat) 
 }
 
 

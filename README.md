@@ -7,6 +7,31 @@ Author: <i>Brian M. Schilder</i>
 Most recent update: <i>Jul-31-2021</i>
 </h4>
 
+<!-- badges: start -->
+
+<row> <!-- badger::badge_codecov() -->
+[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
+
+<!-- badger::badge_cran_checks() -->
+
+[![CRAN
+checks](https://cranchecks.info/badges/summary/orthogene)](https://cran.r-project.org/web/checks/check_results_orthogene.html)
+
+<!-- badger::badge_lifecycle("stable", "green") -->
+
+[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
+<!-- badger::badge_license() -->
+
+[![License:
+Artistic-2.0](https://img.shields.io/badge/license-Artistic--2.0-blue.svg)](https://cran.r-project.org/web/licenses/Artistic-2.0)
+
+<!-- badger::badge_last_commit()  -->
+
+[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
+
+</row> <!-- badges: end -->
+
 ## Interspecies gene mapping
 
 `orthogene` is an R package for easy mapping of orthologous genes across
@@ -97,6 +122,8 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
 
     ## Preparing gene_df.
 
+    ## sparseMatrix format detected.
+
     ## Extracting genes from rownames.
 
     ## Converting mouse ==> human orthologs using: homologene
@@ -125,16 +152,22 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
 
     ## Checking for genes without 1:1 orthologs.
 
-    ## + Dropping 46 genes that have multiple input_gene per ortholog_gene.
+    ## Dropping 46 genes that have multiple input_gene per ortholog_gene.
 
-    ## + Dropping 56 genes that have multiple ortholog_gene per input_gene.
+    ## Dropping 56 genes that have multiple ortholog_gene per input_gene.
+
+    ## Filtering gene_df with gene_map
 
     ## Setting ortholog_gene to rownames.
 
     ## 
     ## =========== REPORT SUMMARY ===========
 
-    ## Total genes dropped during inter-species conversion:  2,016 / 15,259 (13%)
+    ## Total genes dropped after convert_orthologs :
+    ##    2,016 / 15,259 (13%)
+
+    ## Total genes remaining after convert_orthologs :
+    ##    13,243 / 15,259 (87%)
 
 ``` r
 knitr::kable(as.matrix(head(gene_df)))
@@ -254,6 +287,8 @@ orth_zeb <- report_orthologs(target_species = "zebrafish",
 
     ## Preparing gene_df.
 
+    ## data.frame format detected.
+
     ## Extracting genes from Gene.Symbol.
 
     ## Converting zebrafish ==> human orthologs using: homologene
@@ -282,9 +317,11 @@ orth_zeb <- report_orthologs(target_species = "zebrafish",
 
     ## Checking for genes without 1:1 orthologs.
 
-    ## + Dropping 47 genes that have multiple input_gene per ortholog_gene.
+    ## Dropping 47 genes that have multiple input_gene per ortholog_gene.
 
-    ## + Dropping 2,708 genes that have multiple ortholog_gene per input_gene.
+    ## Dropping 2,708 genes that have multiple ortholog_gene per input_gene.
+
+    ## Filtering gene_df with gene_map
 
     ## Adding input_gene col to gene_df.
 
@@ -293,7 +330,11 @@ orth_zeb <- report_orthologs(target_species = "zebrafish",
     ## 
     ## =========== REPORT SUMMARY ===========
 
-    ## Total genes dropped during inter-species conversion:  10,338 / 20,895 (49%)
+    ## Total genes dropped after convert_orthologs :
+    ##    10,338 / 20,895 (49%)
+
+    ## Total genes remaining after convert_orthologs :
+    ##    10,557 / 20,895 (51%)
 
     ## 
     ## =========== REPORT SUMMARY ===========
@@ -395,42 +436,42 @@ utils::sessionInfo()
     ## [1] orthogene_0.1.0
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] tidyselect_1.1.1          xfun_0.24                
-    ##  [3] purrr_0.3.4               haven_2.4.1              
-    ##  [5] lattice_0.20-44           carData_3.0-4            
-    ##  [7] gprofiler2_0.2.0          colorspace_2.0-2         
-    ##  [9] vctrs_0.3.8               generics_0.1.0           
-    ## [11] viridisLite_0.4.0         htmltools_0.5.1.1        
-    ## [13] yaml_2.2.1                plotly_4.9.4.9000        
-    ## [15] utf8_1.2.2                rlang_0.4.11             
-    ## [17] pillar_1.6.1              ggpubr_0.4.0             
-    ## [19] foreign_0.8-81            glue_1.4.2               
-    ## [21] DBI_1.1.1                 readxl_1.3.1             
-    ## [23] lifecycle_1.0.0           stringr_1.4.0            
-    ## [25] cellranger_1.1.0          munsell_0.5.0            
-    ## [27] ggsignif_0.6.2            gtable_0.3.0             
-    ## [29] zip_2.2.0                 htmlwidgets_1.5.3        
-    ## [31] evaluate_0.14             knitr_1.33               
-    ## [33] rio_0.5.27                forcats_0.5.1            
-    ## [35] curl_4.3.2                fansi_0.5.0              
-    ## [37] highr_0.9                 broom_0.7.8              
-    ## [39] Rcpp_1.0.7                scales_1.1.1             
-    ## [41] backports_1.2.1           jsonlite_1.7.2           
-    ## [43] abind_1.4-5               ggplot2_3.3.5            
-    ## [45] hms_1.1.0                 digest_0.6.27            
-    ## [47] stringi_1.7.3             openxlsx_4.2.4           
-    ## [49] rstatix_0.7.0             dplyr_1.0.7              
-    ## [51] grid_4.1.0                bitops_1.0-7             
-    ## [53] tools_4.1.0               magrittr_2.0.1           
-    ## [55] RCurl_1.98-1.3            patchwork_1.1.1          
-    ## [57] lazyeval_0.2.2            tibble_3.1.3             
-    ## [59] crayon_1.4.1              tidyr_1.1.3              
-    ## [61] car_3.0-11                pkgconfig_2.0.3          
-    ## [63] ellipsis_0.3.2            Matrix_1.3-4             
-    ## [65] homologene_1.4.68.19.3.27 data.table_1.14.0        
-    ## [67] httr_1.4.2                assertthat_0.2.1         
-    ## [69] rmarkdown_2.9             R6_2.5.0                 
-    ## [71] compiler_4.1.0
+    ##  [1] Rcpp_1.0.7                lattice_0.20-44          
+    ##  [3] tidyr_1.1.3               assertthat_0.2.1         
+    ##  [5] digest_0.6.27             utf8_1.2.2               
+    ##  [7] R6_2.5.0                  cellranger_1.1.0         
+    ##  [9] backports_1.2.1           evaluate_0.14            
+    ## [11] httr_1.4.2                ggplot2_3.3.5            
+    ## [13] highr_0.9                 pillar_1.6.1             
+    ## [15] rlang_0.4.11              lazyeval_0.2.2           
+    ## [17] curl_4.3.2                readxl_1.3.1             
+    ## [19] data.table_1.14.0         car_3.0-11               
+    ## [21] Matrix_1.3-4              rmarkdown_2.9            
+    ## [23] stringr_1.4.0             foreign_0.8-81           
+    ## [25] htmlwidgets_1.5.3         RCurl_1.98-1.3           
+    ## [27] munsell_0.5.0             broom_0.7.8              
+    ## [29] compiler_4.1.0            gprofiler2_0.2.0         
+    ## [31] xfun_0.24                 pkgconfig_2.0.3          
+    ## [33] htmltools_0.5.1.1         tidyselect_1.1.1         
+    ## [35] tibble_3.1.3              rio_0.5.27               
+    ## [37] fansi_0.5.0               viridisLite_0.4.0        
+    ## [39] crayon_1.4.1              dplyr_1.0.7              
+    ## [41] ggpubr_0.4.0              bitops_1.0-7             
+    ## [43] grid_4.1.0                jsonlite_1.7.2           
+    ## [45] gtable_0.3.0              lifecycle_1.0.0          
+    ## [47] DBI_1.1.1                 magrittr_2.0.1           
+    ## [49] scales_1.1.1              zip_2.2.0                
+    ## [51] stringi_1.7.3             carData_3.0-4            
+    ## [53] ggsignif_0.6.2            ellipsis_0.3.2           
+    ## [55] generics_0.1.0            vctrs_0.3.8              
+    ## [57] openxlsx_4.2.4            tools_4.1.0              
+    ## [59] forcats_0.5.1             homologene_1.4.68.19.3.27
+    ## [61] glue_1.4.2                purrr_0.3.4              
+    ## [63] hms_1.1.0                 abind_1.4-5              
+    ## [65] parallel_4.1.0            yaml_2.2.1               
+    ## [67] colorspace_2.0-2          rstatix_0.7.0            
+    ## [69] plotly_4.9.4.9000         knitr_1.33               
+    ## [71] haven_2.4.1               patchwork_1.1.1
 
 </details>
 

@@ -17,6 +17,8 @@
 #' @param verbose Print messages.
 #' 
 #' @importFrom utils write.csv
+#' @importFrom data.table rbindlist
+#' @importFrom parallel mclapply 
 #' @keywords internal
 run_benchmark <- function(species_mapped,
                           benchmark_homologene=TRUE,
@@ -24,7 +26,7 @@ run_benchmark <- function(species_mapped,
                           run_convert_orthologs=TRUE,
                           remove_failed_times=FALSE,
                           save_path=tempfile(fileext=".csv"),
-                          mc.cores=1,
+                          mc_cores=1,
                           verbose=TRUE){ 
   
   # Avoid confusing Biocheck 
@@ -64,7 +66,7 @@ run_benchmark <- function(species_mapped,
                 verbose = verbose)  
     }, error=function(e){message(e);NA}) 
     time1 <-  as.numeric(difftime(Sys.time(), start1, units = "secs") )
-    n_genes1 <- if(is.na(gene_map1)) 0 else length(unique(gene_map1$Gene.Symbol)) 
+    n_genes1 <- if(all(is.na(gene_map1))) 0 else length(unique(gene_map1$Gene.Symbol)) 
     
     res1 <- data.frame(method=method, 
                        test="all_genes()", 
@@ -87,7 +89,7 @@ run_benchmark <- function(species_mapped,
                           verbose = verbose) 
       }, error=function(e){message(e);NA})  
       time2 <-  as.numeric(difftime(Sys.time(), start2, units = "secs") )
-      n_genes2 <- if(is.na(gene_map2)) 0 else length(unique(gene_map2$ortholog_gene)) 
+      n_genes2 <- if(all(is.na(gene_map2))) 0 else length(unique(gene_map2$ortholog_gene)) 
       
       res2 <- data.frame(method=method, 
                          test="convert_orthologs()", 
@@ -104,7 +106,10 @@ run_benchmark <- function(species_mapped,
                                            .benchmark_homologene=benchmark_homologene,
                                            .benchmark_gprofiler=benchmark_gprofiler,
                                            .run_convert_orthologs=run_convert_orthologs,
-                                           .verbose=verbose){
+                                           .verbose=verbose){ 
+                                    
+    #### Ensure 1 species ####
+    spec <- spec[1]
     #### Record total time per species ####                                
     timeA <- Sys.time()
     message_parallel("\n==== ",spec," ====\n") 
@@ -136,7 +141,8 @@ run_benchmark <- function(species_mapped,
                      round(difftime(Sys.time(),timeA, units="mins"),3),
                      "minutes.") 
     return(res)
-  }, mc.cores=mc.cores) %>% `names<-`(species_mapped) %>%
+  }, mc.cores=mc_cores) %>% 
+    `names<-`(species_mapped) %>%
     data.table::rbindlist(idcol = "species")
   
   #### Remove time that failed entirely ####

@@ -34,6 +34,7 @@ Imports:
     homologene,
     gprofiler2,
     data.table,
+    parallel, 
     ggplot2,
     ggpubr,
     patchwork
