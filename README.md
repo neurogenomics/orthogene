@@ -12,10 +12,9 @@ Most recent update: <i>Jul-31-2021</i>
 <row> <!-- badger::badge_codecov() -->
 [![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
 
-<!-- badger::badge_cran_checks() -->
+<!-- copied from MungeSumstats README.Rmd -->
 
-[![CRAN
-checks](https://cranchecks.info/badges/summary/orthogene)](https://cran.r-project.org/web/checks/check_results_orthogene.html)
+[![R-CMD-check](https://github.com/neurogenomics/MungeSumstats/workflows/R-full/badge.svg)](https://github.com/neurogenomics/MungeSumstats/actions)
 
 <!-- badger::badge_lifecycle("stable", "green") -->
 

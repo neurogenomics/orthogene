@@ -13,17 +13,17 @@ editor_options:
 <!-- badger::badge_codecov() -->
 [![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
 
-<!-- badger::badge_cran_checks() -->
-[![CRAN checks](https://cranchecks.info/badges/summary/orthogene)](https://cran.r-project.org/web/checks/check_results_orthogene.html)
+<!-- copied from MungeSumstats README.Rmd -->
+[![R-CMD-check](https://github.com/neurogenomics/MungeSumstats/workflows/R-full/badge.svg)](https://github.com/neurogenomics/MungeSumstats/actions) 
 
 <!-- badger::badge_lifecycle("stable", "green") -->
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 
+<!-- badger::badge_last_commit()  -->
+[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main) 
+
 <!-- badger::badge_license() -->
 [![License: Artistic-2.0](https://img.shields.io/badge/license-Artistic--2.0-blue.svg)](https://cran.r-project.org/web/licenses/Artistic-2.0)
-
-<!-- badger::badge_last_commit()  -->
-[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 
 </row>
 <!-- badges: end --> 
