@@ -37,7 +37,6 @@ jobs:
         run: |
           Rscript -e 'remotes::install_github("r-lib/covr@gh-actions")'
           Rscript -e 'covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")'
- 
  linux:
    runs-on: ubuntu-latest
  strategy:
@@ -61,7 +60,6 @@ jobs:
          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
      - name: Check
        run: Rscript -e "install.packages('rcmdcheck')" -e "rcmdcheck::rcmdcheck(error_on = 'error')"
-
   windows:
     runs-on: windows-latest
     strategy:
