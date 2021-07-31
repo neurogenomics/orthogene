@@ -4,14 +4,13 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Jul-29-2021</i>
+Most recent update: <i>Jul-31-2021</i>
 </h4>
 
 ## Interspecies gene mapping
 
 `orthogene` is an R package for easy mapping of orthologous genes across
-hundreds of species.
-
+hundreds of species.  
 It pulls up-to-date interspecies gene ortholog mappings across 700+
 organisms.
 
@@ -31,51 +30,86 @@ remotes::install_github("neurogenomics/orthogene")
 
 ``` r
 library(orthogene)
+
+method <- "homologene"
 ```
+
+# Methods
+
+For most functions, `orthogene` lets users choose between two different
+methods, each with complementary strengths and weaknesses: `"gprofiler"`
+and `"homologene"`
+
+In general, we recommend you use `"gprofiler"` when possible, as it
+tends to be more comprehensive.
+
+It’s also worth noting that for smaller gene sets, the speed difference
+between these methods becomes negligible.
+
+|                     | gprofiler                     | homologene         |
+|:--------------------|:------------------------------|:-------------------|
+| Reference organisms | 700+                          | 20+                |
+| Gene mappings       | More comprehensive            | Less comprehensive |
+| Updates             | Frequent                      | Less frequent      |
+| Orthology databases | Ensembl, HomoloGene, WormBase | HomoloGene         |
+| Data location       | Remote                        | Local              |
+| Internet connection | Required                      | Not required       |
+| Speed               | Slower                        | Faster             |
 
 # Quick example
 
 ## Convert orthologs
 
-`convert_orthologs` can take a data.frame/data.table/tibble, (sparse)
-matrix, or list/vector containing genes.
+`convert_orthologs` is very flexible with its `gene_df` input, and can
+take a data.frame/data.table/tibble, (sparse) matrix, or list/vector
+containing genes.
 
 Genes will be recognised in most formats (e.g. HGNC, Ensembl, UCSC) and
 can even be a mixture of different formats.
 
 All genes will be mapped to gene symbols, unless specified otherwise
-with the `...` arguments.
+with the `...` arguments (see `?orthogene::convert_orthologs` for
+details).
 
 ``` r
 data("exp_mouse")
 gene_df <- convert_orthologs(gene_df = exp_mouse,
-                             gene_col = "rownames", 
-                             input_species = "mouse", 
-                             genes_as_rownames = TRUE) 
+                             gene_input = "rownames", 
+                             gene_output = "rownames", 
+                             input_species = "mouse",
+                             method = method) 
 ```
 
-    ## 
-    ## Converting genes: mouse ===> human
+    ## WARNING: In order to set gene_output='rownames' must set non121_strategy='drop_both_species'.
+    ##  Setting non121_strategy='drop_both_species'.
 
     ## Preparing gene_df.
 
     ## Extracting genes from rownames.
 
-    ## Converting mouse ==> human orthologs using homologene
+    ## Converting mouse ==> human orthologs using: homologene
+
+    ## Using stored `gprofiler_orgs`.
 
     ## Mapping species name: mouse
 
     ## Common name mapping found for mouse
 
-    ## 1 organism identified from search: Mus musculus
+    ## 1 organism identified from search: 10090
+
+    ## Using stored `gprofiler_orgs`.
 
     ## Mapping species name: human
 
     ## Common name mapping found for human
 
-    ## 1 organism identified from search: Homo sapiens
+    ## 1 organism identified from search: 9606
 
     ## Checking for genes without orthologs in human.
+
+    ## Extracting genes from input_gene.
+
+    ## Extracting genes from ortholog_gene.
 
     ## Checking for genes without 1:1 orthologs.
 
@@ -83,33 +117,25 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
 
     ## + Dropping 56 genes that have multiple ortholog_gene per input_gene.
 
-    ## + Setting ortholog_gene col as rownames...
-
-    ## WARNING: genes_as_rownames must be TRUE when gene_df is a matrix. Setting accordingly.
-
     ## Setting ortholog_gene to rownames.
 
-    ## Genes dropped during inter-species conversion:  2,016 / 15,259 (13%)
+    ## 
+    ## =========== REPORT SUMMARY ===========
+
+    ## Total genes dropped during inter-species conversion:  2,016 / 15,259 (13%)
 
 ``` r
-print(head(gene_df))
+knitr::kable(as.matrix(head(gene_df)))
 ```
 
-    ## 6 x 7 sparse Matrix of class "dgCMatrix"
-    ##          astrocytes_ependymal endothelial-mural interneurons  microglia
-    ## TSPAN12           0.330357100        0.58723400    0.6413793 0.14285710
-    ## TSHZ1             0.428571430        0.44680851    1.1551724 0.43877551
-    ## ADAMTS15          0.008928571        0.09787234    0.2206897 .         
-    ## CLDN12            0.223214290        0.11489362    0.5517241 0.05102041
-    ## RXFP1             .                  0.01276596    0.2551724 .         
-    ## SEMA3C            0.196428600        0.99574470    8.6379310 0.20408160
-    ##          oligodendrocytes pyramidal CA1 pyramidal SS
-    ## TSPAN12        0.12073170    0.28647500   0.14536340
-    ## TSHZ1          0.36219512    0.06922258   0.83208020
-    ## ADAMTS15       0.02317073    0.01171459   0.03759399
-    ## CLDN12         0.26097561    0.43769968   0.68421053
-    ## RXFP1          0.01585366    0.05111821   0.07518797
-    ## SEMA3C         0.18536590    0.16080940   0.22807020
+|          | astrocytes\_ependymal | endothelial-mural | interneurons | microglia | oligodendrocytes | pyramidal CA1 | pyramidal SS |
+|:---------|----------------------:|------------------:|-------------:|----------:|-----------------:|--------------:|-------------:|
+| TSPAN12  |             0.3303571 |         0.5872340 |    0.6413793 | 0.1428571 |        0.1207317 |     0.2864750 |    0.1453634 |
+| TSHZ1    |             0.4285714 |         0.4468085 |    1.1551724 | 0.4387755 |        0.3621951 |     0.0692226 |    0.8320802 |
+| ADAMTS15 |             0.0089286 |         0.0978723 |    0.2206897 | 0.0000000 |        0.0231707 |     0.0117146 |    0.0375940 |
+| CLDN12   |             0.2232143 |         0.1148936 |    0.5517241 | 0.0510204 |        0.2609756 |     0.4376997 |    0.6842105 |
+| RXFP1    |             0.0000000 |         0.0127660 |    0.2551724 | 0.0000000 |        0.0158537 |     0.0511182 |    0.0751880 |
+| SEMA3C   |             0.1964286 |         0.9957447 |    8.6379310 | 0.2040816 |        0.1853659 |     0.1608094 |    0.2280702 |
 
 ## Map species
 
@@ -120,10 +146,16 @@ All exposed `orthogene` functions (including `convert_orthologs`) use
 `map_species` under the hood, so you don’t have to worry about getting
 species names exactly right.
 
+You can check the full list of available species by simply running
+`map_species()` with no arguments, or checking
+[here](https://biit.cs.ut.ee/gprofiler/page/organism-list).
+
 ``` r
 species <- map_species(species = c("human",9544,"mus musculus","fruit fly","Celegans"), 
                        output_format = "scientific_name")
 ```
+
+    ## Using stored `gprofiler_orgs`.
 
     ## Mapping species name: human
 
@@ -168,47 +200,70 @@ genome-wide.
 
 ``` r
 orth.zeb <- report_orthologs(target_species = "zebrafish",
-                             reference_species="human") 
+                             reference_species = "human",
+                             method_all_genes = method,
+                             method_convert_orthologs = method) 
 ```
+
+    ## Retrieving all genes using: homologene.
+
+    ## Using stored `gprofiler_orgs`.
 
     ## Mapping species name: zebrafish
 
     ## Common name mapping found for zebrafish
 
-    ## 1 organism identified from search: Danio rerio
+    ## 1 organism identified from search: 7955
+
+    ## Gene table with 20897 rows retrieved.
+
+    ## Extracting genes from Gene.Symbol.
 
     ## Returning all 20,897 genes from zebrafish.
+
+    ## Retrieving all genes using: homologene.
+
+    ## Using stored `gprofiler_orgs`.
 
     ## Mapping species name: human
 
     ## Common name mapping found for human
 
-    ## 1 organism identified from search: Homo sapiens
+    ## 1 organism identified from search: 9606
+
+    ## Gene table with 19129 rows retrieved.
+
+    ## Extracting genes from Gene.Symbol.
 
     ## Returning all 19,129 genes from human.
-
-    ## 
-    ## Converting genes: zebrafish ===> human
 
     ## Preparing gene_df.
 
     ## Extracting genes from Gene.Symbol.
 
-    ## Converting zebrafish ==> human orthologs using homologene
+    ## Converting zebrafish ==> human orthologs using: homologene
+
+    ## Using stored `gprofiler_orgs`.
 
     ## Mapping species name: zebrafish
 
     ## Common name mapping found for zebrafish
 
-    ## 1 organism identified from search: Danio rerio
+    ## 1 organism identified from search: 7955
+
+    ## Using stored `gprofiler_orgs`.
 
     ## Mapping species name: human
 
     ## Common name mapping found for human
 
-    ## 1 organism identified from search: Homo sapiens
+    ## 1 organism identified from search: 9606
 
     ## Checking for genes without orthologs in human.
+
+    ## Extracting genes from input_gene.
+
+    ## Extracting genes from ortholog_gene.
 
     ## Checking for genes without 1:1 orthologs.
 
@@ -216,11 +271,15 @@ orth.zeb <- report_orthologs(target_species = "zebrafish",
 
     ## + Dropping 2,708 genes that have multiple ortholog_gene per input_gene.
 
+    ## Adding input_gene col to gene_df.
+
     ## Adding ortholog_gene col to gene_df.
 
-    ## Genes dropped during inter-species conversion:  10,338 / 20,895 (49%)
-
     ## 
+    ## =========== REPORT SUMMARY ===========
+
+    ## Total genes dropped during inter-species conversion:  10,338 / 20,895 (49%)
+
     ## 
     ## =========== REPORT SUMMARY ===========
 
@@ -234,28 +293,38 @@ You can also quickly get all known genes from the genome of a given
 species.
 
 ``` r
-genome_mouse <- all_genes(species="mouse")
+genome_mouse <- all_genes(species = "mouse", 
+                          method = method)
 ```
+
+    ## Retrieving all genes using: homologene.
+
+    ## Using stored `gprofiler_orgs`.
 
     ## Mapping species name: mouse
 
     ## Common name mapping found for mouse
 
-    ## 1 organism identified from search: Mus musculus
+    ## 1 organism identified from search: 10090
+
+    ## Gene table with 21207 rows retrieved.
+
+    ## Extracting genes from Gene.Symbol.
 
     ## Returning all 21,207 genes from mouse.
 
 ``` r
-head(genome_mouse)
+knitr::kable(head(genome_mouse))
 ```
 
-    ##    HID Gene.ID Gene.Symbol Taxonomy
-    ## 6    3   11364       Acadm    10090
-    ## 18   5   11370      Acadvl    10090
-    ## 29   6  110446       Acat1    10090
-    ## 52   7   11477       Acvr1    10090
-    ## 64   9   20391        Sgca    10090
-    ## 71  12   11564        Adsl    10090
+|     | HID | Gene.ID | Gene.Symbol | Taxonomy |
+|:----|----:|--------:|:------------|---------:|
+| 6   |   3 |   11364 | Acadm       |    10090 |
+| 18  |   5 |   11370 | Acadvl      |    10090 |
+| 29  |   6 |  110446 | Acat1       |    10090 |
+| 52  |   7 |   11477 | Acvr1       |    10090 |
+| 64  |   9 |   20391 | Sgca        |    10090 |
+| 71  |  12 |   11564 | Adsl        |    10090 |
 
 # Session Info
 
@@ -287,31 +356,41 @@ utils::sessionInfo()
     ## [1] orthogene_0.1.0
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] pillar_1.6.1              compiler_4.1.0           
-    ##  [3] tools_4.1.0               digest_0.6.27            
-    ##  [5] viridisLite_0.4.0         jsonlite_1.7.2           
-    ##  [7] evaluate_0.14             lifecycle_1.0.0          
-    ##  [9] tibble_3.1.3              gtable_0.3.0             
-    ## [11] lattice_0.20-44           pkgconfig_2.0.3          
-    ## [13] rlang_0.4.11              Matrix_1.3-4             
-    ## [15] DBI_1.1.1                 curl_4.3.2               
-    ## [17] yaml_2.2.1                xfun_0.24                
-    ## [19] httr_1.4.2                dplyr_1.0.7              
-    ## [21] stringr_1.4.0             knitr_1.33               
-    ## [23] htmlwidgets_1.5.3         generics_0.1.0           
-    ## [25] vctrs_0.3.8               grid_4.1.0               
-    ## [27] tidyselect_1.1.1          data.table_1.14.0        
-    ## [29] glue_1.4.2                homologene_1.4.68.19.3.27
-    ## [31] R6_2.5.0                  fansi_0.5.0              
-    ## [33] plotly_4.9.4.9000         rmarkdown_2.9            
-    ## [35] tidyr_1.1.3               gprofiler2_0.2.0         
-    ## [37] purrr_0.3.4               ggplot2_3.3.5            
-    ## [39] magrittr_2.0.1            scales_1.1.1             
-    ## [41] ellipsis_0.3.2            htmltools_0.5.1.1        
-    ## [43] assertthat_0.2.1          colorspace_2.0-2         
-    ## [45] utf8_1.2.2                stringi_1.7.3            
-    ## [47] lazyeval_0.2.2            munsell_0.5.0            
-    ## [49] crayon_1.4.1
+    ##  [1] tidyselect_1.1.1          xfun_0.24                
+    ##  [3] purrr_0.3.4               haven_2.4.1              
+    ##  [5] lattice_0.20-44           carData_3.0-4            
+    ##  [7] gprofiler2_0.2.0          colorspace_2.0-2         
+    ##  [9] vctrs_0.3.8               generics_0.1.0           
+    ## [11] viridisLite_0.4.0         htmltools_0.5.1.1        
+    ## [13] yaml_2.2.1                plotly_4.9.4.9000        
+    ## [15] utf8_1.2.2                rlang_0.4.11             
+    ## [17] pillar_1.6.1              ggpubr_0.4.0             
+    ## [19] foreign_0.8-81            glue_1.4.2               
+    ## [21] DBI_1.1.1                 readxl_1.3.1             
+    ## [23] lifecycle_1.0.0           stringr_1.4.0            
+    ## [25] cellranger_1.1.0          munsell_0.5.0            
+    ## [27] ggsignif_0.6.2            gtable_0.3.0             
+    ## [29] zip_2.2.0                 htmlwidgets_1.5.3        
+    ## [31] evaluate_0.14             knitr_1.33               
+    ## [33] rio_0.5.27                forcats_0.5.1            
+    ## [35] curl_4.3.2                fansi_0.5.0              
+    ## [37] highr_0.9                 broom_0.7.8              
+    ## [39] Rcpp_1.0.7                scales_1.1.1             
+    ## [41] backports_1.2.1           jsonlite_1.7.2           
+    ## [43] abind_1.4-5               ggplot2_3.3.5            
+    ## [45] hms_1.1.0                 digest_0.6.27            
+    ## [47] stringi_1.7.3             openxlsx_4.2.4           
+    ## [49] rstatix_0.7.0             dplyr_1.0.7              
+    ## [51] grid_4.1.0                tools_4.1.0              
+    ## [53] magrittr_2.0.1            patchwork_1.1.1          
+    ## [55] lazyeval_0.2.2            tibble_3.1.3             
+    ## [57] crayon_1.4.1              tidyr_1.1.3              
+    ## [59] car_3.0-11                pkgconfig_2.0.3          
+    ## [61] ellipsis_0.3.2            Matrix_1.3-4             
+    ## [63] homologene_1.4.68.19.3.27 data.table_1.14.0        
+    ## [65] httr_1.4.2                assertthat_0.2.1         
+    ## [67] rmarkdown_2.9             R6_2.5.0                 
+    ## [69] compiler_4.1.0
 
 </details>
 

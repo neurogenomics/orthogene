@@ -4,7 +4,7 @@
 #' 
 #' \code{map_orthologs()} is a core function within 
 #' \code{convert_orthologs()}, but does not have many
-#' of the extra checks, such as \code{one_to_one_only})
+#' of the extra checks, such as \code{non121_strategy})
 #' and \code{drop_nonorths}. 
 #' 
 #' @param genes can be a mixture of any format
@@ -25,11 +25,11 @@ map_orthologs <- function(genes,
                           standardise_genes=FALSE,
                           input_species,
                           output_species="human",
-                          method=c("homologene","gorth"), 
+                          method=c("gprofiler","homologene"),
                           verbose=TRUE,
                           ...){
   messager("Converting",input_species,"==>",output_species,
-           "orthologs using",method[1],v=verbose)
+           "orthologs using:",method[1],v=verbose)
   
   #### Standardise gene names first ####
   if(standardise_genes){
@@ -45,14 +45,14 @@ map_orthologs <- function(genes,
   #### Select mapping method ####
   # Both methods will return a dataframe with at least the columns
   # "input_gene" and "ortholog_gene" 
-  if(tolower(method[1])=="gorth"){
-    gene_map <- map_orthologs_gorth(genes=genes,
-                                    input_species=input_species, 
-                                    output_species=output_species, 
-                                    verbose=verbose,
-                                    ...) 
+  if(methods_opts(method = method, gprofiler_opts = TRUE)){
+    gene_map <- map_orthologs_gprofiler(genes=genes,
+                                        input_species=input_species, 
+                                        output_species=output_species, 
+                                        verbose=verbose,
+                                        ...) 
   } 
-  if(tolower(method[1])=="homologene"){
+  if(methods_opts(method = method, homologene_opts = TRUE)){
      gene_map <- map_orthologs_homologene(genes=genes,
                                           input_species=input_species, 
                                           output_species=output_species, 

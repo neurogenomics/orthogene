@@ -103,12 +103,12 @@ drop_uninformative_genes <- function(exp,
     if(drop_nonhuman_genes){
         rowDat <- data.frame(gene=rownames(exp))
         orths <- convert_orthologs(gene_df=rowDat,
-                                     gene_col="gene",
-                                     input_species=input_species,
-                                     drop_nonorths=TRUE,
-                                     one_to_one_only=TRUE,
-                                     genes_as_rownames=TRUE,
-                                     verbose=verbose)
+                                   gene_input="gene",
+                                   gene_output="columns",
+                                   input_species=input_species,
+                                   drop_nonorths=TRUE,
+                                   non121_strategy="drop_both_species", 
+                                   verbose=verbose)
         # Not always sure about how the exp has been named (original species gene names or human orthologs)
         exp <- tryCatch({exp[orths$Gene_orig,]},
                         error=function(e){ exp[orths$Gene,]

@@ -2,15 +2,16 @@
 % Please edit documentation in R/report_orthologs.R
 \name{report_orthologs}
 \alias{report_orthologs}
-\title{Identify the number of orthologous genes between two species}
+\title{Report orthologs}
 \usage{
 report_orthologs(
   target_species = "mouse",
   reference_species = "human",
   standardise_genes = FALSE,
-  method = c("homologene", "gorth"),
+  method_all_genes = c("gprofiler", "homologene"),
+  method_convert_orthologs = c("gprofiler", "homologene"),
   drop_nonorths = TRUE,
-  one_to_one_only = TRUE,
+  non121_strategy = "drop_both_species",
   round_digits = 2,
   return_report = TRUE,
   verbose = TRUE
@@ -22,25 +23,45 @@ report_orthologs(
 \item{reference_species}{Reference species.}
 
 \item{standardise_genes}{If \code{TRUE} genes will first be standardised 
-to HGNC symbols using \code{gprofiler2::gconvert}. 
+to HGNC symbols using \link[gprofiler2]{gconvert}. 
 This will add a new column to \code{gene_df} 
 called "input_gene_standard".}
 
-\item{method}{R package to to use for gene mapping: 
-\code{"gorth"} (slower but more reference species) or 
-\code{"homologene"} (faster but fewer reference species).}
+\item{method_all_genes}{R package to to use in 
+\link[orthogene]{all_genes} step: 
+\code{"gprofiler"} (slower but more species and genes) or 
+\code{"homologene"} (faster but fewer species and genes).}
+
+\item{method_convert_orthologs}{R package to to use in 
+\link[orthogene]{convert_orthologs} step: 
+\code{"gprofiler"} (slower but more species and genes) or 
+\code{"homologene"} (faster but fewer species and genes).}
 
 \item{drop_nonorths}{Drop genes that don't have an ortholog 
 in the \code{output_species}.}
 
-\item{one_to_one_only}{Drop genes that don't have a 1:1 mapping 
-between input species and human 
-(i.e. drop genes with multiple human orthologs).}
+\item{non121_strategy}{How to handle genes that don't have 
+1:1 mappings between \code{input_species}:\code{output_species}.
+Options include: 
+
+\itemize{
+\item{\code{"drop_both_species" or "dbs" or 1} : }{Drop genes that have duplicate 
+mappings in either the \code{input_species} or \code{output_species} 
+(\emph{Default}).} 
+\item{\code{"drop_input_species" or "dis" or 2} : }{Drop genes that have duplicate 
+mappings in the \code{input_species}.} 
+\item{\code{"drop_output_species" or "dos" or 3} : }{Drop genes that have duplicate
+mappings in the \code{output_species}.}
+\item{\code{"keep_both_species" or "kbs" or 4} : }{Keep all genes regardless of whether
+they have duplicate mappings in either species.}
+}}
 
 \item{round_digits}{Number of digits to round to when printing percentages.}
 
-\item{return_report}{Return just the ortholog mapping between two species (\code{FALSE}) 
-or return both the ortholog mapping as well a dataframe of the report statistics (\code{TRUE}).}
+\item{return_report}{Return just the ortholog mapping 
+between two species (\code{FALSE}) or return both the
+ ortholog mapping as well a \code{data.frame} 
+ of the report statistics (\code{TRUE}).}
 
 \item{verbose}{Print messages.}
 }
@@ -48,15 +69,9 @@ or return both the ortholog mapping as well a dataframe of the report statistics
 List of ortholog report statistics
 }
 \description{
-\code{ewceData::mouse_to_human_homologs()} provides 15,604 1:1 mouse:human orthologs.
-\code{homologene}-based functions like \code{EWCE::convert_orthologs} 
-provide an improved 16,766 1:1 mouse:human orthologs.
+Identify the number of orthologous genes between two species.
 }
 \examples{
-orth.fly <- report_orthologs(target_species = "fly",
+orth_fly <- report_orthologs(target_species="fly",
                              reference_species="human")
-orth.zeb <- report_orthologs(target_species = "zebrafish", 
-                             reference_species="human")
-orth.mus <- report_orthologs(target_species = "mouse", 
-                             reference_species="human") 
 }

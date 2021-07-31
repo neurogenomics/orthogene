@@ -10,8 +10,7 @@ editor_options:
 
 ## Interspecies gene mapping 
 
-`orthogene` is an R package for easy mapping of orthologous genes across hundreds of species.  
-
+`orthogene` is an R package for easy mapping of orthologous genes across hundreds of species.   
 It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms. 
 
 It also provides various utility functions to map common objects 
@@ -31,29 +30,65 @@ remotes::install_github("neurogenomics/orthogene")
 
 ```{r setup}
 library(orthogene)
+
+method <- "homologene"
 ```
+
+# Methods 
+
+For most functions, `orthogene` lets users choose between two different methods, each with complementary strengths and weaknesses: `"gprofiler"` and `"homologene"` 
+
+In general, we recommend you use `"gprofiler"` when possible, as it tends to be more comprehensive. 
+
+It's also worth noting that for smaller gene sets, the speed difference between these methods becomes negligible. 
+
+```{r, echo=FALSE}
+pros_cons <- data.frame(gprofiler=c("Reference organisms"="700+",
+                       "Gene mappings"="More comprehensive",
+                       "Updates"="Frequent", 
+                       "Orthology databases"=paste("Ensembl",
+                                                   "HomoloGene",
+                                                   "WormBase",sep = ", "),
+                       "Data location"="Remote",
+                       "Internet connection"="Required",
+                       "Speed"="Slower"),
+                       
+           homologene=c("# reference organisms"="20+", 
+                        "Gene mappings"="Less comprehensive",
+                        "Updates"="Less frequent",
+                        "Orthology databases"="HomoloGene",
+                        "Data location"="Local",
+                        "Internet connection"="Not required",
+                        "Speed"="Faster")
+           )
+knitr::kable(pros_cons)
+```
+
 
 
 # Quick example
 
 ## Convert orthologs 
 
-`convert_orthologs` can take a data.frame/data.table/tibble, (sparse) matrix, 
-or list/vector containing genes.
+`convert_orthologs` is very flexible with its `gene_df` input,
+and can take a data.frame/data.table/tibble, (sparse) matrix, or list/vector containing genes.
 
 Genes will be recognised in most formats (e.g. HGNC, Ensembl, UCSC) 
 and can even be a mixture of different formats. 
 
-All genes will be mapped to gene symbols, unless specified otherwise with the `...` arguments. 
+All genes will be mapped to gene symbols, unless specified otherwise with the
+`...` arguments (see `?orthogene::convert_orthologs` for details).  
 
 
 ```{r}
 data("exp_mouse")
 gene_df <- convert_orthologs(gene_df = exp_mouse,
-                             gene_col = "rownames", 
-                             input_species = "mouse", 
-                             genes_as_rownames = TRUE) 
-print(head(gene_df))
+                             gene_input = "rownames", 
+                             gene_output = "rownames", 
+                             input_species = "mouse",
+                             method = method) 
+
+knitr::kable(as.matrix(head(gene_df)))
 ```
 
 ## Map species
@@ -64,6 +99,10 @@ print(head(gene_df))
 All exposed `orthogene` functions (including `convert_orthologs`) 
 use `map_species` under the hood, so you don't have to worry about 
 getting species names exactly right.   
+
+You can check the full list of available species by simply running 
+`map_species()` with no arguments, 
+or checking [here](https://biit.cs.ut.ee/gprofiler/page/organism-list).
 
 ```{r}
 species <- map_species(species = c("human",9544,"mus musculus","fruit fly","Celegans"), 
@@ -81,7 +120,9 @@ genome-wide.
 
 ```{r} 
 orth.zeb <- report_orthologs(target_species = "zebrafish",
-                             reference_species="human") 
+                             reference_species = "human",
+                             method_all_genes = method,
+                             method_convert_orthologs = method) 
 ```
 
 
@@ -90,8 +131,10 @@ orth.zeb <- report_orthologs(target_species = "zebrafish",
 You can also quickly get all known genes from the genome of a given species.
 
 ```{r}
-genome_mouse <- all_genes(species="mouse")
-head(genome_mouse)
+genome_mouse <- all_genes(species = "mouse", 
+                          method = method)
+
+knitr::kable(head(genome_mouse))
 ```
 
 

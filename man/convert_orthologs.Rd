@@ -6,33 +6,66 @@
 \usage{
 convert_orthologs(
   gene_df,
-  gene_col = "rownames",
+  gene_input = "rownames",
+  gene_output = "rownames",
   standardise_genes = FALSE,
   input_species,
   output_species = "human",
-  method = c("homologene", "gorth"),
+  method = c("gprofiler", "homologene"),
   drop_nonorths = TRUE,
-  one_to_one_only = TRUE,
-  genes_as_rownames = FALSE,
+  non121_strategy = "drop_both_species",
   as_sparse = FALSE,
   sort_rows = FALSE,
-  return_dict = FALSE,
-  invert_dict = FALSE,
   verbose = TRUE,
   ...
 )
 }
 \arguments{
-\item{gene_df}{Data.frame containing the genes symbols of the input species.}
+\item{gene_df}{Data object containing the genes 
+(see \code{gene_input} for options on how 
+the genes can be stored within the object). 
+ 
+Can be one of the following formats: 
 
-\item{gene_col}{Character string indicating either the 
-input species' gene symbols are in a column with the 
-input species gene symbols (\code{gene_col="<gene_col_name>"}) 
-or are the row names (\code{gene_col="rownames"}) or
-column names (\code{gene_col="colnames"}).}
+\itemize{
+\item{\code{matrix}}{A sparse or dense matrix.}
+\item{\code{data.frame}}{A \code{data.frame},
+ \code{data.table}. or \code{tibble}.}
+\item{code{list}}{A \code{list} or \code{vector}.} 
+}
+
+Genes can be in any format 
+(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
+automatically converted to HGNC gene symbols unless 
+specified otherwise with the \code{...} arguments.}
+
+\item{gene_input}{Which aspect of \code{gene_df} you want to 
+get gene names from: 
+ 
+\itemize{
+\item{\code{"rownames"} : }{From row names of data.frame/matrix.}
+\item{\code{"colnames"} : }{From column names of data.frame/matrix.}
+\item{\code{<column name>} : }{From a column in \code{gene_df},
+ e.g. \code{"gene_names"}.} 
+}}
+
+\item{gene_output}{How to return genes. 
+Options include: 
+
+\itemize{
+\item{\code{"rownames"} : }{As row names of \code{gene_df}.}
+\item{\code{"colnames"} : }{As column names of \code{gene_df}.}
+\item{\code{"columns"} : }{As new columns "input_gene", "ortholog_gene" 
+(and "input_gene_standard" if \code{standardise_genes=TRUE}) 
+in \code{gene_df}.}
+\item{\code{"dict"} : }{As a dictionary (named list) where the names 
+are input_gene and the values are ortholog_gene}.
+\item{\code{"dict_rev"} : }{As a reversed dictionary (named list) where the names 
+are ortholog_gene and the values are input_gene}.
+}}
 
 \item{standardise_genes}{If \code{TRUE} genes will first be standardised 
-to HGNC symbols using \code{gprofiler2::gconvert}. 
+to HGNC symbols using \link[gprofiler2]{gconvert}. 
 This will add a new column to \code{gene_df} 
 called "input_gene_standard".}
 
@@ -42,41 +75,54 @@ See \code{taxa_id_dict()} for a full list of available species.}
 \item{output_species}{Name of the output species (e.g. "human").}
 
 \item{method}{R package to to use for gene mapping: 
-\code{"gorth"} (slower but more reference species) or 
-\code{"homologene"} (faster but fewer reference species).}
+\code{"gprofiler"} (slower but more species and genes) or 
+\code{"homologene"} (faster but fewer species and genes).}
 
 \item{drop_nonorths}{Drop genes that don't have an ortholog 
 in the \code{output_species}.}
 
-\item{one_to_one_only}{Drop genes that don't have a 1:1 mapping 
-between input species and human 
-(i.e. drop genes with multiple human orthologs).}
+\item{non121_strategy}{How to handle genes that don't have 
+1:1 mappings between \code{input_species}:\code{output_species}.
+Options include: 
 
-\item{genes_as_rownames}{Whether to return the data.frame 
-with the row names set to the human orthologs.}
+\itemize{
+\item{\code{"drop_both_species" or "dbs" or 1} : }{Drop genes that have duplicate 
+mappings in either the \code{input_species} or \code{output_species} 
+(\emph{Default}).} 
+\item{\code{"drop_input_species" or "dis" or 2} : }{Drop genes that have duplicate 
+mappings in the \code{input_species}.} 
+\item{\code{"drop_output_species" or "dos" or 3} : }{Drop genes that have duplicate
+mappings in the \code{output_species}.}
+\item{\code{"keep_both_species" or "kbs" or 4} : }{Keep all genes regardless of whether
+they have duplicate mappings in either species.}
+}}
 
-\item{as_sparse}{If \code{obj} is a matrix, 
-it can be converted to a sparse matrix.}
+\item{as_sparse}{Convert \code{gene_df} to a sparse matrix.
+Only works if \code{gene_df} is one of the following classes:  
 
-\item{sort_rows}{Sort rows alphanumerically.}
+\itemize{
+\item{\code{matrix}} 
+\item{\code{Matrix}} 
+\item{\code{data.frame}}
+\item{\code{data.table}} 
+\item{\code{tibble}}
+} 
 
-\item{return_dict}{Return a dictionary (named list) of gene mappings, 
-where \code{names} are the original gene names and 
- items are the new gene names. If \code{return_dict=FALSE}, 
- instead returns mappings as a data.frame.}
+If \code{gene_df} is a sparse matrix to begin with,
+it will be returned as a sparse matrix 
+ (so long as \code{gene_output=} \code{"rownames"} or \code{"colnames"}).}
 
-\item{invert_dict}{If \code{return_dict=TRUE}, setting \code{invert_dict} 
-switches the names and items in the dictionary.}
+\item{sort_rows}{Sort \code{gene_df} rows alphanumerically.}
 
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to 
-\code{gprofiler2::gorth()} or 
-\code{homologene::homologene()}.}
+\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.}
 }
 \value{
-Data.frame with the gene symbols of the input species ("Gene_orig") 
-and converted human orthologs ("Gene").
+\code{gene_df} with  orthologs converted to the \code{output_species}.
+Instead returned as a dictionary (named list) if 
+\code{gene_output="dict"} or \code{"dict_rev"}.
 }
 \description{
 Currently supports 700+ species.
@@ -85,6 +131,5 @@ See \code{map_species()} for a full list of available species.
 \examples{
 data("exp_mouse")
 gene_df <- convert_orthologs(gene_df = exp_mouse,
-                             input_species="mouse",
-                             genes_as_rownames=TRUE)
+                             input_species="mouse")
 }

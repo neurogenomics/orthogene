@@ -8,6 +8,7 @@ map_species(
   species = NULL,
   search_cols = c("display_name", "id", "scientific_name", "taxonomy_id"),
   output_format = c("id", "display_name", "scientific_name", "taxonomy_id", "version"),
+  use_local = TRUE,
   verbose = TRUE
 )
 }
@@ -22,6 +23,12 @@ Set to \code{NULL} to return all species.}
 metadata \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}.}
 
 \item{output_format}{Which column to return.}
+
+\item{use_local}{If \code{TRUE} \emph{default}, `map_species()`
+uses a locally stored version of the species metadata table 
+instead of pulling directly from the gprofiler API. 
+Local version may not be fully up to date,
+but should suffice for most use cases.}
 
 \item{verbose}{Print messages.}
 }

@@ -96,6 +96,9 @@ See map_species() for a full list of available species." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmarks.html">benchmarks</a>
+    </li>
+    <li>
       <a href="../articles/hexSticker.html">hexSticker</a>
     </li>
   </ul>
@@ -136,18 +139,16 @@ See <code><a href='map_species.html'>map_species()</a></code> for a full list of
 
     <pre class="usage"><span class='fu'>convert_orthologs</span><span class='op'>(</span>
   <span class='va'>gene_df</span>,
-  gene_col <span class='op'>=</span> <span class='st'>"rownames"</span>,
+  gene_input <span class='op'>=</span> <span class='st'>"rownames"</span>,
+  gene_output <span class='op'>=</span> <span class='st'>"rownames"</span>,
   standardise_genes <span class='op'>=</span> <span class='cn'>FALSE</span>,
   <span class='va'>input_species</span>,
   output_species <span class='op'>=</span> <span class='st'>"human"</span>,
-  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"homologene"</span>, <span class='st'>"gorth"</span><span class='op'>)</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gprofiler"</span>, <span class='st'>"homologene"</span><span class='op'>)</span>,
   drop_nonorths <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  one_to_one_only <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  genes_as_rownames <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  non121_strategy <span class='op'>=</span> <span class='st'>"drop_both_species"</span>,
   as_sparse <span class='op'>=</span> <span class='cn'>FALSE</span>,
   sort_rows <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  return_dict <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  invert_dict <span class='op'>=</span> <span class='cn'>FALSE</span>,
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -157,20 +158,53 @@ See <code><a href='map_species.html'>map_species()</a></code> for a full list of
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>gene_df</th>
-      <td><p>Data.frame containing the genes symbols of the input species.</p></td>
+      <td><p>Data object containing the genes 
+(see <code>gene_input</code> for options on how 
+the genes can be stored within the object).</p> 
+<p>Can be one of the following formats:</p>
+<ul>
+<li><p><code>matrix</code>A sparse or dense matrix.</p></li>
+<li><p><code>data.frame</code>A <code>data.frame</code>,
+ <code>data.table</code>. or <code>tibble</code>.</p></li>
+<li><p>codelistA <code>list</code> or <code>vector</code>.</p></li>
+</ul>
+
+<p>Genes can be in any format 
+(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
+automatically converted to HGNC gene symbols unless 
+specified otherwise with the <code>...</code> arguments.</p></td>
     </tr>
     <tr>
-      <th>gene_col</th>
-      <td><p>Character string indicating either the 
-input species' gene symbols are in a column with the 
-input species gene symbols (<code>gene_col="&lt;gene_col_name&gt;"</code>) 
-or are the row names (<code>gene_col="rownames"</code>) or
-column names (<code>gene_col="colnames"</code>).</p></td>
+      <th>gene_input</th>
+      <td><p>Which aspect of <code>gene_df</code> you want to 
+get gene names from:</p> 
+<ul>
+<li><p><code>"rownames"</code> : From row names of data.frame/matrix.</p></li>
+<li><p><code>"colnames"</code> : From column names of data.frame/matrix.</p></li>
+<li><p><code>&lt;column name&gt;</code> : From a column in <code>gene_df</code>,
+ e.g. <code>"gene_names"</code>.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>gene_output</th>
+      <td><p>How to return genes. 
+Options include:</p>
+<ul>
+<li><p><code>"rownames"</code> : As row names of <code>gene_df</code>.</p></li>
+<li><p><code>"colnames"</code> : As column names of <code>gene_df</code>.</p></li>
+<li><p><code>"columns"</code> : As new columns "input_gene", "ortholog_gene" 
+(and "input_gene_standard" if <code>standardise_genes=TRUE</code>) 
+in <code>gene_df</code>.</p></li>
+<li><p><code>"dict"</code> : As a dictionary (named list) where the names 
+are input_gene and the values are ortholog_gene.</p></li>
+<li><p><code>"dict_rev"</code> : As a reversed dictionary (named list) where the names 
+are ortholog_gene and the values are input_gene.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>standardise_genes</th>
       <td><p>If <code>TRUE</code> genes will first be standardised 
-to HGNC symbols using <code><a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gprofiler2::gconvert</a></code>. 
+to HGNC symbols using <a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a>. 
 This will add a new column to <code>gene_df</code> 
 called "input_gene_standard".</p></td>
     </tr>
@@ -186,8 +220,8 @@ See <code><a href='taxa_id_dict.html'>taxa_id_dict()</a></code> for a full list 
     <tr>
       <th>method</th>
       <td><p>R package to to use for gene mapping: 
-<code>"gorth"</code> (slower but more reference species) or 
-<code>"homologene"</code> (faster but fewer reference species).</p></td>
+<code>"gprofiler"</code> (slower but more species and genes) or 
+<code>"homologene"</code> (faster but fewer species and genes).</p></td>
     </tr>
     <tr>
       <th>drop_nonorths</th>
@@ -195,36 +229,41 @@ See <code><a href='taxa_id_dict.html'>taxa_id_dict()</a></code> for a full list 
 in the <code>output_species</code>.</p></td>
     </tr>
     <tr>
-      <th>one_to_one_only</th>
-      <td><p>Drop genes that don't have a 1:1 mapping 
-between input species and human 
-(i.e. drop genes with multiple human orthologs).</p></td>
-    </tr>
-    <tr>
-      <th>genes_as_rownames</th>
-      <td><p>Whether to return the data.frame 
-with the row names set to the human orthologs.</p></td>
+      <th>non121_strategy</th>
+      <td><p>How to handle genes that don't have 
+1:1 mappings between <code>input_species</code>:<code>output_species</code>.
+Options include:</p>
+<ul>
+<li><p><code>"drop_both_species" or "dbs" or 1</code> : Drop genes that have duplicate 
+mappings in either the <code>input_species</code> or <code>output_species</code> 
+(<em>Default</em>).</p></li>
+<li><p><code>"drop_input_species" or "dis" or 2</code> : Drop genes that have duplicate 
+mappings in the <code>input_species</code>.</p></li>
+<li><p><code>"drop_output_species" or "dos" or 3</code> : Drop genes that have duplicate
+mappings in the <code>output_species</code>.</p></li>
+<li><p><code>"keep_both_species" or "kbs" or 4</code> : Keep all genes regardless of whether
+they have duplicate mappings in either species.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>as_sparse</th>
-      <td><p>If <code>obj</code> is a matrix, 
-it can be converted to a sparse matrix.</p></td>
+      <td><p>Convert <code>gene_df</code> to a sparse matrix.
+Only works if <code>gene_df</code> is one of the following classes:</p>
+<ul>
+<li><p><code>matrix</code></p></li>
+<li><p><code>Matrix</code></p></li>
+<li><p><code>data.frame</code></p></li>
+<li><p><code>data.table</code></p></li>
+<li><p><code>tibble</code></p></li>
+</ul> 
+
+<p>If <code>gene_df</code> is a sparse matrix to begin with,
+it will be returned as a sparse matrix 
+ (so long as <code>gene_output=</code> <code>"rownames"</code> or <code>"colnames"</code>).</p></td>
     </tr>
     <tr>
       <th>sort_rows</th>
-      <td><p>Sort rows alphanumerically.</p></td>
-    </tr>
-    <tr>
-      <th>return_dict</th>
-      <td><p>Return a dictionary (named list) of gene mappings, 
-where <code>names</code> are the original gene names and 
- items are the new gene names. If <code>return_dict=FALSE</code>, 
- instead returns mappings as a data.frame.</p></td>
-    </tr>
-    <tr>
-      <th>invert_dict</th>
-      <td><p>If <code>return_dict=TRUE</code>, setting <code>invert_dict</code> 
-switches the names and items in the dictionary.</p></td>
+      <td><p>Sort <code>gene_df</code> rows alphanumerically.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -233,23 +272,23 @@ switches the names and items in the dictionary.</p></td>
     <tr>
       <th>...</th>
       <td><p>Additional arguments to be passed to 
-<code><a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gprofiler2::gorth()</a></code> or 
-<code><a href='https://rdrr.io/pkg/homologene/man/homologene.html'>homologene::homologene()</a></code>.</p></td>
+<a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a> or <a href='https://rdrr.io/pkg/homologene/man/homologene.html'>homologene</a>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data.frame with the gene symbols of the input species ("Gene_orig") 
-and converted human orthologs ("Gene").</p>
+    <p><code>gene_df</code> with  orthologs converted to the <code>output_species</code>.
+Instead returned as a dictionary (named list) if 
+<code>gene_output="dict"</code> or <code>"dict_rev"</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"exp_mouse"</span><span class='op'>)</span>
 <span class='va'>gene_df</span> <span class='op'>&lt;-</span> <span class='fu'>convert_orthologs</span><span class='op'>(</span>gene_df <span class='op'>=</span> <span class='va'>exp_mouse</span>,
-                             input_species<span class='op'>=</span><span class='st'>"mouse"</span>,
-                             genes_as_rownames<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Converting genes: mouse ===&gt; human </span></div><div class='output co'>#&gt; <span class='message'>Preparing gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from rownames.</span></div><div class='output co'>#&gt; <span class='message'>Converting mouse ==&gt; human orthologs using homologene</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: mouse</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for mouse</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Mus musculus</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without orthologs in human.</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without 1:1 orthologs.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 46 genes that have multiple input_gene per ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 56 genes that have multiple ortholog_gene per input_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Setting ortholog_gene col as rownames...</span></div><div class='output co'>#&gt; <span class='message'>WARNING: genes_as_rownames must be TRUE when gene_df is a matrix. Setting accordingly.</span></div><div class='output co'>#&gt; <span class='message'>Setting ortholog_gene to rownames.</span></div><div class='output co'>#&gt; <span class='message'>Genes dropped during inter-species conversion:  2,016 / 15,259 (13%)</span></div></pre>
+                             input_species<span class='op'>=</span><span class='st'>"mouse"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>WARNING: In order to set gene_output='rownames' must set non121_strategy='drop_both_species'.</span>
+#&gt; <span class='message'> Setting non121_strategy='drop_both_species'.</span></div><div class='output co'>#&gt; <span class='message'>Preparing gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from rownames.</span></div><div class='output co'>#&gt; <span class='message'>Converting mouse ==&gt; human orthologs using: gprofiler</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: mouse</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for mouse</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: mmusculus</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: hsapiens</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without orthologs in human.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from input_gene.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 2,769 NAs of all kinds from ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without 1:1 orthologs.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 478 genes that have multiple input_gene per ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 299 genes that have multiple ortholog_gene per input_gene.</span></div><div class='output co'>#&gt; <span class='message'>Setting ortholog_gene to rownames.</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>=========== REPORT SUMMARY ===========</span></div><div class='output co'>#&gt; <span class='message'>Total genes dropped during inter-species conversion:  3,025 / 15,259 (20%)</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

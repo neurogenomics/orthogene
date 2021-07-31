@@ -28,18 +28,22 @@ Imports:
     dplyr,  
     methods, 
     stats,
+    utils,
     Matrix,
     jsonlite,
     homologene,
-    gprofiler2 
+    gprofiler2,
+    data.table,
+    ggplot2,
+    ggpubr,
+    patchwork
 Suggests: 
     remotes,
     knitr,
     BiocStyle,
     markdown,
     rmarkdown,
-    here,
-    utils, 
+    here, 
     testthat (>= 3.0.0)
 RoxygenNote: 7.1.1
 Encoding: UTF-8

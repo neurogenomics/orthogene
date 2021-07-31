@@ -95,6 +95,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmarks.html">benchmarks</a>
+    </li>
+    <li>
       <a href="../articles/hexSticker.html">hexSticker</a>
     </li>
   </ul>
@@ -137,7 +140,7 @@
   standardise_genes <span class='op'>=</span> <span class='cn'>FALSE</span>,
   <span class='va'>input_species</span>,
   output_species <span class='op'>=</span> <span class='st'>"human"</span>,
-  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"homologene"</span>, <span class='st'>"gorth"</span><span class='op'>)</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gprofiler"</span>, <span class='st'>"homologene"</span><span class='op'>)</span>,
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -155,7 +158,7 @@ and will be automatically converted to
     <tr>
       <th>standardise_genes</th>
       <td><p>If <code>TRUE</code> genes will first be standardised 
-to HGNC symbols using <code><a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gprofiler2::gconvert</a></code>. 
+to HGNC symbols using <a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a>. 
 This will add a new column to <code>gene_df</code> 
 called "input_gene_standard".</p></td>
     </tr>
@@ -171,8 +174,8 @@ See <code><a href='taxa_id_dict.html'>taxa_id_dict()</a></code> for a full list 
     <tr>
       <th>method</th>
       <td><p>R package to to use for gene mapping: 
-<code>"gorth"</code> (slower but more reference species) or 
-<code>"homologene"</code> (faster but fewer reference species).</p></td>
+<code>"gprofiler"</code> (slower but more species and genes) or 
+<code>"homologene"</code> (faster but fewer species and genes).</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -181,8 +184,7 @@ See <code><a href='taxa_id_dict.html'>taxa_id_dict()</a></code> for a full list 
     <tr>
       <th>...</th>
       <td><p>Additional arguments to be passed to 
-<code><a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gprofiler2::gorth()</a></code> or 
-<code><a href='https://rdrr.io/pkg/homologene/man/homologene.html'>homologene::homologene()</a></code>.</p></td>
+<a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a> or <a href='https://rdrr.io/pkg/homologene/man/homologene.html'>homologene</a>.</p></td>
     </tr>
     </table>
 
@@ -194,14 +196,14 @@ See <code><a href='taxa_id_dict.html'>taxa_id_dict()</a></code> for a full list 
 
     <p><code>map_orthologs()</code> is a core function within 
 <code><a href='convert_orthologs.html'>convert_orthologs()</a></code>, but does not have many
-of the extra checks, such as <code>one_to_one_only</code>)
+of the extra checks, such as <code>non121_strategy</code>)
 and <code>drop_nonorths</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"exp_mouse"</span><span class='op'>)</span>
 <span class='va'>gene_map</span> <span class='op'>&lt;-</span> <span class='fu'>map_orthologs</span><span class='op'>(</span>genes<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>exp_mouse</span><span class='op'>)</span>,
                           input_species<span class='op'>=</span><span class='st'>"mouse"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting mouse ==&gt; human orthologs using homologene</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: mouse</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for mouse</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Mus musculus</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Converting mouse ==&gt; human orthologs using: gprofiler</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: mouse</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for mouse</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: mmusculus</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: hsapiens</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

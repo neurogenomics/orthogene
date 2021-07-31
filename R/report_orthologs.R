@@ -1,13 +1,25 @@
-#' Identify the number of orthologous genes between two species
+#' Report orthologs 
 #' 
-#' \code{ewceData::mouse_to_human_homologs()} provides 15,604 1:1 mouse:human orthologs.
-#' \code{homologene}-based functions like \code{EWCE::convert_orthologs} 
-#' provide an improved 16,766 1:1 mouse:human orthologs.  
+#' Identify the number of orthologous genes between two species.
 #' 
 #' @param target_species Target species.
 #' @param reference_species Reference species. 
-#' @param return_report Return just the ortholog mapping between two species (\code{FALSE}) 
-#' or return both the ortholog mapping as well a dataframe of the report statistics (\code{TRUE}).
+#' 
+#' @param method_all_genes R package to to use in 
+#' \link[orthogene]{all_genes} step: 
+#' \code{"gprofiler"} (slower but more species and genes) or 
+#' \code{"homologene"} (faster but fewer species and genes). 
+#' 
+#' @param method_convert_orthologs R package to to use in 
+#' \link[orthogene]{convert_orthologs} step: 
+#' \code{"gprofiler"} (slower but more species and genes) or 
+#' \code{"homologene"} (faster but fewer species and genes). 
+#' 
+#' @param return_report Return just the ortholog mapping 
+#' between two species (\code{FALSE}) or return both the
+#'  ortholog mapping as well a \code{data.frame} 
+#'  of the report statistics (\code{TRUE}).
+#'  
 #' @param round_digits Number of digits to round to when printing percentages. 
 #' @inheritParams convert_orthologs
 #' 
@@ -15,38 +27,39 @@
 #' @export
 #' @importFrom dplyr n_distinct  
 #' @examples
-#' orth.fly <- report_orthologs(target_species = "fly",
+#' orth_fly <- report_orthologs(target_species="fly",
 #'                              reference_species="human")
-#' orth.zeb <- report_orthologs(target_species = "zebrafish", 
-#'                              reference_species="human")
-#' orth.mus <- report_orthologs(target_species = "mouse", 
-#'                              reference_species="human") 
 report_orthologs <- function(target_species="mouse", 
                              reference_species="human", 
                              standardise_genes=FALSE,
-                             method=c("homologene","gorth"),
+                             method_all_genes=c("gprofiler","homologene"),
+                             method_convert_orthologs=c("gprofiler","homologene"),
                              drop_nonorths=TRUE, 
-                             one_to_one_only=TRUE,  
+                             non121_strategy="drop_both_species",  
                              round_digits=2, 
                              return_report=TRUE,
                              verbose=TRUE){ 
   
   #### Get full genomes for each species ####
   tar_genes <- all_genes(species = target_species, 
+                         method = method_all_genes,
                          verbose = verbose)
   ref_genes <- all_genes(species = reference_species, 
+                         method = method_all_genes,
                          verbose = verbose) 
   #### Map genes from target to references species ####
   gene_df <- convert_orthologs(gene_df = tar_genes,
-                               gene_col = "Gene.Symbol",
+                               gene_input = "Gene.Symbol",
+                               gene_output = "columns",
                                standardise_genes = standardise_genes,
                                input_species = target_species,
                                output_species = reference_species,
-                               method = method[1],
+                               method = method_convert_orthologs[1],
                                drop_nonorths = drop_nonorths, 
+                               non121_strategy = non121_strategy,
                                verbose = verbose)
   
-  messager("\n\n=========== REPORT SUMMARY =========== \n")
+  messager("\n=========== REPORT SUMMARY ===========\n")
   one2one_orthologs <- dplyr::n_distinct(gene_df$ortholog_gene)
   target_total_genes <- dplyr::n_distinct(tar_genes$Gene.Symbol)
   reference_total_genes <- dplyr::n_distinct(ref_genes$Gene.Symbol)

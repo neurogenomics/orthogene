@@ -5,11 +5,11 @@
 #' 
 #' @inheritParams convert_orthologs 
 #' 
-#' @return List of gene_df and gene_col
+#' @return List of gene_df and gene_input
 #' @importFrom methods is
 #' @keywords internal
 check_gene_df_type <- function(gene_df,
-                               gene_col,
+                               gene_input,
                                verbose=TRUE){
   messager("Preparing gene_df.",v=verbose)
   if(!(is.data.frame(gene_df)) && 
@@ -18,7 +18,7 @@ check_gene_df_type <- function(gene_df,
     # From vector/list
     if(is(gene_df,"vector") | is(gene_df,"list")){
       gene_df <- data.frame(input_gene=gene_df)
-      gene_col <- "input_gene"
+      gene_input <- "input_gene"
     }
     # From data.frame/matrix
   } 
@@ -26,5 +26,5 @@ check_gene_df_type <- function(gene_df,
   #   gene_df <- data.frame(as.matrix(gene_df))
   # }
   return(list(gene_df=gene_df, 
-              gene_col=gene_col))
+              gene_input=gene_input))
 }

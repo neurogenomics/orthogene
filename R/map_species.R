@@ -12,6 +12,11 @@
 #' \code{species} substring in
 #' metadata \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}. 
 #' @param output_format Which column to return. 
+#' @param use_local If \code{TRUE} \emph{default}, `map_species()`
+#' uses a locally stored version of the species metadata table 
+#' instead of pulling directly from the gprofiler API. 
+#' Local version may not be fully up to date,
+#' but should suffice for most use cases. 
 #' @param verbose Print messages. 
 #' 
 #' @return Species ID of type \code{output_format}
@@ -29,6 +34,7 @@ map_species <- function(species=NULL,
                                         "scientific_name",
                                         "taxonomy_id",
                                         "version"),
+                        use_local=TRUE,
                         verbose=TRUE){ 
   
   ## Avoid confusing Biocheck
@@ -37,14 +43,20 @@ map_species <- function(species=NULL,
   #### Ensure only one output_format ####
   output_format <- output_format[1]
   #### Load organism reference ####
-  orgs <- tryCatch({
-    orgs <- jsonlite::fromJSON('https://biit.cs.ut.ee/gprofiler/api/util/organisms_list')
-    dplyr::arrange(orgs, scientific_name) 
-  }, 
-  error=function(e){
-    messager("Could not access gProfiler API.\nUsing stored `gprofiler_orgs`.",v=verbose)
-    gprofiler_orgs
-  })
+  if(use_local){
+    messager("Using stored `gprofiler_orgs`.",v=verbose)
+    orgs <- gprofiler_orgs
+  }else {
+    orgs <- tryCatch({
+      orgs <- jsonlite::fromJSON('https://biit.cs.ut.ee/gprofiler/api/util/organisms_list')
+      dplyr::arrange(orgs, scientific_name) 
+    }, 
+    error=function(e){
+      messager("Could not access gProfiler API.\nUsing stored `gprofiler_orgs`.",v=verbose)
+      gprofiler_orgs
+    })
+  }
+  
   #### Return all species as an option ####
   if(is.null(species)){
     messager("Returning table with all species.",v=verbose)
@@ -63,18 +75,27 @@ map_species <- function(species=NULL,
     spec <- common_species_names_dict(species = spec,
                                       verbose = verbose)
     #### Query multiple columns ####
-    mod_spec <- gsub(" |[.]|[-]","",unname(spec))
+    if(is.character(spec)){
+      mod_spec <- format_species_name(species = spec, gs_s = TRUE)
+      mod_spec2 <-  format_species_name(species = spec,  remove_chars=" |[.]|[-]")
+      spec_queries <- paste(unname(spec), mod_spec, mod_spec2, sep="|")
+    } else {
+      spec_queries <- spec
+    }
+   
     orgs_sub <- orgs %>% 
       dplyr::filter_at(.vars = search_cols, 
-                       .vars_predicate = dplyr::any_vars(grepl(paste(unname(spec),mod_spec,sep="|"),.,
-                                                               ignore.case = TRUE))) 
+                       .vars_predicate = dplyr::any_vars(
+                         grepl(spec_queries,.,ignore.case = TRUE))
+                       ) 
     if(nrow(orgs_sub)>0){
       if(nrow(orgs_sub)>1){
         messager(nrow(orgs_sub), "organisms identified from search.\nSelecting first:\n", 
-                 paste("  -",orgs_sub$scientific_name, collapse = "\n "),v=verbose) 
+                 paste("  -",orgs_sub[[output_format]], collapse = "\n "),v=verbose) 
         orgs_sub <- orgs_sub[1,]
       }else {
-        messager(nrow(orgs_sub), "organism identified from search:",orgs_sub$scientific_name,v=verbose) 
+        messager(nrow(orgs_sub), "organism identified from search:",
+                 orgs_sub[[output_format]],v=verbose) 
         orgs_sub <- orgs_sub[1,]
       }
       return(orgs_sub[[output_format]]) 

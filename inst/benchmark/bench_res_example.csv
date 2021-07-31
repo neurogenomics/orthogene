@@ -1,0 +1,13 @@
+"species","method","test","time","genes"
+"hsapiens","homologene","all_genes()",0.459705114364624,19129
+"hsapiens","homologene","convert_orthologs()",0.769988059997559,18713
+"hsapiens","gprofiler","all_genes()",8.61865949630737,39357
+"hsapiens","gprofiler","convert_orthologs()",134.089908361435,1
+"mmusculus","homologene","all_genes()",0.463168144226074,21207
+"mmusculus","homologene","convert_orthologs()",0.822271347045898,16482
+"mmusculus","gprofiler","all_genes()",10.9749143123627,53725
+"mmusculus","gprofiler","convert_orthologs()",146.120450258255,16189
+"dmelanogaster","homologene","all_genes()",0.449285268783569,8437
+"dmelanogaster","homologene","convert_orthologs()",0.707168340682983,4059
+"dmelanogaster","gprofiler","all_genes()",6.12894105911255,4493
+"dmelanogaster","gprofiler","convert_orthologs()",5.23253655433655,638

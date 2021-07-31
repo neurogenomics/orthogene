@@ -59,6 +59,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/benchmarks.html">benchmarks</a>
+    </li>
+    <li>
       <a href="articles/hexSticker.html">hexSticker</a>
     </li>
   </ul>
@@ -95,14 +98,19 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Jul-29-2021</i>
+Most recent update: <i>Jul-31-2021</i>
 </h4>
 <div id="interspecies-gene-mapping" class="section level2">
 <h2 class="hasAnchor">
 <a href="#interspecies-gene-mapping" class="anchor"></a>Interspecies gene mapping</h2>
-<p><code>orthogene</code> is an R package for easy mapping of orthologous genes across hundreds of species.</p>
-<p>It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</p>
+<p><code>orthogene</code> is an R package for easy mapping of orthologous genes across hundreds of species.<br>
+It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</p>
 <p>It also provides various utility functions to map common objects (e.g. data.frames, gene expression matrices, lists) onto 1:1 gene orthologs from any other species.</p>
+</div>
+<div id="documentation-website" class="section level2">
+<h2 class="hasAnchor">
+<a href="#documentation-website" class="anchor"></a><a href="https://neurogenomics.github.io/orthogene/">Documentation website</a>
+</h2>
 </div>
 </div>
 <div id="installation" class="section level1">
@@ -113,7 +121,59 @@ Most recent update: <i>Jul-29-2021</i>
 
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"neurogenomics/orthogene"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/neurogenomics/orthogene">orthogene</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/neurogenomics/orthogene">orthogene</a></span><span class="op">)</span>
+
+<span class="va">method</span> <span class="op">&lt;-</span> <span class="st">"homologene"</span></code></pre></div>
+</div>
+<div id="methods" class="section level1">
+<h1 class="hasAnchor">
+<a href="#methods" class="anchor"></a>Methods</h1>
+<p>For most functions, <code>orthogene</code> lets user choose between two different methods, each with complementary strengths and weaknesses.</p>
+<p>In general, we recommend you use <code>"gprofiler"</code> when possible.</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="left">gprofiler</th>
+<th align="left">homologene</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Reference organisms</td>
+<td align="left">700+</td>
+<td align="left">20+</td>
+</tr>
+<tr class="even">
+<td align="left">Gene mappings</td>
+<td align="left">More comprehensive</td>
+<td align="left">Less comprehensive</td>
+</tr>
+<tr class="odd">
+<td align="left">Updates</td>
+<td align="left">Frequent</td>
+<td align="left">Less frequent</td>
+</tr>
+<tr class="even">
+<td align="left">Orthology databases</td>
+<td align="left">Ensembl, HomoloGene, WormBase</td>
+<td align="left">HomoloGene</td>
+</tr>
+<tr class="odd">
+<td align="left">Data location</td>
+<td align="left">Remote</td>
+<td align="left">Local</td>
+</tr>
+<tr class="even">
+<td align="left">Internet connection</td>
+<td align="left">Required</td>
+<td align="left">Not required</td>
+</tr>
+<tr class="odd">
+<td align="left">Speed</td>
+<td align="left">Slower</td>
+<td align="left">Faster</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="quick-example" class="section level1">
 <h1 class="hasAnchor">
@@ -121,249 +181,416 @@ Most recent update: <i>Jul-29-2021</i>
 <div id="convert-orthologs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#convert-orthologs" class="anchor"></a>Convert orthologs</h2>
-<p><code>convert_orthologs</code> can take a data.frame/data.table/tibble, (sparse) matrix, or list/vector containing genes.</p>
+<p><code>convert_orthologs</code> is very flexible with its <code>gene_df</code> input, and can take a data.frame/data.table/tibble, (sparse) matrix, or list/vector containing genes.</p>
 <p>Genes will be recognised in most formats (e.g. HGNC, Ensembl, UCSC) and can even be a mixture of different formats.</p>
-<p>All genes will be mapped to gene symbols, unless specified otherwise with the <code>...</code> arguments.</p>
+<p>All genes will be mapped to gene symbols, unless specified otherwise with the <code>...</code> arguments (see <code><a href="reference/convert_orthologs.html">?orthogene::convert_orthologs</a></code> for details).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"exp_mouse"</span><span class="op">)</span>
 <span class="va">gene_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/convert_orthologs.html">convert_orthologs</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span>,
-                             gene_col <span class="op">=</span> <span class="st">"rownames"</span>, 
-                             input_species <span class="op">=</span> <span class="st">"mouse"</span>, 
-                             genes_as_rownames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
+                             gene_input <span class="op">=</span> <span class="st">"rownames"</span>, 
+                             gene_output <span class="op">=</span> <span class="st">"rownames"</span>, 
+                             input_species <span class="op">=</span> <span class="st">"mouse"</span>,
+                             method <span class="op">=</span> <span class="va">method</span><span class="op">)</span> </code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Converting genes: mouse ===&gt; human</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparing gene_df.</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Loading required package: Matrix</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from rownames.</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Converting mouse ==&gt; human orthologs using homologene</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mouse</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for mouse</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Mus musculus</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: human</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for human</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Homo sapiens</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking for genes without orthologs in human.</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking for genes without 1:1 orthologs.</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="do">## + Dropping 46 genes that have multiple input_gene per ortholog_gene.</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="do">## + Dropping 56 genes that have multiple ortholog_gene per input_gene.</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="do">## + Setting ortholog_gene col as rownames...</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="do">## </span><span class="al">WARNING</span><span class="do">: genes_as_rownames must be TRUE when gene_df is a matrix. Setting accordingly.</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Setting ortholog_gene to rownames.</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Genes dropped during inter-species conversion:  2,016 / 15,259 (13%)</span></span></code></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span><span class="al">WARNING</span><span class="do">: In order to set gene_output='rownames' must set non121_strategy='drop_both_species'.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  Setting non121_strategy='drop_both_species'.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparing gene_df.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from rownames.</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Converting mouse ==&gt; human orthologs using homologene</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mouse</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for mouse</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 10090</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: human</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for human</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 9606</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking for genes without orthologs in human.</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from input_gene.</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from ortholog_gene.</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking for genes without 1:1 orthologs.</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="do">## + Dropping 46 genes that have multiple input_gene per ortholog_gene.</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="do">## + Dropping 56 genes that have multiple ortholog_gene per input_gene.</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Setting ortholog_gene to rownames.</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="do">## =========== REPORT SUMMARY ===========</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Total genes dropped during inter-species conversion:  2,016 / 15,259 (13%)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gene_df</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 x 7 sparse Matrix of class "dgCMatrix"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">##          astrocytes_ependymal endothelial-mural interneurons  microglia</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## TSPAN12           0.330357100        0.58723400    0.6413793 0.14285710</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## TSHZ1             0.428571430        0.44680851    1.1551724 0.43877551</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ADAMTS15          0.008928571        0.09787234    0.2206897 .         </span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="do">## CLDN12            0.223214290        0.11489362    0.5517241 0.05102041</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">## RXFP1             .                  0.01276596    0.2551724 .         </span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="do">## SEMA3C            0.196428600        0.99574470    8.6379310 0.20408160</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="do">##          oligodendrocytes pyramidal CA1 pyramidal SS</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="do">## TSPAN12        0.12073170    0.28647500   0.14536340</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="do">## TSHZ1          0.36219512    0.06922258   0.83208020</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="do">## ADAMTS15       0.02317073    0.01171459   0.03759399</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="do">## CLDN12         0.26097561    0.43769968   0.68421053</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="do">## RXFP1          0.01585366    0.05111821   0.07518797</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="do">## SEMA3C         0.18536590    0.16080940   0.22807020</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gene_df</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="8%">
+<col width="18%">
+<col width="15%">
+<col width="11%">
+<col width="8%">
+<col width="14%">
+<col width="12%">
+<col width="11%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">astrocytes_ependymal</th>
+<th align="right">endothelial-mural</th>
+<th align="right">interneurons</th>
+<th align="right">microglia</th>
+<th align="right">oligodendrocytes</th>
+<th align="right">pyramidal CA1</th>
+<th align="right">pyramidal SS</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">TSPAN12</td>
+<td align="right">0.3303571</td>
+<td align="right">0.5872340</td>
+<td align="right">0.6413793</td>
+<td align="right">0.1428571</td>
+<td align="right">0.1207317</td>
+<td align="right">0.2864750</td>
+<td align="right">0.1453634</td>
+</tr>
+<tr class="even">
+<td align="left">TSHZ1</td>
+<td align="right">0.4285714</td>
+<td align="right">0.4468085</td>
+<td align="right">1.1551724</td>
+<td align="right">0.4387755</td>
+<td align="right">0.3621951</td>
+<td align="right">0.0692226</td>
+<td align="right">0.8320802</td>
+</tr>
+<tr class="odd">
+<td align="left">ADAMTS15</td>
+<td align="right">0.0089286</td>
+<td align="right">0.0978723</td>
+<td align="right">0.2206897</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0231707</td>
+<td align="right">0.0117146</td>
+<td align="right">0.0375940</td>
+</tr>
+<tr class="even">
+<td align="left">CLDN12</td>
+<td align="right">0.2232143</td>
+<td align="right">0.1148936</td>
+<td align="right">0.5517241</td>
+<td align="right">0.0510204</td>
+<td align="right">0.2609756</td>
+<td align="right">0.4376997</td>
+<td align="right">0.6842105</td>
+</tr>
+<tr class="odd">
+<td align="left">RXFP1</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0127660</td>
+<td align="right">0.2551724</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0158537</td>
+<td align="right">0.0511182</td>
+<td align="right">0.0751880</td>
+</tr>
+<tr class="even">
+<td align="left">SEMA3C</td>
+<td align="right">0.1964286</td>
+<td align="right">0.9957447</td>
+<td align="right">8.6379310</td>
+<td align="right">0.2040816</td>
+<td align="right">0.1853659</td>
+<td align="right">0.1608094</td>
+<td align="right">0.2280702</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="map-species" class="section level2">
 <h2 class="hasAnchor">
 <a href="#map-species" class="anchor"></a>Map species</h2>
 <p><code>map_species</code> lets you standardise species names from a wide variety of identifiers (e.g. common name, taxonomy ID, Latin name, partial match).</p>
 <p>All exposed <code>orthogene</code> functions (including <code>convert_orthologs</code>) use <code>map_species</code> under the hood, so you don’t have to worry about getting species names exactly right.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>You can check the full list of available species by simply running <code><a href="reference/map_species.html">map_species()</a></code> with no arguments, or checking <a href="https://biit.cs.ut.ee/gprofiler/page/organism-list">here</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/map_species.html">map_species</a></span><span class="op">(</span>species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"human"</span>,<span class="fl">9544</span>,<span class="st">"mus musculus"</span>,<span class="st">"fruit fly"</span>,<span class="st">"Celegans"</span><span class="op">)</span>, 
                        output_format <span class="op">=</span> <span class="st">"scientific_name"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: human</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for human</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Homo sapiens</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: 9544</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Macaca mulatta</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mus musculus</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Mus musculus</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: fruit fly</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for fruit fly</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Drosophila melanogaster</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: Celegans</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Caenorhabditis elegans</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: human</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for human</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Homo sapiens</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: 9544</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Macaca mulatta</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mus musculus</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Mus musculus</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: fruit fly</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for fruit fly</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Drosophila melanogaster</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: Celegans</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Caenorhabditis elegans</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">##                     human                      9544              mus musculus </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">##            "Homo sapiens"          "Macaca mulatta"            "Mus musculus" </span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">##                 fruit fly                  Celegans </span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## "Drosophila melanogaster"  "Caenorhabditis elegans"</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">##                     human                      9544              mus musculus </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">##            "Homo sapiens"          "Macaca mulatta"            "Mus musculus" </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##                 fruit fly                  Celegans </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## "Drosophila melanogaster"  "Caenorhabditis elegans"</span></span></code></pre></div>
 </div>
 <div id="report-orthologs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#report-orthologs" class="anchor"></a>Report orthologs</h2>
 <p>It may be helpful to know the maximum expected number of orthologous gene mappings from one species to another.</p>
 <p><code>ortholog_report</code> generates a report that tells you this information genome-wide.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">orth.zeb</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/report_orthologs.html">report_orthologs</a></span><span class="op">(</span>target_species <span class="op">=</span> <span class="st">"zebrafish"</span>,
-                             reference_species<span class="op">=</span><span class="st">"human"</span><span class="op">)</span> </code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: zebrafish</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for zebrafish</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Danio rerio</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Returning all 20,897 genes from zebrafish.</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: human</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for human</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Homo sapiens</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Returning all 19,129 genes from human.</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Converting genes: zebrafish ===&gt; human</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparing gene_df.</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from Gene.Symbol.</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Converting zebrafish ==&gt; human orthologs using homologene</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: zebrafish</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for zebrafish</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Danio rerio</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: human</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for human</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Homo sapiens</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking for genes without orthologs in human.</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking for genes without 1:1 orthologs.</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="do">## + Dropping 47 genes that have multiple input_gene per ortholog_gene.</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="do">## + Dropping 2,708 genes that have multiple ortholog_gene per input_gene.</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Adding ortholog_gene col to gene_df.</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Genes dropped during inter-species conversion:  10,338 / 20,895 (49%)</span></span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="do">## =========== REPORT SUMMARY ===========</span></span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="do">## 10,556 / 20,895 (50.52%) target_species genes remain after ortholog conversion.</span></span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="do">## 10,556 / 19,129 (55.18%) reference_species genes remain after ortholog conversion.</span></span></code></pre></div>
+                             reference_species <span class="op">=</span> <span class="st">"human"</span>,
+                             method_all_genes <span class="op">=</span> <span class="va">method</span>,
+                             method_convert_orthologs <span class="op">=</span> <span class="va">method</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Retrieving all genes using homologene.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: zebrafish</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for zebrafish</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 7955</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Gene table with 20897 rows retrieved.</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from Gene.Symbol.</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Returning all 20,897 genes from zebrafish.</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Retrieving all genes using homologene.</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: human</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for human</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 9606</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Gene table with 19129 rows retrieved.</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from Gene.Symbol.</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Returning all 19,129 genes from human.</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Converting genes: zebrafish ===&gt; human</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Preparing gene_df.</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from Gene.Symbol.</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Converting zebrafish ==&gt; human orthologs using homologene</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: zebrafish</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for zebrafish</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 7955</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: human</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for human</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 9606</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking for genes without orthologs in human.</span></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from input_gene.</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from ortholog_gene.</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking for genes without 1:1 orthologs.</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="do">## + Dropping 47 genes that have multiple input_gene per ortholog_gene.</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a><span class="do">## + Dropping 2,708 genes that have multiple ortholog_gene per input_gene.</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a><span class="do">## Adding input_gene col to gene_df.</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a><span class="do">## Adding ortholog_gene col to gene_df.</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="do">## =========== REPORT SUMMARY ===========</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="do">## Total genes dropped during inter-species conversion:  10,338 / 20,895 (49%)</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="do">## =========== REPORT SUMMARY ===========</span></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="do">## 10,556 / 20,895 (50.52%) target_species genes remain after ortholog conversion.</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="do">## 10,556 / 19,129 (55.18%) reference_species genes remain after ortholog conversion.</span></span></code></pre></div>
 </div>
 <div id="get-all-genes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-all-genes" class="anchor"></a>Get all genes</h2>
 <p>You can also quickly get all known genes from the genome of a given species.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">genome_mouse</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/all_genes.html">all_genes</a></span><span class="op">(</span>species<span class="op">=</span><span class="st">"mouse"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mouse</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for mouse</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: Mus musculus</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Returning all 21,207 genes from mouse.</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">genome_mouse</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">##    HID Gene.ID Gene.Symbol Taxonomy</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 6    3   11364       Acadm    10090</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 18   5   11370      Acadvl    10090</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 29   6  110446       Acat1    10090</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 52   7   11477       Acvr1    10090</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 64   9   20391        Sgca    10090</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 71  12   11564        Adsl    10090</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">genome_mouse</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/all_genes.html">all_genes</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, 
+                          method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Retrieving all genes using homologene.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mouse</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for mouse</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 10090</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Gene table with 21207 rows retrieved.</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from Gene.Symbol.</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Returning all 21,207 genes from mouse.</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">genome_mouse</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">HID</th>
+<th align="right">Gene.ID</th>
+<th align="left">Gene.Symbol</th>
+<th align="right">Taxonomy</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">6</td>
+<td align="right">3</td>
+<td align="right">11364</td>
+<td align="left">Acadm</td>
+<td align="right">10090</td>
+</tr>
+<tr class="even">
+<td align="left">18</td>
+<td align="right">5</td>
+<td align="right">11370</td>
+<td align="left">Acadvl</td>
+<td align="right">10090</td>
+</tr>
+<tr class="odd">
+<td align="left">29</td>
+<td align="right">6</td>
+<td align="right">110446</td>
+<td align="left">Acat1</td>
+<td align="right">10090</td>
+</tr>
+<tr class="even">
+<td align="left">52</td>
+<td align="right">7</td>
+<td align="right">11477</td>
+<td align="left">Acvr1</td>
+<td align="right">10090</td>
+</tr>
+<tr class="odd">
+<td align="left">64</td>
+<td align="right">9</td>
+<td align="right">20391</td>
+<td align="left">Sgca</td>
+<td align="right">10090</td>
+</tr>
+<tr class="even">
+<td align="left">71</td>
+<td align="right">12</td>
+<td align="right">11564</td>
+<td align="left">Adsl</td>
+<td align="right">10090</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h1>
-<details><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<details><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R version 4.1.0 (2021-05-18)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Running under: Ubuntu 20.04.2 LTS</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Matrix products: default</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## locale:</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             </span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="do">## attached base packages:</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="do">## other attached packages:</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] Matrix_1.3-4    orthogene_0.1.0</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="do">## loaded via a namespace (and not attached):</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] pillar_1.6.1              compiler_4.1.0           </span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] tools_4.1.0               digest_0.6.27            </span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] lattice_0.20-44           viridisLite_0.4.0        </span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] jsonlite_1.7.2            evaluate_0.14            </span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] lifecycle_1.0.0           tibble_3.1.3             </span></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] gtable_0.3.0              pkgconfig_2.0.3          </span></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] rlang_0.4.11              DBI_1.1.1                </span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] curl_4.3.2                yaml_2.2.1               </span></span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] xfun_0.24                 httr_1.4.2               </span></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] dplyr_1.0.7               stringr_1.4.0            </span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] knitr_1.33                htmlwidgets_1.5.3        </span></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] generics_0.1.0            vctrs_0.3.8              </span></span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] grid_4.1.0                tidyselect_1.1.1         </span></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] glue_1.4.2                homologene_1.4.68.19.3.27</span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] data.table_1.14.0         R6_2.5.0                 </span></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="do">## [31] fansi_0.5.0               plotly_4.9.4.9000        </span></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="do">## [33] rmarkdown_2.9             tidyr_1.1.3              </span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="do">## [35] gprofiler2_0.2.0          purrr_0.3.4              </span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [37] ggplot2_3.3.5             magrittr_2.0.1           </span></span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [39] scales_1.1.1              ellipsis_0.3.2           </span></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="do">## [41] htmltools_0.5.1.1         assertthat_0.2.1         </span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [43] colorspace_2.0-2          utf8_1.2.2               </span></span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="do">## [45] stringi_1.7.3             lazyeval_0.2.2           </span></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="do">## [47] munsell_0.5.0             crayon_1.4.1</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R version 4.1.0 (2021-05-18)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Running under: Ubuntu 20.04.2 LTS</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Matrix products: default</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">## locale:</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="do">## attached base packages:</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="do">## other attached packages:</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] orthogene_0.1.0</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="do">## loaded via a namespace (and not attached):</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] highr_0.9                 pillar_1.6.1             </span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] compiler_4.1.0            tools_4.1.0              </span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] digest_0.6.27             viridisLite_0.4.0        </span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] jsonlite_1.7.2            evaluate_0.14            </span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] lifecycle_1.0.0           tibble_3.1.3             </span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] gtable_0.3.0              lattice_0.20-44          </span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] pkgconfig_2.0.3           rlang_0.4.11             </span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] Matrix_1.3-4              DBI_1.1.1                </span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] yaml_2.2.1                xfun_0.24                </span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] httr_1.4.2                dplyr_1.0.7              </span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] stringr_1.4.0             knitr_1.33               </span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] htmlwidgets_1.5.3         generics_0.1.0           </span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] vctrs_0.3.8               grid_4.1.0               </span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] tidyselect_1.1.1          data.table_1.14.0        </span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] glue_1.4.2                homologene_1.4.68.19.3.27</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="do">## [31] R6_2.5.0                  fansi_0.5.0              </span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="do">## [33] plotly_4.9.4.9000         rmarkdown_2.9            </span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="do">## [35] tidyr_1.1.3               gprofiler2_0.2.0         </span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [37] purrr_0.3.4               ggplot2_3.3.5            </span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [39] magrittr_2.0.1            scales_1.1.1             </span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="do">## [41] ellipsis_0.3.2            htmltools_0.5.1.1        </span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [43] assertthat_0.2.1          colorspace_2.0-2         </span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="do">## [45] utf8_1.2.2                stringi_1.7.3            </span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="do">## [47] lazyeval_0.2.2            munsell_0.5.0            </span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="do">## [49] crayon_1.4.1</span></span></code></pre></div>
 </details>
 </div>
 <div id="related-projects" class="section level1">

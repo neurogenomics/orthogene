@@ -96,6 +96,9 @@ data.frame, matrix, list, or vector" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmarks.html">benchmarks</a>
+    </li>
+    <li>
       <a href="../articles/hexSticker.html">hexSticker</a>
     </li>
   </ul>
@@ -134,22 +137,39 @@ data.frame, matrix, list, or vector" />
 data.frame, matrix, list, or vector</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_gene_df_type</span><span class='op'>(</span><span class='va'>gene_df</span>, <span class='va'>gene_col</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>check_gene_df_type</span><span class='op'>(</span><span class='va'>gene_df</span>, <span class='va'>gene_input</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>gene_df</th>
-      <td><p>Data.frame containing the genes symbols of the input species.</p></td>
+      <td><p>Data object containing the genes 
+(see <code>gene_input</code> for options on how 
+the genes can be stored within the object).</p> 
+<p>Can be one of the following formats:</p>
+<ul>
+<li><p><code>matrix</code>A sparse or dense matrix.</p></li>
+<li><p><code>data.frame</code>A <code>data.frame</code>,
+ <code>data.table</code>. or <code>tibble</code>.</p></li>
+<li><p>codelistA <code>list</code> or <code>vector</code>.</p></li>
+</ul>
+
+<p>Genes can be in any format 
+(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
+automatically converted to HGNC gene symbols unless 
+specified otherwise with the <code>...</code> arguments.</p></td>
     </tr>
     <tr>
-      <th>gene_col</th>
-      <td><p>Character string indicating either the 
-input species' gene symbols are in a column with the 
-input species gene symbols (<code>gene_col="&lt;gene_col_name&gt;"</code>) 
-or are the row names (<code>gene_col="rownames"</code>) or
-column names (<code>gene_col="colnames"</code>).</p></td>
+      <th>gene_input</th>
+      <td><p>Which aspect of <code>gene_df</code> you want to 
+get gene names from:</p> 
+<ul>
+<li><p><code>"rownames"</code> : From row names of data.frame/matrix.</p></li>
+<li><p><code>"colnames"</code> : From column names of data.frame/matrix.</p></li>
+<li><p><code>&lt;column name&gt;</code> : From a column in <code>gene_df</code>,
+ e.g. <code>"gene_names"</code>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -159,7 +179,7 @@ column names (<code>gene_col="colnames"</code>).</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>List of gene_df and gene_col</p>
+    <p>List of gene_df and gene_input</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

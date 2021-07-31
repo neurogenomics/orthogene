@@ -4,21 +4,41 @@
 \alias{check_gene_df_type}
 \title{Check gene_df}
 \usage{
-check_gene_df_type(gene_df, gene_col, verbose = TRUE)
+check_gene_df_type(gene_df, gene_input, verbose = TRUE)
 }
 \arguments{
-\item{gene_df}{Data.frame containing the genes symbols of the input species.}
+\item{gene_df}{Data object containing the genes 
+(see \code{gene_input} for options on how 
+the genes can be stored within the object). 
+ 
+Can be one of the following formats: 
 
-\item{gene_col}{Character string indicating either the 
-input species' gene symbols are in a column with the 
-input species gene symbols (\code{gene_col="<gene_col_name>"}) 
-or are the row names (\code{gene_col="rownames"}) or
-column names (\code{gene_col="colnames"}).}
+\itemize{
+\item{\code{matrix}}{A sparse or dense matrix.}
+\item{\code{data.frame}}{A \code{data.frame},
+ \code{data.table}. or \code{tibble}.}
+\item{code{list}}{A \code{list} or \code{vector}.} 
+}
+
+Genes can be in any format 
+(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
+automatically converted to HGNC gene symbols unless 
+specified otherwise with the \code{...} arguments.}
+
+\item{gene_input}{Which aspect of \code{gene_df} you want to 
+get gene names from: 
+ 
+\itemize{
+\item{\code{"rownames"} : }{From row names of data.frame/matrix.}
+\item{\code{"colnames"} : }{From column names of data.frame/matrix.}
+\item{\code{<column name>} : }{From a column in \code{gene_df},
+ e.g. \code{"gene_names"}.} 
+}}
 
 \item{verbose}{Print messages.}
 }
 \value{
-List of gene_df and gene_col
+List of gene_df and gene_input
 }
 \description{
 Handles gene_df regardless of whether it's a

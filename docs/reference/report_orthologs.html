@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Identify the number of orthologous genes between two species — report_orthologs • orthogene</title>
+<title>Report orthologs — report_orthologs • orthogene</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Identify the number of orthologous genes between two species — report_orthologs" />
-<meta property="og:description" content="ewceData::mouse_to_human_homologs() provides 15,604 1:1 mouse:human orthologs.
-homologene-based functions like EWCE::convert_orthologs 
-provide an improved 16,766 1:1 mouse:human orthologs." />
+<meta property="og:title" content="Report orthologs — report_orthologs" />
+<meta property="og:description" content="Identify the number of orthologous genes between two species." />
 
 
 
@@ -97,6 +95,9 @@ provide an improved 16,766 1:1 mouse:human orthologs." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmarks.html">benchmarks</a>
+    </li>
+    <li>
       <a href="../articles/hexSticker.html">hexSticker</a>
     </li>
   </ul>
@@ -125,24 +126,23 @@ provide an improved 16,766 1:1 mouse:human orthologs." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Identify the number of orthologous genes between two species</h1>
+    <h1>Report orthologs</h1>
     <small class="dont-index">Source: <a href='https://github.com/neurogenomics/orthogene/blob/master/R/report_orthologs.R'><code>R/report_orthologs.R</code></a></small>
     <div class="hidden name"><code>report_orthologs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code><a href='https://rdrr.io/pkg/ewceData/man/mouse_to_human_homologs.html'>ewceData::mouse_to_human_homologs()</a></code> provides 15,604 1:1 mouse:human orthologs.
-<code>homologene</code>-based functions like <code><a href='https://rdrr.io/pkg/EWCE/man/convert_orthologs.html'>EWCE::convert_orthologs</a></code> 
-provide an improved 16,766 1:1 mouse:human orthologs.</p>
+    <p>Identify the number of orthologous genes between two species.</p>
     </div>
 
     <pre class="usage"><span class='fu'>report_orthologs</span><span class='op'>(</span>
   target_species <span class='op'>=</span> <span class='st'>"mouse"</span>,
   reference_species <span class='op'>=</span> <span class='st'>"human"</span>,
   standardise_genes <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"homologene"</span>, <span class='st'>"gorth"</span><span class='op'>)</span>,
+  method_all_genes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gprofiler"</span>, <span class='st'>"homologene"</span><span class='op'>)</span>,
+  method_convert_orthologs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gprofiler"</span>, <span class='st'>"homologene"</span><span class='op'>)</span>,
   drop_nonorths <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  one_to_one_only <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  non121_strategy <span class='op'>=</span> <span class='st'>"drop_both_species"</span>,
   round_digits <span class='op'>=</span> <span class='fl'>2</span>,
   return_report <span class='op'>=</span> <span class='cn'>TRUE</span>,
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
@@ -162,15 +162,23 @@ provide an improved 16,766 1:1 mouse:human orthologs.</p>
     <tr>
       <th>standardise_genes</th>
       <td><p>If <code>TRUE</code> genes will first be standardised 
-to HGNC symbols using <code><a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gprofiler2::gconvert</a></code>. 
+to HGNC symbols using <a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a>. 
 This will add a new column to <code>gene_df</code> 
 called "input_gene_standard".</p></td>
     </tr>
     <tr>
-      <th>method</th>
-      <td><p>R package to to use for gene mapping: 
-<code>"gorth"</code> (slower but more reference species) or 
-<code>"homologene"</code> (faster but fewer reference species).</p></td>
+      <th>method_all_genes</th>
+      <td><p>R package to to use in 
+<a href='all_genes.html'>all_genes</a> step: 
+<code>"gprofiler"</code> (slower but more species and genes) or 
+<code>"homologene"</code> (faster but fewer species and genes).</p></td>
+    </tr>
+    <tr>
+      <th>method_convert_orthologs</th>
+      <td><p>R package to to use in 
+<a href='convert_orthologs.html'>convert_orthologs</a> step: 
+<code>"gprofiler"</code> (slower but more species and genes) or 
+<code>"homologene"</code> (faster but fewer species and genes).</p></td>
     </tr>
     <tr>
       <th>drop_nonorths</th>
@@ -178,10 +186,21 @@ called "input_gene_standard".</p></td>
 in the <code>output_species</code>.</p></td>
     </tr>
     <tr>
-      <th>one_to_one_only</th>
-      <td><p>Drop genes that don't have a 1:1 mapping 
-between input species and human 
-(i.e. drop genes with multiple human orthologs).</p></td>
+      <th>non121_strategy</th>
+      <td><p>How to handle genes that don't have 
+1:1 mappings between <code>input_species</code>:<code>output_species</code>.
+Options include:</p>
+<ul>
+<li><p><code>"drop_both_species" or "dbs" or 1</code> : Drop genes that have duplicate 
+mappings in either the <code>input_species</code> or <code>output_species</code> 
+(<em>Default</em>).</p></li>
+<li><p><code>"drop_input_species" or "dis" or 2</code> : Drop genes that have duplicate 
+mappings in the <code>input_species</code>.</p></li>
+<li><p><code>"drop_output_species" or "dos" or 3</code> : Drop genes that have duplicate
+mappings in the <code>output_species</code>.</p></li>
+<li><p><code>"keep_both_species" or "kbs" or 4</code> : Keep all genes regardless of whether
+they have duplicate mappings in either species.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>round_digits</th>
@@ -189,8 +208,10 @@ between input species and human
     </tr>
     <tr>
       <th>return_report</th>
-      <td><p>Return just the ortholog mapping between two species (<code>FALSE</code>) 
-or return both the ortholog mapping as well a dataframe of the report statistics (<code>TRUE</code>).</p></td>
+      <td><p>Return just the ortholog mapping 
+between two species (<code>FALSE</code>) or return both the
+ ortholog mapping as well a <code>data.frame</code> 
+ of the report statistics (<code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -203,22 +224,11 @@ or return both the ortholog mapping as well a dataframe of the report statistics
     <p>List of ortholog report statistics</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>orth.fly</span> <span class='op'>&lt;-</span> <span class='fu'>report_orthologs</span><span class='op'>(</span>target_species <span class='op'>=</span> <span class='st'>"fly"</span>,
+    <pre class="examples"><div class='input'><span class='va'>orth_fly</span> <span class='op'>&lt;-</span> <span class='fu'>report_orthologs</span><span class='op'>(</span>target_species<span class='op'>=</span><span class='st'>"fly"</span>,
                              reference_species<span class='op'>=</span><span class='st'>"human"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Mapping species name: fly</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for fly</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Drosophila melanogaster</span></div><div class='output co'>#&gt; <span class='message'>Returning all 8,438 genes from fly.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div><div class='output co'>#&gt; <span class='message'>Returning all 19,129 genes from human.</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Converting genes: fly ===&gt; human </span></div><div class='output co'>#&gt; <span class='message'>Preparing gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>Converting fly ==&gt; human orthologs using homologene</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: fly</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for fly</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Drosophila melanogaster</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without orthologs in human.</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without 1:1 orthologs.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 19 genes that have multiple input_gene per ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 266 genes that have multiple ortholog_gene per input_gene.</span></div><div class='output co'>#&gt; <span class='message'>Adding ortholog_gene col to gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Genes dropped during inter-species conversion:  4,379 / 8,438 (52%)</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>=========== REPORT SUMMARY =========== </span></div><div class='output co'>#&gt; <span class='message'>4,059 / 8,438 (48.1%) target_species genes remain after ortholog conversion.</span></div><div class='output co'>#&gt; <span class='message'>4,059 / 19,129 (21.22%) reference_species genes remain after ortholog conversion.</span></div><div class='input'><span class='va'>orth.zeb</span> <span class='op'>&lt;-</span> <span class='fu'>report_orthologs</span><span class='op'>(</span>target_species <span class='op'>=</span> <span class='st'>"zebrafish"</span>, 
-                             reference_species<span class='op'>=</span><span class='st'>"human"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Mapping species name: zebrafish</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for zebrafish</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Danio rerio</span></div><div class='output co'>#&gt; <span class='message'>Returning all 20,897 genes from zebrafish.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div><div class='output co'>#&gt; <span class='message'>Returning all 19,129 genes from human.</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Converting genes: zebrafish ===&gt; human </span></div><div class='output co'>#&gt; <span class='message'>Preparing gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>Converting zebrafish ==&gt; human orthologs using homologene</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: zebrafish</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for zebrafish</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Danio rerio</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without orthologs in human.</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without 1:1 orthologs.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 47 genes that have multiple input_gene per ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 2,708 genes that have multiple ortholog_gene per input_gene.</span></div><div class='output co'>#&gt; <span class='message'>Adding ortholog_gene col to gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Genes dropped during inter-species conversion:  10,338 / 20,895 (49%)</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>=========== REPORT SUMMARY =========== </span></div><div class='output co'>#&gt; <span class='message'>10,556 / 20,895 (50.52%) target_species genes remain after ortholog conversion.</span></div><div class='output co'>#&gt; <span class='message'>10,556 / 19,129 (55.18%) reference_species genes remain after ortholog conversion.</span></div><div class='input'><span class='va'>orth.mus</span> <span class='op'>&lt;-</span> <span class='fu'>report_orthologs</span><span class='op'>(</span>target_species <span class='op'>=</span> <span class='st'>"mouse"</span>, 
-                             reference_species<span class='op'>=</span><span class='st'>"human"</span><span class='op'>)</span> 
-</div><div class='output co'>#&gt; <span class='message'>Mapping species name: mouse</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for mouse</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Mus musculus</span></div><div class='output co'>#&gt; <span class='message'>Returning all 21,207 genes from mouse.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div><div class='output co'>#&gt; <span class='message'>Returning all 19,129 genes from human.</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Converting genes: mouse ===&gt; human </span></div><div class='output co'>#&gt; <span class='message'>Preparing gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>Converting mouse ==&gt; human orthologs using homologene</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: mouse</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for mouse</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Mus musculus</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without orthologs in human.</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without 1:1 orthologs.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 131 genes that have multiple input_gene per ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 498 genes that have multiple ortholog_gene per input_gene.</span></div><div class='output co'>#&gt; <span class='message'>Adding ortholog_gene col to gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Genes dropped during inter-species conversion:  4,725 / 21,207 (22%)</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>=========== REPORT SUMMARY =========== </span></div><div class='output co'>#&gt; <span class='message'>16,482 / 21,207 (77.72%) target_species genes remain after ortholog conversion.</span></div><div class='output co'>#&gt; <span class='message'>16,482 / 19,129 (86.16%) reference_species genes remain after ortholog conversion.</span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Retrieving all genes using: gprofiler</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: fly</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for fly</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: dmelanogaster</span></div><div class='output co'>#&gt; <span class='message'>Gene table with 4592 rows retrieved.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 100 NAs of all kinds from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>Returning all 4,492 genes from fly.</span></div><div class='output co'>#&gt; <span class='message'>Retrieving all genes using: gprofiler</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: hsapiens</span></div><div class='output co'>#&gt; <span class='message'>Gene table with 60646 rows retrieved.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 20,092 NAs of all kinds from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>Returning all 40,554 genes from human.</span></div><div class='output co'>#&gt; <span class='message'>Preparing gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>Converting fly ==&gt; human orthologs using: gprofiler</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: fly</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for fly</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: dmelanogaster</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: hsapiens</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without orthologs in human.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from input_gene.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 3,414 NAs of all kinds from ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>Checking for genes without 1:1 orthologs.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 1,887 genes that have multiple input_gene per ortholog_gene.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 748 genes that have multiple ortholog_gene per input_gene.</span></div><div class='output co'>#&gt; <span class='message'>Adding input_gene col to gene_df.</span></div><div class='output co'>#&gt; <span class='message'>Adding ortholog_gene col to gene_df.</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>=========== REPORT SUMMARY ===========</span></div><div class='output co'>#&gt; <span class='message'>Total genes dropped during inter-species conversion:  3,854 / 4,492 (86%)</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>=========== REPORT SUMMARY ===========</span></div><div class='output co'>#&gt; <span class='message'>638 / 4,492 (14.2%) target_species genes remain after ortholog conversion.</span></div><div class='output co'>#&gt; <span class='message'>638 / 39,357 (1.62%) reference_species genes remain after ortholog conversion.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

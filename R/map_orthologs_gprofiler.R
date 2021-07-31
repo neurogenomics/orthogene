@@ -1,7 +1,17 @@
-#' Map orthologs: gorth
+#' Map orthologs: gprofiler
 #' 
 #' Map orthologs from one species to another
 #' using \code{gprofiler2::gorth()}. 
+#' 
+#' "\code{mthreshold} is used to set the maximum number 
+#' of ortholog names per gene to show. This is useful to handle
+#'  the problem of having many orthologs per gene 
+#'  (most of them uninformative). The function tries to
+#'   find the most informative by selecting the most popular ones."  
+#'   
+#' - From \code{gprofiler2} vignette: 
+#' https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
+#' 
 #' 
 #' @param genes Gene list.
 #' @param ... Additional arguments to be passed to
@@ -12,12 +22,12 @@
 #' @return Ortholog map \code{data.frame}
 #' @importFrom gprofiler2 gorth 
 #' @importFrom  dplyr rename  
-map_orthologs_gorth <- function(genes,
-                                input_species,
-                                output_species="human", 
-                                filter_na=FALSE, 
-                                verbose=TRUE,
-                                ...){
+map_orthologs_gprofiler <- function(genes,
+                                    input_species,
+                                    output_species="human", 
+                                    filter_na=FALSE, 
+                                    verbose=TRUE,
+                                    ...){
   ## Avoid confusing Biocheck
   input <- ortholog_name <- NULL;
   # genes <- c("Klf4", "Sox2", "71950","ENSMUSG00000012396","ENSMUSG00000074637") 

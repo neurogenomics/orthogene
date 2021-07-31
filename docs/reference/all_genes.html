@@ -95,6 +95,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmarks.html">benchmarks</a>
+    </li>
+    <li>
       <a href="../articles/hexSticker.html">hexSticker</a>
     </li>
   </ul>
@@ -132,33 +135,58 @@
     <p>Return all known genes from a given species.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>all_genes</span><span class='op'>(</span><span class='va'>species</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>all_genes</span><span class='op'>(</span>
+  <span class='va'>species</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gprofiler"</span>, <span class='st'>"homologene"</span><span class='op'>)</span>,
+  ensure_filter_nas <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>species</th>
-      <td><p>Species to get genes for. 
+      <td><p>Species to get all genes for. 
 Will first be standardised with <code>map_species</code>.</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>R package to to use for gene mapping: 
+<code>"gprofiler"</code> (slower but more species and genes) or 
+<code>"homologene"</code> (faster but fewer species and genes).</p></td>
+    </tr>
+    <tr>
+      <th>ensure_filter_nas</th>
+      <td><p>Perform an extra check to remove 
+genes that are <code>NA</code>s of any kind.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
       <td><p>Print messages.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments to be passed to 
+<a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a> when
+<code>method="gprofiler"</code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Gene table</p>
+    <p>Table with all gene symbols
+ from the given <code>species</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>References <code><a href='https://rdrr.io/pkg/homologene/man/homologeneData.html'>homologene::homologeneData</a></code>.</p>
+    <p>References <a href='https://rdrr.io/pkg/homologene/man/homologeneData.html'>homologeneData</a> or 
+<a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>genome_mouse</span> <span class='op'>&lt;-</span> <span class='fu'>all_genes</span><span class='op'>(</span>species<span class='op'>=</span><span class='st'>"mouse"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Mapping species name: mouse</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for mouse</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Mus musculus</span></div><div class='output co'>#&gt; <span class='message'>Returning all 21,207 genes from mouse.</span></div><div class='input'><span class='va'>genome_human</span> <span class='op'>&lt;-</span> <span class='fu'>all_genes</span><span class='op'>(</span>species<span class='op'>=</span><span class='st'>"human"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: Homo sapiens</span></div><div class='output co'>#&gt; <span class='message'>Returning all 19,129 genes from human.</span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Retrieving all genes using: gprofiler</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: mouse</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for mouse</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: mmusculus</span></div><div class='output co'>#&gt; <span class='message'>Gene table with 55403 rows retrieved.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 81 NAs of all kinds from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>Returning all 55,322 genes from mouse.</span></div><div class='input'><span class='va'>genome_human</span> <span class='op'>&lt;-</span> <span class='fu'>all_genes</span><span class='op'>(</span>species<span class='op'>=</span><span class='st'>"human"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Retrieving all genes using: gprofiler</span></div><div class='output co'>#&gt; <span class='message'>Using stored `gprofiler_orgs`.</span></div><div class='output co'>#&gt; <span class='message'>Mapping species name: human</span></div><div class='output co'>#&gt; <span class='message'>Common name mapping found for human</span></div><div class='output co'>#&gt; <span class='message'>1 organism identified from search: hsapiens</span></div><div class='output co'>#&gt; <span class='message'>Gene table with 60646 rows retrieved.</span></div><div class='output co'>#&gt; <span class='message'>Extracting genes from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>+ Dropping 20,092 NAs of all kinds from Gene.Symbol.</span></div><div class='output co'>#&gt; <span class='message'>Returning all 40,554 genes from human.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

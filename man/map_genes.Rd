@@ -40,7 +40,7 @@ a table with standardised gene symbols
  (the "names" column).
 }
 \details{
-Uses \code{gprofiler2::gconvert()}. 
+Uses \link[gprofiler2]{gconvert}. 
 The exact contents of the output table will depend on 
 \code{target} parameter. 
 See \code{?gprofiler2::gconvert} for more details.

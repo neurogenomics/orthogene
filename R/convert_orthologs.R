@@ -3,14 +3,31 @@
 #' Currently supports 700+ species.
 #' See \code{map_species()} for a full list of available species.
 #' 
-#' @param gene_df Data.frame containing the genes symbols of the input species.
-#' @param gene_col Character string indicating either the 
+#' @param gene_df Data object containing the genes 
+#' (see \code{gene_input} for options on how 
+#' the genes can be stored within the object). 
+#'  
+#' Can be one of the following formats: 
+#' 
+#' \itemize{
+#' \item{\code{matrix}}{A sparse or dense matrix.}
+#' \item{\code{data.frame}}{A \code{data.frame},
+#'  \code{data.table}. or \code{tibble}.}
+#' \item{code{list}}{A \code{list} or \code{vector}.} 
+#' }
+#' 
+#' Genes can be in any format 
+#' (e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
+#' automatically converted to HGNC gene symbols unless 
+#' specified otherwise with the \code{...} arguments.
+#' 
+#' @param gene_input Character string indicating either the 
 #' input species' gene symbols are in a column with the 
-#' input species gene symbols (\code{gene_col="<gene_col_name>"}) 
-#' or are the row names (\code{gene_col="rownames"}) or
-#' column names (\code{gene_col="colnames"}).
+#' input species gene symbols (\code{gene_input="<gene_input_name>"}) 
+#' or are the row names (\code{gene_input="rownames"}) or
+#' column names (\code{gene_input="colnames"}).
 #' @param standardise_genes If \code{TRUE} genes will first be standardised 
-#' to HGNC symbols using \code{gprofiler2::gconvert}. 
+#' to HGNC symbols using \link[gprofiler2]{gconvert}. 
 #' This will add a new column to \code{gene_df} 
 #' called "input_gene_standard".  
 #' @param input_species Name of the input species (e.g., "mouse","fly"). 
@@ -18,30 +35,71 @@
 #' @param output_species Name of the output species (e.g. "human").
 #' @param drop_nonorths Drop genes that don't have an ortholog 
 #'  in the \code{output_species}. 
-#' @param one_to_one_only Drop genes that don't have a 1:1 mapping 
-#' between input species and human 
-#' (i.e. drop genes with multiple human orthologs).
+#' @param non121_strategy How to handle genes that don't have 
+#' 1:1 mappings between \code{input_species}:\code{output_species}.
+#' Options include: 
+#' 
+#' \itemize{
+#' \item{\code{"drop_both_species" or "dbs" or 1} : }{Drop genes that have duplicate 
+#' mappings in either the \code{input_species} or \code{output_species} 
+#' (\emph{Default}).} 
+#' \item{\code{"drop_input_species" or "dis" or 2} : }{Drop genes that have duplicate 
+#' mappings in the \code{input_species}.} 
+#' \item{\code{"drop_output_species" or "dos" or 3} : }{Drop genes that have duplicate
+#' mappings in the \code{output_species}.}
+#' \item{\code{"keep_both_species" or "kbs" or 4} : }{Keep all genes regardless of whether
+#' they have duplicate mappings in either species.}
+#' }
+#' 
 #' @param method R package to to use for gene mapping: 
-#' \code{"gorth"} (slower but more reference species) or 
-#' \code{"homologene"} (faster but fewer reference species). 
-#' @param genes_as_rownames Whether to return the data.frame 
-#' with the row names set to the human orthologs.
-#' @param as_sparse If \code{obj} is a matrix, 
-#' it can be converted to a sparse matrix. 
-#' @param sort_rows Sort rows alphanumerically.
-#' @param return_dict Return a dictionary (named list) of gene mappings, 
-#' where \code{names} are the original gene names and 
-#'  items are the new gene names. If \code{return_dict=FALSE}, 
-#'  instead returns mappings as a data.frame. 
-#' @param invert_dict If \code{return_dict=TRUE}, setting \code{invert_dict} 
-#' switches the names and items in the dictionary.
+#' \code{"gprofiler"} (slower but more species and genes) or 
+#' \code{"homologene"} (faster but fewer species and genes). 
+#' @param gene_input Which aspect of \code{gene_df} you want to 
+#' get gene names from: 
+#'  
+#' \itemize{
+#' \item{\code{"rownames"} : }{From row names of data.frame/matrix.}
+#' \item{\code{"colnames"} : }{From column names of data.frame/matrix.}
+#' \item{\code{<column name>} : }{From a column in \code{gene_df},
+#'  e.g. \code{"gene_names"}.} 
+#' } 
+#' @param gene_output How to return genes. 
+#' Options include: 
+#' 
+#' \itemize{
+#' \item{\code{"rownames"} : }{As row names of \code{gene_df}.}
+#' \item{\code{"colnames"} : }{As column names of \code{gene_df}.}
+#' \item{\code{"columns"} : }{As new columns "input_gene", "ortholog_gene" 
+#' (and "input_gene_standard" if \code{standardise_genes=TRUE}) 
+#' in \code{gene_df}.}
+#' \item{\code{"dict"} : }{As a dictionary (named list) where the names 
+#' are input_gene and the values are ortholog_gene}.
+#' \item{\code{"dict_rev"} : }{As a reversed dictionary (named list) where the names 
+#' are ortholog_gene and the values are input_gene}.
+#' }  
+#' 
+#' @param as_sparse Convert \code{gene_df} to a sparse matrix.
+#' Only works if \code{gene_df} is one of the following classes:  
+#' 
+#' \itemize{
+#' \item{\code{matrix}} 
+#' \item{\code{Matrix}} 
+#' \item{\code{data.frame}}
+#' \item{\code{data.table}} 
+#' \item{\code{tibble}}
+#' } 
+#' 
+#' If \code{gene_df} is a sparse matrix to begin with,
+#' it will be returned as a sparse matrix 
+#'  (so long as \code{gene_output=} \code{"rownames"} or \code{"colnames"}).
+#' @param sort_rows Sort \code{gene_df} rows alphanumerically.
 #' @param verbose Print messages.
 #' @param ... Additional arguments to be passed to 
-#' \code{gprofiler2::gorth()} or 
-#' \code{homologene::homologene()}.
+#' \link[gprofiler2]{gconvert} or \link[homologene]{homologene}.
 #' 
-#' @return Data.frame with the gene symbols of the input species ("Gene_orig") 
-#' and converted human orthologs ("Gene").
+#' @return \code{gene_df} with  orthologs converted to the \code{output_species}.
+#' Instead returned as a dictionary (named list) if 
+#' \code{gene_output="dict"} or \code{"dict_rev"}.
 #' @export
 #' @import homologene
 #' @import Matrix
@@ -51,40 +109,46 @@
 #' @examples 
 #' data("exp_mouse")
 #' gene_df <- convert_orthologs(gene_df = exp_mouse,
-#'                              input_species="mouse",
-#'                              genes_as_rownames=TRUE)
+#'                              input_species="mouse")
 convert_orthologs <- function(gene_df, 
-                              gene_col="rownames", 
+                              gene_input="rownames", 
+                              gene_output="rownames", 
                               standardise_genes=FALSE,
                               input_species, 
                               output_species="human",
-                              method=c("homologene","gorth"),
+                              method=c("gprofiler","homologene"),
                               drop_nonorths=TRUE, 
-                              one_to_one_only=TRUE, 
-                              genes_as_rownames=FALSE, 
+                              non121_strategy="drop_both_species",  
                               as_sparse=FALSE, 
-                              sort_rows=FALSE,
-                              return_dict=FALSE, 
-                              invert_dict=FALSE, 
+                              sort_rows=FALSE, 
                               verbose=TRUE,
                               ...){ 
+
+  #### Check one2one_strategy is a valid option ####
+  one2one_strategy <- non121_strategy_opts(non121_strategy = non121_strategy)
   
-  messager("\nConverting genes:",input_species,"===>",output_species,"\n",v=verbose) 
-  
+  ### Check that other args are compatible with gene_output='rownames' ####
+  check_rownames_args_out <- check_rownames_args(gene_output = gene_output,
+                                                 drop_nonorths = drop_nonorths,
+                                                 non121_strategy = non121_strategy,
+                                                 verbose = verbose) 
+  gene_output <- check_rownames_args_out$gene_output;
+  drop_nonorths <- check_rownames_args_out$drop_nonorths;
+  non121_strategy <- check_rownames_args_out$non121_strategy; 
   #### Standardise input data #### 
   check_gene_df_type_out <- check_gene_df_type(gene_df = gene_df, 
-                                               gene_col = gene_col,
+                                               gene_input = gene_input,
                                                verbose = verbose)
   gene_df <- check_gene_df_type_out$gene_df; 
-  gene_col <- check_gene_df_type_out$gene_col;
+  gene_input <- check_gene_df_type_out$gene_input;
  
  
   #### Check if previously converted ####
   # If so, skip ahead.
   if(!is_converted(gene_df, verbose=verbose)){
-    #### Check gene_col ####
+    #### Check gene_input ####
     genes <- extract_gene_list(gene_df = gene_df, 
-                               gene_col = gene_col, 
+                               gene_input = gene_input, 
                                verbose = verbose)
     n_input_genes <- length(unique(genes)) 
     #### Map orthologs ####
@@ -110,31 +174,17 @@ convert_orthologs <- function(gene_df,
                                    verbose = verbose)
   }
   #### Drop non-1:1 genes ####
-  if(one_to_one_only){
-    gene_map <- check_one_to_one(gene_map = gene_map, 
-                                 verbose = verbose)
-  }
-  
-  #### Remove any lingering NAs ####
-  gene_map <- gene_map[stats::complete.cases(gene_map),] 
-  
-  #### Set genes as rownames ####
-  if(genes_as_rownames){
-    if(!drop_nonorths){
-      messager("WARNING: drop_nonorths must =TRUE",
-               "in order to set genes_as_rownames=TRUE.")
-    }else {
-      messager("+ Setting ortholog_gene col as rownames...",v=verbose)
-      if(!one_to_one_only) stop("Genes must be unique to be row.names.",
-                                " Try again with one_to_one_only=TRUE")
-      rownames(gene_map) <- gene_map$ortholog_gene
-    }
-  } 
+  gene_map <- drop_non121(gene_map = gene_map,
+                          non121_strategy =  non121_strategy,
+                          verbose = verbose)  
   ##### Subset and add new genes cols/rownames ####
   format_gene_df_out <- format_gene_df(gene_df = gene_df, 
                                        gene_map = gene_map, 
                                        genes = genes,
-                                       genes_as_rownames = genes_as_rownames, 
+                                       gene_input = gene_input,
+                                       gene_output = gene_output, 
+                                       drop_nonorths = drop_nonorths,
+                                       non121_strategy = non121_strategy,
                                        as_sparse = as_sparse,
                                        sort_rows = sort_rows,
                                        standardise_genes = standardise_genes, 
@@ -146,11 +196,12 @@ convert_orthologs <- function(gene_df,
                   n_input_genes = n_input_genes,
                   verbose = verbose) 
   #### Return ####
-  if(return_dict){
+  if(tolower(gene_output) %in% gene_output_opts(dict_opts = TRUE)){
     ##### Return gene dictionary ####
-    gene_map2 <- gene_map[gene_map$input_gene %in% genes2,]
-    dict <- setNames(gene_map2$ortholog_gene, gene_map2$input_gene) 
-    if(invert_dict){dict <- invert_dictionary(dict)}
+    dict <- as_dict(gene_output = gene_output, 
+                    gene_map = gene_map, 
+                    genes2 = genes2,
+                    verbose = verbose)
     return(dict)
   } else{
     ##### Return gene_df ####  

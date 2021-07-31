@@ -9,7 +9,7 @@ map_orthologs(
   standardise_genes = FALSE,
   input_species,
   output_species = "human",
-  method = c("homologene", "gorth"),
+  method = c("gprofiler", "homologene"),
   verbose = TRUE,
   ...
 )
@@ -21,7 +21,7 @@ and will be automatically converted to
  standardised HGNC symbol format.}
 
 \item{standardise_genes}{If \code{TRUE} genes will first be standardised 
-to HGNC symbols using \code{gprofiler2::gconvert}. 
+to HGNC symbols using \link[gprofiler2]{gconvert}. 
 This will add a new column to \code{gene_df} 
 called "input_gene_standard".}
 
@@ -31,14 +31,13 @@ See \code{taxa_id_dict()} for a full list of available species.}
 \item{output_species}{Name of the output species (e.g. "human").}
 
 \item{method}{R package to to use for gene mapping: 
-\code{"gorth"} (slower but more reference species) or 
-\code{"homologene"} (faster but fewer reference species).}
+\code{"gprofiler"} (slower but more species and genes) or 
+\code{"homologene"} (faster but fewer species and genes).}
 
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to 
-\code{gprofiler2::gorth()} or 
-\code{homologene::homologene()}.}
+\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.}
 }
 \value{
 Ortholog map \code{data.frame} with at
@@ -50,7 +49,7 @@ Map orthologs from one species to another.
 \details{
 \code{map_orthologs()} is a core function within 
 \code{convert_orthologs()}, but does not have many
-of the extra checks, such as \code{one_to_one_only})
+of the extra checks, such as \code{non121_strategy})
 and \code{drop_nonorths}.
 }
 \examples{
