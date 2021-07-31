@@ -20,14 +20,14 @@ Most recent update: <i>Jul-31-2021</i>
 
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 
+<!-- badger::badge_last_commit()  -->
+
+[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
+
 <!-- badger::badge_license() -->
 
 [![License:
 Artistic-2.0](https://img.shields.io/badge/license-Artistic--2.0-blue.svg)](https://cran.r-project.org/web/licenses/Artistic-2.0)
-
-<!-- badger::badge_last_commit()  -->
-
-[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 
 </row> <!-- badges: end -->
 
