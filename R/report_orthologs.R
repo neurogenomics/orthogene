@@ -38,7 +38,8 @@ report_orthologs <- function(target_species="mouse",
                              non121_strategy="drop_both_species",  
                              round_digits=2, 
                              return_report=TRUE,
-                             verbose=TRUE){ 
+                             verbose=TRUE,
+                             ...){ 
   
   #### Get full genomes for each species ####
   tar_genes <- all_genes(species = target_species, 
@@ -57,7 +58,8 @@ report_orthologs <- function(target_species="mouse",
                                method = method_convert_orthologs[1],
                                drop_nonorths = drop_nonorths, 
                                non121_strategy = non121_strategy,
-                               verbose = verbose)
+                               verbose = verbose,
+                               ...)
   
   messager("\n=========== REPORT SUMMARY ===========\n")
   one2one_orthologs <- dplyr::n_distinct(gene_df$ortholog_gene)

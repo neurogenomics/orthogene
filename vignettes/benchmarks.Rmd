@@ -12,7 +12,7 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.width = 7, fig.height = 5, root.dir=here::here())
+knitr::opts_chunk$set(echo = TRUE, root.dir=here::here())
 knitr::opts_knit$set(root.dir=here::here())
 ```
 
@@ -105,7 +105,7 @@ knitr::kable(bench_res)
 
 For each method, plot the run time (a) and the number of genes returned (b).
 
-```{r} 
+```{r, fig.height=8} 
 bench_barplot <- orthogene:::plot_benchmark_bar(bench_res = bench_res)
 # ggsave(here::here("inst/benchmark/bench_barplot.pdf"),bench_barplot, height = 8)
 ```

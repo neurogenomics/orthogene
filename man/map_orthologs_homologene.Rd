@@ -16,9 +16,10 @@ map_orthologs_homologene(
 \item{genes}{Gene list.}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
-See \code{taxa_id_dict()} for a full list of available species.}
+Use \link[orthogene]{map_species} to return a full list of available species.}
 
-\item{output_species}{Name of the output species (e.g. "human").}
+\item{output_species}{Name of the output species (e.g. "human","chicken"). 
+Use \link[orthogene]{map_species} to return a full list of available species.}
 
 \item{verbose}{Print messages.}
 

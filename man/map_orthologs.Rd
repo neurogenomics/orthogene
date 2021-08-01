@@ -26,9 +26,10 @@ This will add a new column to \code{gene_df}
 called "input_gene_standard".}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
-See \code{taxa_id_dict()} for a full list of available species.}
+Use \link[orthogene]{map_species} to return a full list of available species.}
 
-\item{output_species}{Name of the output species (e.g. "human").}
+\item{output_species}{Name of the output species (e.g. "human","chicken"). 
+Use \link[orthogene]{map_species} to return a full list of available species.}
 
 \item{method}{R package to to use for gene mapping: 
 \code{"gprofiler"} (slower but more species and genes) or 
@@ -37,7 +38,15 @@ See \code{taxa_id_dict()} for a full list of available species.}
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to 
-\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.}
+\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.\cr\cr 
+\emph{NOTE}: To return only the most "popular" interspecies ortholog mappings,
+supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above. 
+This procedure tends to yield a greater number of returned genes but at
+ the cost of many of them not being true biological 1:1 orthologs.\cr\cr 
+ For more details, please see 
+ \href{
+ https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
+ }{here}.}
 }
 \value{
 Ortholog map \code{data.frame} with at

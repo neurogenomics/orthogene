@@ -15,7 +15,7 @@ test_that("convert_orthologs works", {
   gene_smat1 <- convert_orthologs(gene_df = exp_mouse_smat, 
                                  input_species="mouse",
                                  gene_input="rownames",
-                                 gene_output = "rownames", 
+                                 gene_output = "rownames",  
                                  as_sparse = TRUE)
   testthat::expect_equal(methods::is(gene_smat1,"sparseMatrix"), TRUE)
   testthat::expect_equal(has_gene_cols(gene_smat1),0)

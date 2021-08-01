@@ -91,7 +91,7 @@ Author: <i>Brian M. Schilder</i>
 </h4></h4>
             
             <h4 class="date"><h4>
-Most recent update: <i>Jul-31-2021</i>
+Most recent update: <i>Aug-01-2021</i>
 </h4></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/vignettes/benchmarks.Rmd"><code>vignettes/benchmarks.Rmd</code></a></small>
@@ -321,7 +321,7 @@ Most recent update: <i>Jul-31-2021</i>
 <p>For each method, plot the run time (a) and the number of genes returned (b).</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bench_barplot</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">:::</span><span class="fu"><a href="../reference/plot_benchmark_bar.html">plot_benchmark_bar</a></span><span class="op">(</span>bench_res <span class="op">=</span> <span class="va">bench_res</span><span class="op">)</span></code></pre></div>
-<p><img src="benchmarks_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+<p><img src="benchmarks_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ggsave(here::here("inst/benchmark/bench_barplot.pdf"),bench_barplot, height = 8)</span></code></pre></div>
 </div>
@@ -333,7 +333,7 @@ Most recent update: <i>Jul-31-2021</i>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bench_scatterplot</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">:::</span><span class="fu"><a href="../reference/plot_benchmark_scatter.html">plot_benchmark_scatter</a></span><span class="op">(</span>bench_res <span class="op">=</span> <span class="va">bench_res</span><span class="op">)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
-<p><img src="benchmarks_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
+<p><img src="benchmarks_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ggsave(here::here("inst/benchmark/bench_scatterplot.pdf"),bench_scatterplot)</span></code></pre></div>
 </div>
@@ -406,8 +406,9 @@ Most recent update: <i>Jul-31-2021</i>
 ## [77] fastmap_1.1.0             utf8_1.2.2               
 ## [79] rprojroot_2.0.2           ragg_1.1.3               
 ## [81] desc_1.3.0                stringi_1.7.3            
-## [83] Rcpp_1.0.7                vctrs_0.3.8              
-## [85] tidyselect_1.1.1          xfun_0.24</code></pre>
+## [83] parallel_4.1.0            Rcpp_1.0.7               
+## [85] vctrs_0.3.8               tidyselect_1.1.1         
+## [87] xfun_0.24</code></pre>
 </details>
 </div>
   </div>

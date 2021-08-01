@@ -23,44 +23,39 @@ convert_orthologs(
 \arguments{
 \item{gene_df}{Data object containing the genes 
 (see \code{gene_input} for options on how 
-the genes can be stored within the object). 
- 
-Can be one of the following formats: 
-
+the genes can be stored within the object).\cr
+Can be one of the following formats:\cr
 \itemize{
-\item{\code{matrix}}{A sparse or dense matrix.}
-\item{\code{data.frame}}{A \code{data.frame},
+\item{\code{matrix} : \cr}{A sparse or dense matrix.}
+\item{\code{data.frame} : \cr}{A \code{data.frame},
  \code{data.table}. or \code{tibble}.}
-\item{code{list}}{A \code{list} or \code{vector}.} 
+\item{code{list} : \cr}{A \code{list} or character \code{vector}.}  
 }
-
-Genes can be in any format 
+Genes can be provided in any format 
 (e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
 automatically converted to HGNC gene symbols unless 
 specified otherwise with the \code{...} arguments.}
 
-\item{gene_input}{Which aspect of \code{gene_df} you want to 
-get gene names from: 
- 
+\item{gene_input}{Which aspect of \code{gene_df} to 
+get gene names from:\cr
 \itemize{
-\item{\code{"rownames"} : }{From row names of data.frame/matrix.}
-\item{\code{"colnames"} : }{From column names of data.frame/matrix.}
-\item{\code{<column name>} : }{From a column in \code{gene_df},
+\item{\code{"rownames"} : \cr}{From row names of data.frame/matrix.}
+\item{\code{"colnames"} : \cr}{From column names of data.frame/matrix.}
+\item{\code{<column name>} : \cr}{From a column in \code{gene_df},
  e.g. \code{"gene_names"}.} 
 }}
 
 \item{gene_output}{How to return genes. 
-Options include: 
-
+Options include:\cr
 \itemize{
-\item{\code{"rownames"} : }{As row names of \code{gene_df}.}
-\item{\code{"colnames"} : }{As column names of \code{gene_df}.}
-\item{\code{"columns"} : }{As new columns "input_gene", "ortholog_gene" 
+\item{\code{"rownames"} : \cr}{As row names of \code{gene_df}.}
+\item{\code{"colnames"} : \cr}{As column names of \code{gene_df}.}
+\item{\code{"columns"} : \cr}{As new columns "input_gene", "ortholog_gene" 
 (and "input_gene_standard" if \code{standardise_genes=TRUE}) 
 in \code{gene_df}.}
-\item{\code{"dict"} : }{As a dictionary (named list) where the names 
+\item{\code{"dict"} : \cr}{As a dictionary (named list) where the names 
 are input_gene and the values are ortholog_gene}.
-\item{\code{"dict_rev"} : }{As a reversed dictionary (named list) where the names 
+\item{\code{"dict_rev"} : \cr}{As a reversed dictionary (named list) where the names 
 are ortholog_gene and the values are input_gene}.
 }}
 
@@ -70,9 +65,10 @@ This will add a new column to \code{gene_df}
 called "input_gene_standard".}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
-See \code{taxa_id_dict()} for a full list of available species.}
+Use \link[orthogene]{map_species} to return a full list of available species.}
 
-\item{output_species}{Name of the output species (e.g. "human").}
+\item{output_species}{Name of the output species (e.g. "human","chicken"). 
+Use \link[orthogene]{map_species} to return a full list of available species.}
 
 \item{method}{R package to to use for gene mapping: 
 \code{"gprofiler"} (slower but more species and genes) or 
@@ -83,31 +79,28 @@ in the \code{output_species}.}
 
 \item{non121_strategy}{How to handle genes that don't have 
 1:1 mappings between \code{input_species}:\code{output_species}.
-Options include: 
-
+Options include:\cr
 \itemize{
-\item{\code{"drop_both_species" or "dbs" or 1} : }{Drop genes that have duplicate 
-mappings in either the \code{input_species} or \code{output_species} 
-(\emph{Default}).} 
-\item{\code{"drop_input_species" or "dis" or 2} : }{Drop genes that have duplicate 
+\item{\code{"drop_both_species" or "dbs" or 1} : \cr}{Drop genes that have duplicate 
+mappings in either the \code{input_species} or \code{output_species} \cr
+(\emph{DEFAULT}).} 
+\item{\code{"drop_input_species" or "dis" or 2} : \cr}{Drop genes that have duplicate 
 mappings in the \code{input_species}.} 
-\item{\code{"drop_output_species" or "dos" or 3} : }{Drop genes that have duplicate
+\item{\code{"drop_output_species" or "dos" or 3} : \cr}{Drop genes that have duplicate
 mappings in the \code{output_species}.}
-\item{\code{"keep_both_species" or "kbs" or 4} : }{Keep all genes regardless of whether
+\item{\code{"keep_both_species" or "kbs" or 4} : \cr}{Keep all genes regardless of whether
 they have duplicate mappings in either species.}
 }}
 
 \item{as_sparse}{Convert \code{gene_df} to a sparse matrix.
-Only works if \code{gene_df} is one of the following classes:  
-
+Only works if \code{gene_df} is one of the following classes:\cr
 \itemize{
 \item{\code{matrix}} 
 \item{\code{Matrix}} 
 \item{\code{data.frame}}
 \item{\code{data.table}} 
-\item{\code{tibble}}
-} 
-
+\item{\code{tibble}} 
+}
 If \code{gene_df} is a sparse matrix to begin with,
 it will be returned as a sparse matrix 
  (so long as \code{gene_output=} \code{"rownames"} or \code{"colnames"}).}
@@ -117,16 +110,26 @@ it will be returned as a sparse matrix
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to 
-\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.}
+\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.\cr\cr 
+\emph{NOTE}: To return only the most "popular" interspecies ortholog mappings,
+supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above. 
+This procedure tends to yield a greater number of returned genes but at
+ the cost of many of them not being true biological 1:1 orthologs.\cr\cr 
+ For more details, please see 
+ \href{
+ https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
+ }{here}.}
 }
 \value{
-\code{gene_df} with  orthologs converted to the \code{output_species}.
+\code{gene_df} with  orthologs converted to the \code{output_species}.\cr
 Instead returned as a dictionary (named list) if 
 \code{gene_output="dict"} or \code{"dict_rev"}.
 }
 \description{
-Currently supports 700+ species.
-See \code{map_species()} for a full list of available species.
+Currently supports ortholog mapping between any 
+pair of 700+ species. \cr 
+Use \link[orthogene]{map_species} to 
+return a full list of available organisms.
 }
 \examples{
 data("exp_mouse")

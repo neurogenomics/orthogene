@@ -7,15 +7,20 @@
 #' of ortholog names per gene to show. This is useful to handle
 #'  the problem of having many orthologs per gene 
 #'  (most of them uninformative). The function tries to
-#'   find the most informative by selecting the most popular ones."  
-#'   
-#' - From \code{gprofiler2} vignette: 
-#' https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
+#'   find the most informative by selecting the most popular ones."\cr  
+#' ~ From  
+#'  \href{
+#'  https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
+#'  }{\code{gprofiler2} vignette}\cr
 #' 
 #' Available namespaces for the \code{numeric_ns} argument can be found 
 #'\href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{here}.
 #' 
 #' @param genes Gene list.
+#' @param filter_na Logical indicating whether to
+#'  filter out results without a corresponding target name.
+#'  (\emph{DEFAULT} is \code{FALSE}, so that \code{NA}s 
+#'  can be handled by \pkg{orthogene}).
 #' @param ... Additional arguments to be passed to 
 #' \link[gprofiler2]{gorth}. 
 #' @inheritParams convert_orthologs

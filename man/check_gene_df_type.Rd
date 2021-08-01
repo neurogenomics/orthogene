@@ -9,29 +9,25 @@ check_gene_df_type(gene_df, gene_input, verbose = TRUE)
 \arguments{
 \item{gene_df}{Data object containing the genes 
 (see \code{gene_input} for options on how 
-the genes can be stored within the object). 
- 
-Can be one of the following formats: 
-
+the genes can be stored within the object).\cr
+Can be one of the following formats:\cr
 \itemize{
-\item{\code{matrix}}{A sparse or dense matrix.}
-\item{\code{data.frame}}{A \code{data.frame},
+\item{\code{matrix} : \cr}{A sparse or dense matrix.}
+\item{\code{data.frame} : \cr}{A \code{data.frame},
  \code{data.table}. or \code{tibble}.}
-\item{code{list}}{A \code{list} or \code{vector}.} 
+\item{code{list} : \cr}{A \code{list} or character \code{vector}.}  
 }
-
-Genes can be in any format 
+Genes can be provided in any format 
 (e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
 automatically converted to HGNC gene symbols unless 
 specified otherwise with the \code{...} arguments.}
 
-\item{gene_input}{Which aspect of \code{gene_df} you want to 
-get gene names from: 
- 
+\item{gene_input}{Which aspect of \code{gene_df} to 
+get gene names from:\cr
 \itemize{
-\item{\code{"rownames"} : }{From row names of data.frame/matrix.}
-\item{\code{"colnames"} : }{From column names of data.frame/matrix.}
-\item{\code{<column name>} : }{From a column in \code{gene_df},
+\item{\code{"rownames"} : \cr}{From row names of data.frame/matrix.}
+\item{\code{"colnames"} : \cr}{From column names of data.frame/matrix.}
+\item{\code{<column name>} : \cr}{From a column in \code{gene_df},
  e.g. \code{"gene_names"}.} 
 }}
 

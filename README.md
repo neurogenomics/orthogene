@@ -8,28 +8,19 @@ Most recent update: <i>Jul-31-2021</i>
 </h4>
 
 <!-- badges: start -->
-
-<row> <!-- badger::badge_codecov() -->
-[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
-
+<!-- badger::badge_codecov() -->
 <!-- copied from MungeSumstats README.Rmd -->
-
-[![R-CMD-check](https://github.com/neurogenomics/MungeSumstats/workflows/R-full/badge.svg)](https://github.com/neurogenomics/MungeSumstats/actions)
-
 <!-- badger::badge_lifecycle("stable", "green") -->
-
-[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-
 <!-- badger::badge_last_commit()  -->
-
-[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
-
 <!-- badger::badge_license() -->
 
+[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
+[![R-CMD-check](https://github.com/neurogenomics/MungeSumstats/workflows/R-full/badge.svg)](https://github.com/neurogenomics/MungeSumstats/actions)
+[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 [![License:
 Artistic-2.0](https://img.shields.io/badge/license-Artistic--2.0-blue.svg)](https://cran.r-project.org/web/licenses/Artistic-2.0)
-
-</row> <!-- badges: end -->
+<!-- badges: end -->
 
 ## Interspecies gene mapping
 
@@ -46,12 +37,14 @@ In brief, `orthogene` lets you easily:
 
 -   [**`convert_orthologs`** between any two
     species](https://github.com/neurogenomics/orthogene#convert-orthologs)
--   [**`map_species`** onto standard
+-   [**`map_species`** names onto standard taxonomic
     ontologies](https://github.com/neurogenomics/orthogene#map-species)  
 -   [**`report_orthologs`** between any two
     species](https://github.com/neurogenomics/orthogene#report-orthologs)
--   [**`map_genes`** onto standard ontologies]()
--   [get **`all_genes`** from any species](all_genes)
+-   [**`map_genes`** onto standard
+    ontologies](https://github.com/neurogenomics/orthogene#map-genes)
+-   [get **`all_genes`** from any
+    species](https://github.com/neurogenomics/orthogene#get-all-genes)
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
 

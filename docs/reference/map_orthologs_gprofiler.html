@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Map orthologs: gprofiler — map_orthologs_gprofiler" />
 <meta property="og:description" content="Map orthologs from one species to another
-using gprofiler2::gorth()." />
+using gorth." />
 
 
 
@@ -134,7 +134,7 @@ using gprofiler2::gorth()." />
 
     <div class="ref-description">
     <p>Map orthologs from one species to another
-using <code><a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gprofiler2::gorth()</a></code>.</p>
+using <a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>map_orthologs_gprofiler</span><span class='op'>(</span>
@@ -156,16 +156,19 @@ using <code><a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gprofiler2::
     <tr>
       <th>input_species</th>
       <td><p>Name of the input species (e.g., "mouse","fly"). 
-See <code><a href='taxa_id_dict.html'>taxa_id_dict()</a></code> for a full list of available species.</p></td>
+Use <a href='map_species.html'>map_species</a> to return a full list of available species.</p></td>
     </tr>
     <tr>
       <th>output_species</th>
-      <td><p>Name of the output species (e.g. "human").</p></td>
+      <td><p>Name of the output species (e.g. "human","chicken"). 
+Use <a href='map_species.html'>map_species</a> to return a full list of available species.</p></td>
     </tr>
     <tr>
       <th>filter_na</th>
-      <td><p>logical indicating whether to filter out results without a
-corresponding target name.</p></td>
+      <td><p>Logical indicating whether to
+filter out results without a corresponding target name.
+(<em>DEFAULT</em> is <code>FALSE</code>, so that <code>NA</code>s 
+can be handled by <span class="pkg">orthogene</span>).</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -173,8 +176,8 @@ corresponding target name.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments to be passed to
-<code><a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gprofiler2::gorth()</a></code>.</p></td>
+      <td><p>Additional arguments to be passed to 
+<a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>.</p></td>
     </tr>
     </table>
 
@@ -187,9 +190,13 @@ corresponding target name.</p></td>
 of ortholog names per gene to show. This is useful to handle
  the problem of having many orthologs per gene 
  (most of them uninformative). The function tries to
-  find the most informative by selecting the most popular ones."</p>  
-<p>- From <code>gprofiler2</code> vignette: 
-https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html</p>
+  find the most informative by selecting the most popular ones."<br />  
+~ From  
+ <a href='
+ https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
+ '><code>gprofiler2</code> vignette</a><br /></p>
+<p>Available namespaces for the <code>numeric_ns</code> argument can be found 
+<a href='https://biit.cs.ut.ee/gprofiler/page/namespaces-list'>here</a>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
