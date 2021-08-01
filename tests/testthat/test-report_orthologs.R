@@ -45,13 +45,13 @@ test_that("report_orthologs works", {
   
   #### gprofiler tests ####
   # Takes a long time currently (hacky)
-  g_res <- run_tests(method="gprofiler") 
+  # g_res <- run_tests(method="gprofiler") 
   # mthreshold selects the most popular N ortholog mappings.
   # This helps reduce duplicates (and thus dropped non-1:1 genes), 
   # resulting in higher observed gene yield.
   # But is this really an accurate reflection of the biology?...
-  g_res_m1 <- run_tests(method="gprofiler", mthreshold=1)
-  g_res_m3 <- run_tests(method="gprofiler", mthreshold=3)
+  # g_res_m1 <- run_tests(method="gprofiler", mthreshold=1)
+  # g_res_m3 <- run_tests(method="gprofiler", mthreshold=3)
   
   #### homologene tests ####
   h_res <- run_tests(method="homologene")

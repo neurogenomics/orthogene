@@ -4,7 +4,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Jul-31-2021</i>
+Most recent update: <i>Aug-01-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -22,7 +22,7 @@ Most recent update: <i>Jul-31-2021</i>
 Artistic-2.0](https://img.shields.io/badge/license-Artistic--2.0-blue.svg)](https://cran.r-project.org/web/licenses/Artistic-2.0)
 <!-- badges: end -->
 
-## Interspecies gene mapping
+## `orthogene`: Interspecies gene mapping
 
 `orthogene` is an R package for easy mapping of orthologous genes across
 hundreds of species.  
@@ -95,8 +95,9 @@ is very flexible with what users can supply as `gene_df`, and can take a
 `data.frame`/`data.table`/`tibble`, (sparse) `matrix`, or
 `list`/`vector` containing genes.
 
-Genes will be recognised in most formats (e.g. HGNC, Ensembl, UCSC) and
-can even be a mixture of different formats.
+Genes, transcripts, proteins, SNPs, or genomic ranges will be recognised
+in most formats (HGNC, Ensembl, RefSeq, UniProt, etc.) and can even be a
+mixture of different formats.
 
 All genes will be mapped to gene symbols, unless specified otherwise
 with the `...` arguments (see `?orthogene::convert_orthologs` or
@@ -335,17 +336,40 @@ orth_zeb <- report_orthologs(target_species = "zebrafish",
 
     ## 10,556 / 19,129 (55.18%) reference_species genes remain after ortholog conversion.
 
+``` r
+knitr::kable(head(orth_zeb$map))
+```
+
+|     | HID | Gene.ID | Gene.Symbol | Taxonomy | input\_gene | ortholog\_gene |
+|:----|----:|--------:|:------------|---------:|:------------|:---------------|
+| 8   |   3 |  406283 | acadm       |     7955 | acadm       | ACADM          |
+| 20  |   5 |  573723 | acadvl      |     7955 | acadvl      | ACADVL         |
+| 32  |   6 |  445290 | acat1       |     7955 | acat1       | ACAT1          |
+| 55  |   7 |   30615 | acvr1l      |     7955 | acvr1l      | ACVR1          |
+| 74  |  12 |  334431 | adsl        |     7955 | adsl        | ADSL           |
+| 92  |  13 |  566517 | aga         |     7955 | aga         | AGA            |
+
+``` r
+knitr::kable(orth_zeb$report)
+```
+
+| target\_species | target\_total\_genes | reference\_species | reference\_total\_genes | one2one\_orthologs | target\_percent | reference\_percent |
+|:----------------|---------------------:|:-------------------|------------------------:|-------------------:|----------------:|-------------------:|
+| zebrafish       |                20895 | human              |                   19129 |              10556 |           50.52 |              55.18 |
+
 ## Map genes
 
 [`map_genes`](https://neurogenomics.github.io/orthogene/reference/map_genes.html)
 finds matching *within-species* synonyms across a wide variety of gene
-naming conventions (e.g. HGNC symbols, ENSEMBL IDs, UCSC) and returns a
+naming conventions (HGNC, Ensembl, RefSeq, UniProt, etc.) and returns a
 table with standardised gene symbols (or whatever output format you
 prefer).
 
 ``` r
-mapped_genes <- map_genes(genes=rownames(exp_mouse),
-                          species="mouse")
+genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",9999,
+             "ENSMUSG00000012396","ENSMUSG00000074637")
+mapped_genes <- map_genes(genes = genes,
+                          species = "mouse")
 ```
 
     ## Using stored `gprofiler_orgs`.
@@ -356,7 +380,20 @@ mapped_genes <- map_genes(genes=rownames(exp_mouse),
 
     ## 1 organism identified from search: mmusculus
 
-    ## 15,259 / 15,397 (100.9%) genes mapped.
+    ## 8 / 8 (100%) genes mapped.
+
+``` r
+knitr::kable(head(mapped_genes))
+```
+
+| input\_number | input      | target\_number | target             | name    | description                                                              | namespace                              |
+|--------------:|:-----------|:---------------|:-------------------|:--------|:-------------------------------------------------------------------------|:---------------------------------------|
+|             1 | Klf4       | 1.1            | ENSMUSG00000003032 | Klf4    | Kruppel-like factor 4 (gut) \[Source:MGI Symbol;Acc:MGI:1342287\]        | ENTREZGENE,MGI,UNIPROT\_GN,WIKIGENE    |
+|             2 | Sox2       | 2.1            | ENSMUSG00000074637 | Sox2    | SRY (sex determining region Y)-box 2 \[Source:MGI Symbol;Acc:MGI:98364\] | ENTREZGENE,MGI,UNIPROT\_GN,WIKIGENE    |
+|             3 | TSPAN12    | 3.1            | ENSMUSG00000029669 | Tspan12 | tetraspanin 12 \[Source:MGI Symbol;Acc:MGI:1889818\]                     | ENTREZGENE,MGI,UNIPROT\_GN,WIKIGENE    |
+|             4 | NM\_173007 | 4.1            | ENSMUSG00000029669 | Tspan12 | tetraspanin 12 \[Source:MGI Symbol;Acc:MGI:1889818\]                     | REFSEQ\_MRNA\_ACC                      |
+|             5 | Q8BKT6     | 5.1            | ENSMUSG00000029669 | Tspan12 | tetraspanin 12 \[Source:MGI Symbol;Acc:MGI:1889818\]                     | UNIPROTSWISSPROT\_ACC,UNIPROT\_GN\_ACC |
+|             6 | 9999       | 6.1            | nan                | nan     | nan                                                                      |                                        |
 
 ## Get all genes
 

@@ -17,10 +17,14 @@ Can be one of the following formats:\cr
  \code{data.table}. or \code{tibble}.}
 \item{code{list} : \cr}{A \code{list} or character \code{vector}.}  
 }
-Genes can be provided in any format 
-(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
-automatically converted to HGNC gene symbols unless 
-specified otherwise with the \code{...} arguments.}
+Genes, transcripts, proteins, SNPs, or genomic ranges
+ can be provided in any format 
+(HGNC, Ensembl, RefSeq, UniProt, etc.) and will be 
+automatically converted to gene symbols unless 
+specified otherwise with the \code{...} arguments.\cr
+\emph{Note}: If you set \code{method="homologene"}, you
+must either supply genes in gene symbol format (e.g. "Sox2")
+ OR set \code{standardise_genes=TRUE}.}
 
 \item{gene_input}{Which aspect of \code{gene_df} to 
 get gene names from:\cr

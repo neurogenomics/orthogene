@@ -8,10 +8,9 @@
 #'  the problem of having many orthologs per gene 
 #'  (most of them uninformative). The function tries to
 #'   find the most informative by selecting the most popular ones."\cr  
-#' ~ From  
-#'  \href{
-#'  https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
-#'  }{\code{gprofiler2} vignette}\cr
+#' ~ From 
+#' \href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
+#'  \code{gprofiler2} vignette}\cr
 #' 
 #' Available namespaces for the \code{numeric_ns} argument can be found 
 #'\href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{here}.

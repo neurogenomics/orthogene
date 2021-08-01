@@ -9,7 +9,7 @@ map_genes(
   species = "hsapiens",
   target = "ENSG",
   mthreshold = Inf,
-  filter_na = FALSE,
+  drop_na = FALSE,
   numeric_ns = "",
   verbose = TRUE
 )
@@ -23,8 +23,10 @@ map_genes(
 
 \item{mthreshold}{maximum number of results per initial alias to show. Shows all by default.}
 
-\item{filter_na}{logical indicating whether to filter out results without a
-corresponding target.}
+\item{drop_na}{Drop all genes without mappings.
+Sets \code{gprofiler2::gconvert(filter_na=)} as well
+an additional round of more comprehensive \code{NA} filtering
+by \pkg{orthogene}.}
 
 \item{numeric_ns}{namespace to use for fully numeric IDs (\href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{list of available namespaces}).}
 
@@ -34,8 +36,9 @@ corresponding target.}
 Table with standardised genes.
 }
 \description{
-Input a list of genes in any format 
-(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and return
+Input a list of genes, transcripts, proteins, SNPs, 
+or genomic ranges in any format 
+(HGNC, Ensembl, RefSeq, UniProt, etc.) and return
 a table with standardised gene symbols
  (the "names" column).
 }
@@ -47,6 +50,8 @@ See \code{?gprofiler2::gconvert} for more details.
 }
 \examples{
 data("exp_mouse")
-mapped_genes <- map_genes(genes=rownames(exp_mouse)[seq(1,100)],
+genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",
+            "ENSMUSG00000012396","ENSMUSG00000074637")
+mapped_genes <- map_genes(genes=genes,
                           species="mouse")
 }

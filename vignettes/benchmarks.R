@@ -1,5 +1,5 @@
 ## ---- include = FALSE---------------------------------------------------------
-knitr::opts_chunk$set(echo = TRUE, fig.width = 7, fig.height = 5, root.dir=here::here())
+knitr::opts_chunk$set(echo = TRUE, root.dir=here::here())
 knitr::opts_knit$set(root.dir=here::here())
 
 ## ----setup--------------------------------------------------------------------
@@ -42,7 +42,7 @@ if(!exists("bench_res")) {
 }
 knitr::kable(bench_res)
 
-## -----------------------------------------------------------------------------
+## ---- fig.height=8------------------------------------------------------------
 bench_barplot <- orthogene:::plot_benchmark_bar(bench_res = bench_res)
 # ggsave(here::here("inst/benchmark/bench_barplot.pdf"),bench_barplot, height = 8)
 

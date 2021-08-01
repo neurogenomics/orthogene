@@ -1,4 +1,4 @@
-#' Interspecies gene mapping
+#' \pkg{orthogene}: Interspecies gene mapping
 #' 
 #' \pkg{orthogene} is an R package for easy mapping of 
 #' orthologous genes across hundreds of species.

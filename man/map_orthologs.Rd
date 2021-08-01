@@ -16,14 +16,14 @@ map_orthologs(
 }
 \arguments{
 \item{genes}{can be a mixture of any format
-(HGNC symbols, ENSEMBL, UCSC, etc.)
-and will be automatically converted to
- standardised HGNC symbol format.}
+(HGNC, Ensembl, RefSeq, UniProt, etc.)
+ and will be automatically converted to
+  standardised HGNC symbol format.}
 
-\item{standardise_genes}{If \code{TRUE} genes will first be standardised 
-to HGNC symbols using \link[gprofiler2]{gconvert}. 
-This will add a new column to \code{gene_df} 
-called "input_gene_standard".}
+\item{standardise_genes}{If \code{TRUE} AND 
+\code{gene_output="columns"}, a new column "input_gene_standard" 
+will be added to \code{gene_df} containing standardised HGNC symbols 
+identified by \link[gprofiler2]{gconvert}.}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
 Use \link[orthogene]{map_species} to return a full list of available species.}
@@ -44,9 +44,8 @@ supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above.
 This procedure tends to yield a greater number of returned genes but at
  the cost of many of them not being true biological 1:1 orthologs.\cr\cr 
  For more details, please see 
- \href{
- https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
- }{here}.}
+\href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
+ here}.}
 }
 \value{
 Ortholog map \code{data.frame} with at

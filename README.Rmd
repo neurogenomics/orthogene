@@ -22,7 +22,7 @@ editor_options:
 <!-- badges: end --> 
 
 
-## Interspecies gene mapping 
+## `orthogene`: Interspecies gene mapping 
 
 `orthogene` is an R package for easy mapping of orthologous genes across hundreds of species.   
 It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms. 
@@ -97,8 +97,7 @@ knitr::kable(pros_cons)
 [`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) is very flexible with what users can supply as `gene_df`,
 and can take a `data.frame`/`data.table`/`tibble`, (sparse) `matrix`, or `list`/`vector` containing genes.
 
-Genes will be recognised in most formats (e.g. HGNC, Ensembl, UCSC) 
-and can even be a mixture of different formats. 
+Genes, transcripts, proteins, SNPs, or genomic ranges will be recognised in most formats (HGNC, Ensembl, RefSeq, UniProt, etc.) and can even be a mixture of different formats. 
 
 All genes will be mapped to gene symbols, unless specified otherwise with the
 `...` arguments (see `?orthogene::convert_orthologs` or [here](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) for details).  
@@ -148,16 +147,21 @@ orth_zeb <- report_orthologs(target_species = "zebrafish",
                              reference_species = "human",
                              method_all_genes = method,
                              method_convert_orthologs = method) 
+knitr::kable(head(orth_zeb$map))
+knitr::kable(orth_zeb$report)
 ```
 
 
 ## Map genes 
 
-[`map_genes`](https://neurogenomics.github.io/orthogene/reference/map_genes.html) finds matching *within-species* synonyms across a wide variety of gene naming conventions (e.g. HGNC symbols, ENSEMBL IDs, UCSC) and returns a table with standardised gene symbols (or whatever output format you prefer). 
+[`map_genes`](https://neurogenomics.github.io/orthogene/reference/map_genes.html) finds matching *within-species* synonyms across a wide variety of gene naming conventions (HGNC, Ensembl, RefSeq, UniProt, etc.) and returns a table with standardised gene symbols (or whatever output format you prefer). 
 
 ```{r}
-mapped_genes <- map_genes(genes=rownames(exp_mouse),
-                          species="mouse")
+genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",9999,
+             "ENSMUSG00000012396","ENSMUSG00000074637")
+mapped_genes <- map_genes(genes = genes,
+                          species = "mouse")
+knitr::kable(head(mapped_genes))
 ```
 
 

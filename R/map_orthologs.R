@@ -8,7 +8,7 @@
 #' and \code{drop_nonorths}. 
 #' 
 #' @param genes can be a mixture of any format
-#'  (HGNC symbols, ENSEMBL, UCSC, etc.)
+#' (HGNC, Ensembl, RefSeq, UniProt, etc.)
 #'  and will be automatically converted to
 #'   standardised HGNC symbol format.
 #' @inheritParams convert_orthologs 
@@ -36,7 +36,7 @@ map_orthologs <- function(genes,
     messager("Standardising gene names first.",v=verbose)
     syn_map <- map_genes(genes = genes, 
                          species = input_species, 
-                         filter_na = FALSE, 
+                         drop_na = TRUE, 
                          verbose = verbose)
     genes <- syn_map$name 
   }

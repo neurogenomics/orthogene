@@ -4,7 +4,7 @@
 \name{orthogene-package}
 \alias{orthogene}
 \alias{orthogene-package}
-\title{Interspecies gene mapping}
+\title{\pkg{orthogene}: Interspecies gene mapping}
 \source{
 \itemize{
 \item{\href{https://github.com/neurogenomics/orthogene}{GitHub} : }{

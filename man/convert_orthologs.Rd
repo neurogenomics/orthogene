@@ -31,10 +31,14 @@ Can be one of the following formats:\cr
  \code{data.table}. or \code{tibble}.}
 \item{code{list} : \cr}{A \code{list} or character \code{vector}.}  
 }
-Genes can be provided in any format 
-(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
-automatically converted to HGNC gene symbols unless 
-specified otherwise with the \code{...} arguments.}
+Genes, transcripts, proteins, SNPs, or genomic ranges
+ can be provided in any format 
+(HGNC, Ensembl, RefSeq, UniProt, etc.) and will be 
+automatically converted to gene symbols unless 
+specified otherwise with the \code{...} arguments.\cr
+\emph{Note}: If you set \code{method="homologene"}, you
+must either supply genes in gene symbol format (e.g. "Sox2")
+ OR set \code{standardise_genes=TRUE}.}
 
 \item{gene_input}{Which aspect of \code{gene_df} to 
 get gene names from:\cr
@@ -59,10 +63,10 @@ are input_gene and the values are ortholog_gene}.
 are ortholog_gene and the values are input_gene}.
 }}
 
-\item{standardise_genes}{If \code{TRUE} genes will first be standardised 
-to HGNC symbols using \link[gprofiler2]{gconvert}. 
-This will add a new column to \code{gene_df} 
-called "input_gene_standard".}
+\item{standardise_genes}{If \code{TRUE} AND 
+\code{gene_output="columns"}, a new column "input_gene_standard" 
+will be added to \code{gene_df} containing standardised HGNC symbols 
+identified by \link[gprofiler2]{gconvert}.}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
 Use \link[orthogene]{map_species} to return a full list of available species.}
@@ -116,9 +120,8 @@ supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above.
 This procedure tends to yield a greater number of returned genes but at
  the cost of many of them not being true biological 1:1 orthologs.\cr\cr 
  For more details, please see 
- \href{
- https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
- }{here}.}
+\href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
+ here}.}
 }
 \value{
 \code{gene_df} with  orthologs converted to the \code{output_species}.\cr

@@ -98,7 +98,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Jul-31-2021</i>
+Most recent update: <i>Aug-01-2021</i>
 </h4>
 <!-- badges: start -->
 <!-- badger::badge_codecov() -->
@@ -107,9 +107,9 @@ Most recent update: <i>Jul-31-2021</i>
 <!-- badger::badge_last_commit()  -->
 <!-- badger::badge_license() -->
 
-<div id="interspecies-gene-mapping" class="section level2">
+<div id="orthogene-interspecies-gene-mapping" class="section level2">
 <h2 class="hasAnchor">
-<a href="#interspecies-gene-mapping" class="anchor"></a>Interspecies gene mapping</h2>
+<a href="#orthogene-interspecies-gene-mapping" class="anchor"></a><code>orthogene</code>: Interspecies gene mapping</h2>
 <p><code>orthogene</code> is an R package for easy mapping of orthologous genes across hundreds of species.<br>
 It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</p>
 <p>It also provides various utility functions to map common objects (e.g. data.frames, gene expression matrices, lists) onto 1:1 gene orthologs from any other species.</p>
@@ -202,7 +202,7 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <h2 class="hasAnchor">
 <a href="#convert-orthologs" class="anchor"></a>Convert orthologs</h2>
 <p><a href="https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html"><code>convert_orthologs</code></a> is very flexible with what users can supply as <code>gene_df</code>, and can take a <code>data.frame</code>/<code>data.table</code>/<code>tibble</code>, (sparse) <code>matrix</code>, or <code>list</code>/<code>vector</code> containing genes.</p>
-<p>Genes will be recognised in most formats (e.g. HGNC, Ensembl, UCSC) and can even be a mixture of different formats.</p>
+<p>Genes, transcripts, proteins, SNPs, or genomic ranges will be recognised in most formats (HGNC, Ensembl, RefSeq, UniProt, etc.) and can even be a mixture of different formats.</p>
 <p>All genes will be mapped to gene symbols, unless specified otherwise with the <code>...</code> arguments (see <code><a href="reference/convert_orthologs.html">?orthogene::convert_orthologs</a></code> or <a href="https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html">here</a> for details).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"exp_mouse"</span><span class="op">)</span>
@@ -487,47 +487,232 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="do">## 10,556 / 20,895 (50.52%) target_species genes remain after ortholog conversion.</span></span>
 <span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="do">## 10,556 / 19,129 (55.18%) reference_species genes remain after ortholog conversion.</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">orth_zeb</span><span class="op">$</span><span class="va">map</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">HID</th>
+<th align="right">Gene.ID</th>
+<th align="left">Gene.Symbol</th>
+<th align="right">Taxonomy</th>
+<th align="left">input_gene</th>
+<th align="left">ortholog_gene</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">8</td>
+<td align="right">3</td>
+<td align="right">406283</td>
+<td align="left">acadm</td>
+<td align="right">7955</td>
+<td align="left">acadm</td>
+<td align="left">ACADM</td>
+</tr>
+<tr class="even">
+<td align="left">20</td>
+<td align="right">5</td>
+<td align="right">573723</td>
+<td align="left">acadvl</td>
+<td align="right">7955</td>
+<td align="left">acadvl</td>
+<td align="left">ACADVL</td>
+</tr>
+<tr class="odd">
+<td align="left">32</td>
+<td align="right">6</td>
+<td align="right">445290</td>
+<td align="left">acat1</td>
+<td align="right">7955</td>
+<td align="left">acat1</td>
+<td align="left">ACAT1</td>
+</tr>
+<tr class="even">
+<td align="left">55</td>
+<td align="right">7</td>
+<td align="right">30615</td>
+<td align="left">acvr1l</td>
+<td align="right">7955</td>
+<td align="left">acvr1l</td>
+<td align="left">ACVR1</td>
+</tr>
+<tr class="odd">
+<td align="left">74</td>
+<td align="right">12</td>
+<td align="right">334431</td>
+<td align="left">adsl</td>
+<td align="right">7955</td>
+<td align="left">adsl</td>
+<td align="left">ADSL</td>
+</tr>
+<tr class="even">
+<td align="left">92</td>
+<td align="right">13</td>
+<td align="right">566517</td>
+<td align="left">aga</td>
+<td align="right">7955</td>
+<td align="left">aga</td>
+<td align="left">AGA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">orth_zeb</span><span class="op">$</span><span class="va">report</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="12%">
+<col width="15%">
+<col width="14%">
+<col width="17%">
+<col width="14%">
+<col width="12%">
+<col width="14%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">target_species</th>
+<th align="right">target_total_genes</th>
+<th align="left">reference_species</th>
+<th align="right">reference_total_genes</th>
+<th align="right">one2one_orthologs</th>
+<th align="right">target_percent</th>
+<th align="right">reference_percent</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">zebrafish</td>
+<td align="right">20895</td>
+<td align="left">human</td>
+<td align="right">19129</td>
+<td align="right">10556</td>
+<td align="right">50.52</td>
+<td align="right">55.18</td>
+</tr></tbody>
+</table>
 </div>
 <div id="map-genes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#map-genes" class="anchor"></a>Map genes</h2>
-<p><a href="https://neurogenomics.github.io/orthogene/reference/map_genes.html"><code>map_genes</code></a> finds matching <em>within-species</em> synonyms across a wide variety of gene naming conventions (e.g. HGNC symbols, ENSEMBL IDs, UCSC) and returns a table with standardised gene symbols (or whatever output format you prefer).</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mapped_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/map_genes.html">map_genes</a></span><span class="op">(</span>genes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">exp_mouse</span><span class="op">)</span>,
-                          species<span class="op">=</span><span class="st">"mouse"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mouse</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for mouse</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: mmusculus</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 15,259 / 15,397 (100.9%) genes mapped.</span></span></code></pre></div>
+<p><a href="https://neurogenomics.github.io/orthogene/reference/map_genes.html"><code>map_genes</code></a> finds matching <em>within-species</em> synonyms across a wide variety of gene naming conventions (HGNC, Ensembl, RefSeq, UniProt, etc.) and returns a table with standardised gene symbols (or whatever output format you prefer).</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">genes</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Klf4"</span>, <span class="st">"Sox2"</span>, <span class="st">"TSPAN12"</span>,<span class="st">"NM_173007"</span>,<span class="st">"Q8BKT6"</span>,<span class="fl">9999</span>,
+             <span class="st">"ENSMUSG00000012396"</span>,<span class="st">"ENSMUSG00000074637"</span><span class="op">)</span>
+<span class="va">mapped_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/map_genes.html">map_genes</a></span><span class="op">(</span>genes <span class="op">=</span> <span class="va">genes</span>,
+                          species <span class="op">=</span> <span class="st">"mouse"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mouse</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for mouse</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: mmusculus</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 8 / 8 (100%) genes mapped.</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mapped_genes</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="8%">
+<col width="6%">
+<col width="8%">
+<col width="10%">
+<col width="4%">
+<col width="39%">
+<col width="21%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">input_number</th>
+<th align="left">input</th>
+<th align="left">target_number</th>
+<th align="left">target</th>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">namespace</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Klf4</td>
+<td align="left">1.1</td>
+<td align="left">ENSMUSG00000003032</td>
+<td align="left">Klf4</td>
+<td align="left">Kruppel-like factor 4 (gut) <span class="math display"><em>S</em><em>o</em><em>u</em><em>r</em><em>c</em><em>e</em> : <em>M</em><em>G</em><em>I</em><em>S</em><em>y</em><em>m</em><em>b</em><em>o</em><em>l</em>; <em>A</em><em>c</em><em>c</em> : <em>M</em><em>G</em><em>I</em> : 1342287</span>
+</td>
+<td align="left">ENTREZGENE,MGI,UNIPROT_GN,WIKIGENE</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Sox2</td>
+<td align="left">2.1</td>
+<td align="left">ENSMUSG00000074637</td>
+<td align="left">Sox2</td>
+<td align="left">SRY (sex determining region Y)-box 2 <span class="math display"><em>S</em><em>o</em><em>u</em><em>r</em><em>c</em><em>e</em> : <em>M</em><em>G</em><em>I</em><em>S</em><em>y</em><em>m</em><em>b</em><em>o</em><em>l</em>; <em>A</em><em>c</em><em>c</em> : <em>M</em><em>G</em><em>I</em> : 98364</span>
+</td>
+<td align="left">ENTREZGENE,MGI,UNIPROT_GN,WIKIGENE</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">TSPAN12</td>
+<td align="left">3.1</td>
+<td align="left">ENSMUSG00000029669</td>
+<td align="left">Tspan12</td>
+<td align="left">tetraspanin 12 <span class="math display"><em>S</em><em>o</em><em>u</em><em>r</em><em>c</em><em>e</em> : <em>M</em><em>G</em><em>I</em><em>S</em><em>y</em><em>m</em><em>b</em><em>o</em><em>l</em>; <em>A</em><em>c</em><em>c</em> : <em>M</em><em>G</em><em>I</em> : 1889818</span>
+</td>
+<td align="left">ENTREZGENE,MGI,UNIPROT_GN,WIKIGENE</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">NM_173007</td>
+<td align="left">4.1</td>
+<td align="left">ENSMUSG00000029669</td>
+<td align="left">Tspan12</td>
+<td align="left">tetraspanin 12 <span class="math display"><em>S</em><em>o</em><em>u</em><em>r</em><em>c</em><em>e</em> : <em>M</em><em>G</em><em>I</em><em>S</em><em>y</em><em>m</em><em>b</em><em>o</em><em>l</em>; <em>A</em><em>c</em><em>c</em> : <em>M</em><em>G</em><em>I</em> : 1889818</span>
+</td>
+<td align="left">REFSEQ_MRNA_ACC</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Q8BKT6</td>
+<td align="left">5.1</td>
+<td align="left">ENSMUSG00000029669</td>
+<td align="left">Tspan12</td>
+<td align="left">tetraspanin 12 <span class="math display"><em>S</em><em>o</em><em>u</em><em>r</em><em>c</em><em>e</em> : <em>M</em><em>G</em><em>I</em><em>S</em><em>y</em><em>m</em><em>b</em><em>o</em><em>l</em>; <em>A</em><em>c</em><em>c</em> : <em>M</em><em>G</em><em>I</em> : 1889818</span>
+</td>
+<td align="left">UNIPROTSWISSPROT_ACC,UNIPROT_GN_ACC</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">9999</td>
+<td align="left">6.1</td>
+<td align="left">nan</td>
+<td align="left">nan</td>
+<td align="left">nan</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="get-all-genes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-all-genes" class="anchor"></a>Get all genes</h2>
 <p>You can also quickly get all known genes from the genome of a given species with <a href="https://neurogenomics.github.io/orthogene/reference/all_genes.html"><code>all_genes</code></a>.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">genome_mouse</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/all_genes.html">all_genes</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, 
                           method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Retrieving all genes using: homologene.</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mouse</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for mouse</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 10090</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Gene table with 21207 rows retrieved.</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from Gene.Symbol.</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Returning all 21,207 genes from mouse.</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Retrieving all genes using: homologene.</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Using stored `gprofiler_orgs`.</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Mapping species name: mouse</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Common name mapping found for mouse</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 organism identified from search: 10090</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Gene table with 21207 rows retrieved.</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracting genes from Gene.Symbol.</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Returning all 21,207 genes from mouse.</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">genome_mouse</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -587,66 +772,66 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h1>
-<details><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<details><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R version 4.1.0 (2021-05-18)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Running under: Ubuntu 20.04.2 LTS</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Matrix products: default</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## locale:</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             </span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="do">## attached base packages:</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="do">## other attached packages:</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] orthogene_0.1.0</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="do">## loaded via a namespace (and not attached):</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] Rcpp_1.0.7                lattice_0.20-44          </span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] tidyr_1.1.3               assertthat_0.2.1         </span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] digest_0.6.27             utf8_1.2.2               </span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] R6_2.5.0                  cellranger_1.1.0         </span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] backports_1.2.1           evaluate_0.14            </span></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] httr_1.4.2                ggplot2_3.3.5            </span></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] highr_0.9                 pillar_1.6.1             </span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] rlang_0.4.11              lazyeval_0.2.2           </span></span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] curl_4.3.2                readxl_1.3.1             </span></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] data.table_1.14.0         car_3.0-11               </span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] Matrix_1.3-4              rmarkdown_2.9            </span></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] stringr_1.4.0             foreign_0.8-81           </span></span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] htmlwidgets_1.5.3         RCurl_1.98-1.3           </span></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] munsell_0.5.0             broom_0.7.8              </span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] compiler_4.1.0            gprofiler2_0.2.0         </span></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="do">## [31] xfun_0.24                 pkgconfig_2.0.3          </span></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="do">## [33] htmltools_0.5.1.1         tidyselect_1.1.1         </span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="do">## [35] tibble_3.1.3              rio_0.5.27               </span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [37] fansi_0.5.0               viridisLite_0.4.0        </span></span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [39] crayon_1.4.1              dplyr_1.0.7              </span></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="do">## [41] ggpubr_0.4.0              bitops_1.0-7             </span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [43] grid_4.1.0                jsonlite_1.7.2           </span></span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="do">## [45] gtable_0.3.0              lifecycle_1.0.0          </span></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="do">## [47] DBI_1.1.1                 magrittr_2.0.1           </span></span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="do">## [49] scales_1.1.1              zip_2.2.0                </span></span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="do">## [51] stringi_1.7.3             carData_3.0-4            </span></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="do">## [53] ggsignif_0.6.2            ellipsis_0.3.2           </span></span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="do">## [55] generics_0.1.0            vctrs_0.3.8              </span></span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="do">## [57] openxlsx_4.2.4            tools_4.1.0              </span></span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a><span class="do">## [59] forcats_0.5.1             homologene_1.4.68.19.3.27</span></span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="do">## [61] glue_1.4.2                purrr_0.3.4              </span></span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="do">## [63] hms_1.1.0                 abind_1.4-5              </span></span>
-<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="do">## [65] parallel_4.1.0            yaml_2.2.1               </span></span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="do">## [67] colorspace_2.0-2          rstatix_0.7.0            </span></span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="do">## [69] plotly_4.9.4.9000         knitr_1.33               </span></span>
-<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a><span class="do">## [71] haven_2.4.1               patchwork_1.1.1</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R version 4.1.0 (2021-05-18)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Running under: Ubuntu 20.04.2 LTS</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Matrix products: default</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="do">## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="do">## locale:</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             </span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="do">## attached base packages:</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="do">## other attached packages:</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] orthogene_0.1.0</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="do">## loaded via a namespace (and not attached):</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] Rcpp_1.0.7                lattice_0.20-44          </span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] tidyr_1.1.3               assertthat_0.2.1         </span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] digest_0.6.27             utf8_1.2.2               </span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] R6_2.5.0                  cellranger_1.1.0         </span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] backports_1.2.1           evaluate_0.14            </span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] httr_1.4.2                ggplot2_3.3.5            </span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] highr_0.9                 pillar_1.6.1             </span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] rlang_0.4.11              lazyeval_0.2.2           </span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] curl_4.3.2                readxl_1.3.1             </span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] data.table_1.14.0         car_3.0-11               </span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] Matrix_1.3-4              rmarkdown_2.9            </span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] stringr_1.4.0             foreign_0.8-81           </span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] htmlwidgets_1.5.3         RCurl_1.98-1.3           </span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] munsell_0.5.0             broom_0.7.8              </span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] compiler_4.1.0            gprofiler2_0.2.0         </span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a><span class="do">## [31] xfun_0.24                 pkgconfig_2.0.3          </span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a><span class="do">## [33] htmltools_0.5.1.1         tidyselect_1.1.1         </span></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a><span class="do">## [35] tibble_3.1.3              rio_0.5.27               </span></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [37] fansi_0.5.0               viridisLite_0.4.0        </span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [39] crayon_1.4.1              dplyr_1.0.7              </span></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a><span class="do">## [41] ggpubr_0.4.0              bitops_1.0-7             </span></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [43] grid_4.1.0                jsonlite_1.7.2           </span></span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a><span class="do">## [45] gtable_0.3.0              lifecycle_1.0.0          </span></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="do">## [47] DBI_1.1.1                 magrittr_2.0.1           </span></span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a><span class="do">## [49] scales_1.1.1              zip_2.2.0                </span></span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a><span class="do">## [51] stringi_1.7.3             carData_3.0-4            </span></span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a><span class="do">## [53] ggsignif_0.6.2            ellipsis_0.3.2           </span></span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a><span class="do">## [55] generics_0.1.0            vctrs_0.3.8              </span></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a><span class="do">## [57] openxlsx_4.2.4            tools_4.1.0              </span></span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a><span class="do">## [59] forcats_0.5.1             homologene_1.4.68.19.3.27</span></span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a><span class="do">## [61] glue_1.4.2                purrr_0.3.4              </span></span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a><span class="do">## [63] hms_1.1.0                 abind_1.4-5              </span></span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a><span class="do">## [65] parallel_4.1.0            yaml_2.2.1               </span></span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a><span class="do">## [67] colorspace_2.0-2          rstatix_0.7.0            </span></span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a><span class="do">## [69] plotly_4.9.4.9000         knitr_1.33               </span></span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a><span class="do">## [71] haven_2.4.1               patchwork_1.1.1</span></span></code></pre></div>
 </details>
 </div>
 <div id="related-projects" class="section level1">

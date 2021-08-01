@@ -23,10 +23,10 @@ report_orthologs(
 
 \item{reference_species}{Reference species.}
 
-\item{standardise_genes}{If \code{TRUE} genes will first be standardised 
-to HGNC symbols using \link[gprofiler2]{gconvert}. 
-This will add a new column to \code{gene_df} 
-called "input_gene_standard".}
+\item{standardise_genes}{If \code{TRUE} AND 
+\code{gene_output="columns"}, a new column "input_gene_standard" 
+will be added to \code{gene_df} containing standardised HGNC symbols 
+identified by \link[gprofiler2]{gconvert}.}
 
 \item{method_all_genes}{R package to to use in 
 \link[orthogene]{all_genes} step: 
@@ -72,9 +72,8 @@ supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above.
 This procedure tends to yield a greater number of returned genes but at
  the cost of many of them not being true biological 1:1 orthologs.\cr\cr 
  For more details, please see 
- \href{
- https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
- }{here}.}
+\href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
+ here}.}
 }
 \value{
 List of ortholog report statistics
