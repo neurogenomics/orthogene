@@ -67,6 +67,8 @@ knitr::opts_knit$set(root.dir=here::here())
 #            s_x=1, s_y=1, s_width=s_width, s_height=s_width*1.11111,
 #            h_color = "black", h_fill = "#330862",white_around_sticker = TRUE,
 #            filename=here::here("inst/hex/orthogene.png"), dpi = 400)
+#  
+#  print(s)
 
 ## ----Session Info-------------------------------------------------------------
 utils::sessionInfo()
