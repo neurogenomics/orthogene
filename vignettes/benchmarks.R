@@ -33,7 +33,7 @@ species_mapped <- map_species(species = species) %>% `names<-`(names(species))
 ## ---- eval=FALSE--------------------------------------------------------------
 #  bench_res <- orthogene:::run_benchmark(species_mapped = species_mapped[c("human","mouse","fly")],
 #                                         run_convert_orthologs = TRUE,
-#                                         mc.core = 10)
+#                                         mc.cores = 10)
 #  # write.csv(bench_res, here::here("inst/benchmark/bench_res_example.csv"), row.names = FALSE)
 
 ## -----------------------------------------------------------------------------
@@ -42,7 +42,7 @@ if(!exists("bench_res")) {
 }
 knitr::kable(bench_res)
 
-## ---- fig.height=8------------------------------------------------------------
+## ---- fig.height=10-----------------------------------------------------------
 bench_barplot <- orthogene:::plot_benchmark_bar(bench_res = bench_res)
 # ggsave(here::here("inst/benchmark/bench_barplot.pdf"),bench_barplot, height = 8)
 
