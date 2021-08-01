@@ -32,6 +32,7 @@ plot_benchmark_scatter <- function(bench_res,
     scale_color_manual(values = fill_colors, drop=FALSE) + 
     facet_grid(facets = method~test, 
                scales = "free") +
+    labs(y="time (seconds)") + 
     theme_bw() +
     theme(strip.background = element_rect(fill = "white"))
   if(show_plot) print(point_plot)

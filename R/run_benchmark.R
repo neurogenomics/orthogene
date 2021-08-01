@@ -26,7 +26,7 @@ run_benchmark <- function(species_mapped,
                           run_convert_orthologs=TRUE,
                           remove_failed_times=FALSE,
                           save_path=tempfile(fileext=".csv"),
-                          mc_cores=1,
+                          mc.cores=1,
                           verbose=TRUE){ 
   
   # Avoid confusing Biocheck 
@@ -141,7 +141,7 @@ run_benchmark <- function(species_mapped,
                      round(difftime(Sys.time(),timeA, units="mins"),3),
                      "minutes.") 
     return(res)
-  }, mc.cores=mc_cores) %>% 
+  }, mc.cores=mc.cores) %>% 
     `names<-`(species_mapped) %>%
     data.table::rbindlist(idcol = "species")
   

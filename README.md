@@ -110,6 +110,7 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
                              gene_input = "rownames", 
                              gene_output = "rownames", 
                              input_species = "mouse",
+                             output_species = "human",
                              method = method) 
 ```
 
@@ -369,7 +370,8 @@ prefer).
 genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",9999,
              "ENSMUSG00000012396","ENSMUSG00000074637")
 mapped_genes <- map_genes(genes = genes,
-                          species = "mouse")
+                          species = "mouse", 
+                          drop_na = FALSE)
 ```
 
     ## Using stored `gprofiler_orgs`.
