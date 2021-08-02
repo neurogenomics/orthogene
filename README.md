@@ -4,7 +4,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Aug-01-2021</i>
+Most recent update: <i>Aug-02-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -104,6 +104,21 @@ with the `...` arguments (see `?orthogene::convert_orthologs` or
 [here](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html)
 for details).
 
+### Note on non-1:1 orthologs
+
+A key feature of `convert_orthologs` is that it handles the issue of
+many-to-many gene mappings across species using different strategies via
+the `non121_strategy=` argument:
+
+1.  `"drop_both_species"` : All genes that do not have 1:1 orthologs
+    between the species will be dropped, as the function of these genes
+    tends to be less conserved and less interpretable (*DEFAULT*).
+2.  `"drop_input_species"` : Only drop genes with multiple orthologs in
+    the `input_species`.  
+3.  `"drop_output_species"` : Only drop genes with multiple orthologs in
+    the `output_species`.
+4.  `"keep_both_species"` : Don’t drop any genes.
+
 ``` r
 data("exp_mouse")
 gene_df <- convert_orthologs(gene_df = exp_mouse,
@@ -111,6 +126,7 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
                              gene_output = "rownames", 
                              input_species = "mouse",
                              output_species = "human",
+                             non121_strategy = "drop_both_species",
                              method = method) 
 ```
 
