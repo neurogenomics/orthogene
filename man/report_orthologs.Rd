@@ -26,7 +26,7 @@ report_orthologs(
 \item{standardise_genes}{If \code{TRUE} AND 
 \code{gene_output="columns"}, a new column "input_gene_standard" 
 will be added to \code{gene_df} containing standardised HGNC symbols 
-identified by \link[gprofiler2]{gconvert}.}
+identified by \link[gprofiler2]{gorth}.}
 
 \item{method_all_genes}{R package to to use in 
 \link[orthogene]{all_genes} step: 
@@ -45,15 +45,29 @@ in the \code{output_species}.}
 1:1 mappings between \code{input_species}:\code{output_species}.
 Options include:\cr
 \itemize{
-\item{\code{"drop_both_species" or "dbs" or 1} : \cr}{Drop genes that have duplicate 
+\item{\code{"drop_both_species" or "dbs" or 1} : \cr}{
+Drop genes that have duplicate 
 mappings in either the \code{input_species} or \code{output_species} \cr
 (\emph{DEFAULT}).} 
-\item{\code{"drop_input_species" or "dis" or 2} : \cr}{Drop genes that have duplicate 
+\item{\code{"drop_input_species" or "dis" or 2} : \cr}{ 
+Only drop genes that have duplicate 
 mappings in the \code{input_species}.} 
-\item{\code{"drop_output_species" or "dos" or 3} : \cr}{Drop genes that have duplicate
+\item{\code{"drop_output_species" or "dos" or 3} : \cr}{
+Only drop genes that have duplicate
 mappings in the \code{output_species}.}
-\item{\code{"keep_both_species" or "kbs" or 4} : \cr}{Keep all genes regardless of whether
-they have duplicate mappings in either species.}
+\item{\code{"keep_both_species" or "kbs" or 4} : \cr}{
+Keep all genes regardless of whether
+they have duplicate mappings in either species.} 
+\item{\code{"keep_popular" or "kp" or 5} : \cr}{
+Return only the most "popular" interspecies ortholog mappings.
+ This procedure tends to yield a greater number of returned genes 
+ but at the cost of many of them not being true biological 1:1 orthologs.}
+ \item{\code{"sum","mean","median","min" or "max"} : \cr}{
+ When \code{gene_df} is a matrix and \code{gene_output="rownames"},
+  these options will aggregate many-to-one gene mappings 
+  (\code{input_species}-to-\code{output_species}) 
+  after dropping any duplicate genes in the \code{output_species}.
+ }
 }}
 
 \item{round_digits}{Number of digits to round to when printing percentages.}
@@ -66,7 +80,7 @@ between two species (\code{FALSE}) or return both the
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to 
-\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.\cr\cr 
+\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr 
 \emph{NOTE}: To return only the most "popular" interspecies ortholog mappings,
 supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above. 
 This procedure tends to yield a greater number of returned genes but at

@@ -14,6 +14,7 @@ convert_orthologs(
   method = c("gprofiler", "homologene"),
   drop_nonorths = TRUE,
   non121_strategy = "drop_both_species",
+  mthreshold = Inf,
   as_sparse = FALSE,
   sort_rows = FALSE,
   verbose = TRUE,
@@ -66,7 +67,7 @@ are ortholog_gene and the values are input_gene}.
 \item{standardise_genes}{If \code{TRUE} AND 
 \code{gene_output="columns"}, a new column "input_gene_standard" 
 will be added to \code{gene_df} containing standardised HGNC symbols 
-identified by \link[gprofiler2]{gconvert}.}
+identified by \link[gprofiler2]{gorth}.}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
 Use \link[orthogene]{map_species} to return a full list of available species.}
@@ -85,16 +86,34 @@ in the \code{output_species}.}
 1:1 mappings between \code{input_species}:\code{output_species}.
 Options include:\cr
 \itemize{
-\item{\code{"drop_both_species" or "dbs" or 1} : \cr}{Drop genes that have duplicate 
+\item{\code{"drop_both_species" or "dbs" or 1} : \cr}{
+Drop genes that have duplicate 
 mappings in either the \code{input_species} or \code{output_species} \cr
 (\emph{DEFAULT}).} 
-\item{\code{"drop_input_species" or "dis" or 2} : \cr}{Drop genes that have duplicate 
+\item{\code{"drop_input_species" or "dis" or 2} : \cr}{ 
+Only drop genes that have duplicate 
 mappings in the \code{input_species}.} 
-\item{\code{"drop_output_species" or "dos" or 3} : \cr}{Drop genes that have duplicate
+\item{\code{"drop_output_species" or "dos" or 3} : \cr}{
+Only drop genes that have duplicate
 mappings in the \code{output_species}.}
-\item{\code{"keep_both_species" or "kbs" or 4} : \cr}{Keep all genes regardless of whether
-they have duplicate mappings in either species.}
+\item{\code{"keep_both_species" or "kbs" or 4} : \cr}{
+Keep all genes regardless of whether
+they have duplicate mappings in either species.} 
+\item{\code{"keep_popular" or "kp" or 5} : \cr}{
+Return only the most "popular" interspecies ortholog mappings.
+ This procedure tends to yield a greater number of returned genes 
+ but at the cost of many of them not being true biological 1:1 orthologs.}
+ \item{\code{"sum","mean","median","min" or "max"} : \cr}{
+ When \code{gene_df} is a matrix and \code{gene_output="rownames"},
+  these options will aggregate many-to-one gene mappings 
+  (\code{input_species}-to-\code{output_species}) 
+  after dropping any duplicate genes in the \code{output_species}.
+ }
 }}
+
+\item{mthreshold}{Maximum number of ortholog names per gene to show. 
+Passed to \link[gprofiler2]{gorth}. 
+Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}).}
 
 \item{as_sparse}{Convert \code{gene_df} to a sparse matrix.
 Only works if \code{gene_df} is one of the following classes:\cr
@@ -114,7 +133,7 @@ it will be returned as a sparse matrix
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to 
-\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.\cr\cr 
+\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr 
 \emph{NOTE}: To return only the most "popular" interspecies ortholog mappings,
 supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above. 
 This procedure tends to yield a greater number of returned genes but at

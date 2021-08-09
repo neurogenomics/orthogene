@@ -50,7 +50,7 @@
 #' @param standardise_genes If \code{TRUE} AND 
 #' \code{gene_output="columns"}, a new column "input_gene_standard" 
 #' will be added to \code{gene_df} containing standardised HGNC symbols 
-#' identified by \link[gprofiler2]{gconvert}.  
+#' identified by \link[gprofiler2]{gorth}.  
 #' 
 #' @param input_species Name of the input species (e.g., "mouse","fly"). 
 #' Use \link[orthogene]{map_species} to return a full list of available species. 
@@ -65,16 +65,34 @@
 #' 1:1 mappings between \code{input_species}:\code{output_species}.
 #' Options include:\cr
 #' \itemize{
-#' \item{\code{"drop_both_species" or "dbs" or 1} : \cr}{Drop genes that have duplicate 
+#' \item{\code{"drop_both_species" or "dbs" or 1} : \cr}{
+#' Drop genes that have duplicate 
 #' mappings in either the \code{input_species} or \code{output_species} \cr
 #' (\emph{DEFAULT}).} 
-#' \item{\code{"drop_input_species" or "dis" or 2} : \cr}{Drop genes that have duplicate 
+#' \item{\code{"drop_input_species" or "dis" or 2} : \cr}{ 
+#' Only drop genes that have duplicate 
 #' mappings in the \code{input_species}.} 
-#' \item{\code{"drop_output_species" or "dos" or 3} : \cr}{Drop genes that have duplicate
+#' \item{\code{"drop_output_species" or "dos" or 3} : \cr}{
+#' Only drop genes that have duplicate
 #' mappings in the \code{output_species}.}
-#' \item{\code{"keep_both_species" or "kbs" or 4} : \cr}{Keep all genes regardless of whether
-#' they have duplicate mappings in either species.}
+#' \item{\code{"keep_both_species" or "kbs" or 4} : \cr}{
+#' Keep all genes regardless of whether
+#' they have duplicate mappings in either species.} 
+#' \item{\code{"keep_popular" or "kp" or 5} : \cr}{
+#' Return only the most "popular" interspecies ortholog mappings.
+#'  This procedure tends to yield a greater number of returned genes 
+#'  but at the cost of many of them not being true biological 1:1 orthologs.}
+#'  \item{\code{"sum","mean","median","min" or "max"} : \cr}{
+#'  When \code{gene_df} is a matrix and \code{gene_output="rownames"},
+#'   these options will aggregate many-to-one gene mappings 
+#'   (\code{input_species}-to-\code{output_species}) 
+#'   after dropping any duplicate genes in the \code{output_species}.
+#'  }
 #' }
+#' 
+#' @param mthreshold Maximum number of ortholog names per gene to show. 
+#' Passed to \link[gprofiler2]{gorth}. 
+#' Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}). 
 #' 
 #' @param method R package to to use for gene mapping: 
 #' \code{"gprofiler"} (slower but more species and genes) or 
@@ -98,7 +116,7 @@
 #' @param verbose Print messages.
 #' 
 #' @param ... Additional arguments to be passed to 
-#' \link[gprofiler2]{gconvert} or \link[homologene]{homologene}.\cr\cr 
+#' \link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr 
 #' \emph{NOTE}: To return only the most "popular" interspecies ortholog mappings,
 #' supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above. 
 #' This procedure tends to yield a greater number of returned genes but at
@@ -131,6 +149,7 @@ convert_orthologs <- function(gene_df,
                               method=c("gprofiler","homologene"),
                               drop_nonorths=TRUE, 
                               non121_strategy="drop_both_species",  
+                              mthreshold=Inf,
                               as_sparse=FALSE, 
                               sort_rows=FALSE, 
                               verbose=TRUE,
@@ -140,8 +159,25 @@ convert_orthologs <- function(gene_df,
   check_gene_output(gene_output = gene_output)
   #### Check one2one_strategy is a valid option ####
   one2one_strategy <- non121_strategy_opts(non121_strategy = non121_strategy)
-  
-  ### Check that other args are compatible with gene_output='rownames' ####
+  #### Check other args are compatible with non121_strategy="kp" ####
+  check_keep_popular_out <- check_keep_popular(one2one_strategy = one2one_strategy,
+                                               method = method, 
+                                               mthreshold = mthreshold)
+  method <- check_keep_popular_out$method;
+  mthreshold <- check_keep_popular_out$mthreshold; 
+  #### Check other args are compatible with aggregation ####
+  check_agg_args_out <- check_agg_args(gene_df = gene_df, 
+                                       non121_strategy = non121_strategy,
+                                       gene_input = gene_input,
+                                       gene_output = gene_output,
+                                       drop_nonorths = drop_nonorths,
+                                       return_args = TRUE,
+                                       verbose = verbose)
+  non121_strategy <- check_agg_args_out$non121_strategy;
+  gene_input <- check_agg_args_out$gene_input;
+  gene_output <- check_agg_args_out$gene_output;
+  drop_nonorths <- check_agg_args_out$drop_nonorths; 
+  ### Check other args are compatible with gene_output='rownames' ####
   check_rownames_args_out <- check_rownames_args(gene_output = gene_output,
                                                  drop_nonorths = drop_nonorths,
                                                  non121_strategy = non121_strategy,
@@ -170,6 +206,7 @@ convert_orthologs <- function(gene_df,
                               output_species = output_species,
                               standardise_genes = standardise_genes,
                               method = method,
+                              mthreshold = mthreshold,
                               verbose = verbose,
                               ...) 
   } else {

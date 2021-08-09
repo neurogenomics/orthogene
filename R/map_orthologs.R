@@ -12,6 +12,7 @@
 #'  and will be automatically converted to
 #'   standardised HGNC symbol format.
 #' @inheritParams convert_orthologs 
+#' @inheritParams gprofiler2::gorth
 #' 
 #' @return Ortholog map \code{data.frame} with at
 #'  least the columns "input_gene" and "ortholog_gene".
@@ -26,6 +27,7 @@ map_orthologs <- function(genes,
                           input_species,
                           output_species="human",
                           method=c("gprofiler","homologene"),
+                          mthreshold=Inf,
                           verbose=TRUE,
                           ...){
   messager("Converting",input_species,"==>",output_species,
@@ -48,7 +50,8 @@ map_orthologs <- function(genes,
   if(methods_opts(method = method, gprofiler_opts = TRUE)){
     gene_map <- map_orthologs_gprofiler(genes=genes,
                                         input_species=input_species, 
-                                        output_species=output_species, 
+                                        output_species=output_species,  
+                                        mthreshold=mthreshold,
                                         verbose=verbose,
                                         ...) 
   } 

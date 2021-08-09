@@ -1,4 +1,5 @@
-non121_strategy_opts <- function(non121_strategy=NULL){
+non121_strategy_opts <- function(non121_strategy=NULL,
+                                 include_agg=TRUE){
   dbs_opts <- setNames(rep("dbs",3),
                        c("drop_both_species","dbs",1))
   dis_opts <- setNames(rep("dis",3),
@@ -10,10 +11,16 @@ non121_strategy_opts <- function(non121_strategy=NULL){
                          as.character(NA),
                          as.character(FALSE),
                          as.character(tolower(FALSE))))
-  all_opts <- c(dbs_opts, dis_opts, dos_opts, kbs_opts)
-  
+  kp_opts <- setNames(rep("kp",3), c("keep_popular","kp",5))
+  #### Concat ####
+  all_opts <- c(dbs_opts, dis_opts, dos_opts, kbs_opts, kp_opts)
+  #### Aggregation options ####
+  agg_opts <- check_agg_opts() 
+  if(include_agg){
+    all_opts <- c(all_opts, agg_opts)
+  }
+  #### Return all options ####
   if(is.null(non121_strategy)){
-    #### Return all options ####
     return(all_opts)
   }else {
     #### Query dictionary ####
@@ -30,7 +37,13 @@ non121_strategy_opts <- function(non121_strategy=NULL){
                          "  - DBS OPTS: ",paste(names(dbs_opts), 
                                                 collapse = " / "),"\n",
                          "  - KBS OPTS: ",paste(names(kbs_opts), 
-                                                collapse = " / "),"\n"
+                                                collapse = " / "),"\n",
+                         "  - KP OPTS: ",paste(names(kp_opts), 
+                                                collapse = " / "),"\n",
+                         if(include_agg){
+                           c("  - AGGREGATION OPTS:\n",paste("    -", names(agg_opts), 
+                                                             collapse = "\n"),"\n")
+                         } else {NULL}
                          )
       stop(stop_msg)
     }

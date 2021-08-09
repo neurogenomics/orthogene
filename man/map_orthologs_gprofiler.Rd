@@ -9,6 +9,7 @@ map_orthologs_gprofiler(
   input_species,
   output_species = "human",
   filter_na = FALSE,
+  mthreshold = Inf,
   verbose = TRUE,
   ...
 )
@@ -26,6 +27,10 @@ Use \link[orthogene]{map_species} to return a full list of available species.}
 filter out results without a corresponding target name.
 (\emph{DEFAULT} is \code{FALSE}, so that \code{NA}s 
 can be handled by \pkg{orthogene}).}
+
+\item{mthreshold}{Maximum number of ortholog names per gene to show. 
+Passed to \link[gprofiler2]{gorth}. 
+Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}).}
 
 \item{verbose}{Print messages.}
 

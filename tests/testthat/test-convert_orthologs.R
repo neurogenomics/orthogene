@@ -88,4 +88,18 @@ test_that("convert_orthologs works", {
   testthat::expect_equal(methods::is(names(gene_dict_rev),"character"), TRUE)
   testthat::expect_equal(methods::is(unname(gene_dict_rev),"character"), TRUE)
   testthat::expect_equal(methods::is(gene_dict_rev,"vector"), TRUE) 
+  
+  
+  #### Aggregate #####
+  # sparse matrix ==> sparse matrix: as rownames
+  gene_smat_sum <- convert_orthologs(gene_df = exp_mouse_smat, 
+                                  input_species="mouse",
+                                  gene_input="rownames",
+                                  gene_output = "rownames", 
+                                  non121_strategy = "sum", 
+                                  as_sparse = TRUE)
+  testthat::expect_equal(methods::is(gene_smat_sum,"sparseMatrix"), TRUE)
+  testthat::expect_equal(has_gene_cols(gene_smat_sum),0)
+  
+  
 })

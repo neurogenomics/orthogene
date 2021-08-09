@@ -10,6 +10,7 @@ map_orthologs(
   input_species,
   output_species = "human",
   method = c("gprofiler", "homologene"),
+  mthreshold = Inf,
   verbose = TRUE,
   ...
 )
@@ -23,7 +24,7 @@ map_orthologs(
 \item{standardise_genes}{If \code{TRUE} AND 
 \code{gene_output="columns"}, a new column "input_gene_standard" 
 will be added to \code{gene_df} containing standardised HGNC symbols 
-identified by \link[gprofiler2]{gconvert}.}
+identified by \link[gprofiler2]{gorth}.}
 
 \item{input_species}{Name of the input species (e.g., "mouse","fly"). 
 Use \link[orthogene]{map_species} to return a full list of available species.}
@@ -35,10 +36,14 @@ Use \link[orthogene]{map_species} to return a full list of available species.}
 \code{"gprofiler"} (slower but more species and genes) or 
 \code{"homologene"} (faster but fewer species and genes).}
 
+\item{mthreshold}{Maximum number of ortholog names per gene to show. 
+Passed to \link[gprofiler2]{gorth}. 
+Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}).}
+
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to 
-\link[gprofiler2]{gconvert} or \link[homologene]{homologene}.\cr\cr 
+\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr 
 \emph{NOTE}: To return only the most "popular" interspecies ortholog mappings,
 supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above. 
 This procedure tends to yield a greater number of returned genes but at

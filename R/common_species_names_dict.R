@@ -45,7 +45,7 @@ common_species_names_dict <- function(species=NULL,
   #### Only return species that are in the dict ####
   if(!any(species %in% names(dict))){
     missing_species <- species[!(species %in% names(dict))]
-    messager("::WARNING:: Species '",paste(missing_species,collapse=", "),
+    messager("WARNING: Species '",paste(missing_species,collapse=", "),
              "' not found in taxa dict.",v=verbose) 
     species <-  species[species %in% names(dict)]
   }

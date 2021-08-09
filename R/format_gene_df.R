@@ -39,6 +39,8 @@ format_gene_df <- function(gene_df,
                          genes2=genes2,
                          gene_map=gene_map,
                          standardise_genes=standardise_genes,
+                         drop_nonorths=drop_nonorths,
+                         non121_strategy=non121_strategy,
                          sort_rows=sort_rows, 
                          as_sparse=as_sparse,
                          verbose=verbose)

@@ -32,7 +32,8 @@
 map_orthologs_gprofiler <- function(genes,
                                     input_species,
                                     output_species="human", 
-                                    filter_na=FALSE, 
+                                    filter_na=FALSE,  
+                                    mthreshold=Inf,
                                     verbose=TRUE,
                                     ...){
   ## Avoid confusing Biocheck
@@ -46,6 +47,7 @@ map_orthologs_gprofiler <- function(genes,
   gene_map <- gprofiler2::gorth(query = genes, 
                                 source_organism = source_organism, 
                                 target_organism = target_organism,  
+                                mthreshold = mthreshold,
                                 filter_na = filter_na,
                                 ...)
   #### Rename to make comparable to other mapping methods ####

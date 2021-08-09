@@ -37,6 +37,7 @@ In brief, `orthogene` lets you easily:
 - [**`map_species`** names onto standard taxonomic ontologies](https://github.com/neurogenomics/orthogene#map-species)  
 - [**`report_orthologs`** between any two species](https://github.com/neurogenomics/orthogene#report-orthologs) 
 - [**`map_genes`** onto standard ontologies](https://github.com/neurogenomics/orthogene#map-genes) 
+- [**`aggregate_mapped_genes`** in a matrix.](https://github.com/neurogenomics/orthogene#aggregate-mapped-genes)  
 - [get **`all_genes`** from any species](https://github.com/neurogenomics/orthogene#get-all-genes) 
 
 
@@ -53,6 +54,7 @@ remotes::install_github("neurogenomics/orthogene")
 ```{r setup}
 library(orthogene)
 
+data("exp_mouse")
 # Setting to "homologene" for the purposes of quick demonstration.
 # We generally recommend using method="gprofiler" (default).
 method <- "homologene"
@@ -66,7 +68,7 @@ In general, we recommend you use `"gprofiler"` when possible, as it tends to be 
 
 It's also worth noting that for smaller gene sets, the speed difference between these methods becomes negligible. 
 
-```{r, echo=FALSE}
+```{r pros_cons, echo=FALSE}
 pros_cons <- data.frame(gprofiler=c("Reference organisms"="700+",
                        "Gene mappings"="More comprehensive",
                        "Updates"="Frequent", 
@@ -104,15 +106,16 @@ All genes will be mapped to gene symbols, unless specified otherwise with the
 
 ### Note on non-1:1 orthologs 
 
-A key feature of `convert_orthologs` is that it handles the issue of many-to-many gene mappings across species using different strategies via the `non121_strategy=` argument:  
+A key feature of [`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) is that it handles the issue of genes with many-to-many mappings across species. This can occur due to evolutionary divergence, and the function of these genes tends to be less conserved and less translatable. Users can address this using different strategies via `non121_strategy=`:  
 
-1. `"drop_both_species"` : All genes that do not have 1:1 orthologs between the species will be dropped, as the function of these genes tends to be less conserved and less interpretable (*DEFAULT*). 
-2. `"drop_input_species"` : Only drop genes with multiple orthologs in the `input_species`.  
-3. `"drop_output_species"` : Only drop genes with multiple orthologs in the `output_species`. 
-4. `"keep_both_species"` : Don't drop any genes. 
+1. `"drop_both_species"` : Drop genes that have duplicate mappings in either the input_species or output_species, (*DEFAULT*). 
+2. `"drop_input_species"` : Only drop genes that have duplicate mappings in  `input_species`.  
+3. `"drop_output_species"` : Only drop genes that have duplicate mappings in the `output_species`. 
+4. `"keep_both_species"` : Keep all genes regardless of whether they have duplicate mappings in either species.  
+5. `"keep_popular"` : Return only the most "popular" interspecies ortholog mappings. This procedure tends to yield a greater number of returned genes but at the cost of many of them not being true biological 1:1 orthologs. 
+6. `"sum"`,`"mean"`,`"median"`,`"min"` or `"max"`: When `gene_df` is a matrix and `gene_output="rownames"`, these options will aggregate many-to-one gene mappings (`input_species`-to-`output_species`) after dropping any duplicate genes in the `output_species`.
 
-```{r}
-data("exp_mouse")
+```{r convert_orthologs}
 gene_df <- convert_orthologs(gene_df = exp_mouse,
                              gene_input = "rownames", 
                              gene_output = "rownames", 
@@ -137,7 +140,7 @@ You can check the full list of available species by simply running
 `map_species()` with no arguments, 
 or checking [here](https://biit.cs.ut.ee/gprofiler/page/organism-list).
 
-```{r}
+```{r map_species}
 species <- map_species(species = c("human",9544,"mus musculus",
                                    "fruit fly","Celegans"), 
                        output_format = "scientific_name")
@@ -152,7 +155,7 @@ gene mappings from one species to another.
 [`ortholog_report`](https://neurogenomics.github.io/orthogene/reference/report_orthologs.html) generates a report that tells you this information 
 genome-wide. 
 
-```{r} 
+```{r report_orthologs} 
 orth_zeb <- report_orthologs(target_species = "zebrafish",
                              reference_species = "human",
                              method_all_genes = method,
@@ -166,7 +169,7 @@ knitr::kable(orth_zeb$report)
 
 [`map_genes`](https://neurogenomics.github.io/orthogene/reference/map_genes.html) finds matching *within-species* synonyms across a wide variety of gene naming conventions (HGNC, Ensembl, RefSeq, UniProt, etc.) and returns a table with standardised gene symbols (or whatever output format you prefer). 
 
-```{r}
+```{r map_genes}
 genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",9999,
              "ENSMUSG00000012396","ENSMUSG00000074637")
 mapped_genes <- map_genes(genes = genes,
@@ -176,12 +179,33 @@ knitr::kable(head(mapped_genes))
 ```
 
 
+## Aggregate genes 
+
+`aggregate_mapped_genes` does the following:   
+
+1. Uses `map_genes` to identify *within-species* many-to-one gene mappings (e.g. Ensembl transcript IDs ==> gene symbols). Can also map *across species* if output from `map_orthologs` is supplied to `gene_map` argument (and `gene_map_col="ortholog_gene"`).   
+2. Drops all non-mappable genes.  
+3. Aggregates the values of matrix `X` using `"sum"`,`"mean"`,`"median"`,`"min"` or `"max"`. 
+
+Note, this only works when the input data (`X`) is a sparse or dense matrix, and the genes are row names. 
+
+```{r}
+data("exp_mouse_enst")
+knitr::kable(tail(as.matrix(exp_mouse_enst)))
+
+exp_agg <- aggregate_mapped_genes(gene_df=exp_mouse_enst,
+                                  species="mouse",
+                                  FUN = "sum")
+knitr::kable(tail(as.matrix(exp_agg)))
+```
+
+
 
 ## Get all genes 
 
 You can also quickly get all known genes from the genome of a given species with [`all_genes`](https://neurogenomics.github.io/orthogene/reference/all_genes.html). 
 
-```{r}
+```{r all_genes}
 genome_mouse <- all_genes(species = "mouse", 
                           method = method)
 

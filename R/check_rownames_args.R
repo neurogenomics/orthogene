@@ -13,10 +13,14 @@ check_rownames_args <- function(gene_output,
                v=verbose)
       drop_nonorths <- TRUE
     }
-    if(!(non121_strategy_opts(non121_strategy = non121_strategy)=="dbs")){
+    agg_opts <- unname(check_agg_opts())
+    if(!(non121_strategy_opts(non121_strategy = non121_strategy) %in% c("dbs","kp",agg_opts))){
       messager("WARNING:",
                "In order to set gene_output='rownames'",
-               "must set non121_strategy='drop_both_species'.\n",
+               "must ensure unqiue rownmaes by setting non121_strategy to:\n",
+               "  'drop_both_species' or 'keep_popular'","\n",
+               "or an aggregation function:\n",
+               "  ",paste0("'",agg_opts,"'",collapse=","),".\n",
                "Setting non121_strategy='drop_both_species'.",
                v=verbose)
       non121_strategy <- "dbs"

@@ -12,10 +12,7 @@ check_gene_df_type <- function(gene_df,
                                gene_input,
                                verbose=TRUE){
   messager("Preparing gene_df.",v=verbose)
-  if(is(gene_df,"sparseMatrix") |
-     is(gene_df,"dgCMatrix") | 
-     is(gene_df,"dgRMatrix") | 
-     is(gene_df,"dgTMatrix")){ 
+  if(is_sparse_matrix(gene_df)){ 
     messager("sparseMatrix format detected.",v=verbose)
   } else if(is(gene_df,"matrix") | 
             is(gene_df,"Matrix") ){

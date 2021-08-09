@@ -4,7 +4,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Aug-02-2021</i>
+Most recent update: <i>Aug-09-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -43,6 +43,8 @@ In brief, `orthogene` lets you easily:
     species](https://github.com/neurogenomics/orthogene#report-orthologs)
 -   [**`map_genes`** onto standard
     ontologies](https://github.com/neurogenomics/orthogene#map-genes)
+-   [**`aggregate_mapped_genes`** in a
+    matrix.](https://github.com/neurogenomics/orthogene#aggregate-mapped-genes)  
 -   [get **`all_genes`** from any
     species](https://github.com/neurogenomics/orthogene#get-all-genes)
 
@@ -59,6 +61,7 @@ remotes::install_github("neurogenomics/orthogene")
 ``` r
 library(orthogene)
 
+data("exp_mouse")
 # Setting to "homologene" for the purposes of quick demonstration.
 # We generally recommend using method="gprofiler" (default).
 method <- "homologene"
@@ -106,21 +109,31 @@ for details).
 
 ### Note on non-1:1 orthologs
 
-A key feature of `convert_orthologs` is that it handles the issue of
-many-to-many gene mappings across species using different strategies via
-the `non121_strategy=` argument:
+A key feature of
+[`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html)
+is that it handles the issue of genes with many-to-many mappings across
+species. This can occur due to evolutionary divergence, and the function
+of these genes tends to be less conserved and less translatable. Users
+can address this using different strategies via `non121_strategy=`:
 
-1.  `"drop_both_species"` : All genes that do not have 1:1 orthologs
-    between the species will be dropped, as the function of these genes
-    tends to be less conserved and less interpretable (*DEFAULT*).
-2.  `"drop_input_species"` : Only drop genes with multiple orthologs in
-    the `input_species`.  
-3.  `"drop_output_species"` : Only drop genes with multiple orthologs in
-    the `output_species`.
-4.  `"keep_both_species"` : Don’t drop any genes.
+1.  `"drop_both_species"` : Drop genes that have duplicate mappings in
+    either the input\_species or output\_species, (*DEFAULT*).
+2.  `"drop_input_species"` : Only drop genes that have duplicate
+    mappings in `input_species`.  
+3.  `"drop_output_species"` : Only drop genes that have duplicate
+    mappings in the `output_species`.
+4.  `"keep_both_species"` : Keep all genes regardless of whether they
+    have duplicate mappings in either species.  
+5.  `"keep_popular"` : Return only the most “popular” interspecies
+    ortholog mappings. This procedure tends to yield a greater number of
+    returned genes but at the cost of many of them not being true
+    biological 1:1 orthologs.
+6.  `"sum"`,`"mean"`,`"median"`,`"min"` or `"max"`: When `gene_df` is a
+    matrix and `gene_output="rownames"`, these options will aggregate
+    many-to-one gene mappings (`input_species`-to-`output_species`)
+    after dropping any duplicate genes in the `output_species`.
 
 ``` r
-data("exp_mouse")
 gene_df <- convert_orthologs(gene_df = exp_mouse,
                              gene_input = "rownames", 
                              gene_output = "rownames", 
@@ -413,6 +426,70 @@ knitr::kable(head(mapped_genes))
 |             5 | Q8BKT6     | 5.1            | ENSMUSG00000029669 | Tspan12 | tetraspanin 12 \[Source:MGI Symbol;Acc:MGI:1889818\]                     | UNIPROTSWISSPROT\_ACC,UNIPROT\_GN\_ACC |
 |             6 | 9999       | 6.1            | nan                | nan     | nan                                                                      |                                        |
 
+## Aggregate genes
+
+`aggregate_mapped_genes` does the following:
+
+1.  Uses `map_genes` to identify *within-species* many-to-one gene
+    mappings (e.g. Ensembl transcript IDs ==&gt; gene symbols). Can also
+    map *across species* if output from `map_orthologs` is supplied to
+    `gene_map` argument (and `gene_map_col="ortholog_gene"`).  
+2.  Drops all non-mappable genes.  
+3.  Aggregates the values of matrix `X` using
+    `"sum"`,`"mean"`,`"median"`,`"min"` or `"max"`.
+
+Note, this only works when the input data (`X`) is a sparse or dense
+matrix, and the genes are row names.
+
+``` r
+data("exp_mouse_enst")
+knitr::kable(tail(as.matrix(exp_mouse_enst)))
+```
+
+|                    | astrocytes\_ependymal | endothelial-mural | interneurons | microglia | oligodendrocytes | pyramidal CA1 | pyramidal SS |
+|:-------------------|----------------------:|------------------:|-------------:|----------:|-----------------:|--------------:|-------------:|
+| ENSMUST00000102875 |             2.8258910 |         0.4041560 |    1.3171987 | 0.3774840 |        1.3426606 |     1.0403481 |    1.0876508 |
+| ENSMUST00000133343 |             2.8259032 |         0.4042189 |    1.3171312 | 0.3774038 |        1.3425772 |     1.0403432 |    1.0876385 |
+| ENSMUST00000143890 |             2.8258554 |         0.4041963 |    1.3171145 | 0.3774192 |        1.3426119 |     1.0403496 |    1.0876334 |
+| ENSMUST00000005053 |             0.4597978 |         0.3403299 |    0.9067953 | 0.2958589 |        0.7254482 |     0.4813420 |    0.7418000 |
+| ENSMUST00000185896 |             0.4596631 |         0.3403637 |    0.9067538 | 0.2958896 |        0.7255006 |     0.4812783 |    0.7417918 |
+| ENSMUST00000188282 |             0.4597399 |         0.3403441 |    0.9067727 | 0.2957819 |        0.7255681 |     0.4811978 |    0.7417924 |
+
+``` r
+exp_agg <- aggregate_mapped_genes(gene_df=exp_mouse_enst,
+                                  species="mouse",
+                                  FUN = "sum")
+```
+
+    ## Using stored `gprofiler_orgs`.
+
+    ## Mapping species name: mouse
+
+    ## Common name mapping found for mouse
+
+    ## 1 organism identified from search: mmusculus
+
+    ## 482 / 482 (100%) genes mapped.
+
+    ## Aggregating rows using: monocle3
+
+    ## Matrix aggregated:
+    ##   - Input: 482 x 7 
+    ##   - Output: 92 x 7
+
+``` r
+knitr::kable(tail(as.matrix(exp_agg)))
+```
+
+|         | astrocytes\_ependymal | endothelial-mural | interneurons | microglia | oligodendrocytes | pyramidal CA1 | pyramidal SS |
+|:--------|----------------------:|------------------:|-------------:|----------:|-----------------:|--------------:|-------------:|
+| Tshz1   |              1.713936 |         1.7869498 |     4.620366 | 1.7545487 |        1.4483505 |     0.2764327 |    3.3280256 |
+| Tspan12 |              1.981594 |         3.5228954 |     3.847706 | 0.8565873 |        0.7237384 |     1.7184690 |    0.8716624 |
+| Ugp2    |             11.303434 |         1.6167531 |     5.268556 | 1.5096830 |        5.3705113 |     4.1614945 |    4.3505804 |
+| Usp28   |              1.561545 |         1.4885072 |    12.481956 | 0.9176950 |        1.0237324 |     5.5261972 |    6.4652509 |
+| Vat1l   |              0.178117 |         0.0337314 |     1.199619 | 0.0812187 |        0.1165772 |     0.2339571 |    0.4006268 |
+| Wtap    |              2.691383 |         2.4118074 |    12.289111 | 3.5809075 |        3.2808114 |     9.3443456 |    8.6384533 |
+
 ## Get all genes
 
 You can also quickly get all known genes from the genome of a given
@@ -489,36 +566,37 @@ utils::sessionInfo()
     ##  [7] R6_2.5.0                  cellranger_1.1.0         
     ##  [9] backports_1.2.1           evaluate_0.14            
     ## [11] httr_1.4.2                ggplot2_3.3.5            
-    ## [13] highr_0.9                 pillar_1.6.1             
+    ## [13] highr_0.9                 pillar_1.6.2             
     ## [15] rlang_0.4.11              lazyeval_0.2.2           
     ## [17] curl_4.3.2                readxl_1.3.1             
     ## [19] data.table_1.14.0         car_3.0-11               
-    ## [21] Matrix_1.3-4              rmarkdown_2.9            
-    ## [23] stringr_1.4.0             foreign_0.8-81           
-    ## [25] htmlwidgets_1.5.3         RCurl_1.98-1.3           
-    ## [27] munsell_0.5.0             broom_0.7.8              
-    ## [29] compiler_4.1.0            gprofiler2_0.2.0         
-    ## [31] xfun_0.24                 pkgconfig_2.0.3          
-    ## [33] htmltools_0.5.1.1         tidyselect_1.1.1         
-    ## [35] tibble_3.1.3              rio_0.5.27               
-    ## [37] fansi_0.5.0               viridisLite_0.4.0        
-    ## [39] crayon_1.4.1              dplyr_1.0.7              
-    ## [41] ggpubr_0.4.0              bitops_1.0-7             
-    ## [43] grid_4.1.0                jsonlite_1.7.2           
-    ## [45] gtable_0.3.0              lifecycle_1.0.0          
-    ## [47] DBI_1.1.1                 magrittr_2.0.1           
-    ## [49] scales_1.1.1              zip_2.2.0                
-    ## [51] stringi_1.7.3             carData_3.0-4            
-    ## [53] ggsignif_0.6.2            ellipsis_0.3.2           
-    ## [55] generics_0.1.0            vctrs_0.3.8              
-    ## [57] openxlsx_4.2.4            tools_4.1.0              
-    ## [59] forcats_0.5.1             homologene_1.4.68.19.3.27
-    ## [61] glue_1.4.2                purrr_0.3.4              
-    ## [63] hms_1.1.0                 abind_1.4-5              
-    ## [65] parallel_4.1.0            yaml_2.2.1               
-    ## [67] colorspace_2.0-2          rstatix_0.7.0            
-    ## [69] plotly_4.9.4.9000         knitr_1.33               
-    ## [71] haven_2.4.1               patchwork_1.1.1
+    ## [21] Matrix_1.3-4              grr_0.9.5                
+    ## [23] rmarkdown_2.9             stringr_1.4.0            
+    ## [25] foreign_0.8-81            htmlwidgets_1.5.3        
+    ## [27] RCurl_1.98-1.3            munsell_0.5.0            
+    ## [29] broom_0.7.9               compiler_4.1.0           
+    ## [31] gprofiler2_0.2.0          xfun_0.24                
+    ## [33] pkgconfig_2.0.3           htmltools_0.5.1.1        
+    ## [35] tidyselect_1.1.1          tibble_3.1.3             
+    ## [37] rio_0.5.27                fansi_0.5.0              
+    ## [39] viridisLite_0.4.0         crayon_1.4.1             
+    ## [41] dplyr_1.0.7               ggpubr_0.4.0             
+    ## [43] Matrix.utils_0.9.8        bitops_1.0-7             
+    ## [45] grid_4.1.0                jsonlite_1.7.2           
+    ## [47] gtable_0.3.0              lifecycle_1.0.0          
+    ## [49] DBI_1.1.1                 magrittr_2.0.1           
+    ## [51] scales_1.1.1              zip_2.2.0                
+    ## [53] stringi_1.7.3             carData_3.0-4            
+    ## [55] ggsignif_0.6.2            ellipsis_0.3.2           
+    ## [57] generics_0.1.0            vctrs_0.3.8              
+    ## [59] openxlsx_4.2.4            tools_4.1.0              
+    ## [61] forcats_0.5.1             homologene_1.4.68.19.3.27
+    ## [63] glue_1.4.2                purrr_0.3.4              
+    ## [65] hms_1.1.0                 abind_1.4-5              
+    ## [67] parallel_4.1.0            yaml_2.2.1               
+    ## [69] colorspace_2.0-2          rstatix_0.7.0            
+    ## [71] plotly_4.9.4.9000         knitr_1.33               
+    ## [73] haven_2.4.3               patchwork_1.1.1
 
 </details>
 
