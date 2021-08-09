@@ -39,7 +39,7 @@ aggregate_mapped_genes <- function(gene_df,
                                    verbose=TRUE){ 
   #### Transpose matrix first (optional) ####
   if(transpose){
-    gene_df <- transpose_any(X = gene_df, verbose = verbose)
+    gene_df <- Matrix::t(gene_df)
   }
   ### Map genes ####
   if(is.null(gene_map)){
