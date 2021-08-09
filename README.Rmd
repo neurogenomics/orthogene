@@ -190,7 +190,7 @@ knitr::kable(head(mapped_genes))
 Note, this only works when the input data (`gene_df`) is a sparse or dense matrix, and the genes are row names. 
 
 ```{r}
-data("exp_mouse_enst")
+data("exp_mouse_enst") 
 knitr::kable(tail(as.matrix(exp_mouse_enst)))
 
 exp_agg <- aggregate_mapped_genes(gene_df=exp_mouse_enst,
