@@ -12,11 +12,15 @@
 #' \code{species} substring in
 #' metadata \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}. 
 #' @param output_format Which column to return. 
-#' @param use_local If \code{TRUE} \emph{default}, `map_species()`
+#' @param use_local If \code{TRUE} \emph{default}, 
+#' \link[orthogene]{map_species}
 #' uses a locally stored version of the species metadata table 
 #' instead of pulling directly from the gprofiler API. 
 #' Local version may not be fully up to date,
 #' but should suffice for most use cases. 
+#' @param use_genomeinfodbdata Retrieve an additional 2+ million organisms
+#' from \code{GenomeInfoDb::specData}. 
+#' \emph{NOTE: } Not all of these organisms are available for gene/ortholog mapping.
 #' @param verbose Print messages. 
 #' 
 #' @return Species ID of type \code{output_format}
@@ -26,14 +30,16 @@
 #' @examples 
 #' ids <- map_species(species= c("human",9606,"mus musculus","fly","C elegans")) 
 map_species <- function(species=NULL,
-                        search_cols = c("display_name","id",
+                        search_cols = c("display_name",
+                                        "id",
                                         "scientific_name",
                                         "taxonomy_id"),
                         output_format=c("id",
                                         "display_name",
                                         "scientific_name",
                                         "taxonomy_id",
-                                        "version"),
+                                        "version"), 
+                        use_genomeinfodbdata=FALSE,
                         use_local=TRUE,
                         verbose=TRUE){ 
   
@@ -43,20 +49,12 @@ map_species <- function(species=NULL,
   #### Ensure only one output_format ####
   output_format <- output_format[1]
   #### Load organism reference ####
-  if(use_local){
-    messager("Using stored `gprofiler_orgs`.",v=verbose)
-    orgs <- gprofiler_orgs
-  }else {
-    orgs <- tryCatch({
-      orgs <- jsonlite::fromJSON('https://biit.cs.ut.ee/gprofiler/api/util/organisms_list')
-      dplyr::arrange(orgs, scientific_name) 
-    }, 
-    error=function(e){
-      messager("Could not access gProfiler API.\nUsing stored `gprofiler_orgs`.",v=verbose)
-      gprofiler_orgs
-    })
-  }
-  
+  orgs <- get_orgdb_gprofiler(use_local = use_local, 
+                              verbose = verbose)
+  #### Load a really big organism reference ####
+  if(use_genomeinfodbdata){ 
+    orgs <- rbind(orgs, get_orgdb_genomeinfodbdata(verbose = verbose))
+  } 
   #### Return all species as an option ####
   if(is.null(species)){
     messager("Returning table with all species.",v=verbose)

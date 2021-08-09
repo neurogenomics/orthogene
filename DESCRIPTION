@@ -48,7 +48,8 @@ Suggests:
     DelayedArray,
     DelayedMatrixStats,
     Matrix.utils,
-    grr,
+    grr, 
+    repmis,
     testthat (>= 3.0.0)
 RoxygenNote: 7.1.1
 Encoding: UTF-8

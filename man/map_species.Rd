@@ -8,6 +8,7 @@ map_species(
   species = NULL,
   search_cols = c("display_name", "id", "scientific_name", "taxonomy_id"),
   output_format = c("id", "display_name", "scientific_name", "taxonomy_id", "version"),
+  use_genomeinfodbdata = FALSE,
   use_local = TRUE,
   verbose = TRUE
 )
@@ -24,7 +25,12 @@ metadata \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}.}
 
 \item{output_format}{Which column to return.}
 
-\item{use_local}{If \code{TRUE} \emph{default}, `map_species()`
+\item{use_genomeinfodbdata}{Retrieve an additional 2+ million organisms
+from \code{GenomeInfoDb::specData}. 
+\emph{NOTE: } Not all of these organisms are available for gene/ortholog mapping.}
+
+\item{use_local}{If \code{TRUE} \emph{default}, 
+\link[orthogene]{map_species}
 uses a locally stored version of the species metadata table 
 instead of pulling directly from the gprofiler API. 
 Local version may not be fully up to date,
