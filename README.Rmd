@@ -179,7 +179,7 @@ knitr::kable(head(mapped_genes))
 ```
 
 
-## Aggregate genes 
+## Aggregate mapped genes 
 
 `aggregate_mapped_genes` does the following:   
 

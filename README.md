@@ -426,7 +426,7 @@ knitr::kable(head(mapped_genes))
 |             5 | Q8BKT6     | 5.1            | ENSMUSG00000029669 | Tspan12 | tetraspanin 12 \[Source:MGI Symbol;Acc:MGI:1889818\]                     | UNIPROTSWISSPROT\_ACC,UNIPROT\_GN\_ACC |
 |             6 | 9999       | 6.1            | nan                | nan     | nan                                                                      |                                        |
 
-## Aggregate genes
+## Aggregate mapped genes
 
 `aggregate_mapped_genes` does the following:
 
@@ -443,7 +443,7 @@ Note, this only works when the input data (`gene_df`) is a sparse or
 dense matrix, and the genes are row names.
 
 ``` r
-data("exp_mouse_enst")
+data("exp_mouse_enst") 
 knitr::kable(tail(as.matrix(exp_mouse_enst)))
 ```
 
@@ -558,7 +558,7 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_0.1.0
+    ## [1] orthogene_0.99.0
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_1.0.7                lattice_0.20-44          
