@@ -152,10 +152,14 @@ Can be one of the following formats:<br /></p><ul>
 <li><p><code>data.frame</code> : <br />A <code>data.frame</code>,
  <code>data.table</code>. or <code>tibble</code>.</p></li>
 <li><p>codelist : <br />A <code>list</code> or character <code>vector</code>.</p></li>
-</ul><p>Genes can be provided in any format 
-(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
-automatically converted to HGNC gene symbols unless 
-specified otherwise with the <code>...</code> arguments.</p></td>
+</ul><p>Genes, transcripts, proteins, SNPs, or genomic ranges
+ can be provided in any format 
+(HGNC, Ensembl, RefSeq, UniProt, etc.) and will be 
+automatically converted to gene symbols unless 
+specified otherwise with the <code>...</code> arguments.<br />
+<em>Note</em>: If you set <code>method="homologene"</code>, you
+must either supply genes in gene symbol format (e.g. "Sox2")
+ OR set <code>standardise_genes=TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>gene_input</th>

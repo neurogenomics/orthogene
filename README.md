@@ -431,15 +431,16 @@ knitr::kable(head(mapped_genes))
 `aggregate_mapped_genes` does the following:
 
 1.  Uses `map_genes` to identify *within-species* many-to-one gene
-    mappings (e.g. Ensembl transcript IDs ==&gt; gene symbols). Can also
-    map *across species* if output from `map_orthologs` is supplied to
-    `gene_map` argument (and `gene_map_col="ortholog_gene"`).  
+    mappings (e.g. Ensembl transcript IDs ==&gt; gene symbols).
+    Alternatively, can map *across species* if output from
+    `map_orthologs` is supplied to `gene_map` argument (and
+    `gene_map_col="ortholog_gene"`).  
 2.  Drops all non-mappable genes.  
-3.  Aggregates the values of matrix `X` using
+3.  Aggregates the values of matrix `gene_df` using
     `"sum"`,`"mean"`,`"median"`,`"min"` or `"max"`.
 
-Note, this only works when the input data (`X`) is a sparse or dense
-matrix, and the genes are row names.
+Note, this only works when the input data (`gene_df`) is a sparse or
+dense matrix, and the genes are row names.
 
 ``` r
 data("exp_mouse_enst")

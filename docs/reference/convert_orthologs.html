@@ -151,6 +151,7 @@ return a full list of available organisms.</p>
   method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gprofiler"</span>, <span class='st'>"homologene"</span><span class='op'>)</span>,
   drop_nonorths <span class='op'>=</span> <span class='cn'>TRUE</span>,
   non121_strategy <span class='op'>=</span> <span class='st'>"drop_both_species"</span>,
+  mthreshold <span class='op'>=</span> <span class='cn'>Inf</span>,
   as_sparse <span class='op'>=</span> <span class='cn'>FALSE</span>,
   sort_rows <span class='op'>=</span> <span class='cn'>FALSE</span>,
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -170,10 +171,14 @@ Can be one of the following formats:<br /></p><ul>
 <li><p><code>data.frame</code> : <br />A <code>data.frame</code>,
  <code>data.table</code>. or <code>tibble</code>.</p></li>
 <li><p>codelist : <br />A <code>list</code> or character <code>vector</code>.</p></li>
-</ul><p>Genes can be provided in any format 
-(e.g. HGNC symbols, ENSEMBL IDs, UCSC) and will be 
-automatically converted to HGNC gene symbols unless 
-specified otherwise with the <code>...</code> arguments.</p></td>
+</ul><p>Genes, transcripts, proteins, SNPs, or genomic ranges
+ can be provided in any format 
+(HGNC, Ensembl, RefSeq, UniProt, etc.) and will be 
+automatically converted to gene symbols unless 
+specified otherwise with the <code>...</code> arguments.<br />
+<em>Note</em>: If you set <code>method="homologene"</code>, you
+must either supply genes in gene symbol format (e.g. "Sox2")
+ OR set <code>standardise_genes=TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>gene_input</th>
@@ -202,10 +207,10 @@ are ortholog_gene and the values are input_gene.</p></li>
     </tr>
     <tr>
       <th>standardise_genes</th>
-      <td><p>If <code>TRUE</code> genes will first be standardised 
-to HGNC symbols using <a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a>. 
-This will add a new column to <code>gene_df</code> 
-called "input_gene_standard".</p></td>
+      <td><p>If <code>TRUE</code> AND 
+<code>gene_output="columns"</code>, a new column "input_gene_standard" 
+will be added to <code>gene_df</code> containing standardised HGNC symbols 
+identified by <a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>.</p></td>
     </tr>
     <tr>
       <th>input_species</th>
@@ -233,16 +238,35 @@ in the <code>output_species</code>.</p></td>
       <td><p>How to handle genes that don't have 
 1:1 mappings between <code>input_species</code>:<code>output_species</code>.
 Options include:<br /></p><ul>
-<li><p><code>"drop_both_species" or "dbs" or 1</code> : <br />Drop genes that have duplicate 
+<li><p><code>"drop_both_species" or "dbs" or 1</code> : <br />
+Drop genes that have duplicate 
 mappings in either the <code>input_species</code> or <code>output_species</code> <br />
 (<em>DEFAULT</em>).</p></li>
-<li><p><code>"drop_input_species" or "dis" or 2</code> : <br />Drop genes that have duplicate 
+<li><p><code>"drop_input_species" or "dis" or 2</code> : <br /> 
+Only drop genes that have duplicate 
 mappings in the <code>input_species</code>.</p></li>
-<li><p><code>"drop_output_species" or "dos" or 3</code> : <br />Drop genes that have duplicate
+<li><p><code>"drop_output_species" or "dos" or 3</code> : <br />
+Only drop genes that have duplicate
 mappings in the <code>output_species</code>.</p></li>
-<li><p><code>"keep_both_species" or "kbs" or 4</code> : <br />Keep all genes regardless of whether
+<li><p><code>"keep_both_species" or "kbs" or 4</code> : <br />
+Keep all genes regardless of whether
 they have duplicate mappings in either species.</p></li>
+<li><p><code>"keep_popular" or "kp" or 5</code> : <br />
+Return only the most "popular" interspecies ortholog mappings.
+ This procedure tends to yield a greater number of returned genes 
+ but at the cost of many of them not being true biological 1:1 orthologs.</p></li>
+<li><p><code>"sum","mean","median","min" or "max"</code> : <br />
+ When <code>gene_df</code> is a matrix and <code>gene_output="rownames"</code>,
+  these options will aggregate many-to-one gene mappings 
+  (<code>input_species</code>-to-<code>output_species</code>) 
+  after dropping any duplicate genes in the <code>output_species</code>.</p></li>
 </ul></td>
+    </tr>
+    <tr>
+      <th>mthreshold</th>
+      <td><p>Maximum number of ortholog names per gene to show. 
+Passed to <a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>. 
+Only used when <code>method="gprofiler"</code> (<em>DEFAULT : </em><code>Inf</code>).</p></td>
     </tr>
     <tr>
       <th>as_sparse</th>
@@ -268,15 +292,14 @@ it will be returned as a sparse matrix
     <tr>
       <th>...</th>
       <td><p>Additional arguments to be passed to 
-<a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a> or <a href='https://rdrr.io/pkg/homologene/man/homologene.html'>homologene</a>.<br /><br /> 
+<a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a> or <a href='https://rdrr.io/pkg/homologene/man/homologene.html'>homologene</a>.<br /><br /> 
 <em>NOTE</em>: To return only the most "popular" interspecies ortholog mappings,
 supply <code>mthreshold=1</code> here AND set <code>method="gprofiler"</code> above. 
 This procedure tends to yield a greater number of returned genes but at
  the cost of many of them not being true biological 1:1 orthologs.<br /><br /> 
  For more details, please see 
- <a href='
- https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
- '>here</a>.</p></td>
+<a href='https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html'>
+ here</a>.</p></td>
     </tr>
     </table>
 

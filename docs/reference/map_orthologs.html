@@ -141,6 +141,7 @@
   <span class='va'>input_species</span>,
   output_species <span class='op'>=</span> <span class='st'>"human"</span>,
   method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gprofiler"</span>, <span class='st'>"homologene"</span><span class='op'>)</span>,
+  mthreshold <span class='op'>=</span> <span class='cn'>Inf</span>,
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -151,16 +152,16 @@
     <tr>
       <th>genes</th>
       <td><p>can be a mixture of any format
-(HGNC symbols, ENSEMBL, UCSC, etc.)
-and will be automatically converted to
- standardised HGNC symbol format.</p></td>
+(HGNC, Ensembl, RefSeq, UniProt, etc.)
+ and will be automatically converted to
+  standardised HGNC symbol format.</p></td>
     </tr>
     <tr>
       <th>standardise_genes</th>
-      <td><p>If <code>TRUE</code> genes will first be standardised 
-to HGNC symbols using <a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a>. 
-This will add a new column to <code>gene_df</code> 
-called "input_gene_standard".</p></td>
+      <td><p>If <code>TRUE</code> AND 
+<code>gene_output="columns"</code>, a new column "input_gene_standard" 
+will be added to <code>gene_df</code> containing standardised HGNC symbols 
+identified by <a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>.</p></td>
     </tr>
     <tr>
       <th>input_species</th>
@@ -179,21 +180,26 @@ Use <a href='map_species.html'>map_species</a> to return a full list of availabl
 <code>"homologene"</code> (faster but fewer species and genes).</p></td>
     </tr>
     <tr>
+      <th>mthreshold</th>
+      <td><p>Maximum number of ortholog names per gene to show. 
+Passed to <a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>. 
+Only used when <code>method="gprofiler"</code> (<em>DEFAULT : </em><code>Inf</code>).</p></td>
+    </tr>
+    <tr>
       <th>verbose</th>
       <td><p>Print messages.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Additional arguments to be passed to 
-<a href='https://rdrr.io/pkg/gprofiler2/man/gconvert.html'>gconvert</a> or <a href='https://rdrr.io/pkg/homologene/man/homologene.html'>homologene</a>.<br /><br /> 
+<a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a> or <a href='https://rdrr.io/pkg/homologene/man/homologene.html'>homologene</a>.<br /><br /> 
 <em>NOTE</em>: To return only the most "popular" interspecies ortholog mappings,
 supply <code>mthreshold=1</code> here AND set <code>method="gprofiler"</code> above. 
 This procedure tends to yield a greater number of returned genes but at
  the cost of many of them not being true biological 1:1 orthologs.<br /><br /> 
  For more details, please see 
- <a href='
- https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html
- '>here</a>.</p></td>
+<a href='https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html'>
+ here</a>.</p></td>
     </tr>
     </table>
 

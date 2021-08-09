@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Map orthologs: gprofiler — map_orthologs_gprofiler • orthogene</title>
+<title>Transcript expression data: mouse — exp_mouse_enst • orthogene</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Map orthologs: gprofiler — map_orthologs_gprofiler" />
-<meta property="og:description" content="Map orthologs from one species to another
-using gorth." />
+<meta property="og:title" content="Transcript expression data: mouse — exp_mouse_enst" />
+<meta property="og:description" content="Mean pseudobulk single-cell RNA-seq Transcript expression matrix.
+Data originally comes from Zeisel et al., 2018 (Cell)." />
 
 
 
@@ -127,82 +127,37 @@ using gorth." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Map orthologs: gprofiler</h1>
-    <small class="dont-index">Source: <a href='https://github.com/neurogenomics/orthogene/blob/master/R/map_orthologs_gprofiler.R'><code>R/map_orthologs_gprofiler.R</code></a></small>
-    <div class="hidden name"><code>map_orthologs_gprofiler.Rd</code></div>
+    <h1>Transcript expression data: mouse</h1>
+    <small class="dont-index">Source: <a href='https://github.com/neurogenomics/orthogene/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>exp_mouse_enst.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Map orthologs from one species to another
-using <a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>.</p>
+    <p>Mean pseudobulk single-cell RNA-seq Transcript expression matrix.</p>
+<p>Data originally comes from Zeisel et al., 2018 (Cell).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>map_orthologs_gprofiler</span><span class='op'>(</span>
-  <span class='va'>genes</span>,
-  <span class='va'>input_species</span>,
-  output_species <span class='op'>=</span> <span class='st'>"human"</span>,
-  filter_na <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  mthreshold <span class='op'>=</span> <span class='cn'>Inf</span>,
-  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"exp_mouse_enst"</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>genes</th>
-      <td><p>Gene list.</p></td>
-    </tr>
-    <tr>
-      <th>input_species</th>
-      <td><p>Name of the input species (e.g., "mouse","fly"). 
-Use <a href='map_species.html'>map_species</a> to return a full list of available species.</p></td>
-    </tr>
-    <tr>
-      <th>output_species</th>
-      <td><p>Name of the output species (e.g. "human","chicken"). 
-Use <a href='map_species.html'>map_species</a> to return a full list of available species.</p></td>
-    </tr>
-    <tr>
-      <th>filter_na</th>
-      <td><p>Logical indicating whether to
-filter out results without a corresponding target name.
-(<em>DEFAULT</em> is <code>FALSE</code>, so that <code>NA</code>s 
-can be handled by <span class="pkg">orthogene</span>).</p></td>
-    </tr>
-    <tr>
-      <th>mthreshold</th>
-      <td><p>Maximum number of ortholog names per gene to show. 
-Passed to <a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>. 
-Only used when <code>method="gprofiler"</code> (<em>DEFAULT : </em><code>Inf</code>).</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Print messages.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments to be passed to 
-<a href='https://rdrr.io/pkg/gprofiler2/man/gorth.html'>gorth</a>.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>Ortholog map <code>data.frame</code></p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>sparse matrix</p>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>"<code>mthreshold</code> is used to set the maximum number 
-of ortholog names per gene to show. This is useful to handle
- the problem of having many orthologs per gene 
- (most of them uninformative). The function tries to
-  find the most informative by selecting the most popular ones."<br />  
-~ From 
-<a href='https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html'>
- <code>gprofiler2</code> vignette</a><br /></p>
-<p>Available namespaces for the <code>numeric_ns</code> argument can be found 
-<a href='https://biit.cs.ut.ee/gprofiler/page/namespaces-list'>here</a>.</p>
+    <p><a href='https://pubmed.ncbi.nlm.nih.gov/30096314/'>Publication</a>
+<code><a href='https://rdrr.io/r/utils/data.html'>
+data("exp_mouse")
+mapped_genes &lt;- map_genes(genes = rownames(exp_mouse)[seq(1,100)],
+                          target = "ENST",
+                          species = "mouse",
+                          drop_na = FALSE)
+exp_mouse_enst &lt;- exp_mouse[mapped_genes$input,]
+rownames(exp_mouse_enst) &lt;- mapped_genes$target
+exp_mouse_enst &lt;- exp_mouse_enst[!orthogene:::find_all_nas(rownames(exp_mouse_enst)),]
+exp_mouse_enst &lt;- phenomix::add_noise(exp_mouse_enst)
+usethis::use_data(exp_mouse_enst, overwrite = TRUE)
+</a></code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
