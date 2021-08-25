@@ -14,25 +14,27 @@ map_species(
 )
 }
 \arguments{
-\item{species}{Species query 
+\item{species}{Species query
 (e.g. "human", "homo sapiens", "hapiens", or 9606).
-If given a list, will iterate queries for each item. 
+If given a list, will iterate queries for each item.
 Set to \code{NULL} to return all species.}
 
-\item{search_cols}{Which columns to search for 
+\item{search_cols}{Which columns to search for
 \code{species} substring in
-metadata \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}.}
+metadata \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{
+API}.}
 
 \item{output_format}{Which column to return.}
 
 \item{use_genomeinfodbdata}{Retrieve an additional 2+ million organisms
-from \code{GenomeInfoDb::specData}. 
-\emph{NOTE: } Not all of these organisms are available for gene/ortholog mapping.}
+from \code{GenomeInfoDb::specData}.
+\emph{NOTE: } Not all of these organisms are available
+for gene/ortholog mapping.}
 
-\item{use_local}{If \code{TRUE} \emph{default}, 
+\item{use_local}{If \code{TRUE} \emph{default},
 \link[orthogene]{map_species}
-uses a locally stored version of the species metadata table 
-instead of pulling directly from the gprofiler API. 
+uses a locally stored version of the species metadata table
+instead of pulling directly from the gprofiler API.
 Local version may not be fully up to date,
 but should suffice for most use cases.}
 
@@ -42,10 +44,13 @@ but should suffice for most use cases.}
 Species ID of type \code{output_format}
 }
 \description{
-Search \code{gprofiler} database for species 
+Search \code{gprofiler} database for species
 that match the input text string.
 Then translate to a standardised species ID.
 }
 \examples{
-ids <- map_species(species= c("human",9606,"mus musculus","fly","C elegans")) 
+ids <- map_species(species = c(
+    "human", 9606, "mus musculus",
+    "fly", "C elegans"
+))
 }

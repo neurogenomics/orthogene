@@ -1,5 +1,5 @@
 ---
-title: "<img src='./inst/hex/orthogene.png' height='400'><br>" 
+title: "<img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/orthogene.png' height='400'><br>" 
 author: "<h4>Author: <i>Brian M. Schilder</i></h4>" 
 date: "<h4>Most recent update: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
 output:
@@ -33,22 +33,22 @@ onto 1:1 gene orthologs from any other species.
 
 In brief, `orthogene` lets you easily: 
 
-- [**`convert_orthologs`** between any two species](https://github.com/neurogenomics/orthogene#convert-orthologs) 
-- [**`map_species`** names onto standard taxonomic ontologies](https://github.com/neurogenomics/orthogene#map-species)  
-- [**`report_orthologs`** between any two species](https://github.com/neurogenomics/orthogene#report-orthologs) 
-- [**`map_genes`** onto standard ontologies](https://github.com/neurogenomics/orthogene#map-genes) 
-- [**`aggregate_mapped_genes`** in a matrix.](https://github.com/neurogenomics/orthogene#aggregate-mapped-genes)  
-- [get **`all_genes`** from any species](https://github.com/neurogenomics/orthogene#get-all-genes) 
-
+- [**`convert_orthologs`** between any two species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#convert-orthologs) 
+- [**`map_species`** names onto standard taxonomic ontologies](https://github.com/neurogenomics/orthogene.html#map-species)  
+- [**`report_orthologs`** between any two species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#report-orthologs) 
+- [**`map_genes`** onto standard ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene.html#map-genes) 
+- [**`aggregate_mapped_genes`** in a matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene.html#aggregate-mapped-genes)  
+- [get **`all_genes`** from any species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#get-all-genes) 
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/) 
 
 # Installation
 
 ```{r, eval=FALSE}
-if(!"remotes" %in% rownames(installed.packages())) install.packages("remotes")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+     install.packages("BiocManager")
 
-remotes::install_github("neurogenomics/orthogene")
+BiocManager::install("orthogene")
 ```
 
 ```{r setup}
@@ -57,7 +57,7 @@ library(orthogene)
 data("exp_mouse")
 # Setting to "homologene" for the purposes of quick demonstration.
 # We generally recommend using method="gprofiler" (default).
-method <- "homologene"
+method <- "homologene"  
 ```
 
 # Methods 
@@ -92,7 +92,7 @@ knitr::kable(pros_cons)
 
 
 
-# Quick examples
+# Quick example
 
 ## Convert orthologs 
 
@@ -106,14 +106,7 @@ All genes will be mapped to gene symbols, unless specified otherwise with the
 
 ### Note on non-1:1 orthologs 
 
-A key feature of [`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) is that it handles the issue of genes with many-to-many mappings across species. This can occur due to evolutionary divergence, and the function of these genes tends to be less conserved and less translatable. Users can address this using different strategies via `non121_strategy=`:  
-
-1. `"drop_both_species"` : Drop genes that have duplicate mappings in either the input_species or output_species, (*DEFAULT*). 
-2. `"drop_input_species"` : Only drop genes that have duplicate mappings in  `input_species`.  
-3. `"drop_output_species"` : Only drop genes that have duplicate mappings in the `output_species`. 
-4. `"keep_both_species"` : Keep all genes regardless of whether they have duplicate mappings in either species.  
-5. `"keep_popular"` : Return only the most "popular" interspecies ortholog mappings. This procedure tends to yield a greater number of returned genes but at the cost of many of them not being true biological 1:1 orthologs. 
-6. `"sum"`,`"mean"`,`"median"`,`"min"` or `"max"`: When `gene_df` is a matrix and `gene_output="rownames"`, these options will aggregate many-to-one gene mappings (`input_species`-to-`output_species`) after dropping any duplicate genes in the `output_species`.
+A key feature of [`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) is that it handles the issue of genes with many-to-many mappings across species. This can occur due to evolutionary divergence, and the function of these genes tends to be less conserved and less translatable. Users can address this using different strategies via `non121_strategy=`.
 
 ```{r convert_orthologs}
 gene_df <- convert_orthologs(gene_df = exp_mouse,
@@ -127,91 +120,12 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
 knitr::kable(as.matrix(head(gene_df)))
 ```
 
-## Map species
-
-[`map_species`](https://neurogenomics.github.io/orthogene/reference/map_species.html) lets you standardise species names from a wide variety of identifiers 
-(e.g. common name, taxonomy ID, Latin name, partial match). 
-
-All exposed `orthogene` functions (including [`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html)) 
-use `map_species` under the hood, so you don't have to worry about 
-getting species names exactly right.   
-
-You can check the full list of available species by simply running 
-`map_species()` with no arguments, 
-or checking [here](https://biit.cs.ut.ee/gprofiler/page/organism-list).
-
-```{r map_species}
-species <- map_species(species = c("human",9544,"mus musculus",
-                                   "fruit fly","Celegans"), 
-                       output_format = "scientific_name")
-print(species)
-```
-
-## Report orthologs 
-
-It may be helpful to know the maximum expected number of orthologous 
-gene mappings from one species to another.
-
-[`ortholog_report`](https://neurogenomics.github.io/orthogene/reference/report_orthologs.html) generates a report that tells you this information 
-genome-wide. 
-
-```{r report_orthologs} 
-orth_zeb <- report_orthologs(target_species = "zebrafish",
-                             reference_species = "human",
-                             method_all_genes = method,
-                             method_convert_orthologs = method) 
-knitr::kable(head(orth_zeb$map))
-knitr::kable(orth_zeb$report)
-```
+`convert_orthologs` is just one of the many useful functions in `orthogene`. Please see the [documentation website](https://neurogenomics.github.io/orthogene/articles/orthogene) for the full vignette.
 
 
-## Map genes 
+## [Hex sticker creation](https://neurogenomics.github.io/orthogene/inst/hex/hexSticker.html)
 
-[`map_genes`](https://neurogenomics.github.io/orthogene/reference/map_genes.html) finds matching *within-species* synonyms across a wide variety of gene naming conventions (HGNC, Ensembl, RefSeq, UniProt, etc.) and returns a table with standardised gene symbols (or whatever output format you prefer). 
-
-```{r map_genes}
-genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",9999,
-             "ENSMUSG00000012396","ENSMUSG00000074637")
-mapped_genes <- map_genes(genes = genes,
-                          species = "mouse", 
-                          drop_na = FALSE)
-knitr::kable(head(mapped_genes))
-```
-
-
-## Aggregate mapped genes 
-
-`aggregate_mapped_genes` does the following:   
-
-1. Uses `map_genes` to identify *within-species* many-to-one gene mappings (e.g. Ensembl transcript IDs ==> gene symbols). Alternatively, can map *across species* if output from `map_orthologs` is supplied to `gene_map` argument (and `gene_map_col="ortholog_gene"`).   
-2. Drops all non-mappable genes.  
-3. Aggregates the values of matrix `gene_df` using `"sum"`,`"mean"`,`"median"`,`"min"` or `"max"`. 
-
-Note, this only works when the input data (`gene_df`) is a sparse or dense matrix, and the genes are row names. 
-
-```{r}
-data("exp_mouse_enst") 
-knitr::kable(tail(as.matrix(exp_mouse_enst)))
-
-exp_agg <- aggregate_mapped_genes(gene_df=exp_mouse_enst,
-                                  species="mouse",
-                                  FUN = "sum")
-knitr::kable(tail(as.matrix(exp_agg)))
-```
-
-
-
-## Get all genes 
-
-You can also quickly get all known genes from the genome of a given species with [`all_genes`](https://neurogenomics.github.io/orthogene/reference/all_genes.html). 
-
-```{r all_genes}
-genome_mouse <- all_genes(species = "mouse", 
-                          method = method)
-
-knitr::kable(head(genome_mouse))
-```
-
+## [Benchmarking methods](https://neurogenomics.github.io/orthogene/inst/benchmark/benchmarks.html)
 
 # Session Info 
 
@@ -252,7 +166,4 @@ utils::sessionInfo()
 - [gProfiler](https://biit.cs.ut.ee/gprofiler): Web server for functional enrichment analysis and conversions of gene lists.  
 
 - [OrtholoGene](http://orthologene.org/resources.html): Compiled list of gene orthology resources. 
-
-
-
 

@@ -22,10 +22,10 @@ run_benchmark(
 
 \item{benchmark_gprofiler}{Benchmark method "gprofiler".}
 
-\item{run_convert_orthologs}{Benchmark 
+\item{run_convert_orthologs}{Benchmark
 \link[orthogene]{convert_orthologs} function.}
 
-\item{remove_failed_times}{In instances where 
+\item{remove_failed_times}{In instances where
 no genes were returned, set time to \code{NA}.}
 
 \item{save_path}{Path to save results to.}
@@ -36,21 +36,10 @@ no genes were returned, set time to \code{NA}.}
 }
 \value{
 \code{data.table} with benchmark results
-
-A message
 }
 \description{
 Runs benchmarks tests on \link[orthogene]{all_genes} and
- \link[orthogene]{convert_orthologs} across multiple species, 
+ \link[orthogene]{convert_orthologs} across multiple species,
  using multiple methods ("homologene", and "gprofiler").
 }
-\keyword{Send}
-\keyword{console}
-\keyword{even}
-\keyword{from}
 \keyword{internal}
-\keyword{messages}
-\keyword{parallel}
-\keyword{processes}
-\keyword{to}
-\keyword{within}

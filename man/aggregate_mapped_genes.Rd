@@ -31,43 +31,46 @@ aggregate_mapped_genes(
 
 \item{transpose}{Transpose \code{gene_df} before mapping genes.}
 
-\item{gene_map}{A user-supplied \code{gene_map}. If \code{NULL} (\emph{DEFAULT)}),
+\item{gene_map}{A user-supplied \code{gene_map}.
+If \code{NULL} (\emph{DEFAULT)}),
 \link[orthogene]{map_genes} will be used to create a \code{gene_map}.}
 
-\item{gene_map_col}{Column in \code{gene_map} to aggregate \code{gene_df} by.}
+\item{gene_map_col}{Column in \code{gene_map} to aggregate
+\code{gene_df} by.}
 
-\item{non121_strategy}{How to handle genes that don't have 
+\item{non121_strategy}{How to handle genes that don't have
 1:1 mappings between \code{input_species}:\code{output_species}.
 Options include:\cr
 \itemize{
 \item{\code{"drop_both_species" or "dbs" or 1} : \cr}{
-Drop genes that have duplicate 
+Drop genes that have duplicate
 mappings in either the \code{input_species} or \code{output_species} \cr
-(\emph{DEFAULT}).} 
-\item{\code{"drop_input_species" or "dis" or 2} : \cr}{ 
-Only drop genes that have duplicate 
-mappings in the \code{input_species}.} 
+(\emph{DEFAULT}).}
+\item{\code{"drop_input_species" or "dis" or 2} : \cr}{
+Only drop genes that have duplicate
+mappings in the \code{input_species}.}
 \item{\code{"drop_output_species" or "dos" or 3} : \cr}{
 Only drop genes that have duplicate
 mappings in the \code{output_species}.}
 \item{\code{"keep_both_species" or "kbs" or 4} : \cr}{
 Keep all genes regardless of whether
-they have duplicate mappings in either species.} 
+they have duplicate mappings in either species.}
 \item{\code{"keep_popular" or "kp" or 5} : \cr}{
 Return only the most "popular" interspecies ortholog mappings.
- This procedure tends to yield a greater number of returned genes 
+ This procedure tends to yield a greater number of returned genes
  but at the cost of many of them not being true biological 1:1 orthologs.}
  \item{\code{"sum","mean","median","min" or "max"} : \cr}{
  When \code{gene_df} is a matrix and \code{gene_output="rownames"},
-  these options will aggregate many-to-one gene mappings 
-  (\code{input_species}-to-\code{output_species}) 
+  these options will aggregate many-to-one gene mappings
+  (\code{input_species}-to-\code{output_species})
   after dropping any duplicate genes in the \code{output_species}.
  }
 }}
 
 \item{as_sparse}{Convert aggregated matrix to sparse matrix.}
 
-\item{as_DelayedArray}{Convert aggregated matrix to \link[DelayedArray]{DelayedArray}.}
+\item{as_DelayedArray}{Convert aggregated matrix to
+\link[DelayedArray]{DelayedArray}.}
 
 \item{dropNA}{Drop genes assigned to \code{NA} in \code{groupings}.}
 
@@ -79,10 +82,10 @@ Return only the most "popular" interspecies ortholog mappings.
 Aggregated matrix
 }
 \description{
-Map matrix rownames to standardised gene symbols, 
+Map matrix rownames to standardised gene symbols,
 and then aggregate many-to-one rows into a new matrix.
 }
 \examples{
-data("exp_mouse") 
-X_agg <- aggregate_mapped_genes(gene_df=exp_mouse, species="mouse")
+data("exp_mouse")
+X_agg <- aggregate_mapped_genes(gene_df = exp_mouse, species = "mouse")
 }

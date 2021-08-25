@@ -13,7 +13,7 @@ plot_benchmark_scatter(
 \arguments{
 \item{bench_res}{Results from}
 
-\item{remove_failed_times}{In instances where 
+\item{remove_failed_times}{In instances where
 no genes were returned, set time to \code{NA}.}
 
 \item{show_plot}{Print plot.}
@@ -22,7 +22,7 @@ no genes were returned, set time to \code{NA}.}
 ggplot object
 }
 \description{
-Plot run time vs. # genes returned across species and 
+Plot run time vs. # genes returned across species and
 function tests.
 }
 \keyword{internal}

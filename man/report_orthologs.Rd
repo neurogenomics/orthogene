@@ -23,69 +23,70 @@ report_orthologs(
 
 \item{reference_species}{Reference species.}
 
-\item{standardise_genes}{If \code{TRUE} AND 
-\code{gene_output="columns"}, a new column "input_gene_standard" 
-will be added to \code{gene_df} containing standardised HGNC symbols 
+\item{standardise_genes}{If \code{TRUE} AND
+\code{gene_output="columns"}, a new column "input_gene_standard"
+will be added to \code{gene_df} containing standardised HGNC symbols
 identified by \link[gprofiler2]{gorth}.}
 
-\item{method_all_genes}{R package to to use in 
-\link[orthogene]{all_genes} step: 
-\code{"gprofiler"} (slower but more species and genes) or 
+\item{method_all_genes}{R package to to use in
+\link[orthogene]{all_genes} step:
+\code{"gprofiler"} (slower but more species and genes) or
 \code{"homologene"} (faster but fewer species and genes).}
 
-\item{method_convert_orthologs}{R package to to use in 
-\link[orthogene]{convert_orthologs} step: 
-\code{"gprofiler"} (slower but more species and genes) or 
+\item{method_convert_orthologs}{R package to to use in
+\link[orthogene]{convert_orthologs} step:
+\code{"gprofiler"} (slower but more species and genes) or
 \code{"homologene"} (faster but fewer species and genes).}
 
-\item{drop_nonorths}{Drop genes that don't have an ortholog 
+\item{drop_nonorths}{Drop genes that don't have an ortholog
 in the \code{output_species}.}
 
-\item{non121_strategy}{How to handle genes that don't have 
+\item{non121_strategy}{How to handle genes that don't have
 1:1 mappings between \code{input_species}:\code{output_species}.
 Options include:\cr
 \itemize{
 \item{\code{"drop_both_species" or "dbs" or 1} : \cr}{
-Drop genes that have duplicate 
+Drop genes that have duplicate
 mappings in either the \code{input_species} or \code{output_species} \cr
-(\emph{DEFAULT}).} 
-\item{\code{"drop_input_species" or "dis" or 2} : \cr}{ 
-Only drop genes that have duplicate 
-mappings in the \code{input_species}.} 
+(\emph{DEFAULT}).}
+\item{\code{"drop_input_species" or "dis" or 2} : \cr}{
+Only drop genes that have duplicate
+mappings in the \code{input_species}.}
 \item{\code{"drop_output_species" or "dos" or 3} : \cr}{
 Only drop genes that have duplicate
 mappings in the \code{output_species}.}
 \item{\code{"keep_both_species" or "kbs" or 4} : \cr}{
 Keep all genes regardless of whether
-they have duplicate mappings in either species.} 
+they have duplicate mappings in either species.}
 \item{\code{"keep_popular" or "kp" or 5} : \cr}{
 Return only the most "popular" interspecies ortholog mappings.
- This procedure tends to yield a greater number of returned genes 
+ This procedure tends to yield a greater number of returned genes
  but at the cost of many of them not being true biological 1:1 orthologs.}
  \item{\code{"sum","mean","median","min" or "max"} : \cr}{
  When \code{gene_df} is a matrix and \code{gene_output="rownames"},
-  these options will aggregate many-to-one gene mappings 
-  (\code{input_species}-to-\code{output_species}) 
+  these options will aggregate many-to-one gene mappings
+  (\code{input_species}-to-\code{output_species})
   after dropping any duplicate genes in the \code{output_species}.
  }
 }}
 
 \item{round_digits}{Number of digits to round to when printing percentages.}
 
-\item{return_report}{Return just the ortholog mapping 
+\item{return_report}{Return just the ortholog mapping
 between two species (\code{FALSE}) or return both the
- ortholog mapping as well a \code{data.frame} 
+ ortholog mapping as well a \code{data.frame}
  of the report statistics (\code{TRUE}).}
 
 \item{verbose}{Print messages.}
 
-\item{...}{Additional arguments to be passed to 
-\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr 
-\emph{NOTE}: To return only the most "popular" interspecies ortholog mappings,
-supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above. 
+\item{...}{Additional arguments to be passed to
+\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr
+\emph{NOTE}: To return only the most "popular"
+interspecies ortholog mappings,
+supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above.
 This procedure tends to yield a greater number of returned genes but at
- the cost of many of them not being true biological 1:1 orthologs.\cr\cr 
- For more details, please see 
+ the cost of many of them not being true biological 1:1 orthologs.\cr\cr
+ For more details, please see
 \href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
  here}.}
 }
@@ -96,6 +97,8 @@ List of ortholog report statistics
 Identify the number of orthologous genes between two species.
 }
 \examples{
-orth_fly <- report_orthologs(target_species="fly",
-                             reference_species="human")
+orth_fly <- report_orthologs(
+    target_species = "fly",
+    reference_species = "human"
+)
 }

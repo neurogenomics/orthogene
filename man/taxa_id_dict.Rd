@@ -10,15 +10,15 @@ taxa_id_dict(
 )
 }
 \arguments{
-\item{species}{Species to get dictionary for. 
-Can supply either Latin names (e.g. "Homo sapiens") or 
+\item{species}{Species to get dictionary for.
+Can supply either Latin names (e.g. "Homo sapiens") or
 common names (e.g, "human").}
 }
 \value{
 Named list of taxa IDs to organism names.
 }
 \description{
-Dictionary of NCBI taxonomy IDs mapped to 
+Dictionary of NCBI taxonomy IDs mapped to
 Latin and common names of 20+ organisms.
 }
 \keyword{internal}

@@ -21,34 +21,37 @@ map_orthologs(
  and will be automatically converted to
   standardised HGNC symbol format.}
 
-\item{standardise_genes}{If \code{TRUE} AND 
-\code{gene_output="columns"}, a new column "input_gene_standard" 
-will be added to \code{gene_df} containing standardised HGNC symbols 
+\item{standardise_genes}{If \code{TRUE} AND
+\code{gene_output="columns"}, a new column "input_gene_standard"
+will be added to \code{gene_df} containing standardised HGNC symbols
 identified by \link[gprofiler2]{gorth}.}
 
-\item{input_species}{Name of the input species (e.g., "mouse","fly"). 
-Use \link[orthogene]{map_species} to return a full list of available species.}
+\item{input_species}{Name of the input species (e.g., "mouse","fly").
+Use \link[orthogene]{map_species} to return a full list
+of available species.}
 
-\item{output_species}{Name of the output species (e.g. "human","chicken"). 
-Use \link[orthogene]{map_species} to return a full list of available species.}
+\item{output_species}{Name of the output species (e.g. "human","chicken").
+Use \link[orthogene]{map_species} to return a full list
+ of available species.}
 
-\item{method}{R package to to use for gene mapping: 
-\code{"gprofiler"} (slower but more species and genes) or 
+\item{method}{R package to to use for gene mapping:
+\code{"gprofiler"} (slower but more species and genes) or
 \code{"homologene"} (faster but fewer species and genes).}
 
-\item{mthreshold}{Maximum number of ortholog names per gene to show. 
-Passed to \link[gprofiler2]{gorth}. 
+\item{mthreshold}{Maximum number of ortholog names per gene to show.
+Passed to \link[gprofiler2]{gorth}.
 Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}).}
 
 \item{verbose}{Print messages.}
 
-\item{...}{Additional arguments to be passed to 
-\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr 
-\emph{NOTE}: To return only the most "popular" interspecies ortholog mappings,
-supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above. 
+\item{...}{Additional arguments to be passed to
+\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr
+\emph{NOTE}: To return only the most "popular"
+interspecies ortholog mappings,
+supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above.
 This procedure tends to yield a greater number of returned genes but at
- the cost of many of them not being true biological 1:1 orthologs.\cr\cr 
- For more details, please see 
+ the cost of many of them not being true biological 1:1 orthologs.\cr\cr
+ For more details, please see
 \href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
  here}.}
 }
@@ -60,13 +63,15 @@ Ortholog map \code{data.frame} with at
 Map orthologs from one species to another.
 }
 \details{
-\code{map_orthologs()} is a core function within 
+\code{map_orthologs()} is a core function within
 \code{convert_orthologs()}, but does not have many
 of the extra checks, such as \code{non121_strategy})
 and \code{drop_nonorths}.
 }
 \examples{
 data("exp_mouse")
-gene_map <- map_orthologs(genes=rownames(exp_mouse),
-                          input_species="mouse")
+gene_map <- map_orthologs(
+    genes = rownames(exp_mouse),
+    input_species = "mouse"
+)
 }

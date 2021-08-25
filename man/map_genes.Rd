@@ -36,22 +36,26 @@ by \pkg{orthogene}.}
 Table with standardised genes.
 }
 \description{
-Input a list of genes, transcripts, proteins, SNPs, 
-or genomic ranges in any format 
+Input a list of genes, transcripts, proteins, SNPs,
+or genomic ranges in any format
 (HGNC, Ensembl, RefSeq, UniProt, etc.) and return
 a table with standardised gene symbols
  (the "names" column).
 }
 \details{
-Uses \link[gprofiler2]{gconvert}. 
-The exact contents of the output table will depend on 
-\code{target} parameter. 
+Uses \link[gprofiler2]{gconvert}.
+The exact contents of the output table will depend on
+\code{target} parameter.
 See \code{?gprofiler2::gconvert} for more details.
 }
 \examples{
 data("exp_mouse")
-genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",
-            "ENSMUSG00000012396","ENSMUSG00000074637")
-mapped_genes <- map_genes(genes=genes,
-                          species="mouse")
+genes <- c(
+    "Klf4", "Sox2", "TSPAN12", "NM_173007", "Q8BKT6",
+    "ENSMUSG00000012396", "ENSMUSG00000074637"
+)
+mapped_genes <- map_genes(
+    genes = genes,
+    species = "mouse"
+)
 }

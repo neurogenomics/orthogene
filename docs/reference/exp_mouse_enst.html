@@ -73,7 +73,7 @@ Data originally comes from Zeisel et al., 2018 (Cell)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
       </span>
     </div>
 
@@ -86,22 +86,10 @@ Data originally comes from Zeisel et al., 2018 (Cell)." />
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/orthogene.html">Get started</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/benchmarks.html">benchmarks</a>
-    </li>
-    <li>
-      <a href="../articles/hexSticker.html">hexSticker</a>
-    </li>
-  </ul>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -154,7 +142,8 @@ mapped_genes &lt;- map_genes(genes = rownames(exp_mouse)[seq(1,100)],
                           drop_na = FALSE)
 exp_mouse_enst &lt;- exp_mouse[mapped_genes$input,]
 rownames(exp_mouse_enst) &lt;- mapped_genes$target
-exp_mouse_enst &lt;- exp_mouse_enst[!orthogene:::find_all_nas(rownames(exp_mouse_enst)),]
+all_nas &lt;- orthogene:::find_all_nas(rownames(exp_mouse_enst))
+exp_mouse_enst &lt;- exp_mouse_enst[!all_nas,]
 exp_mouse_enst &lt;- phenomix::add_noise(exp_mouse_enst)
 usethis::use_data(exp_mouse_enst, overwrite = TRUE)
 </a></code></p>

@@ -26,7 +26,8 @@ aggregate_rows(
 
 \item{as_sparse}{Convert aggregated matrix to sparse matrix.}
 
-\item{as_DelayedArray}{Convert aggregated matrix to \link[DelayedArray]{DelayedArray}.}
+\item{as_DelayedArray}{Convert aggregated matrix to
+\link[DelayedArray]{DelayedArray}.}
 
 \item{dropNA}{Drop genes assigned to \code{NA} in \code{groupings}.}
 

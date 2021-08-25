@@ -1,10 +1,10 @@
-#' Gene expression data: mouse 
-#' 
-#' @description 
+#' Gene expression data: mouse
+#'
+#' @description
 #' Mean pseudobulk single-cell RNA-seq gene expression matrix.
-#' 
+#'
 #' Data originally comes from Zeisel et al., 2018 (Cell).
-#' 
+#'
 #' @source \href{https://pubmed.ncbi.nlm.nih.gov/30096314/}{Publication}
 #' \code{
 #' ctd <- ewceData::ctd()
@@ -14,15 +14,15 @@
 #' @format sparse matrix
 #' @usage data("exp_mouse")
 "exp_mouse"
- 
 
-#' Transcript expression data: mouse 
-#' 
-#' @description 
+
+#' Transcript expression data: mouse
+#'
+#' @description
 #' Mean pseudobulk single-cell RNA-seq Transcript expression matrix.
-#' 
+#'
 #' Data originally comes from Zeisel et al., 2018 (Cell).
-#' 
+#'
 #' @source \href{https://pubmed.ncbi.nlm.nih.gov/30096314/}{Publication}
 #' \code{
 #' data("exp_mouse")
@@ -32,7 +32,8 @@
 #'                           drop_na = FALSE)
 #' exp_mouse_enst <- exp_mouse[mapped_genes$input,]
 #' rownames(exp_mouse_enst) <- mapped_genes$target
-#' exp_mouse_enst <- exp_mouse_enst[!orthogene:::find_all_nas(rownames(exp_mouse_enst)),]
+#' all_nas <- orthogene:::find_all_nas(rownames(exp_mouse_enst))
+#' exp_mouse_enst <- exp_mouse_enst[!all_nas,]
 #' exp_mouse_enst <- phenomix::add_noise(exp_mouse_enst)
 #' usethis::use_data(exp_mouse_enst, overwrite = TRUE)
 #' }
@@ -47,21 +48,20 @@
 
 
 #' Reference organisms
-#' 
-#' @description 
-#' Organism for which gene references are available via  
-#' \href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler}  
-#' \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}. 
-#' 
-#' Used as a backup if API is not available. 
-#' 
+#'
+#' @description
+#' Organism for which gene references are available via
+#' \href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler}
+#' \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}.
+#'
+#' Used as a backup if API is not available.
+#'
 #' @source \href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler site}
 #' @format \code{data.frame}
 #' \code{
-#'  gprofiler_orgs <- jsonlite::fromJSON('https://biit.cs.ut.ee/gprofiler/api/util/organisms_list')
+#'  URL <- 'https://biit.cs.ut.ee/gprofiler/api/util/organisms_list'
+#'  gprofiler_orgs <- jsonlite::fromJSON(URL)
 #'  gprofiler_orgs <-  dplyr::arrange(gprofiler_orgs, scientific_name)
 #'  usethis::use_data(gprofiler_orgs, overwrite = TRUE, internal=TRUE)
 #' }
-"gprofiler_orgs" 
-
-
+"gprofiler_orgs"

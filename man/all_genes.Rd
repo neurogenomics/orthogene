@@ -13,19 +13,19 @@ all_genes(
 )
 }
 \arguments{
-\item{species}{Species to get all genes for. 
+\item{species}{Species to get all genes for.
 Will first be standardised with \code{map_species}.}
 
-\item{method}{R package to to use for gene mapping: 
-\code{"gprofiler"} (slower but more species and genes) or 
+\item{method}{R package to to use for gene mapping:
+\code{"gprofiler"} (slower but more species and genes) or
 \code{"homologene"} (faster but fewer species and genes).}
 
-\item{ensure_filter_nas}{Perform an extra check to remove 
+\item{ensure_filter_nas}{Perform an extra check to remove
 genes that are \code{NA}s of any kind.}
 
 \item{verbose}{Print messages.}
 
-\item{...}{Additional arguments to be passed to 
+\item{...}{Additional arguments to be passed to
 \link[gprofiler2]{gconvert} when
 \code{method="gprofiler"}.}
 }
@@ -37,10 +37,10 @@ Table with all gene symbols
 Return all known genes from a given species.
 }
 \details{
-References \link[homologene]{homologeneData} or 
+References \link[homologene]{homologeneData} or
 \link[gprofiler2]{gconvert}.
 }
 \examples{
-genome_mouse <- all_genes(species="mouse")
-genome_human <- all_genes(species="human")
+genome_mouse <- all_genes(species = "mouse")
+genome_human <- all_genes(species = "human")
 }

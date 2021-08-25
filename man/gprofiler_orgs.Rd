@@ -7,7 +7,8 @@
 \format{
 \code{data.frame}
 \code{
- gprofiler_orgs <- jsonlite::fromJSON('https://biit.cs.ut.ee/gprofiler/api/util/organisms_list')
+ URL <- 'https://biit.cs.ut.ee/gprofiler/api/util/organisms_list'
+ gprofiler_orgs <- jsonlite::fromJSON(URL)
  gprofiler_orgs <-  dplyr::arrange(gprofiler_orgs, scientific_name)
  usethis::use_data(gprofiler_orgs, overwrite = TRUE, internal=TRUE)
 }
@@ -19,9 +20,9 @@
 gprofiler_orgs
 }
 \description{
-Organism for which gene references are available via  
-\href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler}  
-\href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}. 
+Organism for which gene references are available via
+\href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler}
+\href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}.
 
 Used as a backup if API is not available.
 }

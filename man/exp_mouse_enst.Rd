@@ -17,7 +17,8 @@ mapped_genes <- map_genes(genes = rownames(exp_mouse)[seq(1,100)],
                           drop_na = FALSE)
 exp_mouse_enst <- exp_mouse[mapped_genes$input,]
 rownames(exp_mouse_enst) <- mapped_genes$target
-exp_mouse_enst <- exp_mouse_enst[!orthogene:::find_all_nas(rownames(exp_mouse_enst)),]
+all_nas <- orthogene:::find_all_nas(rownames(exp_mouse_enst))
+exp_mouse_enst <- exp_mouse_enst[!all_nas,]
 exp_mouse_enst <- phenomix::add_noise(exp_mouse_enst)
 usethis::use_data(exp_mouse_enst, overwrite = TRUE)
 }

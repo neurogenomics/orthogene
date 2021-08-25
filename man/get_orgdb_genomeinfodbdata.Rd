@@ -15,7 +15,7 @@ Organisms \code{data.table}
 }
 \description{
 Import and format organism ID table from
-\pkg{GenomeInfoDbData} to 
+\pkg{GenomeInfoDbData} to
 be comparable to \code{get_orgdb_gprofiler}.
 }
 \keyword{internal}

@@ -1,4 +1,18 @@
+*.Rproj
 .Rproj.user
 .Rhistory
+./**/.Rhistory
 .RData
 .Ruserdata
+
+vignettes/*.R$
+vignettes/*.html$
+
+# find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+./.DS_Store
+./**/.DS_Store
+./**/**/.DS_Store
+./**/**/**/.DS_Store
+./**/**/**/**/.DS_Store
+./**/**/**/**/**/.DS_Store
+./**/**/**/**/**/**/.DS_Store

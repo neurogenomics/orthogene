@@ -15,11 +15,13 @@ map_orthologs_homologene(
 \arguments{
 \item{genes}{Gene list.}
 
-\item{input_species}{Name of the input species (e.g., "mouse","fly"). 
-Use \link[orthogene]{map_species} to return a full list of available species.}
+\item{input_species}{Name of the input species (e.g., "mouse","fly").
+Use \link[orthogene]{map_species} to return a full list
+of available species.}
 
-\item{output_species}{Name of the output species (e.g. "human","chicken"). 
-Use \link[orthogene]{map_species} to return a full list of available species.}
+\item{output_species}{Name of the output species (e.g. "human","chicken").
+Use \link[orthogene]{map_species} to return a full list
+ of available species.}
 
 \item{verbose}{Print messages.}
 
@@ -30,7 +32,7 @@ to \link[homologene]{homologene}.}
 Ortholog map \code{data.frame}
 }
 \description{
-Map orthologs from one species to another 
+Map orthologs from one species to another
 using \link[homologene]{homologene}.
 }
 \keyword{internal}
