@@ -11,7 +11,8 @@ report_gene_map <- function(gene_df2,
         messager("Total genes dropped after", func_name, ":\n  ",
             formatC(n_dropped, big.mark = ","), "/",
             formatC(n_input_genes, big.mark = ","),
-            paste0("(", format(n_dropped / n_input_genes * 100, digits = 2), "%)"),
+            paste0("(", format(n_dropped / n_input_genes * 100, 
+                               digits = 2), "%)"),
             v = verbose
         )
     }
@@ -21,7 +22,8 @@ report_gene_map <- function(gene_df2,
             formatC(n_input_genes, big.mark = ","),
             paste0(
                 "(",
-                format(n_output_genes / n_input_genes * 100, digits = 2), "%)"
+                format(n_output_genes / n_input_genes * 100, 
+                       digits = 2), "%)"
             ),
             v = verbose
         )

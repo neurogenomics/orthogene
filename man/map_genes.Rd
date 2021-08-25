@@ -49,7 +49,6 @@ The exact contents of the output table will depend on
 See \code{?gprofiler2::gconvert} for more details.
 }
 \examples{
-data("exp_mouse")
 genes <- c(
     "Klf4", "Sox2", "TSPAN12", "NM_173007", "Q8BKT6",
     "ENSMUSG00000012396", "ENSMUSG00000074637"

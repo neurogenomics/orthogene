@@ -1,4 +1,5 @@
 *.Rproj
+orthogene.Rproj
 .Rproj.user
 .Rhistory
 ./**/.Rhistory
