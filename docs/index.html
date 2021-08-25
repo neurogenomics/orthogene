@@ -78,11 +78,10 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="-" class="section level1">
+<div id="orthogene-interspecies-gene-mapping" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#-" class="anchor"></a><img src="./inst/hex/orthogene.png" height="400"><br>
-</h1></div>
-<h4>
+<a href="#orthogene-interspecies-gene-mapping" class="anchor"></a><code>orthogene</code>: Interspecies gene mapping</h1></div>
+<img src="https://github.com/neurogenomics/orthogene/raw/main/inst/hex/orthogene.png" height="400"><h4>
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
@@ -95,26 +94,26 @@ Most recent update: <i>Aug-25-2021</i>
 <!-- badger::badge_last_commit()  -->
 <!-- badger::badge_license() -->
 
-<div id="orthogene-interspecies-gene-mapping" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orthogene-interspecies-gene-mapping" class="anchor"></a><code>orthogene</code>: Interspecies gene mapping</h2>
+</div>
+<div id="intro" class="section level1">
+<h1 class="hasAnchor">
+<a href="#intro" class="anchor"></a>Intro</h1>
 <p><code>orthogene</code> is an R package for easy mapping of orthologous genes across hundreds of species.<br>
 It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</p>
 <p>It also provides various utility functions to map common objects (e.g. data.frames, gene expression matrices, lists) onto 1:1 gene orthologs from any other species.</p>
 <p>In brief, <code>orthogene</code> lets you easily:</p>
 <ul>
-<li><a href="https://neurogenomics.github.io/orthogene/articles/orthogene.html#convert-orthologs"><strong><code>convert_orthologs</code></strong> between any two species</a></li>
+<li><a href="https://neurogenomics.github.io/orthogene/articles/orthogene#convert-orthologs"><strong><code>convert_orthologs</code></strong> between any two species</a></li>
 <li>
-<a href="https://github.com/neurogenomics/orthogene.html#map-species"><strong><code>map_species</code></strong> names onto standard taxonomic ontologies</a><br>
+<a href="https://neurogenomics.github.io/orthogene/articles/orthogene#map-species"><strong><code>map_species</code></strong> names onto standard taxonomic ontologies</a><br>
 </li>
-<li><a href="https://neurogenomics.github.io/orthogene/articles/orthogene.html#report-orthologs"><strong><code>report_orthologs</code></strong> between any two species</a></li>
-<li><a href="https://neurogenomics.github.io/orthogene/articles/orthogene.html#map-genes"><strong><code>map_genes</code></strong> onto standard ontologies</a></li>
+<li><a href="https://neurogenomics.github.io/orthogene/articles/orthogene#report-orthologs"><strong><code>report_orthologs</code></strong> between any two species</a></li>
+<li><a href="https://neurogenomics.github.io/orthogene/articles/orthogene#map-genes"><strong><code>map_genes</code></strong> onto standard ontologies</a></li>
 <li>
-<a href="https://neurogenomics.github.io/orthogene/articles/orthogene.html#aggregate-mapped-genes"><strong><code>aggregate_mapped_genes</code></strong> in a matrix.</a><br>
+<a href="https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes"><strong><code>aggregate_mapped_genes</code></strong> in a matrix.</a><br>
 </li>
-<li><a href="https://neurogenomics.github.io/orthogene/articles/orthogene.html#get-all-genes">get <strong><code>all_genes</code></strong> from any species</a></li>
+<li><a href="https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes">get <strong><code>all_genes</code></strong> from any species</a></li>
 </ul>
-</div>
 <div id="documentation-website" class="section level2">
 <h2 class="hasAnchor">
 <a href="#documentation-website" class="anchor"></a><a href="https://neurogenomics.github.io/orthogene/">Documentation website</a>
@@ -200,7 +199,7 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <div id="note-on-non-11-orthologs" class="section level3">
 <h3 class="hasAnchor">
 <a href="#note-on-non-11-orthologs" class="anchor"></a>Note on non-1:1 orthologs</h3>
-<p>A key feature of <a href="https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html"><code>convert_orthologs</code></a> is that it handles the issue of genes with many-to-many mappings across species. This can occur due to evolutionary divergence, and the function of these genes tends to be less conserved and less translatable. Users can address this using different strategies via <code>non121_strategy=</code>.</p>
+<p>A key feature of <a href="https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html"><code>convert_orthologs</code></a> is that it handles the issue of genes with many-to-many mappings across species. This can occur due to evolutionary divergence, and the function of these genes tend to be less conserved and less translatable. Users can address this using different strategies via <code>non121_strategy=</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gene_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/convert_orthologs.html">convert_orthologs</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span>,
                              gene_input <span class="op">=</span> <span class="st">"rownames"</span>, 

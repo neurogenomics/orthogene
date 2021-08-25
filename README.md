@@ -1,5 +1,6 @@
-<img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/orthogene.png' height='400'><br>
+`orthogene`: Interspecies gene mapping
 ================
+<img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/orthogene.png' height='400'>
 <h4>
 Author: <i>Brian M. Schilder</i>
 </h4>
@@ -22,7 +23,7 @@ Most recent update: <i>Aug-25-2021</i>
 Artistic-2.0](https://img.shields.io/badge/license-Artistic--2.0-blue.svg)](https://cran.r-project.org/web/licenses/Artistic-2.0)
 <!-- badges: end -->
 
-## `orthogene`: Interspecies gene mapping
+# Intro
 
 `orthogene` is an R package for easy mapping of orthologous genes across
 hundreds of species.  
@@ -36,17 +37,17 @@ orthologs from any other species.
 In brief, `orthogene` lets you easily:
 
 -   [**`convert_orthologs`** between any two
-    species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#convert-orthologs)
+    species](https://neurogenomics.github.io/orthogene/articles/orthogene#convert-orthologs)
 -   [**`map_species`** names onto standard taxonomic
-    ontologies](https://github.com/neurogenomics/orthogene.html#map-species)  
+    ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene#map-species)  
 -   [**`report_orthologs`** between any two
-    species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#report-orthologs)
+    species](https://neurogenomics.github.io/orthogene/articles/orthogene#report-orthologs)
 -   [**`map_genes`** onto standard
-    ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene.html#map-genes)
+    ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene#map-genes)
 -   [**`aggregate_mapped_genes`** in a
-    matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene.html#aggregate-mapped-genes)  
+    matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes)  
 -   [get **`all_genes`** from any
-    species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#get-all-genes)
+    species](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes)
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
 
@@ -114,7 +115,7 @@ A key feature of
 [`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html)
 is that it handles the issue of genes with many-to-many mappings across
 species. This can occur due to evolutionary divergence, and the function
-of these genes tends to be less conserved and less translatable. Users
+of these genes tend to be less conserved and less translatable. Users
 can address this using different strategies via `non121_strategy=`.
 
 ``` r

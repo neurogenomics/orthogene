@@ -1,6 +1,6 @@
 ---
-title: "<img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/orthogene.png' height='400'><br>" 
-author: "<h4>Author: <i>Brian M. Schilder</i></h4>" 
+title: "`orthogene`: Interspecies gene mapping " 
+author: "<img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/orthogene.png' height='400'> <h4>Author: <i>Brian M. Schilder</i></h4>" 
 date: "<h4>Most recent update: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
 output:
   github_document 
@@ -22,9 +22,10 @@ editor_options:
 <!-- badges: end --> 
 
 
-## `orthogene`: Interspecies gene mapping 
+# Intro 
 
-`orthogene` is an R package for easy mapping of orthologous genes across hundreds of species.   
+`orthogene` is an R package for easy mapping of orthologous genes 
+across hundreds of species.   
 It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms. 
 
 It also provides various utility functions to map common objects 
@@ -33,12 +34,12 @@ onto 1:1 gene orthologs from any other species.
 
 In brief, `orthogene` lets you easily: 
 
-- [**`convert_orthologs`** between any two species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#convert-orthologs) 
-- [**`map_species`** names onto standard taxonomic ontologies](https://github.com/neurogenomics/orthogene.html#map-species)  
-- [**`report_orthologs`** between any two species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#report-orthologs) 
-- [**`map_genes`** onto standard ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene.html#map-genes) 
-- [**`aggregate_mapped_genes`** in a matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene.html#aggregate-mapped-genes)  
-- [get **`all_genes`** from any species](https://neurogenomics.github.io/orthogene/articles/orthogene.html#get-all-genes) 
+- [**`convert_orthologs`** between any two species](https://neurogenomics.github.io/orthogene/articles/orthogene#convert-orthologs) 
+- [**`map_species`** names onto standard taxonomic ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene#map-species)  
+- [**`report_orthologs`** between any two species](https://neurogenomics.github.io/orthogene/articles/orthogene#report-orthologs) 
+- [**`map_genes`** onto standard ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene#map-genes) 
+- [**`aggregate_mapped_genes`** in a matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes)  
+- [get **`all_genes`** from any species](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes) 
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/) 
 
@@ -62,11 +63,15 @@ method <- "homologene"
 
 # Methods 
 
-For most functions, `orthogene` lets users choose between two different methods, each with complementary strengths and weaknesses: `"gprofiler"` and `"homologene"` 
+For most functions, `orthogene` lets users choose between two different methods,
+each with complementary strengths and weaknesses: 
+`"gprofiler"` and `"homologene"` 
 
-In general, we recommend you use `"gprofiler"` when possible, as it tends to be more comprehensive. 
+In general, we recommend you use `"gprofiler"` when possible, 
+as it tends to be more comprehensive. 
 
-It's also worth noting that for smaller gene sets, the speed difference between these methods becomes negligible. 
+It's also worth noting that for smaller gene sets, 
+the speed difference between these methods becomes negligible. 
 
 ```{r pros_cons, echo=FALSE}
 pros_cons <- data.frame(gprofiler=c("Reference organisms"="700+",
@@ -96,17 +101,28 @@ knitr::kable(pros_cons)
 
 ## Convert orthologs 
 
-[`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) is very flexible with what users can supply as `gene_df`,
-and can take a `data.frame`/`data.table`/`tibble`, (sparse) `matrix`, or `list`/`vector` containing genes.
+[`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) 
+is very flexible with what users can supply as `gene_df`,
+and can take a `data.frame`/`data.table`/`tibble`, (sparse) `matrix`, 
+or `list`/`vector` containing genes.
 
-Genes, transcripts, proteins, SNPs, or genomic ranges will be recognised in most formats (HGNC, Ensembl, RefSeq, UniProt, etc.) and can even be a mixture of different formats. 
+Genes, transcripts, proteins, SNPs, or genomic ranges will be recognised in 
+most formats (HGNC, Ensembl, RefSeq, UniProt, etc.) 
+and can even be a mixture of different formats. 
 
 All genes will be mapped to gene symbols, unless specified otherwise with the
-`...` arguments (see `?orthogene::convert_orthologs` or [here](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) for details).  
+`...` arguments (see `?orthogene::convert_orthologs` or [here
+](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) 
+for details).  
 
 ### Note on non-1:1 orthologs 
 
-A key feature of [`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) is that it handles the issue of genes with many-to-many mappings across species. This can occur due to evolutionary divergence, and the function of these genes tends to be less conserved and less translatable. Users can address this using different strategies via `non121_strategy=`.
+A key feature of 
+[`convert_orthologs`](https://neurogenomics.github.io/orthogene/reference/convert_orthologs.html) 
+is that it handles the issue of genes with many-to-many mappings across species. 
+This can occur due to evolutionary divergence, and the function of these genes 
+tend to be less conserved and less translatable. 
+Users can address this using different strategies via `non121_strategy=`.
 
 ```{r convert_orthologs}
 gene_df <- convert_orthologs(gene_df = exp_mouse,
@@ -120,7 +136,10 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
 knitr::kable(as.matrix(head(gene_df)))
 ```
 
-`convert_orthologs` is just one of the many useful functions in `orthogene`. Please see the [documentation website](https://neurogenomics.github.io/orthogene/articles/orthogene) for the full vignette.
+`convert_orthologs` is just one of the many useful functions in `orthogene`. 
+Please see the
+[documentation website](https://neurogenomics.github.io/orthogene/articles/orthogene) 
+for the full vignette.
 
 
 ## [Hex sticker creation](https://neurogenomics.github.io/orthogene/inst/hex/hexSticker.html)
@@ -142,28 +161,42 @@ utils::sessionInfo()
 
 ## Tools 
 
-- [`homologene`](https://github.com/oganm/homologene): `orthogene` uses this package. Provides API access to NCBI [HomoloGene](https://www.ncbi.nlm.nih.gov/homologene) database. 
+- [`homologene`](https://github.com/oganm/homologene): 
+`orthogene` uses this package. Provides API access to NCBI
+[HomoloGene](https://www.ncbi.nlm.nih.gov/homologene) database. 
 
-- [`gprofiler2`](https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html): `orthogene` uses this package. `gprofiler2::gorth()` pulls from [many orthology mapping databases](https://biit.cs.ut.ee/gprofiler/page/organism-list).  
+- [`gprofiler2`](https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html): 
+`orthogene` uses this package. `gprofiler2::gorth()` pulls from 
+[many orthology mapping databases](https://biit.cs.ut.ee/gprofiler/page/organism-list).  
 
-- [`annotationTools`](https://www.bioconductor.org/packages/release/bioc/html/annotationTools.html): For interspecies microarray data.  
+- [`annotationTools`](https://www.bioconductor.org/packages/release/bioc/html/annotationTools.html): 
+For interspecies microarray data.  
 
-- [`orthology`](https://www.leibniz-hki.de/en/orthology-r-package.html): R package for ortholog mapping (deprecated?). 
+- [`orthology`](https://www.leibniz-hki.de/en/orthology-r-package.html): 
+R package for ortholog mapping (deprecated?). 
 
-- [`hpgltools::load_biomart_orthologs()`](https://rdrr.io/github/elsayed-lab/hpgltools/man/load_biomart_orthologs.html): Helper function to get orthologs from biomart. 
+- [`hpgltools::load_biomart_orthologs()`](https://rdrr.io/github/elsayed-lab/hpgltools/man/load_biomart_orthologs.html): 
+Helper function to get orthologs from biomart. 
 
-- [`JustOrthologs`](https://github.com/ridgelab/JustOrthologs/): Ortholog inference from multi-species genomic sequences. 
+- [`JustOrthologs`](https://github.com/ridgelab/JustOrthologs/): 
+Ortholog inference from multi-species genomic sequences. 
 
-- [`orthologr`](https://github.com/drostlab/orthologr): Ortholog inference from multi-species genomic sequences.  
+- [`orthologr`](https://github.com/drostlab/orthologr): 
+Ortholog inference from multi-species genomic sequences.  
 
-- [`OrthoFinder`](https://github.com/davidemms/OrthoFinder): Gene duplication event inference from multi-species genomics.  
+- [`OrthoFinder`](https://github.com/davidemms/OrthoFinder): 
+Gene duplication event inference from multi-species genomics.  
 
 
 ## Databases  
 
-- [HomoloGene](https://www.ncbi.nlm.nih.gov/homologene): NCBI database that the R package [homologene](https://github.com/oganm/homologene) pulls from.   
+- [HomoloGene](https://www.ncbi.nlm.nih.gov/homologene): 
+NCBI database that the R package 
+[homologene](https://github.com/oganm/homologene) pulls from.   
 
-- [gProfiler](https://biit.cs.ut.ee/gprofiler): Web server for functional enrichment analysis and conversions of gene lists.  
+- [gProfiler](https://biit.cs.ut.ee/gprofiler): 
+Web server for functional enrichment analysis and conversions of gene lists.  
 
-- [OrtholoGene](http://orthologene.org/resources.html): Compiled list of gene orthology resources. 
+- [OrtholoGene](http://orthologene.org/resources.html): 
+Compiled list of gene orthology resources. 
 
