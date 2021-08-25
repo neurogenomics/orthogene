@@ -3,7 +3,8 @@ remove_all_nas <- function(dat,
                            verbose = TRUE) {
     genes <- extract_gene_list(
         gene_df = dat,
-        gene_input = col_name
+        gene_input = col_name,
+        verbose = verbose
     )
     all_nas <- find_all_nas(v = genes)
     if (sum(all_nas) > 0) {

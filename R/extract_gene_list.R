@@ -1,18 +1,19 @@
 extract_gene_list <- function(gene_df,
                               gene_input,
                               verbose = TRUE) {
-    if (tolower(gene_input) %in% gene_input_opts(
-        rownames_opts = TRUE)) {
+    
+    rown_opts <- gene_input_opts(rownames_opts = TRUE)
+    coln_opts <- gene_input_opts(colnames_opts = TRUE)
+    col_opts <- gene_input_opts(gene_df = gene_df,
+                                columns_opts = TRUE)
+    
+    if (tolower(gene_input) %in% rown_opts) {
         messager("Extracting genes from rownames.", v = verbose)
         genes <- rownames(gene_df)
-    } else if (tolower(gene_input) %in% gene_input_opts(
-        colnames_opts = TRUE)) {
+    } else if (tolower(gene_input) %in% coln_opts) {
         messager("Extracting genes from colnames.", v = verbose)
         genes <- colnames(gene_input)
-    } else if (gene_input %in% gene_input_opts(
-        gene_df = gene_df,
-        columns_opts = TRUE
-    )) {
+    } else if (gene_input %in% col_opts) {
         messager("Extracting genes from", 
                  paste0(gene_input, "."), v = verbose)
         if (methods::is(gene_df, "data.table")) {
