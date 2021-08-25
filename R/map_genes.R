@@ -26,8 +26,7 @@
 #' @importFrom gprofiler2 gconvert
 #' @importFrom stats na.omit
 #'
-#' @examples
-#' data("exp_mouse")
+#' @examples 
 #' genes <- c(
 #'     "Klf4", "Sox2", "TSPAN12", "NM_173007", "Q8BKT6",
 #'     "ENSMUSG00000012396", "ENSMUSG00000074637"
