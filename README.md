@@ -5,7 +5,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Aug-25-2021</i>
+Most recent update: <i>Sep-12-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -19,8 +19,8 @@ Most recent update: <i>Aug-25-2021</i>
 [![R-CMD-check](https://github.com/neurogenomics/MungeSumstats/workflows/R-full/badge.svg)](https://github.com/neurogenomics/MungeSumstats/actions)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
-[![License:
-Artistic-2.0](https://img.shields.io/badge/license-Artistic--2.0-blue.svg)](https://cran.r-project.org/web/licenses/Artistic-2.0)
+[![License: GPL (&gt;=
+3)](https://img.shields.io/badge/license-GPL%20(%3E=%203)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20(%3E=%203))
 <!-- badges: end -->
 
 # Intro
@@ -208,62 +208,59 @@ utils::sessionInfo()
 ```
 
     ## R version 4.1.0 (2021-05-18)
-    ## Platform: x86_64-pc-linux-gnu (64-bit)
-    ## Running under: Ubuntu 20.04.2 LTS
+    ## Platform: x86_64-apple-darwin17.0 (64-bit)
+    ## Running under: macOS Big Sur 10.16
     ## 
     ## Matrix products: default
-    ## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+    ## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
     ## 
     ## locale:
-    ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-    ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-    ##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
-    ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-    ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-    ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+    ## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
     ## 
     ## attached base packages:
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_0.99.1
+    ## [1] orthogene_0.99.2
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] tidyselect_1.1.1          xfun_0.25                
-    ##  [3] purrr_0.3.4               haven_2.4.3              
-    ##  [5] lattice_0.20-44           carData_3.0-4            
-    ##  [7] gprofiler2_0.2.0          colorspace_2.0-2         
-    ##  [9] vctrs_0.3.8               generics_0.1.0           
-    ## [11] viridisLite_0.4.0         htmltools_0.5.1.1        
-    ## [13] yaml_2.2.1                plotly_4.9.4.9000        
-    ## [15] utf8_1.2.2                rlang_0.4.11             
-    ## [17] pillar_1.6.2              ggpubr_0.4.0             
-    ## [19] foreign_0.8-81            glue_1.4.2               
-    ## [21] DBI_1.1.1                 readxl_1.3.1             
-    ## [23] lifecycle_1.0.0           stringr_1.4.0            
-    ## [25] cellranger_1.1.0          munsell_0.5.0            
-    ## [27] ggsignif_0.6.2            gtable_0.3.0             
-    ## [29] zip_2.2.0                 htmlwidgets_1.5.3        
-    ## [31] evaluate_0.14             knitr_1.33               
-    ## [33] rio_0.5.27                forcats_0.5.1            
-    ## [35] parallel_4.1.0            curl_4.3.2               
-    ## [37] fansi_0.5.0               highr_0.9                
-    ## [39] broom_0.7.9               Rcpp_1.0.7               
-    ## [41] scales_1.1.1              backports_1.2.1          
-    ## [43] jsonlite_1.7.2            abind_1.4-5              
-    ## [45] ggplot2_3.3.5             hms_1.1.0                
-    ## [47] digest_0.6.27             stringi_1.7.3            
-    ## [49] openxlsx_4.2.4            rstatix_0.7.0            
-    ## [51] dplyr_1.0.7               grid_4.1.0               
-    ## [53] tools_4.1.0               magrittr_2.0.1           
-    ## [55] patchwork_1.1.1           lazyeval_0.2.2           
-    ## [57] tibble_3.1.3              crayon_1.4.1             
-    ## [59] tidyr_1.1.3               car_3.0-11               
-    ## [61] pkgconfig_2.0.3           ellipsis_0.3.2           
-    ## [63] Matrix_1.3-4              homologene_1.4.68.19.3.27
-    ## [65] data.table_1.14.0         httr_1.4.2               
-    ## [67] assertthat_0.2.1          rmarkdown_2.10           
-    ## [69] R6_2.5.0                  compiler_4.1.0
+    ##  [1] Rcpp_1.0.7                lattice_0.20-44          
+    ##  [3] tidyr_1.1.3               assertthat_0.2.1         
+    ##  [5] digest_0.6.27             utf8_1.2.2               
+    ##  [7] R6_2.5.1                  cellranger_1.1.0         
+    ##  [9] backports_1.2.1           evaluate_0.14            
+    ## [11] highr_0.9                 httr_1.4.2               
+    ## [13] ggplot2_3.3.5             pillar_1.6.2             
+    ## [15] rlang_0.4.11              lazyeval_0.2.2           
+    ## [17] curl_4.3.2                readxl_1.3.1             
+    ## [19] data.table_1.14.0         car_3.0-11               
+    ## [21] Matrix_1.3-4              rmarkdown_2.10           
+    ## [23] stringr_1.4.0             foreign_0.8-81           
+    ## [25] htmlwidgets_1.5.3         munsell_0.5.0            
+    ## [27] broom_0.7.9               compiler_4.1.0           
+    ## [29] gprofiler2_0.2.1          xfun_0.25                
+    ## [31] pkgconfig_2.0.3           htmltools_0.5.2          
+    ## [33] tidyselect_1.1.1          tibble_3.1.4             
+    ## [35] GenomeInfoDbData_1.2.6    rio_0.5.27               
+    ## [37] fansi_0.5.0               viridisLite_0.4.0        
+    ## [39] crayon_1.4.1              dplyr_1.0.7              
+    ## [41] ggpubr_0.4.0              grid_4.1.0               
+    ## [43] jsonlite_1.7.2            gtable_0.3.0             
+    ## [45] lifecycle_1.0.0           DBI_1.1.1                
+    ## [47] magrittr_2.0.1            scales_1.1.1             
+    ## [49] zip_2.2.0                 stringi_1.7.4            
+    ## [51] carData_3.0-4             ggsignif_0.6.2           
+    ## [53] ellipsis_0.3.2            generics_0.1.0           
+    ## [55] vctrs_0.3.8               openxlsx_4.2.4           
+    ## [57] tools_4.1.0               forcats_0.5.1            
+    ## [59] homologene_1.4.68.19.3.27 glue_1.4.2               
+    ## [61] purrr_0.3.4               hms_1.1.0                
+    ## [63] abind_1.4-5               parallel_4.1.0           
+    ## [65] fastmap_1.1.0             yaml_2.2.1               
+    ## [67] colorspace_2.0-2          rstatix_0.7.0            
+    ## [69] plotly_4.9.4.1            knitr_1.33               
+    ## [71] haven_2.4.3               patchwork_1.1.1
 
 </details>
 
