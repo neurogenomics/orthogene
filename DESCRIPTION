@@ -18,7 +18,7 @@ Description:
     onto 1:1 gene orthologs from any other species. 
 URL: https://github.com/neurogenomics/orthogene 
 BugReports: https://github.com/neurogenomics/orthogene/issues 
-License: Artistic-2.0 
+License: GPL (>= 3)
 Depends: R (>= 4.1)
 VignetteBuilder: knitr
 biocViews:
@@ -37,7 +37,13 @@ Imports:
     parallel, 
     ggplot2,
     ggpubr,
-    patchwork
+    patchwork,
+    DelayedArray,
+    DelayedMatrixStats,
+    Matrix.utils,
+    grr, 
+    repmis,
+    GenomeInfoDbData
 Suggests: 
     remotes,
     knitr,
@@ -45,11 +51,6 @@ Suggests:
     markdown,
     rmarkdown,
     here, 
-    DelayedArray,
-    DelayedMatrixStats,
-    Matrix.utils,
-    grr, 
-    repmis,
     testthat (>= 3.0.0)
 RoxygenNote: 7.1.1
 Encoding: UTF-8

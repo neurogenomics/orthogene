@@ -1,0 +1,132 @@
+---
+title: "benchmarks"
+author: "<h4>Author: <i>Brian M. Schilder</i></h4>" 
+date: "<h4>Most recent update: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
+output: rmarkdown::html_vignette
+editor_options: 
+  chunk_output_type: inline
+vignette: >
+  %\VignetteIndexEntry{benchmarks}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, root.dir=here::here())
+knitr::opts_knit$set(root.dir=here::here())
+```
+
+
+Benchmark the following strategies: 
+
+1. **uppercase** : Simply making the genes uppercase. 
+2. **homologene** : `method="homologene"` 
+3. **gorth** : `method="gorth"`  
+
+
+For each method, benchmark the following metrics: 
+ 
+- % genes mapped within species (`all_genes`).
+- % genes mapped to human (`map_orthologs`).  
+- Speed of each metric. 
+
+```{r setup}
+library(orthogene)
+
+library(dplyr)
+library(ggplot2) 
+library(patchwork)
+```
+
+# Define species 
+
+Repeat tests across various common model organisms.
+
+```{r}
+species <- c(human="H sapiens",
+             chimp="P troglodytes",
+             baboon="P anubis", 
+             macaque = "M mulatta",
+             marmoset = "C jacchus",
+             mouse = "M musculus",
+             rat = "R norvegicus",
+             hamster = "M auratus",
+             dog = "C lupus familiaris",
+             cat = "F catus",
+             cow = "B taurus",
+             chicken = "G gallus",
+             zebrafish = "D rerio",
+             fly = "D melanogaster",
+             worm = "C elegans",
+             rice = "O sativa"
+             )
+species_mapped <- map_species(species = species) %>% `names<-`(names(species))
+
+```
+
+
+# Benchmark  
+
+*Note* the `orthogene:::function` notation is needed to use these benchmarking functions,
+as they are internal.
+
+## Run benchmark 
+
+`run_benchmark()` will run the full benchmarking pipeline. 
+
+You can set `mc.cores` to speed this up with multi-core parallelisation.
+
+**WARNING**: This step can take a long time. For the purposes of this example, 
+we'll not run the full benchmark and instead provide some pre-computed results. 
+
+
+
+```{r, eval=FALSE} 
+bench_res <- orthogene:::run_benchmark(species_mapped = species_mapped[c("human","mouse","fly")], 
+                                       run_convert_orthologs = TRUE, 
+                                       mc.cores = 10) 
+# write.csv(bench_res, here::here("inst/benchmark/bench_res_example.csv"), row.names = FALSE)
+```
+
+## Print results 
+
+Load stored benchmark results.
+
+```{r}
+if(!exists("bench_res")) {
+  bench_res <- read.csv(system.file(package = "orthogene","benchmark/bench_res_example.csv"))
+}
+knitr::kable(bench_res)
+```
+
+## Plot results
+
+### Bar plot
+
+For each method, plot the run time (a) and the number of genes returned (b).
+
+```{r, fig.height=10} 
+bench_barplot <- orthogene:::plot_benchmark_bar(bench_res = bench_res)
+# ggsave(here::here("inst/benchmark/bench_barplot.pdf"),bench_barplot, height = 8)
+```
+
+### Scatter plot 
+
+For each method, plot the relationship between number of genes returned and run time.
+
+```{r}
+bench_scatterplot <- orthogene:::plot_benchmark_scatter(bench_res = bench_res)
+# ggsave(here::here("inst/benchmark/bench_scatterplot.pdf"),bench_scatterplot)
+```
+
+
+# Session Info 
+
+<details> 
+
+```{r Session Info}
+utils::sessionInfo()
+```
+
+</details>  
+
