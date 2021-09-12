@@ -16,7 +16,7 @@ Most recent update: <i>Sep-12-2021</i>
 <!-- badger::badge_license() -->
 
 [![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
-[![R-CMD-check](https://github.com/neurogenomics/MungeSumstats/workflows/R-full/badge.svg)](https://github.com/neurogenomics/MungeSumstats/actions)
+[![R-CMD-check](https://github.com/neurogenomics/orthogene/workflows/R-full/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 [![License: GPL (&gt;=
