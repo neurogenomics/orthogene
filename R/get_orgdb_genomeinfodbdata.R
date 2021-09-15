@@ -20,7 +20,7 @@ get_orgdb_genomeinfodbdata <- function(verbose = TRUE) {
 
     messager("Preparing organisms reference from: GenomeInfoDb", v = verbose)
     #### Avoid another dep, all we need is the data ####
-    requireNamespace("GenomeInfoDbData")
+    requireNamespace("GenomeInfoDbData") 
     utils::data("specData")
     #### Bioc doesn't like refs to GH ####
     # gh <- paste0("gi", "th", "ub")

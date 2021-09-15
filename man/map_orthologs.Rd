@@ -35,7 +35,13 @@ Use \link[orthogene]{map_species} to return a full list
  of available species.}
 
 \item{method}{R package to to use for gene mapping:
-\code{"gprofiler"} (slower but more species and genes) or
+\itemize{
+\item{\code{"gprofiler"} : Slower but more species and genes.}
+\item{\code{"homologene"} : Faster but fewer species and genes.}
+\item{\code{"babelgene"} : Faster but fewer species and genes.
+Also gives }
+}
+ (slower but more species and genes) or
 \code{"homologene"} (faster but fewer species and genes).}
 
 \item{mthreshold}{Maximum number of ortholog names per gene to show.

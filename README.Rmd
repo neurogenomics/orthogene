@@ -63,34 +63,48 @@ method <- "homologene"
 
 # Methods 
 
-For most functions, `orthogene` lets users choose between two different methods,
+For most functions, `orthogene` lets users choose between different methods,
 each with complementary strengths and weaknesses: 
-`"gprofiler"` and `"homologene"` 
+`"gprofiler"`, `"homologene"`, and `"babelgene"`
 
 In general, we recommend you use `"gprofiler"` when possible, 
 as it tends to be more comprehensive. 
+
+While `"babelgene"` contains less species, it queries a wide variety 
+of orthology databases and can return a column "support_n" that tells 
+you how many databases support each ortholog gene mapping. 
+This can be helpful when you need a quantitative measure of mapping quality.
 
 It's also worth noting that for smaller gene sets, 
 the speed difference between these methods becomes negligible. 
 
 ```{r pros_cons, echo=FALSE}
-pros_cons <- data.frame(gprofiler=c("Reference organisms"="700+",
-                       "Gene mappings"="More comprehensive",
-                       "Updates"="Frequent", 
-                       "Orthology databases"=paste("Ensembl",
-                                                   "HomoloGene",
-                                                   "WormBase",sep = ", "),
-                       "Data location"="Remote",
-                       "Internet connection"="Required",
-                       "Speed"="Slower"),
+pros_cons <- data.frame(
+    gprofiler=c("Reference organisms"="700+",
+                "Gene mappings"="More comprehensive",
+                "Updates"="Frequent", 
+                "Orthology databases"=paste("Ensembl",
+                                            "HomoloGene",
+                                            "WormBase",sep = ", "),
+                "Data location"="Remote",
+                "Internet connection"="Required",
+                "Speed"="Slower"),
                        
-           homologene=c("# reference organisms"="20+", 
-                        "Gene mappings"="Less comprehensive",
-                        "Updates"="Less frequent",
-                        "Orthology databases"="HomoloGene",
-                        "Data location"="Local",
-                        "Internet connection"="Not required",
-                        "Speed"="Faster")
+   homologene=c("# reference organisms"="20+", 
+                "Gene mappings"="Less comprehensive",
+                "Updates"="Less frequent",
+                "Orthology databases"="HomoloGene",
+                "Data location"="Local",
+                "Internet connection"="Not required",
+                "Speed"="Faster"),
+   
+    babelgene=c("# reference organisms"="19 (but cannot convert between pairs of non-human species)", 
+                "Gene mappings"="More comprehensive",
+                "Updates"="Less frequent",
+                "Orthology databases"="HGNC Comparison of Orthology Predictions (HCOP), which includes predictions from eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN",
+                "Data location"="Local",
+                "Internet connection"="Not required",
+                "Speed"="Faster")
            )
 knitr::kable(pros_cons)
 ```
@@ -142,9 +156,9 @@ Please see the
 for the full vignette.
 
 
-## [Hex sticker creation](https://neurogenomics.github.io/orthogene/inst/hex/hexSticker.html)
+## [Hex sticker creation](https://github.com/neurogenomics/orthogene/blob/main/inst/hex/hexSticker.Rmd)
 
-## [Benchmarking methods](https://neurogenomics.github.io/orthogene/inst/benchmark/benchmarks.html)
+## [Benchmarking methods](https://github.com/neurogenomics/orthogene/blob/main/inst/benchmark/benchmarks.Rmd)
 
 # Session Info 
 

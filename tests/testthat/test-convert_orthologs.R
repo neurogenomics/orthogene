@@ -8,7 +8,9 @@ test_that("convert_orthologs works", {
     )
     #### Define check function ####
     has_gene_cols <- function(dat) {
-        sum(c("input_gene", "input_gene_standard", "ortholog_gene") %in% colnames(dat))
+        sum(c("input_gene", 
+              "input_gene_standard",
+              "ortholog_gene") %in% colnames(dat))
     }
     ##### Run conversions ####
     # sparse matrix ==> sparse matrix: as rownames
@@ -120,4 +122,17 @@ test_that("convert_orthologs works", {
     )
     testthat::expect_equal(methods::is(gene_smat_sum, "sparseMatrix"), TRUE)
     testthat::expect_equal(has_gene_cols(gene_smat_sum), 0)
+    
+    
+    #### babelgene ####
+    gene_babel <- convert_orthologs(
+        gene_df = exp_mouse_smat,
+        input_species = "mouse",
+        gene_input = "rownames",
+        gene_output = "rownames",
+        method = "babelgene"
+    )
+    testthat::expect_equal(methods::is(gene_babel, "sparseMatrix"), TRUE)
+    testthat::expect_equal(has_gene_cols(gene_babel), 0)
+    testthat::expect_gte(nrow(gene_babel), 12000)
 })

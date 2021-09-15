@@ -97,7 +97,13 @@
 #' Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}).
 #'
 #' @param method R package to to use for gene mapping:
-#' \code{"gprofiler"} (slower but more species and genes) or
+#' \itemize{
+#' \item{\code{"gprofiler"} : Slower but more species and genes.}
+#' \item{\code{"homologene"} : Faster but fewer species and genes.}
+#' \item{\code{"babelgene"} : Faster but fewer species and genes.
+#' Also gives }
+#' }
+#'  (slower but more species and genes) or
 #' \code{"homologene"} (faster but fewer species and genes).
 #'
 #' @param as_sparse Convert \code{gene_df} to a sparse matrix.
@@ -152,7 +158,9 @@ convert_orthologs <- function(gene_df,
                               standardise_genes = FALSE,
                               input_species,
                               output_species = "human",
-                              method = c("gprofiler", "homologene"),
+                              method = c("gprofiler", 
+                                         "homologene", 
+                                         "babelgene"),
                               drop_nonorths = TRUE,
                               non121_strategy = "drop_both_species",
                               mthreshold = Inf,

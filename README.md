@@ -5,7 +5,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Sep-12-2021</i>
+Most recent update: <i>Sep-15-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -71,25 +71,30 @@ method <- "homologene"
 
 # Methods
 
-For most functions, `orthogene` lets users choose between two different
-methods, each with complementary strengths and weaknesses: `"gprofiler"`
-and `"homologene"`
+For most functions, `orthogene` lets users choose between different
+methods, each with complementary strengths and weaknesses:
+`"gprofiler"`, `"homologene"`, and `"babelgene"`
 
 In general, we recommend you use `"gprofiler"` when possible, as it
 tends to be more comprehensive.
 
+While `"babelgene"` contains less species, it queries a wide variety of
+orthology databases and can return a column “support\_n” that tells you
+how many databases support each ortholog gene mapping. This can be
+helpful when you need a quantitative measure of mapping quality.
+
 It’s also worth noting that for smaller gene sets, the speed difference
 between these methods becomes negligible.
 
-|                     | gprofiler                     | homologene         |
-|:--------------------|:------------------------------|:-------------------|
-| Reference organisms | 700+                          | 20+                |
-| Gene mappings       | More comprehensive            | Less comprehensive |
-| Updates             | Frequent                      | Less frequent      |
-| Orthology databases | Ensembl, HomoloGene, WormBase | HomoloGene         |
-| Data location       | Remote                        | Local              |
-| Internet connection | Required                      | Not required       |
-| Speed               | Slower                        | Faster             |
+|                     | gprofiler                     | homologene         | babelgene                                                                                                                                                                                                                 |
+|:--------------------|:------------------------------|:-------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Reference organisms | 700+                          | 20+                | 19 (but cannot convert between pairs of non-human species)                                                                                                                                                                |
+| Gene mappings       | More comprehensive            | Less comprehensive | More comprehensive                                                                                                                                                                                                        |
+| Updates             | Frequent                      | Less frequent      | Less frequent                                                                                                                                                                                                             |
+| Orthology databases | Ensembl, HomoloGene, WormBase | HomoloGene         | HGNC Comparison of Orthology Predictions (HCOP), which includes predictions from eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN |
+| Data location       | Remote                        | Local              | Local                                                                                                                                                                                                                     |
+| Internet connection | Required                      | Not required       | Not required                                                                                                                                                                                                              |
+| Speed               | Slower                        | Faster             | Faster                                                                                                                                                                                                                    |
 
 # Quick example
 
@@ -195,9 +200,9 @@ knitr::kable(as.matrix(head(gene_df)))
 website](https://neurogenomics.github.io/orthogene/articles/orthogene)
 for the full vignette.
 
-## [Hex sticker creation](https://neurogenomics.github.io/orthogene/inst/hex/hexSticker.html)
+## [Hex sticker creation](https://github.com/neurogenomics/orthogene/blob/main/inst/hex/hexSticker.Rmd)
 
-## [Benchmarking methods](https://neurogenomics.github.io/orthogene/inst/benchmark/benchmarks.html)
+## [Benchmarking methods](https://github.com/neurogenomics/orthogene/blob/main/inst/benchmark/benchmarks.Rmd)
 
 # Session Info
 
@@ -222,7 +227,7 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_0.99.2
+    ## [1] orthogene_0.99.3
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_1.0.7                lattice_0.20-44          
@@ -237,30 +242,31 @@ utils::sessionInfo()
     ## [19] data.table_1.14.0         car_3.0-11               
     ## [21] Matrix_1.3-4              rmarkdown_2.10           
     ## [23] stringr_1.4.0             foreign_0.8-81           
-    ## [25] htmlwidgets_1.5.3         munsell_0.5.0            
+    ## [25] htmlwidgets_1.5.4         munsell_0.5.0            
     ## [27] broom_0.7.9               compiler_4.1.0           
-    ## [29] gprofiler2_0.2.1          xfun_0.25                
+    ## [29] gprofiler2_0.2.1          xfun_0.26                
     ## [31] pkgconfig_2.0.3           htmltools_0.5.2          
     ## [33] tidyselect_1.1.1          tibble_3.1.4             
     ## [35] GenomeInfoDbData_1.2.6    rio_0.5.27               
-    ## [37] fansi_0.5.0               viridisLite_0.4.0        
+    ## [37] viridisLite_0.4.0         fansi_0.5.0              
     ## [39] crayon_1.4.1              dplyr_1.0.7              
     ## [41] ggpubr_0.4.0              grid_4.1.0               
     ## [43] jsonlite_1.7.2            gtable_0.3.0             
     ## [45] lifecycle_1.0.0           DBI_1.1.1                
     ## [47] magrittr_2.0.1            scales_1.1.1             
     ## [49] zip_2.2.0                 stringi_1.7.4            
-    ## [51] carData_3.0-4             ggsignif_0.6.2           
+    ## [51] carData_3.0-4             ggsignif_0.6.3           
     ## [53] ellipsis_0.3.2            generics_0.1.0           
     ## [55] vctrs_0.3.8               openxlsx_4.2.4           
     ## [57] tools_4.1.0               forcats_0.5.1            
     ## [59] homologene_1.4.68.19.3.27 glue_1.4.2               
     ## [61] purrr_0.3.4               hms_1.1.0                
-    ## [63] abind_1.4-5               parallel_4.1.0           
+    ## [63] parallel_4.1.0            abind_1.4-5              
     ## [65] fastmap_1.1.0             yaml_2.2.1               
-    ## [67] colorspace_2.0-2          rstatix_0.7.0            
-    ## [69] plotly_4.9.4.1            knitr_1.33               
-    ## [71] haven_2.4.3               patchwork_1.1.1
+    ## [67] babelgene_21.4            colorspace_2.0-2         
+    ## [69] rstatix_0.7.0             plotly_4.9.4.1           
+    ## [71] knitr_1.34                haven_2.4.3              
+    ## [73] patchwork_1.1.1
 
 </details>
 

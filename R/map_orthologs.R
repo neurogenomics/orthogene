@@ -53,6 +53,8 @@ map_orthologs <- function(genes,
     #### Select mapping method ####
     # Both methods will return a dataframe with at least the columns
     # "input_gene" and "ortholog_gene"
+    
+    #### gprofiler ####
     if (methods_opts(method = method, gprofiler_opts = TRUE)) {
         gene_map <- map_orthologs_gprofiler(
             genes = genes,
@@ -63,8 +65,19 @@ map_orthologs <- function(genes,
             ...
         )
     }
+    #### homologene ####
     if (methods_opts(method = method, homologene_opts = TRUE)) {
         gene_map <- map_orthologs_homologene(
+            genes = genes,
+            input_species = input_species,
+            output_species = output_species,
+            verbose = verbose,
+            ...
+        )
+    }
+    #### babelgene ####
+    if (methods_opts(method = method, babelgene_opts = TRUE)) {
+        gene_map <- map_orthologs_babelgene(
             genes = genes,
             input_species = input_species,
             output_species = output_species,
