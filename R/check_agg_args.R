@@ -22,7 +22,8 @@ check_agg_args <- function(gene_df,
         }
         #### Check gene_input ####
         gene_input_check <- gene_input %in% gene_input_opts(
-            rownames_opts = TRUE)
+            rownames_opts = TRUE
+        )
         if (!gene_input_check) {
             messager("WARNING: To aggregate gene_df,",
                 "gene_input must be 'rownames'.",
@@ -31,7 +32,8 @@ check_agg_args <- function(gene_df,
         }
         #### Check gene_output ####
         gene_output_check <- gene_output %in% gene_output_opts(
-            rownames_opts = TRUE)
+            rownames_opts = TRUE
+        )
         if (!gene_output_check) {
             messager("WARNING: To aggregate gene_df,",
                 "gene_output must be 'rownames'.",

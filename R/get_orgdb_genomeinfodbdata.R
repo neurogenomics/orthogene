@@ -19,20 +19,8 @@ get_orgdb_genomeinfodbdata <- function(verbose = TRUE) {
     species <- id <- version <- ..keep_cols <- NULL
 
     messager("Preparing organisms reference from: GenomeInfoDb", v = verbose)
-    #### Avoid another dep, all we need is the data ####
-    requireNamespace("GenomeInfoDbData") 
+    requireNamespace("GenomeInfoDbData")
     utils::data("specData")
-    #### Bioc doesn't like refs to GH ####
-    # gh <- paste0("gi", "th", "ub")
-    # URL <- paste0(
-    #     "https://", gh, ".com/",
-    #     "Bioconductor/GenomeInfoDbData/raw/master/data/specData.rda"
-    # )
-    # specData <- load_data(
-    #     filename = URL,
-    #     verbose = verbose
-    # )
-    # specData <- data.table::data.table(specData)
     #### Remove NAs ####
     no_no_list <- c("environmental", "unclassified", NA)
     specData <- specData[(!genus %in% no_no_list) &
@@ -47,8 +35,10 @@ get_orgdb_genomeinfodbdata <- function(verbose = TRUE) {
     )]
     specData[, version := NA]
     data.table::setnames(specData, "tax_id", "taxonomy_id")
-    keep_cols <- c("display_name", "id", 
-                   "scientific_name", "taxonomy_id", "version")
+    keep_cols <- c(
+        "display_name", "id",
+        "scientific_name", "taxonomy_id", "version"
+    )
     specData <- unique(specData[, ..keep_cols])
     return(specData)
 }

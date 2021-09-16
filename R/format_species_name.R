@@ -16,8 +16,11 @@ format_species_name <- function(species,
     #### "C l familiaris" ==> "Clfamiliaris" ####
     if (remove_chars != FALSE) {
         species <- gsub(" |[.]|[-]", replace_char, unname(species))
-        if (replace_char != "") species <- trimws(species, 
-                                                  whitespace = replace_char)
+        if (replace_char != "") {
+            species <- trimws(species,
+                whitespace = replace_char
+            )
+        }
     }
     #### "Clfamiliaris" ==> "clfamiliaris"
     if (lowercase) {

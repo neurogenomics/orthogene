@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot benchmark: scatter — plot_benchmark_scatter • orthogene</title>
+<title>Map orthologs: babelgene — map_orthologs_babelgene • orthogene</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Plot benchmark: scatter — plot_benchmark_scatter" />
-<meta property="og:description" content="Plot run time vs. # genes returned across species and
-function tests." />
+<meta property="og:title" content="Map orthologs: babelgene — map_orthologs_babelgene" />
+<meta property="og:description" content="Map orthologs from one species to another
+using orthologs." />
 
 
 
@@ -115,43 +115,61 @@ function tests." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot benchmark: scatter</h1>
-    <small class="dont-index">Source: <a href='https://github.com/neurogenomics/orthogene/blob/master/R/plot_benchmark_scatter.R'><code>R/plot_benchmark_scatter.R</code></a></small>
-    <div class="hidden name"><code>plot_benchmark_scatter.Rd</code></div>
+    <h1>Map orthologs: babelgene</h1>
+    <small class="dont-index">Source: <a href='https://github.com/neurogenomics/orthogene/blob/master/R/map_orthologs_babelgene.R'><code>R/map_orthologs_babelgene.R</code></a></small>
+    <div class="hidden name"><code>map_orthologs_babelgene.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot run time vs. # genes returned across species and
-function tests.</p>
+    <p>Map orthologs from one species to another
+using <a href='https://igordot.github.io/babelgene/reference/orthologs.html'>orthologs</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_benchmark_scatter</span><span class='op'>(</span>
-  <span class='va'>bench_res</span>,
-  remove_failed_times <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  show_plot <span class='op'>=</span> <span class='cn'>TRUE</span>
+    <pre class="usage"><span class='fu'>map_orthologs_babelgene</span><span class='op'>(</span>
+  <span class='va'>genes</span>,
+  <span class='va'>input_species</span>,
+  output_species <span class='op'>=</span> <span class='st'>"human"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>bench_res</th>
-      <td><p>Results from</p></td>
+      <th>genes</th>
+      <td><p>Gene list.</p></td>
     </tr>
     <tr>
-      <th>remove_failed_times</th>
-      <td><p>In instances where
-no genes were returned, set time to <code>NA</code>.</p></td>
+      <th>input_species</th>
+      <td><p>Name of the input species (e.g., "mouse","fly").
+Use <a href='map_species.html'>map_species</a> to return a full list
+of available species.</p></td>
     </tr>
     <tr>
-      <th>show_plot</th>
-      <td><p>Print plot.</p></td>
+      <th>output_species</th>
+      <td><p>Name of the output species (e.g. "human","chicken").
+Use <a href='map_species.html'>map_species</a> to return a full list
+ of available species.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Print messages.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments passed
+to <a href='https://igordot.github.io/babelgene/reference/orthologs.html'>orthologs</a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://cran.r-project.org/web/packages/babelgene/vignettes/babelgene-intro.html'>
+babelgene tutorial</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>ggplot object</p>
+    <p>Ortholog map <code>data.frame</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

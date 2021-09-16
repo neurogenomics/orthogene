@@ -17,8 +17,8 @@ drop_non121 <- function(gene_map,
     #### Drop input species non-1:1 orths ####
     if ((non121_strategy %in% c("dis", "dbs")) &&
         (length(dup_input_genes) > 0)) {
-        messager("Dropping", 
-                 formatC(length(dup_input_genes), big.mark = ","),
+        messager("Dropping",
+            formatC(length(dup_input_genes), big.mark = ","),
             "genes that have multiple input_gene per ortholog_gene.",
             v = verbose
         )
@@ -27,8 +27,8 @@ drop_non121 <- function(gene_map,
     #### Drop output species non-1:1 orths ####
     if ((non121_strategy %in% c("dos", "dbs", agg_opts)) &&
         (length(dup_ortholog_genes) > 0)) {
-        messager("Dropping", 
-                 formatC(length(dup_ortholog_genes), big.mark = ","),
+        messager("Dropping",
+            formatC(length(dup_ortholog_genes), big.mark = ","),
             "genes that have multiple ortholog_gene per input_gene.",
             v = verbose
         )

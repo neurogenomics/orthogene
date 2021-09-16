@@ -5,7 +5,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Sep-15-2021</i>
+Most recent update: <i>Sep-16-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -274,14 +274,19 @@ utils::sessionInfo()
 
 ## Tools
 
--   [`homologene`](https://github.com/oganm/homologene): `orthogene`
-    uses this package. Provides API access to NCBI
-    [HomoloGene](https://www.ncbi.nlm.nih.gov/homologene) database.
-
 -   [`gprofiler2`](https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html):
     `orthogene` uses this package. `gprofiler2::gorth()` pulls from
     [many orthology mapping
     databases](https://biit.cs.ut.ee/gprofiler/page/organism-list).
+
+-   [`homologene`](https://github.com/oganm/homologene): `orthogene`
+    uses this package. Provides API access to NCBI
+    [HomoloGene](https://www.ncbi.nlm.nih.gov/homologene) database.
+
+-   [`babelgene`](https://cran.r-project.org/web/packages/babelgene/vignettes/babelgene-intro.html):
+    `orthogene` uses this package. `babelgene::orthologs()` pulls from
+    [many orthology mapping
+    databases](https://cran.r-project.org/web/packages/babelgene/vignettes/babelgene-intro.html).
 
 -   [`annotationTools`](https://www.bioconductor.org/packages/release/bioc/html/annotationTools.html):
     For interspecies microarray data.

@@ -30,8 +30,10 @@
 aggregate_mapped_genes <- function(gene_df,
                                    species = "human",
                                    FUN = "sum",
-                                   method = c("monocle3", "stats",
-                                              "delayedarray"),
+                                   method = c(
+                                       "monocle3", "stats",
+                                       "delayedarray"
+                                   ),
                                    transpose = FALSE,
                                    gene_map = NULL,
                                    gene_map_col = "name",

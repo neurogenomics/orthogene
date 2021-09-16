@@ -23,7 +23,7 @@ check_gene_df_type <- function(gene_df,
         is(gene_df, "data.table") |
         is(gene_df, "tibble")) {
         messager(is(gene_df)[1], "format detected.", v = verbose)
-        if (!is(gene_df,"data.frame")) {
+        if (!is(gene_df, "data.frame")) {
             # data.tables, tibbles, etc have too many idiosyncrasies
             # standardise them here.
             messager("Converting to data.frame", v = verbose)

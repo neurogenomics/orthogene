@@ -31,8 +31,10 @@ plot_benchmark_scatter <- function(bench_res,
     ) +
         geom_point() +
         geom_smooth(method = "lm") +
-        ggpubr::stat_cor(label.x.npc = "right", label.y.npc = "bottom",
-                         hjust = 1) +
+        ggpubr::stat_cor(
+            label.x.npc = "right", label.y.npc = "bottom",
+            hjust = 1
+        ) +
         scale_fill_manual(values = fill_colors, drop = FALSE) +
         scale_color_manual(values = fill_colors, drop = FALSE) +
         facet_grid(

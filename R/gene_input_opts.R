@@ -19,12 +19,18 @@ gene_input_opts <- function(gene_df = NULL,
         } else {
             colu_opts <- c(colu_opts[seq(1, 3)], "...")
             opts <- c(
-                paste("  - ROW NAMES:", 
-                      paste(rown_opts, collapse = " / "), "\n"),
-                paste("  - COLUMN NAMES:", 
-                      paste(coln_opts, collapse = " / "), "\n"),
-                paste("  - COLUMNS:", 
-                      paste(colu_opts, collapse = " / "), "\n")
+                paste(
+                    "  - ROW NAMES:",
+                    paste(rown_opts, collapse = " / "), "\n"
+                ),
+                paste(
+                    "  - COLUMN NAMES:",
+                    paste(coln_opts, collapse = " / "), "\n"
+                ),
+                paste(
+                    "  - COLUMNS:",
+                    paste(colu_opts, collapse = " / "), "\n"
+                )
             )
         }
     }

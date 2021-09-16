@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Sep-12-2021</i>
+Most recent update: <i>Sep-16-2021</i>
 </h4>
 <!-- badges: start -->
 <!-- badger::badge_codecov() -->
@@ -139,49 +139,64 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <div id="methods" class="section level1">
 <h1 class="hasAnchor">
 <a href="#methods" class="anchor"></a>Methods</h1>
-<p>For most functions, <code>orthogene</code> lets users choose between two different methods, each with complementary strengths and weaknesses: <code>"gprofiler"</code> and <code>"homologene"</code></p>
+<p>For most functions, <code>orthogene</code> lets users choose between different methods, each with complementary strengths and weaknesses: <code>"gprofiler"</code>, <code>"homologene"</code>, and <code>"babelgene"</code></p>
 <p>In general, we recommend you use <code>"gprofiler"</code> when possible, as it tends to be more comprehensive.</p>
+<p>While <code>"babelgene"</code> contains less species, it queries a wide variety of orthology databases and can return a column “support_n” that tells you how many databases support each ortholog gene mapping. This can be helpful when you need a quantitative measure of mapping quality.</p>
 <p>It’s also worth noting that for smaller gene sets, the speed difference between these methods becomes negligible.</p>
 <table class="table">
+<colgroup>
+<col width="7%">
+<col width="10%">
+<col width="6%">
+<col width="75%">
+</colgroup>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="left">gprofiler</th>
 <th align="left">homologene</th>
+<th align="left">babelgene</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Reference organisms</td>
 <td align="left">700+</td>
 <td align="left">20+</td>
+<td align="left">19 (but cannot convert between pairs of non-human species)</td>
 </tr>
 <tr class="even">
 <td align="left">Gene mappings</td>
 <td align="left">More comprehensive</td>
 <td align="left">Less comprehensive</td>
+<td align="left">More comprehensive</td>
 </tr>
 <tr class="odd">
 <td align="left">Updates</td>
 <td align="left">Frequent</td>
+<td align="left">Less frequent</td>
 <td align="left">Less frequent</td>
 </tr>
 <tr class="even">
 <td align="left">Orthology databases</td>
 <td align="left">Ensembl, HomoloGene, WormBase</td>
 <td align="left">HomoloGene</td>
+<td align="left">HGNC Comparison of Orthology Predictions (HCOP), which includes predictions from eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN</td>
 </tr>
 <tr class="odd">
 <td align="left">Data location</td>
 <td align="left">Remote</td>
+<td align="left">Local</td>
 <td align="left">Local</td>
 </tr>
 <tr class="even">
 <td align="left">Internet connection</td>
 <td align="left">Required</td>
 <td align="left">Not required</td>
+<td align="left">Not required</td>
 </tr>
 <tr class="odd">
 <td align="left">Speed</td>
 <td align="left">Slower</td>
+<td align="left">Faster</td>
 <td align="left">Faster</td>
 </tr>
 </tbody>
@@ -347,12 +362,12 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 </div>
 <div id="hex-sticker-creation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#hex-sticker-creation" class="anchor"></a><a href="https://neurogenomics.github.io/orthogene/inst/hex/hexSticker.html">Hex sticker creation</a>
+<a href="#hex-sticker-creation" class="anchor"></a><a href="https://github.com/neurogenomics/orthogene/blob/main/inst/hex/hexSticker.Rmd">Hex sticker creation</a>
 </h2>
 </div>
 <div id="benchmarking-methods" class="section level2">
 <h2 class="hasAnchor">
-<a href="#benchmarking-methods" class="anchor"></a><a href="https://neurogenomics.github.io/orthogene/inst/benchmark/benchmarks.html">Benchmarking methods</a>
+<a href="#benchmarking-methods" class="anchor"></a><a href="https://github.com/neurogenomics/orthogene/blob/main/inst/benchmark/benchmarks.Rmd">Benchmarking methods</a>
 </h2>
 </div>
 </div>
@@ -376,7 +391,7 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="do">## other attached packages:</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] orthogene_0.99.2</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] orthogene_0.99.3</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="do">## loaded via a namespace (and not attached):</span></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] Rcpp_1.0.7                lattice_0.20-44          </span></span>
@@ -391,30 +406,31 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] data.table_1.14.0         car_3.0-11               </span></span>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] Matrix_1.3-4              rmarkdown_2.10           </span></span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] stringr_1.4.0             foreign_0.8-81           </span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] htmlwidgets_1.5.3         munsell_0.5.0            </span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] htmlwidgets_1.5.4         munsell_0.5.0            </span></span>
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] broom_0.7.9               compiler_4.1.0           </span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] gprofiler2_0.2.1          xfun_0.25                </span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] gprofiler2_0.2.1          xfun_0.26                </span></span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [31] pkgconfig_2.0.3           htmltools_0.5.2          </span></span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [33] tidyselect_1.1.1          tibble_3.1.4             </span></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [35] GenomeInfoDbData_1.2.6    rio_0.5.27               </span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="do">## [37] fansi_0.5.0               viridisLite_0.4.0        </span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="do">## [37] viridisLite_0.4.0         fansi_0.5.0              </span></span>
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="do">## [39] crayon_1.4.1              dplyr_1.0.7              </span></span>
 <span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="do">## [41] ggpubr_0.4.0              grid_4.1.0               </span></span>
 <span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="do">## [43] jsonlite_1.7.2            gtable_0.3.0             </span></span>
 <span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [45] lifecycle_1.0.0           DBI_1.1.1                </span></span>
 <span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [47] magrittr_2.0.1            scales_1.1.1             </span></span>
 <span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="do">## [49] zip_2.2.0                 stringi_1.7.4            </span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [51] carData_3.0-4             ggsignif_0.6.2           </span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [51] carData_3.0-4             ggsignif_0.6.3           </span></span>
 <span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="do">## [53] ellipsis_0.3.2            generics_0.1.0           </span></span>
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="do">## [55] vctrs_0.3.8               openxlsx_4.2.4           </span></span>
 <span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="do">## [57] tools_4.1.0               forcats_0.5.1            </span></span>
 <span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="do">## [59] homologene_1.4.68.19.3.27 glue_1.4.2               </span></span>
 <span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="do">## [61] purrr_0.3.4               hms_1.1.0                </span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="do">## [63] abind_1.4-5               parallel_4.1.0           </span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="do">## [63] parallel_4.1.0            abind_1.4-5              </span></span>
 <span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="do">## [65] fastmap_1.1.0             yaml_2.2.1               </span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="do">## [67] colorspace_2.0-2          rstatix_0.7.0            </span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="do">## [69] plotly_4.9.4.1            knitr_1.33               </span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="do">## [71] haven_2.4.3               patchwork_1.1.1</span></span></code></pre></div>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="do">## [67] babelgene_21.4            colorspace_2.0-2         </span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="do">## [69] rstatix_0.7.0             plotly_4.9.4.1           </span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="do">## [71] knitr_1.34                haven_2.4.3              </span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="do">## [73] patchwork_1.1.1</span></span></code></pre></div>
 </details>
 </div>
 <div id="related-projects" class="section level1">
@@ -424,8 +440,9 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <h2 class="hasAnchor">
 <a href="#tools" class="anchor"></a>Tools</h2>
 <ul>
-<li><p><a href="https://github.com/oganm/homologene"><code>homologene</code></a>: <code>orthogene</code> uses this package. Provides API access to NCBI <a href="https://www.ncbi.nlm.nih.gov/homologene">HomoloGene</a> database.</p></li>
 <li><p><a href="https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html"><code>gprofiler2</code></a>: <code>orthogene</code> uses this package. <code><a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html">gprofiler2::gorth()</a></code> pulls from <a href="https://biit.cs.ut.ee/gprofiler/page/organism-list">many orthology mapping databases</a>.</p></li>
+<li><p><a href="https://github.com/oganm/homologene"><code>homologene</code></a>: <code>orthogene</code> uses this package. Provides API access to NCBI <a href="https://www.ncbi.nlm.nih.gov/homologene">HomoloGene</a> database.</p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/babelgene/vignettes/babelgene-intro.html"><code>babelgene</code></a>: <code>orthogene</code> uses this package. <code><a href="https://igordot.github.io/babelgene/reference/orthologs.html">babelgene::orthologs()</a></code> pulls from <a href="https://cran.r-project.org/web/packages/babelgene/vignettes/babelgene-intro.html">many orthology mapping databases</a>.</p></li>
 <li><p><a href="https://www.bioconductor.org/packages/release/bioc/html/annotationTools.html"><code>annotationTools</code></a>: For interspecies microarray data.</p></li>
 <li><p><a href="https://www.leibniz-hki.de/en/orthology-r-package.html"><code>orthology</code></a>: R package for ortholog mapping (deprecated?).</p></li>
 <li><p><a href="https://rdrr.io/github/elsayed-lab/hpgltools/man/load_biomart_orthologs.html"><code>hpgltools::load_biomart_orthologs()</code></a>: Helper function to get orthologs from biomart.</p></li>
@@ -461,7 +478,7 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small>GPL (&gt;= 3)</small></li>
+<li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></small></li>
 </ul>
 </div>
 <div class="developers">

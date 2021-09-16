@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
       </span>
     </div>
 
@@ -165,8 +165,12 @@ Use <a href='map_species.html'>map_species</a> to return a full list
     </tr>
     <tr>
       <th>method</th>
-      <td><p>R package to to use for gene mapping:
-<code>"gprofiler"</code> (slower but more species and genes) or
+      <td><p>R package to to use for gene mapping:</p><ul>
+<li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
+<li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
+<li><p><code>"babelgene"</code> : Faster but fewer species and genes.
+Also gives</p></li>
+</ul><p>(slower but more species and genes) or
 <code>"homologene"</code> (faster but fewer species and genes).</p></td>
     </tr>
     <tr>

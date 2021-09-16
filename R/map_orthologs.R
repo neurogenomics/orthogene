@@ -53,7 +53,7 @@ map_orthologs <- function(genes,
     #### Select mapping method ####
     # Both methods will return a dataframe with at least the columns
     # "input_gene" and "ortholog_gene"
-    
+
     #### gprofiler ####
     if (methods_opts(method = method, gprofiler_opts = TRUE)) {
         gene_map <- map_orthologs_gprofiler(
