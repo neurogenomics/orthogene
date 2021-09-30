@@ -139,13 +139,13 @@ tend to be less conserved and less translatable.
 Users can address this using different strategies via `non121_strategy=`.
 
 ```{r convert_orthologs}
-gene_df <- convert_orthologs(gene_df = exp_mouse,
-                             gene_input = "rownames", 
-                             gene_output = "rownames", 
-                             input_species = "mouse",
-                             output_species = "human",
-                             non121_strategy = "drop_both_species",
-                             method = method) 
+gene_df <- orthogene::convert_orthologs(gene_df = exp_mouse,
+                                        gene_input = "rownames", 
+                                        gene_output = "rownames", 
+                                        input_species = "mouse",
+                                        output_species = "human",
+                                        non121_strategy = "drop_both_species",
+                                        method = method) 
 
 knitr::kable(as.matrix(head(gene_df)))
 ```
