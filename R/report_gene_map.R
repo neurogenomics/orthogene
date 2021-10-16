@@ -6,7 +6,7 @@ report_gene_map <- function(gene_df2,
                             func_name = "convert_orthologs",
                             verbose = TRUE) {
     n_dropped <- n_input_genes - n_output_genes
-    messager("\n=========== REPORT SUMMARY ===========\n")
+    messager("\n=========== REPORT SUMMARY ===========\n",v=verbose)
     if (report_dropped) {
         messager("Total genes dropped after", func_name, ":\n  ",
             formatC(n_dropped, big.mark = ","), "/",

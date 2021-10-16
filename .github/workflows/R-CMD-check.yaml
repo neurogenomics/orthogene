@@ -41,6 +41,7 @@ jobs:
       - name: Test coverage
         if: matrix.r == 'release'
         run: |
+          Rscript -e 'install.packages("xml2")'
           Rscript -e 'remotes::install_github("r-lib/covr@gh-actions")'
           Rscript -e 'covr::codecov()'
 # linux:
