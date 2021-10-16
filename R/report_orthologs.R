@@ -72,7 +72,7 @@ report_orthologs <- function(target_species = "mouse",
         ...
     )
 
-    messager("\n=========== REPORT SUMMARY ===========\n")
+    messager("\n=========== REPORT SUMMARY ===========\n",v=verbose)
     one2one_orthologs <- dplyr::n_distinct(gene_df$ortholog_gene)
     target_total_genes <- dplyr::n_distinct(tar_genes$Gene.Symbol)
     reference_total_genes <- dplyr::n_distinct(ref_genes$Gene.Symbol)
@@ -86,13 +86,15 @@ report_orthologs <- function(target_species = "mouse",
         formatC(one2one_orthologs, big.mark = ","), "/",
         formatC(target_total_genes, big.mark = ","),
         paste0("(", target_percent, "%)"),
-        "target_species genes remain after ortholog conversion."
+        "target_species genes remain after ortholog conversion.",
+        v=verbose
     )
     messager(
         formatC(one2one_orthologs, big.mark = ","), "/",
         formatC(reference_total_genes, big.mark = ","),
         paste0("(", reference_percent, "%)"),
-        "reference_species genes remain after ortholog conversion."
+        "reference_species genes remain after ortholog conversion.",
+        v=verbose
     )
     if (return_report) {
         list(
