@@ -66,11 +66,13 @@ all_genes <- function(species,
         )
     }
     ### Clean genes ####
-    tar_genes <- remove_all_nas(
-        dat = tar_genes,
-        col_name = "Gene.Symbol",
-        verbose = verbose
-    )
+    if(ensure_filter_nas){
+        tar_genes <- remove_all_nas(
+            dat = tar_genes,
+            col_name = "Gene.Symbol",
+            verbose = verbose
+        )
+    } 
     #### Report ####
     messager("Returning all", formatC(nrow(tar_genes), big.mark = ","),
         "genes from", paste0(species, "."),
