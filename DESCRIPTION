@@ -1,7 +1,7 @@
 Package: orthogene
 Type: Package
 Title: Interspecies gene mapping 
-Version: 0.99.6
+Version: 0.99.7
 Authors@R:
     c( 
      person(given = "Brian",
@@ -52,7 +52,8 @@ Suggests:
     markdown,
     rmarkdown,
     here, 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    piggyback
 RoxygenNote: 7.1.2
 Encoding: UTF-8
 Config/testthat/edition: 3

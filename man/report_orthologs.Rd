@@ -9,7 +9,7 @@ report_orthologs(
   reference_species = "human",
   standardise_genes = FALSE,
   method_all_genes = c("gprofiler", "homologene"),
-  method_convert_orthologs = c("gprofiler", "homologene"),
+  method_convert_orthologs = c("gprofiler", "homologene", "babelgene"),
   drop_nonorths = TRUE,
   non121_strategy = "drop_both_species",
   round_digits = 2,

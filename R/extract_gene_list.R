@@ -7,6 +7,7 @@ extract_gene_list <- function(gene_df,
         gene_df = gene_df,
         columns_opts = TRUE
     )
+    vec_opts <- gene_input_opts(vector_opts = TRUE)
 
     if (tolower(gene_input) %in% rown_opts) {
         messager("Extracting genes from rownames.", v = verbose)
@@ -27,6 +28,8 @@ extract_gene_list <- function(gene_df,
             # (sparse) matrices don't allow gene_df[[gene_input]] syntax
             genes <- gene_df[, gene_input]
         }
+    } else if (gene_input %in% vec_opts){ 
+        genes <- unlist(gene_df)
     } else {
         all_opts <- gene_input_opts(
             gene_df = gene_df,
@@ -41,5 +44,7 @@ extract_gene_list <- function(gene_df,
         )
         stop(stop_msg)
     }
+    messager(formatC(length(genes), big.mark = ","),
+             "genes extracted.",v=verbose)
     return(genes)
 }

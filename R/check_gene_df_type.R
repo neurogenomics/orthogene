@@ -33,13 +33,16 @@ check_gene_df_type <- function(gene_df,
             stringsAsFactors = FALSE
         )
     } else if (is(gene_df, "character") |
-        is(gene_df, "vector") |
-        is(gene_df, "list")) {
+               is(gene_df, "vector") |
+               is(gene_df, "list")) {
         messager(is(gene_df)[1], "format detected.", v = verbose)
         messager("Converting to data.frame", v = verbose)
         gene_df <- data.frame(
-            input_gene = gene_df,
-            row.names = gene_df,
+            ## Extra index col prevents df from accidentally
+            ## turning into vector again later.
+            index = seq(1,length(gene_df)), 
+            input_gene = unlist(unname(gene_df)),
+            row.names = unlist(unname(gene_df)),
             check.names = FALSE,
             stringsAsFactors = FALSE
         )

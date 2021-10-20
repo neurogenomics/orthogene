@@ -6,7 +6,7 @@
 \usage{
 all_genes(
   species,
-  method = c("gprofiler", "homologene"),
+  method = c("gprofiler", "homologene", "babelgene"),
   ensure_filter_nas = FALSE,
   verbose = TRUE,
   ...

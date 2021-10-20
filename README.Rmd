@@ -48,6 +48,8 @@ In brief, `orthogene` lets you easily:
 ```{r, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
      install.packages("BiocManager")
+# orthogene is only available on Bioconductor>=3.14
+if(BiocManager::version()<"3.14") BiocManager::install(version = "3.14")
 
 BiocManager::install("orthogene")
 ```
@@ -104,7 +106,7 @@ pros_cons <- data.frame(
                 "Orthology databases"="HGNC Comparison of Orthology Predictions (HCOP), which includes predictions from eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN",
                 "Data location"="Local",
                 "Internet connection"="Not required",
-                "Speed"="Faster")
+                "Speed"="Medium")
            )
 knitr::kable(pros_cons)
 ```

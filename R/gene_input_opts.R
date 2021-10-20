@@ -2,6 +2,7 @@ gene_input_opts <- function(gene_df = NULL,
                             rownames_opts = FALSE,
                             colnames_opts = FALSE,
                             columns_opts = FALSE,
+                            vector_opts = FALSE,
                             print_friendly = FALSE) {
     opts <- c()
     if (rownames_opts) {
@@ -33,6 +34,10 @@ gene_input_opts <- function(gene_df = NULL,
                 )
             )
         }
+    }
+    if(vector_opts){
+        vec_opts <- c("vector", "list", "dict", 3)
+        opts <- c(opts, vec_opts)
     }
     return(opts)
 }

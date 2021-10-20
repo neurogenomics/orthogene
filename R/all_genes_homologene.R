@@ -7,14 +7,15 @@ all_genes_homologene <- function(species,
     messager("Retrieving all genes using: homologene.", v = verbose)
     target_id <- map_species(
         species = species,
-        output_format = "taxonomy_id",
+        output_format = "taxonomy_id", 
         verbose = verbose
     )
     tar_genes <- subset(
         homologene::homologeneData,
         Taxonomy == target_id
-    )
-    messager("Gene table with", nrow(tar_genes), "rows retrieved.",
+    ) %>% dplyr::rename(taxonomy_id=Taxonomy)
+    messager("Gene table with", formatC(nrow(tar_genes),big.mark = ","),
+             "rows retrieved.",
         v = verbose
     )
     return(tar_genes)

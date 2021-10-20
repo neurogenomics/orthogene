@@ -8,7 +8,7 @@ map_species(
   species = NULL,
   search_cols = c("display_name", "id", "scientific_name", "taxonomy_id"),
   output_format = c("id", "display_name", "scientific_name", "taxonomy_id", "version"),
-  use_genomeinfodbdata = FALSE,
+  method = "gprofiler",
   use_local = TRUE,
   verbose = TRUE
 )
@@ -26,10 +26,15 @@ API}.}
 
 \item{output_format}{Which column to return.}
 
-\item{use_genomeinfodbdata}{Retrieve an additional 2+ million organisms
-from \code{GenomeInfoDb::specData}.
-\emph{NOTE: } Not all of these organisms are available
-for gene/ortholog mapping.}
+\item{method}{R package to to use for gene mapping:
+\itemize{
+\item{\code{"gprofiler"} : Slower but more species and genes.}
+\item{\code{"homologene"} : Faster but fewer species and genes.}
+\item{\code{"babelgene"} : Faster but fewer species and genes.
+Also gives }
+}
+ (slower but more species and genes) or
+\code{"homologene"} (faster but fewer species and genes).}
 
 \item{use_local}{If \code{TRUE} \emph{default},
 \link[orthogene]{map_species}

@@ -15,16 +15,19 @@ taxa_id_dict <- function(species = c(
                              "dog", "cow", "chicken",
                              "zebrafish", "frog", "fly", "worm",
                              "rice"
-                         )) {
+                         ),
+                         include_common_names = TRUE) {
     dict <- setNames(
         homologene::taxData$tax_id,
         homologene::taxData$name_txt
     )
     ## Add some common names for ease of use
-    dict <- c(
-        dict,
-        common_species_names_dict()
-    )
+    if(include_common_names){
+        dict <- c(
+            dict,
+            common_species_names_dict()
+        )
+    } 
     if (is.null(species)) {
         return(dict)
     } else {

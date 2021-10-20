@@ -25,27 +25,47 @@
 #' genome_mouse <- all_genes(species = "mouse")
 #' genome_human <- all_genes(species = "human")
 all_genes <- function(species,
-                      method = c("gprofiler", "homologene"),
+                      method = c("gprofiler", 
+                                 "homologene",
+                                 "babelgene"),
                       ensure_filter_nas = FALSE,
                       verbose = TRUE,
                       ...) {
-
-    #### Query gprofiler ####
+    
     if (methods_opts(method = method, gprofiler_opts = TRUE)) {
+        #### Query gprofiler ####
+        tar_genes <- all_genes_gprofiler(
+            species = species,
+            verbose = verbose,
+            ...
+        )
+    } else if (methods_opts(method = method, homologene_opts = TRUE)) {
+        #### Query homologene ####
+        tar_genes <- all_genes_homologene(
+            species = species,
+            verbose = verbose
+        )
+    } else if (methods_opts(method = method, babelgene_opts = TRUE)) {
+        #### Query babelgene ####
+        tar_genes <- all_genes_babelgene(
+            species = species,
+            verbose = verbose
+        )
+    } else {
+        messager(paste0("method='",method,"' not recognised."),
+                 "Must be one of:\n",
+                 paste("-",c("gprofiler", 
+                         "homologene",
+                         "babelgene"), collapse = "\n "))
+        messager("Setting method='gprofiler' by default.",v=verbose)
+        #### Query gprofiler ####
         tar_genes <- all_genes_gprofiler(
             species = species,
             verbose = verbose,
             ...
         )
     }
-    #### Query homologene ####
-    if (methods_opts(method = method, homologene_opts = TRUE)) {
-        tar_genes <- all_genes_homologene(
-            species = species,
-            verbose = verbose
-        )
-    }
-
+    ### Clean genes ####
     tar_genes <- remove_all_nas(
         dat = tar_genes,
         col_name = "Gene.Symbol",

@@ -5,7 +5,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Sep-16-2021</i>
+Most recent update: <i>Oct-20-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -56,6 +56,8 @@ In brief, `orthogene` lets you easily:
 ``` r
 if (!requireNamespace("BiocManager", quietly = TRUE))
      install.packages("BiocManager")
+# orthogene is only available on Bioconductor>=3.14
+if(BiocManager::version()<"3.14") BiocManager::install(version = "3.14")
 
 BiocManager::install("orthogene")
 ```
@@ -94,7 +96,7 @@ between these methods becomes negligible.
 | Orthology databases | Ensembl, HomoloGene, WormBase | HomoloGene         | HGNC Comparison of Orthology Predictions (HCOP), which includes predictions from eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN |
 | Data location       | Remote                        | Local              | Local                                                                                                                                                                                                                     |
 | Internet connection | Required                      | Not required       | Not required                                                                                                                                                                                                              |
-| Speed               | Slower                        | Faster             | Faster                                                                                                                                                                                                                    |
+| Speed               | Slower                        | Faster             | Medium                                                                                                                                                                                                                    |
 
 # Quick example
 
@@ -124,13 +126,13 @@ of these genes tend to be less conserved and less translatable. Users
 can address this using different strategies via `non121_strategy=`.
 
 ``` r
-gene_df <- convert_orthologs(gene_df = exp_mouse,
-                             gene_input = "rownames", 
-                             gene_output = "rownames", 
-                             input_species = "mouse",
-                             output_species = "human",
-                             non121_strategy = "drop_both_species",
-                             method = method) 
+gene_df <- orthogene::convert_orthologs(gene_df = exp_mouse,
+                                        gene_input = "rownames", 
+                                        gene_output = "rownames", 
+                                        input_species = "mouse",
+                                        output_species = "human",
+                                        non121_strategy = "drop_both_species",
+                                        method = method) 
 ```
 
     ## Preparing gene_df.
@@ -139,7 +141,11 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
 
     ## Extracting genes from rownames.
 
+    ## 15,259 genes extracted.
+
     ## Converting mouse ==> human orthologs using: homologene
+
+    ## Retrieving all organisms available in gprofiler.
 
     ## Using stored `gprofiler_orgs`.
 
@@ -148,6 +154,8 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
     ## Common name mapping found for mouse
 
     ## 1 organism identified from search: 10090
+
+    ## Retrieving all organisms available in gprofiler.
 
     ## Using stored `gprofiler_orgs`.
 
@@ -161,7 +169,11 @@ gene_df <- convert_orthologs(gene_df = exp_mouse,
 
     ## Extracting genes from input_gene.
 
+    ## 13,416 genes extracted.
+
     ## Extracting genes from ortholog_gene.
+
+    ## 13,416 genes extracted.
 
     ## Checking for genes without 1:1 orthologs.
 
@@ -227,45 +239,45 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_0.99.3
+    ## [1] orthogene_0.99.7
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_1.0.7                lattice_0.20-44          
-    ##  [3] tidyr_1.1.3               assertthat_0.2.1         
-    ##  [5] digest_0.6.27             utf8_1.2.2               
+    ##  [1] Rcpp_1.0.7                lattice_0.20-45          
+    ##  [3] tidyr_1.1.4               assertthat_0.2.1         
+    ##  [5] digest_0.6.28             utf8_1.2.2               
     ##  [7] R6_2.5.1                  cellranger_1.1.0         
     ##  [9] backports_1.2.1           evaluate_0.14            
     ## [11] highr_0.9                 httr_1.4.2               
-    ## [13] ggplot2_3.3.5             pillar_1.6.2             
-    ## [15] rlang_0.4.11              lazyeval_0.2.2           
+    ## [13] ggplot2_3.3.5             pillar_1.6.4             
+    ## [15] rlang_0.4.12              lazyeval_0.2.2           
     ## [17] curl_4.3.2                readxl_1.3.1             
-    ## [19] data.table_1.14.0         car_3.0-11               
-    ## [21] Matrix_1.3-4              rmarkdown_2.10           
+    ## [19] data.table_1.14.2         car_3.0-11               
+    ## [21] Matrix_1.3-4              rmarkdown_2.11           
     ## [23] stringr_1.4.0             foreign_0.8-81           
     ## [25] htmlwidgets_1.5.4         munsell_0.5.0            
     ## [27] broom_0.7.9               compiler_4.1.0           
-    ## [29] gprofiler2_0.2.1          xfun_0.26                
+    ## [29] gprofiler2_0.2.1          xfun_0.27                
     ## [31] pkgconfig_2.0.3           htmltools_0.5.2          
-    ## [33] tidyselect_1.1.1          tibble_3.1.4             
-    ## [35] GenomeInfoDbData_1.2.6    rio_0.5.27               
+    ## [33] tidyselect_1.1.1          tibble_3.1.5             
+    ## [35] GenomeInfoDbData_1.2.7    rio_0.5.27               
     ## [37] viridisLite_0.4.0         fansi_0.5.0              
     ## [39] crayon_1.4.1              dplyr_1.0.7              
     ## [41] ggpubr_0.4.0              grid_4.1.0               
     ## [43] jsonlite_1.7.2            gtable_0.3.0             
-    ## [45] lifecycle_1.0.0           DBI_1.1.1                
+    ## [45] lifecycle_1.0.1           DBI_1.1.1                
     ## [47] magrittr_2.0.1            scales_1.1.1             
-    ## [49] zip_2.2.0                 stringi_1.7.4            
+    ## [49] zip_2.2.0                 stringi_1.7.5            
     ## [51] carData_3.0-4             ggsignif_0.6.3           
     ## [53] ellipsis_0.3.2            generics_0.1.0           
     ## [55] vctrs_0.3.8               openxlsx_4.2.4           
     ## [57] tools_4.1.0               forcats_0.5.1            
     ## [59] homologene_1.4.68.19.3.27 glue_1.4.2               
-    ## [61] purrr_0.3.4               hms_1.1.0                
+    ## [61] purrr_0.3.4               hms_1.1.1                
     ## [63] parallel_4.1.0            abind_1.4-5              
     ## [65] fastmap_1.1.0             yaml_2.2.1               
     ## [67] babelgene_21.4            colorspace_2.0-2         
-    ## [69] rstatix_0.7.0             plotly_4.9.4.1           
-    ## [71] knitr_1.34                haven_2.4.3              
+    ## [69] rstatix_0.7.0             plotly_4.10.0            
+    ## [71] knitr_1.36                haven_2.4.3              
     ## [73] patchwork_1.1.1
 
 </details>

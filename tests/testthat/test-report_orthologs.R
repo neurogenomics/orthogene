@@ -26,6 +26,13 @@ test_that("report_orthologs works", {
             method_convert_orthologs = method,
             ...
         )
+        orth_mus <- report_orthologs(
+            target_species = "human",
+            reference_species = "human",
+            method_all_genes = method,
+            method_convert_orthologs = method,
+            ...
+        )
         #### Tests ####
         expected_mouse <- if (method == "gprofiler") 16000 else 15000
         observed_mouse <- n_genes(orth_mus)

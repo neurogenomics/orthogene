@@ -37,7 +37,8 @@ report_orthologs <- function(target_species = "mouse",
                              method_all_genes = c("gprofiler", "homologene"),
                              method_convert_orthologs = c(
                                  "gprofiler",
-                                 "homologene"
+                                 "homologene",
+                                 "babelgene"
                              ),
                              drop_nonorths = TRUE,
                              non121_strategy = "drop_both_species",
@@ -45,33 +46,47 @@ report_orthologs <- function(target_species = "mouse",
                              return_report = TRUE,
                              verbose = TRUE,
                              ...) {
-
-    #### Get full genomes for each species ####
-    tar_genes <- all_genes(
-        species = target_species,
-        method = method_all_genes,
-        verbose = verbose
-    )
-    ref_genes <- all_genes(
-        species = reference_species,
-        method = method_all_genes,
-        verbose = verbose
-    )
-    #### Map genes from target to references species ####
-    gene_df <- convert_orthologs(
-        gene_df = tar_genes,
-        gene_input = "Gene.Symbol",
-        gene_output = "columns",
-        standardise_genes = standardise_genes,
-        input_species = target_species,
-        output_species = reference_species,
-        method = method_convert_orthologs[1],
-        drop_nonorths = drop_nonorths,
-        non121_strategy = non121_strategy,
-        verbose = verbose,
-        ...
-    )
-
+    #### Check species here to see if they're synonymous ####
+    target_species <- map_species(species = target_species, 
+                                  verbose = verbose)
+    target_species <- unname(target_species)
+    reference_species <- map_species(species = reference_species, 
+                                     verbose = verbose)
+    reference_species <- unname(reference_species)
+    #### Species are the same ####
+    if(target_species==reference_species){
+        gene_df <- all_genes(species = reference_species, 
+                             method = method_all_genes)
+        gene_df$ortholog_gene <- gene_df$Gene.Symbol
+        tar_genes <- ref_genes <- gene_df
+    } else {
+        #### Species are different ####
+        #### Get full genomes for each species ####
+        tar_genes <- all_genes(
+            species = target_species,
+            method = method_all_genes,
+            verbose = verbose
+        )
+        ref_genes <- all_genes(
+            species = reference_species,
+            method = method_all_genes,
+            verbose = verbose
+        )
+        #### Map genes from target to references species ####
+        gene_df <- convert_orthologs(
+            gene_df = tar_genes,
+            gene_input = "Gene.Symbol",
+            gene_output = "columns",
+            standardise_genes = standardise_genes,
+            input_species = target_species,
+            output_species = reference_species,
+            method = method_convert_orthologs[1],
+            drop_nonorths = drop_nonorths,
+            non121_strategy = non121_strategy,
+            verbose = verbose,
+            ...
+        )
+    }
     messager("\n=========== REPORT SUMMARY ===========\n",v=verbose)
     one2one_orthologs <- dplyr::n_distinct(gene_df$ortholog_gene)
     target_total_genes <- dplyr::n_distinct(tar_genes$Gene.Symbol)

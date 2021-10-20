@@ -19,11 +19,8 @@
 #' instead of pulling directly from the gprofiler API.
 #' Local version may not be fully up to date,
 #' but should suffice for most use cases.
-#' @param use_genomeinfodbdata Retrieve an additional 2+ million organisms
-#' from \code{GenomeInfoDb::specData}.
-#' \emph{NOTE: } Not all of these organisms are available
-#' for gene/ortholog mapping.
 #' @param verbose Print messages.
+#' @inheritParams convert_orthologs
 #'
 #' @return Species ID of type \code{output_format}
 #' @export
@@ -48,7 +45,7 @@ map_species <- function(species = NULL,
                             "taxonomy_id",
                             "version"
                         ),
-                        use_genomeinfodbdata = FALSE,
+                        method = "gprofiler",
                         use_local = TRUE,
                         verbose = TRUE) {
 
@@ -58,14 +55,9 @@ map_species <- function(species = NULL,
     #### Ensure only one output_format ####
     output_format <- output_format[1]
     #### Load organism reference ####
-    orgs <- get_orgdb_gprofiler(
-        use_local = use_local,
-        verbose = verbose
-    )
-    #### Load a really big organism reference ####
-    if (use_genomeinfodbdata) {
-        orgs <- rbind(orgs, get_orgdb_genomeinfodbdata(verbose = verbose))
-    }
+    orgs <- get_all_orgs(method = method, 
+                         use_local = use_local, 
+                         verbose = verbose)
     #### Return all species as an option ####
     if (is.null(species)) {
         messager("Returning table with all species.", v = verbose)

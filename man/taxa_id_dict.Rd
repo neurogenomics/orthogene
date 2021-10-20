@@ -6,7 +6,8 @@
 \usage{
 taxa_id_dict(
   species = c("human", "chimp", "monkey", "mouse", "rat", "dog", "cow", "chicken",
-    "zebrafish", "frog", "fly", "worm", "rice")
+    "zebrafish", "frog", "fly", "worm", "rice"),
+  include_common_names = TRUE
 )
 }
 \arguments{
