@@ -2,12 +2,13 @@
 
 ### New Features
 
-* Added new function `create_background`.
+* Added new function `create_background`.  
+* Added new function `infer_species`.  
 * `report_orthologs` and `convert_orthologs` can now handle cases where
 `input_species` is the same as `output_species`. 
 * Add internal function `get_all_orgs` to easily list all organisms from 
 different packages.  
-* Added `all_genes` method "babelgene".  
+* Added `all_genes` method "babelgene". 
 
 ### Fixes
 
