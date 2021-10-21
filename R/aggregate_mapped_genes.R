@@ -58,19 +58,20 @@ aggregate_mapped_genes <- function(gene_df,
             mthreshold = 1,
             drop_na = FALSE
         )
+        gene_map_col <- "name"
     }
     #### Check gene_map_col ####
     if (!gene_map_col %in% colnames(gene_map)) {
-        stop("gene_map_col not in gene_map.")
+        stop_msg <- paste(paste0("gene_map_col=",gene_map_col),
+                          "not in gene_map.")
+        stop(stop_msg)
     }
     #### Aggregate genes ####
     #### Pre-aggregation ####
     # gene_dict <- stats::setNames(gene_map[["input_gene"]],
-    #                              gene_map[[gene_map_col]])
-
-    # Make sure
+    #                              gene_map[[gene_map_col]]) 
     if (nrow(gene_map) > nrow(gene_df)) {
-        message("nrow(gene_map) > nrow(gene_df)", v = verbose)
+        messager("nrow(gene_map) > nrow(gene_df)", v = verbose)
         non121_strategy <- non121_strategy_opts(
             non121_strategy = non121_strategy,
             include_agg = FALSE
@@ -91,6 +92,16 @@ aggregate_mapped_genes <- function(gene_df,
             verbose = verbose
         )
         gene_df <- gene_df[gene_map$input_gene, ]
+    }
+    #### Check if old/new genes are equal ####
+    if(length(unique(gene_map[[gene_map_col]])) == 
+       length(unique(rownames(gene_df))) ){
+        messager("gene_map has the same number of rows as gene_df, 
+                 and thus there is nothing to aggregate.\n",
+                 "Returning gene_df with gene names from gene_map instead",
+                 v=verbose)
+        rownames(gene_df) <- gene_map[[gene_map_col]]
+        return(gene_df)
     }
     #### Main aggregation ####
     X_agg <- aggregate_rows(

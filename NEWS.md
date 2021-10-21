@@ -2,6 +2,12 @@
 
 ### New Features
 
+* `orthogene` now supports `DelayedArray` objects as `gene_df` input.
+
+## CHANGES IN VERSION  0.99.7
+
+### New Features
+
 * Added new function `create_background`.  
 * Added new function `infer_species`.  
 * `report_orthologs` and `convert_orthologs` can now handle cases where

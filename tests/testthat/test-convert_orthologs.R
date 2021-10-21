@@ -8,6 +8,7 @@ test_that("convert_orthologs works", {
     exp_mouse_df <- data.frame(as.matrix(exp_mouse),
         check.rows = FALSE
     )
+    exp_mouse_da <- orthogene::: as_delayed_array(exp = exp_mouse_smat)
     #### Define check function ####
     has_gene_cols <- function(dat) {
         sum(c(
@@ -175,7 +176,7 @@ test_that("convert_orthologs works", {
     testthat::expect_equal(has_gene_cols(gene_babel), 0)
     testthat::expect_gte(nrow(gene_babel), 12000)
     
-    #### same species 
+    #### same species ####
     gene_mat_same <- convert_orthologs(
         gene_df = exp_mouse_smat,
         input_species = "mouse", 
@@ -186,4 +187,15 @@ test_that("convert_orthologs works", {
     testthat::expect_equal(methods::is(gene_mat_same, "sparseMatrix"), TRUE)
     testthat::expect_equal(has_gene_cols(gene_mat_same), 0)
     testthat::expect_gte(nrow(gene_mat_same), 13000)
+    
+    #### DelayedArray ####
+    gene_mat_da <- convert_orthologs(
+        gene_df = exp_mouse_da,
+        input_species = "mouse", 
+        output_species = "human", 
+        method = method
+    )
+    testthat::expect_true(orthogene:::is_delayed_array(gene_mat_da))
+    testthat::expect_equal(has_gene_cols(gene_mat_da), 0)
+    testthat::expect_gte(nrow(gene_mat_da), 13000)
 })

@@ -12,10 +12,12 @@ check_gene_df_type <- function(gene_df,
                                gene_input,
                                verbose = TRUE) {
     messager("Preparing gene_df.", v = verbose)
-    if (is_sparse_matrix(gene_df)) {
+    if (is_delayed_array(gene_df)) {
+        messager("DelayedArray format detected.", v = verbose)
+    } else if (is_sparse_matrix(gene_df)) {
         messager("sparseMatrix format detected.", v = verbose)
     } else if (is(gene_df, "matrix") |
-        is(gene_df, "Matrix")) {
+               is(gene_df, "Matrix")) {
         messager("Dense matrix format detected.",
             v = verbose
         )

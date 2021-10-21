@@ -2,9 +2,15 @@ test_that("aggregate_mapped_genes works", {
 
     #### Aggregate: orthologs ####
     data("exp_mouse")
+    
+    # It's not normally necessary to create gene_map outside of 
+    # aggregate_mapped_genes, but this step takes a while
+    # so good to use more than once.
     gene_map <- map_orthologs(
         genes = rownames(exp_mouse),
-        input_species = "mouse"
+        input_species = "mouse",
+        # Failing with homologene/babelgene currently 
+        method = "gprofiler"
     )
     agg_exp <- aggregate_mapped_genes(
         gene_df = exp_mouse,
@@ -14,7 +20,7 @@ test_that("aggregate_mapped_genes works", {
         gene_map_col = "ortholog_gene"
     )
     testthat::expect_lte(nrow(agg_exp), nrow(exp_mouse))
-    testthat::expect_equal(is_sparse_matrix(agg_exp), TRUE)
+    testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp))
     testthat::expect_equal(ncol(agg_exp), ncol(exp_mouse))
 
     #### Aggregate: transcripts ####
@@ -25,6 +31,20 @@ test_that("aggregate_mapped_genes works", {
         FUN = "sum"
     )
     testthat::expect_lte(nrow(agg_enst), nrow(exp_mouse_enst))
-    testthat::expect_equal(is_sparse_matrix(agg_enst), TRUE)
+    testthat::expect_true(orthogene:::is_sparse_matrix(agg_enst))
     testthat::expect_equal(ncol(agg_enst), ncol(exp_mouse_enst))
+    
+    
+    #### Aggregate DelayedArray ####
+    exp_da <- orthogene:::as_delayed_array(exp_mouse) 
+    agg_exp <- aggregate_mapped_genes(
+        gene_df = exp_da,
+        species = "mouse",
+        FUN = "sum" ,
+        gene_map = gene_map,
+        gene_map_col = "ortholog_gene"
+    )
+    testthat::expect_lte(nrow(agg_exp), nrow(exp_da))
+    testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp)) 
+    testthat::expect_equal(ncol(agg_exp), ncol(exp_da))
 })
