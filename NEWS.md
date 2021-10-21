@@ -1,8 +1,9 @@
-## CHANGES IN VERSION  0.99.7
+## CHANGES IN VERSION  0.99.8
 
 ### New Features
 
-* `orthogene` now supports `DelayedArray` objects as `gene_df` input.
+* `orthogene` now supports `DelayedArray` objects as `gene_df` input.  
+* `create_background` now uses `all_genes` when all 3 species are the same.  
 
 ## CHANGES IN VERSION  0.99.7
 

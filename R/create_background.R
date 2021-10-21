@@ -48,6 +48,14 @@ create_background <- function(species1,
                               verbose = TRUE) { 
     species_list <- c(species1,species2)
     gene_var <- if(as_output_species) "ortholog_gene" else "input_gene"
+    if(all(species_list==output_species)){
+        #### If all species are the same, just use all_genes ####
+        gene_map <- all_genes(species = output_species, 
+                              method = method,
+                              verbose = verbose)
+        bg <- gene_map$Gene.Symbol
+        return(bg)
+    }
     if (is.null(bg)) {
         messager("Generating gene background for",
                  paste0(species1," x ",species2," ==>"),
