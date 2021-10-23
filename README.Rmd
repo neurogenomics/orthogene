@@ -14,11 +14,16 @@ editor_options:
 <!-- badger::badge_lifecycle("stable", "green") -->
 <!-- badger::badge_last_commit()  -->
 <!-- badger::badge_license() -->
-[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
-[![R-CMD-check](https://github.com/neurogenomics/orthogene/workflows/R-full/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
-[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
-[![License: GPL (>= 3)](https://img.shields.io/badge/license-GPL (>= 3)-blue.svg)](https://cran.r-project.org/web/licenses/GPL (>= 3)) 
+[![R build status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions) 
+[![BioC status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
+`r badger::badge_bioc_release(color="green")`
+[![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
+[![](https://img.shields.io/badge/doi-10.18129/B9.bioc.orthogene %20-green.svg)](https://doi.org/10.18129/B9.bioc.orthogene)
+[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/master)
+[![](https://codecov.io/gh/neurogenomics/orthogene/branch/master/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
+[![License: GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
+`r badger::badge_bioc_download(color="blue", by="total")`
+
 <!-- badges: end --> 
 
 

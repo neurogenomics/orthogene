@@ -1,3 +1,15 @@
+## CHANGES IN VERSION  0.99.9
+
+### New Features
+
+* Replaced R-CMD GHA with bioc-check GHA.
+* Added new badges.
+
+## Fixes
+
+* Adjusted vignette yamls to make resulting htmls smaller.  
+
+
 ## CHANGES IN VERSION  0.99.8
 
 ### New Features
