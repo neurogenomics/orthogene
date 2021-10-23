@@ -15,11 +15,11 @@ Most recent update: <i>Oct-23-2021</i>
 <!-- badger::badge_last_commit()  -->
 <!-- badger::badge_license() -->
 
+[![](https://img.shields.io/badge/devel%20version-0.99.9-black.svg)](https://github.com/neurogenomics/orthogene)
 [![R build
 status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
 [![BioC
 status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
-[![](https://img.shields.io/badge/release%20version-0.99.8-green.svg)](https://www.bioconductor.org/packages/orthogene)
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
 [![](https://img.shields.io/badge/doi-10.18129/B9.bioc.orthogene%20%20-green.svg)](https://doi.org/10.18129/B9.bioc.orthogene)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/master)

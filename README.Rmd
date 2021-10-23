@@ -14,9 +14,9 @@ editor_options:
 <!-- badger::badge_lifecycle("stable", "green") -->
 <!-- badger::badge_last_commit()  -->
 <!-- badger::badge_license() -->
+`r badger::badge_devel(color="black")`
 [![R build status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions) 
 [![BioC status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
-`r badger::badge_bioc_release(color="green")`
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
 [![](https://img.shields.io/badge/doi-10.18129/B9.bioc.orthogene %20-green.svg)](https://doi.org/10.18129/B9.bioc.orthogene)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/master)
