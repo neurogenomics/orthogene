@@ -1,25 +1,25 @@
-## CHANGES IN VERSION  0.99.9
+# orthogene  0.99.9
 
-### New Features
+NEW FEATURES
 
 * Replaced R-CMD GHA with bioc-check GHA.
 * Added new badges.
 
-### Fixes
+BUG FIXES
 
 * Adjusted vignette yamls to make resulting htmls smaller.  
 
 
-## CHANGES IN VERSION  0.99.8
+# orthogene  0.99.8
 
-### New Features
+NEW FEATURES
 
 * `orthogene` now supports `DelayedArray` objects as `gene_df` input.  
 * `create_background` now uses `all_genes` when all 3 species are the same.  
 
-## CHANGES IN VERSION  0.99.7
+# orthogene  0.99.7
 
-### New Features
+NEW FEATURES
 
 * Added new function `create_background`.  
 * Added new function `infer_species`.  
@@ -29,38 +29,38 @@
 different packages.  
 * Added `all_genes` method "babelgene". 
 
-### Fixes
+BUG FIXES
 
 * `report_orthologs` no longer throws error due to not finding `tar_genes`.
 
 
-## CHANGES IN VERSION  0.99.6
+# orthogene  0.99.6
 
-### Fixes
+BUG FIXES
 
 * Allow all messages to be suppressed in `report_orthologs`.  
 
 
-## CHANGES IN VERSION  0.99.3
+# orthogene  0.99.3
 
-### New Features
+NEW FEATURES
 
 * License switched to GPL-3 (to be compliant with Bioc).  
 * New method "babelgene" added to `convert_orthologs`.
 
 
-## CHANGES IN VERSION  0.99.2
+# orthogene  0.99.2
 
 * License switched to GPL3 (>=3).
 
-### Fixes
+BUG FIXES
 
 * `GenomeInfoDbData` now required.
 
 
-## CHANGES IN VERSION  0.1.0
+# orthogene  0.1.0
 
-### New Features
+NEW FEATURES
 
 * `orthogene` released to Bioconductor.
 
