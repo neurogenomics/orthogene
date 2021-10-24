@@ -5,7 +5,7 @@
 * Replaced R-CMD GHA with bioc-check GHA.
 * Added new badges.
 
-## Fixes
+### Fixes
 
 * Adjusted vignette yamls to make resulting htmls smaller.  
 

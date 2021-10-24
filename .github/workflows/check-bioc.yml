@@ -294,7 +294,7 @@ jobs:
           name: ${{ runner.os }}-biocversion-devel-r-4.1-results
           path: check
 
-      - uses: docker/build-push-action@v1
+      - uses: docker/build-push-action@v2
         if: "!contains(github.event.head_commit.message, '/nodocker') && env.run_docker == 'true' && runner.os == 'Linux' "
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
