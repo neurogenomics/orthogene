@@ -1,0 +1,8 @@
+pandoc: 2.14.2
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  infer_species: infer_species.html
+  orthogene: orthogene.html
+last_built: 2021-10-24T02:28Z
+
