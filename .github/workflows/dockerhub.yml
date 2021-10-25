@@ -52,7 +52,8 @@ jobs:
           DISPLAY: 99.0
         run: |
           #### Install packages ####
-          install.packages(c("dockerfiler","BiocManager","piggyback","orthogene"))
+          install.packages(c("dockerfiler","BiocManager","piggyback""))
+          BiocManager::install("orthogene")
           #### Create Dockerfile ####
           Dockerfile <- dockerfiler::dock_from_desc(repos = BiocManager::repositories())  
           tmp <- file.path(tempdir(),"Dockerfile")
