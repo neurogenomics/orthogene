@@ -65,6 +65,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           file: /tmp/Dockerfile
+          context: /tmp
           load: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}

@@ -329,6 +329,7 @@ jobs:
         if: "!contains(github.event.head_commit.message, '/nodocker') && env.run_docker == 'true' && runner.os == 'Linux' "
         with:
           file: /tmp/Dockerfile
+          context: /tmp
           load: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
