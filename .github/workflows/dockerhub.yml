@@ -34,19 +34,7 @@ jobs:
           sysreqs=$(Rscript -e 'cat("apt-get update -y && apt-get install -y", paste(gsub("apt-get install -y ", "", remotes::system_requirements("ubuntu", "20.04")), collapse = " "))')
           echo $sysreqs
           sudo -s eval "$sysreqs"
-      
-      - name: Create Dockerfile
-        env:
-          DISPLAY: 99.0
-        run: |
-          install.packages(c("dockerfiler","BiocManager","piggyback"))
-          my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories()) 
-          out <- "/tmp/buildkit-mount999/Dockerfile"
-          system(paste0("chmod u=rx,go=rx ", dirname(out)))
-          dir.create(dirname(out), showWarnings = FALSE, recursive = TRUE)
-          my_dock$write(out)
-        shell: Rscript {0}
-      
+          
       - name: Get R package name
         run: |
           name=$(grep '^Package:' DESCRIPTION | cut -d\   -f2)
@@ -57,7 +45,23 @@ jobs:
         run: |
           version=$(grep Version DESCRIPTION | grep -o "[0-9.]\+")
           echo "packageVersion=${version}" >> $GITHUB_ENV
-        shell: bash {0}   
+        shell: bash {0}  
+      
+      - name: Create Dockerfile
+        env:
+          DISPLAY: 99.0
+        run: |
+          #### Install packages ####
+          install.packages(c("dockerfiler","BiocManager","piggyback"))
+          #### Create Dockerfile ####
+          Dockerfile <- dockerfiler::dock_from_desc(repos = BiocManager::repositories())  
+          tmp <- file.path(tempdir(),"Dockerfile")
+          Dockerfile$write(tmp)
+          #### Upload Dockerfile ####
+          repo <- system("git config --get remote.origin.url", intern=TRUE)
+          repo <- gsub("https://github.com/|.git","",repo)
+          piggyback::pb_upload(file = tmp, repo = repo, overwrite = TRUE)
+        shell: Rscript {0}
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -65,8 +69,7 @@ jobs:
       - name: Build service
         uses: docker/build-push-action@v2
         with: 
-          file: Dockerfile
-          context: /tmp/buildkit-mount999
+          file: https://github.com/neurogenomics/orthogene/releases/download/latest/Dockerfile
           load: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
