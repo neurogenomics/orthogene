@@ -35,12 +35,10 @@ jobs:
           echo $sysreqs
           sudo -s eval "$sysreqs"
       
-      ## Create the Dockerfile based on the DESCRIPTION
       - name: Create Dockerfile
         env:
           DISPLAY: 99.0
         run: |
-          install.packages("curl")
           install.packages(c("dockerfiler","BiocManager"))
           my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories())
           my_dock$write()
@@ -66,8 +64,8 @@ jobs:
         with:
           load: true
           tags: |
-            bschilder/${{ env.packageName }}:${{ env.packageVersion }}
-            bschilder/${{ env.packageName }}:latest
+            ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
+            ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:latest
           
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -77,6 +75,6 @@ jobs:
 
       - name: push service
         run: |
-          docker push bschilder/${{ env.packageName }}:${{ env.packageVersion }}
-          docker push bschilder/${{ env.packageName }}:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:latest
           
