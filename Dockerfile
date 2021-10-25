@@ -1,6 +1,6 @@
 FROM rocker/r-ver:4.1.0
 RUN apt-get update && apt-get install -y  git-core libcurl4-openssl-dev libgit2-dev libicu-dev libssl-dev make pandoc pandoc-citeproc zlib1g-dev && rm -rf /var/lib/apt/lists/*
-RUN echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)" >> /usr/local/lib/R/etc/Rprofile.site
+RUN echo "options(repos = c(BioCsoft = 'https://bioconductor.org/packages/3.14/bioc', BioCann = 'https://bioconductor.org/packages/3.14/data/annotation', BioCexp = 'https://bioconductor.org/packages/3.14/data/experiment', BioCworkflows = 'https://bioconductor.org/packages/3.14/workflows', BioCbooks = 'https://bioconductor.org/packages/3.14/books', CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)" >> /usr/local/lib/R/etc/Rprofile.site
 RUN R -e 'install.packages("remotes")'
 RUN Rscript -e 'remotes::install_version("jsonlite",upgrade="never", version = "1.7.2")'
 RUN Rscript -e 'remotes::install_version("ggplot2",upgrade="never", version = "3.3.5")'
