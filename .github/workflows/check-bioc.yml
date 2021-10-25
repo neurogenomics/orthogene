@@ -298,20 +298,22 @@ jobs:
         run: |
           name=$(grep '^Package:' DESCRIPTION | cut -d\   -f2)
           echo "packageName=${name}" >> $GITHUB_ENV
+          echo $name
         shell: bash {0}   
         
       - name: Get R package version
         run: |
           version=$(grep Version DESCRIPTION | grep -o "[0-9.]\+")
           echo "packageVersion=${version}" >> $GITHUB_ENV
+          echo $version
         shell: bash {0}   
         
       - name: Create Dockerfile
         env:
           DISPLAY: 99.0
         run: |
-          install.packages(c("dockerfiler","BiocManager"))
-          my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories())
+          install.packages(c("dockerfiler","BiocManager","piggyback"))
+          my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories()) 
           my_dock$write()
         shell: Rscript {0}
         
@@ -321,6 +323,7 @@ jobs:
       - name: Docker build service
         uses: docker/build-push-action@v2
         with:
+          file: ./Dockerfile
           load: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
