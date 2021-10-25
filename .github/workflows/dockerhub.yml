@@ -50,19 +50,18 @@ jobs:
       - name: Create Dockerfile 
         env:
           DISPLAY: 99.0
-        if: 'true' == 'false'
         run: |
-          #### Install packages ####
-          install.packages(c("dockerfiler","BiocManager","piggyback"))
-          BiocManager::install("orthogene")
-          #### Create Dockerfile ####
-          Dockerfile <- dockerfiler::dock_from_desc(repos = BiocManager::repositories())  
-          tmp <- file.path(tempdir(),"Dockerfile")
-          Dockerfile$write(tmp)
-          #### Upload Dockerfile ####
-          repo <- system("git config --get remote.origin.url", intern=TRUE)
-          repo <- gsub("https://github.com/|.git","",repo)
-          piggyback::pb_upload(file = tmp, repo = repo, overwrite = TRUE)
+          # #### Install packages ####
+          # install.packages(c("dockerfiler","BiocManager","piggyback"))
+          # BiocManager::install("orthogene")
+          # #### Create Dockerfile ####
+          # Dockerfile <- dockerfiler::dock_from_desc(repos = BiocManager::repositories())
+          # tmp <- file.path(tempdir(),"Dockerfile")
+          # Dockerfile$write(tmp)
+          # #### Upload Dockerfile ####
+          # repo <- system("git config --get remote.origin.url", intern=TRUE)
+          # repo <- gsub("https://github.com/|.git","",repo)
+          # piggyback::pb_upload(file = tmp, repo = repo, overwrite = TRUE)
         shell: Rscript {0}
       
       - name: Set up Docker Buildx
