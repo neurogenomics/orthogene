@@ -39,9 +39,11 @@ jobs:
         env:
           DISPLAY: 99.0
         run: |
-          install.packages(c("dockerfiler","BiocManager"))
-          my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories())
-          my_dock$write()
+           install.packages(c("dockerfiler","BiocManager","piggyback"))
+          my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories()) 
+          out <- "/tmp/Dockerfile"
+          dir.create(dirname(out), showWarnings = FALSE, recursive = TRUE)
+          my_dock$write(out)
         shell: Rscript {0}
       
       - name: Get R package name
@@ -62,7 +64,7 @@ jobs:
       - name: Build service
         uses: docker/build-push-action@v2
         with:
-          file: ./Dockerfile
+          file: /tmp/Dockerfile
           load: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
