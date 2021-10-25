@@ -313,12 +313,17 @@ jobs:
         env:
           DISPLAY: 99.0
         run: |
+          #### Install packages ####
           install.packages(c("dockerfiler","BiocManager","piggyback"))
-          my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories()) 
-          out <- "/tmp/buildkit-mount999/Dockerfile"
-          system(paste0("chmod u=rx,go=rx ", dirname(out)))
-          dir.create(dirname(out), showWarnings = FALSE, recursive = TRUE)
-          my_dock$write(out)
+          BiocManager::install("orthogene")
+          #### Create Dockerfile ####
+          Dockerfile <- dockerfiler::dock_from_desc(repos = BiocManager::repositories())  
+          tmp <- file.path(tempdir(),"Dockerfile")
+          Dockerfile$write(tmp)
+          #### Upload Dockerfile ####
+          repo <- system("git config --get remote.origin.url", intern=TRUE)
+          repo <- gsub("https://github.com/|.git","",repo)
+          piggyback::pb_upload(file = tmp, repo = repo, overwrite = TRUE)
         shell: Rscript {0}
         
       - name: Set up Docker Buildx

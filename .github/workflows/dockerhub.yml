@@ -48,8 +48,7 @@ jobs:
         shell: bash {0}  
       
       - name: Create Dockerfile 
-        env:
-          DISPLAY: 99.0
+        if: 'true' == 'false'
         run: |
           #### Install packages ####
           install.packages(c("dockerfiler","BiocManager","piggyback"))
