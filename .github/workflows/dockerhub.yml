@@ -23,6 +23,11 @@ jobs:
         uses: r-lib/actions/setup-r@v1
         with:
           install-r: false
+          
+      - name: Install remotes
+        run: |
+          install.packages('remotes')
+        shell: Rscript {0}
       
       - name: Install Linux system dependencies
         run: |
