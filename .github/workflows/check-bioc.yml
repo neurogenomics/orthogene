@@ -315,7 +315,8 @@ jobs:
         run: |
           install.packages(c("dockerfiler","BiocManager","piggyback"))
           my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories()) 
-          out <- "/tmp/Dockerfile"
+          out <- "/tmp/buildkit-mount999/Dockerfile"
+          system(paste0("chmod u=rx,go=rx ", dirname(out)))
           dir.create(dirname(out), showWarnings = FALSE, recursive = TRUE)
           my_dock$write(out)
         shell: Rscript {0}
@@ -328,8 +329,8 @@ jobs:
         uses: docker/build-push-action@v2
         if: "!contains(github.event.head_commit.message, '/nodocker') && env.run_docker == 'true' && runner.os == 'Linux' "
         with:
-          file: /tmp/Dockerfile
-          context: /tmp
+          file: buildkit-mount999/Dockerfile
+          context: /tmp/buildkit-mount999
           load: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
