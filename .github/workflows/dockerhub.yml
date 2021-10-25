@@ -39,7 +39,7 @@ jobs:
         env:
           DISPLAY: 99.0
         run: |
-           install.packages(c("dockerfiler","BiocManager","piggyback"))
+          install.packages(c("dockerfiler","BiocManager","piggyback"))
           my_dock <- dockerfiler::dock_from_desc(repos = BiocManager::repositories()) 
           out <- "/tmp/Dockerfile"
           dir.create(dirname(out), showWarnings = FALSE, recursive = TRUE)
