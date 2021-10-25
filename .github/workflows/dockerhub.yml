@@ -1,4 +1,4 @@
-name: R GitHub Actions - DockerHub
+name: R-CMD-check-DockerHub
 
 on:
   push:
