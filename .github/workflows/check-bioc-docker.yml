@@ -52,7 +52,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: ubuntu-latest, r: '4.1', bioc: '3.14', cont: "rocker/rstudio:devel", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest", user="rstudio"}
+          - { os: ubuntu-latest, r: '4.1', bioc: '3.14', cont: "bioconductor/bioconductor_docker:devel", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest", user="rstudio"}
           - { os: macOS-latest, r: '4.1', bioc: '3.14'}
           - { os: windows-latest, r: '4.1', bioc: '3.14'}
           ## Check https://github.com/r-lib/actions/tree/master/examples
@@ -89,14 +89,6 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
-      
-      ## dockerhub.yml uses r-lib/actions/setup-r@v1 on Linux
-      ## Helps set up Docker paths?
-      - name: Setup R - Linux
-        if: runner.os == 'Linux'
-        uses: r-lib/actions/setup-r@v1
-        with:
-          install-r: false
 
       ## pandoc is already included in the Bioconductor docker images
       - name: Setup pandoc from r-lib
@@ -337,33 +329,18 @@ jobs:
           URL <- file.path("https://github.com",repo,"releases/download/latest/Dockerfile")
           print(paste("Dockerfile URL:",URL))
         shell: Rscript {0}
-      
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-        if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && env.run_pkgdown == 'true' && runner.os == 'Linux'
-  
-      ## Bioconductor's docker causes issues with username/permissions: https://github.com/Bioconductor/bioconductor_docker/issues/3
-      - name: Build service
-        uses: docker/build-push-action@v2
-        if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && env.run_pkgdown == 'true' && runner.os == 'Linux'
-        with: 
+        
+      - uses: docker/build-push-action@v1
+        if: "!contains(github.event.head_commit.message, '/nodocker') && env.run_docker == 'true' && runner.os == 'Linux' "
+        with:
           file: |
             https://github.com/neurogenomics/${{ env.packageName }}/releases/download/latest/Dockerfile
-          load: true
-          tags: |
-            ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
-            ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:latest
-          
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && env.run_pkgdown == 'true' && runner.os == 'Linux'
-        with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-  
-      - name: push service
-        if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && env.run_pkgdown == 'true' && runner.os == 'Linux'
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:latest
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}
+          tag_with_ref: true
+          tag_with_sha: true
+          tags: |
+            ${{ env.packageVersion }}
+            latest
           
