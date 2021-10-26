@@ -336,10 +336,6 @@ jobs:
           print(paste("Dockerfile URL:",URL))
         shell: Rscript {0}
         
-      - name: Create Dockerfile with Docker
-        run: |
-          docker build -t bioconductor_docker_tensorflow:devel .
-        
       - uses: docker/build-push-action@v1
         if: "!contains(github.event.head_commit.message, '/nodocker') && env.run_docker == 'true' && runner.os == 'Linux' "
         with:
