@@ -328,7 +328,7 @@ jobs:
           #### Create Dockerfile ####
           Dockerfile <- dockerfiler::dock_from_desc(FROM = "bioconductor/bioconductor_docker:devel", #"rocker/rstudio:devel",
                                                     repos = BiocManager::repositories())
-          tmp <- file.path(tempdir(),"Dockerfile")
+          tmp <- file.path(".","Dockerfile") ## file.path(tempdir(),"Dockerfile")
           Dockerfile$write(tmp)
           #### Upload Dockerfile #### 
           piggyback::pb_upload(file = tmp, repo = repo, overwrite = TRUE)
@@ -339,8 +339,6 @@ jobs:
       - uses: docker/build-push-action@v1
         if: "!contains(github.event.head_commit.message, '/nodocker') && env.run_docker == 'true' && runner.os == 'Linux' "
         with:
-          dockerfile: |
-            https://github.com/${{ env.github_repo }}/releases/download/latest/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}
