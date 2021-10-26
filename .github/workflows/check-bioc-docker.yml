@@ -328,7 +328,8 @@ jobs:
           #### Create Dockerfile ####
           Dockerfile <- dockerfiler::dock_from_desc(FROM = "bioconductor/bioconductor_docker:devel", #"rocker/rstudio:devel",
                                                     repos = BiocManager::repositories())
-          tmp <- file.path("/github/workspace","Dockerfile") ## file.path(tempdir(),"Dockerfile")
+          tmp <- file.path("lstat/github/workspace","Dockerfile") ## file.path(tempdir(),"Dockerfile")
+          dir.create(dirname(tmp), showWarnings = FALSE, recursive = TRUE)
           Dockerfile$write(tmp)
           #### Upload Dockerfile #### 
           piggyback::pb_upload(file = tmp, repo = repo, overwrite = TRUE)
