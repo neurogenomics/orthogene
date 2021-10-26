@@ -57,7 +57,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get all genes</h1>
-    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/R/all_genes.R" class="external-link"><code>R/all_genes.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/R/all_genes.R" class="external-link"><code>R/all_genes.R</code></a></small>
     <div class="hidden name"><code>all_genes.Rd</code></div>
     </div>
 
@@ -76,17 +76,20 @@
     <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>species</dt><dd><p>Species to get all genes for.
+    <dl><dt>species</dt>
+<dd><p>Species to get all genes for.
 Will first be standardised with <code>map_species</code>.</p></dd>
-</dl><dl><dt>method</dt><dd><p>R package to to use for gene mapping:
+<dt>method</dt>
+<dd><p>R package to to use for gene mapping:
 <code>"gprofiler"</code> (slower but more species and genes) or
 <code>"homologene"</code> (faster but fewer species and genes).</p></dd>
-</dl><dl><dt>ensure_filter_nas</dt><dd><p>Perform an extra check to remove
+<dt>ensure_filter_nas</dt>
+<dd><p>Perform an extra check to remove
 genes that are <code>NA</code>s of any kind.</p></dd>
-</dl><dl><dt>verbose</dt><dd><p>Print messages.</p></dd>
-</dl><dl><dt>...</dt><dd><p>Additional arguments to be passed to
+<dt>verbose</dt>
+<dd><p>Print messages.</p></dd>
+<dt>...</dt>
+<dd><p>Additional arguments to be passed to
 <a href="https://rdrr.io/pkg/gprofiler2/man/gconvert.html" class="external-link">gconvert</a> when
 <code>method="gprofiler"</code>.</p></dd>
 </dl></div>

@@ -57,7 +57,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Aggregate rows of matrix</h1>
-    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/R/aggregate_rows.R" class="external-link"><code>R/aggregate_rows.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/R/aggregate_rows.R" class="external-link"><code>R/aggregate_rows.R</code></a></small>
     <div class="hidden name"><code>aggregate_rows.Rd</code></div>
     </div>
 
@@ -79,17 +79,23 @@
     <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>X</dt><dd><p>Input matrix.</p></dd>
-</dl><dl><dt>groupings</dt><dd><p>Gene groups of the same length as <code>nrow(X)</code>.</p></dd>
-</dl><dl><dt>FUN</dt><dd><p>Aggregation function (<em>DEFAULT:</em> <code>"sum"</code>).</p></dd>
-</dl><dl><dt>method</dt><dd><p>Aggregation method.</p></dd>
-</dl><dl><dt>as_sparse</dt><dd><p>Convert aggregated matrix to sparse matrix.</p></dd>
-</dl><dl><dt>as_DelayedArray</dt><dd><p>Convert aggregated matrix to
+    <dl><dt>X</dt>
+<dd><p>Input matrix.</p></dd>
+<dt>groupings</dt>
+<dd><p>Gene groups of the same length as <code>nrow(X)</code>.</p></dd>
+<dt>FUN</dt>
+<dd><p>Aggregation function (<em>DEFAULT:</em> <code>"sum"</code>).</p></dd>
+<dt>method</dt>
+<dd><p>Aggregation method.</p></dd>
+<dt>as_sparse</dt>
+<dd><p>Convert aggregated matrix to sparse matrix.</p></dd>
+<dt>as_DelayedArray</dt>
+<dd><p>Convert aggregated matrix to
 <a href="https://rdrr.io/pkg/DelayedArray/man/DelayedArray-class.html" class="external-link">DelayedArray</a>.</p></dd>
-</dl><dl><dt>dropNA</dt><dd><p>Drop genes assigned to <code>NA</code> in <code>groupings</code>.</p></dd>
-</dl><dl><dt>verbose</dt><dd><p>Print messages.</p></dd>
+<dt>dropNA</dt>
+<dd><p>Drop genes assigned to <code>NA</code> in <code>groupings</code>.</p></dd>
+<dt>verbose</dt>
+<dd><p>Print messages.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>

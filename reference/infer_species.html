@@ -59,7 +59,7 @@ the genes from each test_species."><!-- mathjax --><script src="https://cdnjs.cl
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Infer species from gene names</h1>
-    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/R/infer_species.R" class="external-link"><code>R/infer_species.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/R/infer_species.R" class="external-link"><code>R/infer_species.R</code></a></small>
     <div class="hidden name"><code>infer_species.Rd</code></div>
     </div>
 
@@ -82,55 +82,55 @@ the genes from each <code>test_species</code>.</p>
     <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>gene_df</dt><dd><p>Data object containing the genes
+    <dl><dt>gene_df</dt>
+<dd><p>Data object containing the genes
 (see <code>gene_input</code> for options on how
 the genes can be stored within the object).<br>
 Can be one of the following formats:<br></p><ul><li><p><code>matrix</code> : <br>A sparse or dense matrix.</p></li>
 <li><p><code>data.frame</code> : <br>A <code>data.frame</code>,
  <code>data.table</code>. or <code>tibble</code>.</p></li>
 <li><p>codelist : <br>A <code>list</code> or character <code>vector</code>.</p></li>
-</ul>
-Genes, transcripts, proteins, SNPs, or genomic ranges
+</ul><p>Genes, transcripts, proteins, SNPs, or genomic ranges
  can be provided in any format
 (HGNC, Ensembl, RefSeq, UniProt, etc.) and will be
 automatically converted to gene symbols unless
 specified otherwise with the <code>...</code> arguments.<br><em>Note</em>: If you set <code>method="homologene"</code>, you
 must either supply genes in gene symbol format (e.g. "Sox2")
- OR set <code>standardise_genes=TRUE</code>.</dd>
-</dl><dl><dt>gene_input</dt><dd><p>Which aspect of <code>gene_df</code> to
+ OR set <code>standardise_genes=TRUE</code>.</p></dd>
+<dt>gene_input</dt>
+<dd><p>Which aspect of <code>gene_df</code> to
 get gene names from:<br></p><ul><li><p><code>"rownames"</code> : <br>From row names of data.frame/matrix.</p></li>
 <li><p><code>"colnames"</code> : <br>From column names of data.frame/matrix.</p></li>
 <li><p><code>&lt;column name&gt;</code> : <br>From a column in <code>gene_df</code>,
  e.g. <code>"gene_names"</code>.</p></li>
 </ul></dd>
-</dl><dl><dt>test_species</dt><dd><p>Which species to test for matches with.
+<dt>test_species</dt>
+<dd><p>Which species to test for matches with.
 If set to <code>NULL</code>, will default to a list of humans and
  5 common model organisms.
  If <code>test_species</code> is set to one of the following options, 
  it will automatically pull all species from that respective package and 
- test against each of them:  
- </p><ul><li><p>"homologene"20+ species (default)</p></li>
+ test against each of them:</p><ul><li><p>"homologene"20+ species (default)</p></li>
 <li><p>"gprofiler"700+ species</p></li>
 <li><p>"babelgene"19 species</p></li>
 </ul></dd>
-</dl><dl><dt>method</dt><dd><p>R package to to use for gene mapping:
-</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
+<dt>method</dt>
+<dd><p>R package to to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
 <li><p><code>"babelgene"</code> : Faster but fewer species and genes.
 Also gives</p></li>
-</ul>
- (slower but more species and genes) or
-<code>"homologene"</code> (faster but fewer species and genes).</dd>
-</dl><dl><dt>make_plot</dt><dd><p>Make a plot of the results.</p></dd>
-</dl><dl><dt>show_plot</dt><dd><p>Print the plot of the results.</p></dd>
-</dl><dl><dt>verbose</dt><dd><p>Print messages.</p></dd>
+</ul><p>(slower but more species and genes) or
+<code>"homologene"</code> (faster but fewer species and genes).</p></dd>
+<dt>make_plot</dt>
+<dd><p>Make a plot of the results.</p></dd>
+<dt>show_plot</dt>
+<dd><p>Print the plot of the results.</p></dd>
+<dt>verbose</dt>
+<dd><p>Print messages.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>An ordered dataframe of <code>test_species</code> 
-from best to worst matches.</p>
+    <p>An ordered dataframe of <code>test_species</code>from best to worst matches.</p>
     </div>
     </div>
 

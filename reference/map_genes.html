@@ -61,7 +61,7 @@ a table with standardised gene symbols
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Map genes</h1>
-    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/R/map_genes.R" class="external-link"><code>R/map_genes.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/R/map_genes.R" class="external-link"><code>R/map_genes.R</code></a></small>
     <div class="hidden name"><code>map_genes.Rd</code></div>
     </div>
 
@@ -86,18 +86,23 @@ a table with standardised gene symbols
     <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>genes</dt><dd><p>Gene list.</p></dd>
-</dl><dl><dt>species</dt><dd><p>Species to map against.</p></dd>
-</dl><dl><dt>target</dt><dd><p>target namespace.</p></dd>
-</dl><dl><dt>mthreshold</dt><dd><p>maximum number of results per initial alias to show. Shows all by default.</p></dd>
-</dl><dl><dt>drop_na</dt><dd><p>Drop all genes without mappings.
+    <dl><dt>genes</dt>
+<dd><p>Gene list.</p></dd>
+<dt>species</dt>
+<dd><p>Species to map against.</p></dd>
+<dt>target</dt>
+<dd><p>target namespace.</p></dd>
+<dt>mthreshold</dt>
+<dd><p>maximum number of results per initial alias to show. Shows all by default.</p></dd>
+<dt>drop_na</dt>
+<dd><p>Drop all genes without mappings.
 Sets <code>gprofiler2::gconvert(filter_na=)</code> as well
 an additional round of more comprehensive <code>NA</code> filtering
 by <span class="pkg">orthogene</span>.</p></dd>
-</dl><dl><dt>numeric_ns</dt><dd><p>namespace to use for fully numeric IDs (<a href="https://biit.cs.ut.ee/gprofiler/page/namespaces-list" class="external-link">list of available namespaces</a>).</p></dd>
-</dl><dl><dt>verbose</dt><dd><p>Print messages.</p></dd>
+<dt>numeric_ns</dt>
+<dd><p>namespace to use for fully numeric IDs (<a href="https://biit.cs.ut.ee/gprofiler/page/namespaces-list" class="external-link">list of available namespaces</a>).</p></dd>
+<dt>verbose</dt>
+<dd><p>Print messages.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>

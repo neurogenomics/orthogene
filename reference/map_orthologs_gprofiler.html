@@ -58,7 +58,7 @@ using gorth."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/lib
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Map orthologs: gprofiler</h1>
-    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/R/map_orthologs_gprofiler.R" class="external-link"><code>R/map_orthologs_gprofiler.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/R/map_orthologs_gprofiler.R" class="external-link"><code>R/map_orthologs_gprofiler.R</code></a></small>
     <div class="hidden name"><code>map_orthologs_gprofiler.Rd</code></div>
     </div>
 
@@ -80,24 +80,29 @@ using <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-li
     <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>genes</dt><dd><p>Gene list.</p></dd>
-</dl><dl><dt>input_species</dt><dd><p>Name of the input species (e.g., "mouse","fly").
+    <dl><dt>genes</dt>
+<dd><p>Gene list.</p></dd>
+<dt>input_species</dt>
+<dd><p>Name of the input species (e.g., "mouse","fly").
 Use <a href="map_species.html">map_species</a> to return a full list
 of available species.</p></dd>
-</dl><dl><dt>output_species</dt><dd><p>Name of the output species (e.g. "human","chicken").
+<dt>output_species</dt>
+<dd><p>Name of the output species (e.g. "human","chicken").
 Use <a href="map_species.html">map_species</a> to return a full list
  of available species.</p></dd>
-</dl><dl><dt>filter_na</dt><dd><p>Logical indicating whether to
+<dt>filter_na</dt>
+<dd><p>Logical indicating whether to
 filter out results without a corresponding target name.
 (<em>DEFAULT</em> is <code>FALSE</code>, so that <code>NA</code>s
 can be handled by <span class="pkg">orthogene</span>).</p></dd>
-</dl><dl><dt>mthreshold</dt><dd><p>Maximum number of ortholog names per gene to show.
+<dt>mthreshold</dt>
+<dd><p>Maximum number of ortholog names per gene to show.
 Passed to <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.
 Only used when <code>method="gprofiler"</code> (<em>DEFAULT : </em><code>Inf</code>).</p></dd>
-</dl><dl><dt>verbose</dt><dd><p>Print messages.</p></dd>
-</dl><dl><dt>...</dt><dd><p>Additional arguments to be passed to
+<dt>verbose</dt>
+<dd><p>Print messages.</p></dd>
+<dt>...</dt>
+<dd><p>Additional arguments to be passed to
 <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.</p></dd>
 </dl></div>
     <div id="value">

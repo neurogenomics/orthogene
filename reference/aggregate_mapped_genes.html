@@ -58,7 +58,7 @@ and then aggregate many-to-one rows into a new matrix."><!-- mathjax --><script 
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Aggregate a gene matrix by gene symbols</h1>
-    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/R/aggregate_mapped_genes.R" class="external-link"><code>R/aggregate_mapped_genes.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/R/aggregate_mapped_genes.R" class="external-link"><code>R/aggregate_mapped_genes.R</code></a></small>
     <div class="hidden name"><code>aggregate_mapped_genes.Rd</code></div>
     </div>
 
@@ -86,19 +86,25 @@ and then aggregate many-to-one rows into a new matrix.</p>
     <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>gene_df</dt><dd><p>Input matrix where row names are genes.</p></dd>
-</dl><dl><dt>species</dt><dd><p>Species to map against.</p></dd>
-</dl><dl><dt>FUN</dt><dd><p>Aggregation function (<em>DEFAULT:</em> <code>"sum"</code>).</p></dd>
-</dl><dl><dt>method</dt><dd><p>Aggregation method.</p></dd>
-</dl><dl><dt>transpose</dt><dd><p>Transpose <code>gene_df</code> before mapping genes.</p></dd>
-</dl><dl><dt>gene_map</dt><dd><p>A user-supplied <code>gene_map</code>.
+    <dl><dt>gene_df</dt>
+<dd><p>Input matrix where row names are genes.</p></dd>
+<dt>species</dt>
+<dd><p>Species to map against.</p></dd>
+<dt>FUN</dt>
+<dd><p>Aggregation function (<em>DEFAULT:</em> <code>"sum"</code>).</p></dd>
+<dt>method</dt>
+<dd><p>Aggregation method.</p></dd>
+<dt>transpose</dt>
+<dd><p>Transpose <code>gene_df</code> before mapping genes.</p></dd>
+<dt>gene_map</dt>
+<dd><p>A user-supplied <code>gene_map</code>.
 If <code>NULL</code> (<em>DEFAULT)</em>),
 <a href="map_genes.html">map_genes</a> will be used to create a <code>gene_map</code>.</p></dd>
-</dl><dl><dt>gene_map_col</dt><dd><p>Column in <code>gene_map</code> to aggregate
+<dt>gene_map_col</dt>
+<dd><p>Column in <code>gene_map</code> to aggregate
 <code>gene_df</code> by.</p></dd>
-</dl><dl><dt>non121_strategy</dt><dd><p>How to handle genes that don't have
+<dt>non121_strategy</dt>
+<dd><p>How to handle genes that don't have
 1:1 mappings between <code>input_species</code>:<code>output_species</code>.
 Options include:<br></p><ul><li><p><code>"drop_both_species" or "dbs" or 1</code> : <br>
 Drop genes that have duplicate
@@ -123,12 +129,17 @@ Return only the most "popular" interspecies ortholog mappings.
   (<code>input_species</code>-to-<code>output_species</code>)
   after dropping any duplicate genes in the <code>output_species</code>.</p></li>
 </ul></dd>
-</dl><dl><dt>as_sparse</dt><dd><p>Convert aggregated matrix to sparse matrix.</p></dd>
-</dl><dl><dt>as_DelayedArray</dt><dd><p>Convert aggregated matrix to
+<dt>as_sparse</dt>
+<dd><p>Convert aggregated matrix to sparse matrix.</p></dd>
+<dt>as_DelayedArray</dt>
+<dd><p>Convert aggregated matrix to
 <a href="https://rdrr.io/pkg/DelayedArray/man/DelayedArray-class.html" class="external-link">DelayedArray</a>.</p></dd>
-</dl><dl><dt>dropNA</dt><dd><p>Drop genes assigned to <code>NA</code> in <code>groupings</code>.</p></dd>
-</dl><dl><dt>sort_rows</dt><dd><p>Sort <code>gene_df</code> rows alphanumerically.</p></dd>
-</dl><dl><dt>verbose</dt><dd><p>Print messages.</p></dd>
+<dt>dropNA</dt>
+<dd><p>Drop genes assigned to <code>NA</code> in <code>groupings</code>.</p></dd>
+<dt>sort_rows</dt>
+<dd><p>Sort <code>gene_df</code> rows alphanumerically.</p></dd>
+<dt>verbose</dt>
+<dd><p>Print messages.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>

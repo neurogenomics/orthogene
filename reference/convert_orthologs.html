@@ -60,7 +60,7 @@ return a full list of available organisms."><!-- mathjax --><script src="https:/
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Map genes from one species to another</h1>
-    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/R/convert_orthologs.R" class="external-link"><code>R/convert_orthologs.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/R/convert_orthologs.R" class="external-link"><code>R/convert_orthologs.R</code></a></small>
     <div class="hidden name"><code>convert_orthologs.Rd</code></div>
     </div>
 
@@ -91,30 +91,30 @@ return a full list of available organisms.</p>
     <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>gene_df</dt><dd><p>Data object containing the genes
+    <dl><dt>gene_df</dt>
+<dd><p>Data object containing the genes
 (see <code>gene_input</code> for options on how
 the genes can be stored within the object).<br>
 Can be one of the following formats:<br></p><ul><li><p><code>matrix</code> : <br>A sparse or dense matrix.</p></li>
 <li><p><code>data.frame</code> : <br>A <code>data.frame</code>,
  <code>data.table</code>. or <code>tibble</code>.</p></li>
 <li><p>codelist : <br>A <code>list</code> or character <code>vector</code>.</p></li>
-</ul>
-Genes, transcripts, proteins, SNPs, or genomic ranges
+</ul><p>Genes, transcripts, proteins, SNPs, or genomic ranges
  can be provided in any format
 (HGNC, Ensembl, RefSeq, UniProt, etc.) and will be
 automatically converted to gene symbols unless
 specified otherwise with the <code>...</code> arguments.<br><em>Note</em>: If you set <code>method="homologene"</code>, you
 must either supply genes in gene symbol format (e.g. "Sox2")
- OR set <code>standardise_genes=TRUE</code>.</dd>
-</dl><dl><dt>gene_input</dt><dd><p>Which aspect of <code>gene_df</code> to
+ OR set <code>standardise_genes=TRUE</code>.</p></dd>
+<dt>gene_input</dt>
+<dd><p>Which aspect of <code>gene_df</code> to
 get gene names from:<br></p><ul><li><p><code>"rownames"</code> : <br>From row names of data.frame/matrix.</p></li>
 <li><p><code>"colnames"</code> : <br>From column names of data.frame/matrix.</p></li>
 <li><p><code>&lt;column name&gt;</code> : <br>From a column in <code>gene_df</code>,
  e.g. <code>"gene_names"</code>.</p></li>
 </ul></dd>
-</dl><dl><dt>gene_output</dt><dd><p>How to return genes.
+<dt>gene_output</dt>
+<dd><p>How to return genes.
 Options include:<br></p><ul><li><p><code>"rownames"</code> : <br>As row names of <code>gene_df</code>.</p></li>
 <li><p><code>"colnames"</code> : <br>As column names of <code>gene_df</code>.</p></li>
 <li><p><code>"columns"</code> : <br>As new columns "input_gene", "ortholog_gene"
@@ -125,27 +125,31 @@ are input_gene and the values are ortholog_gene.</p></li>
 <li><p><code>"dict_rev"</code> : <br>As a reversed dictionary (named list)
 where the names are ortholog_gene and the values are input_gene.</p></li>
 </ul></dd>
-</dl><dl><dt>standardise_genes</dt><dd><p>If <code>TRUE</code> AND
+<dt>standardise_genes</dt>
+<dd><p>If <code>TRUE</code> AND
 <code>gene_output="columns"</code>, a new column "input_gene_standard"
 will be added to <code>gene_df</code> containing standardised HGNC symbols
 identified by <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.</p></dd>
-</dl><dl><dt>input_species</dt><dd><p>Name of the input species (e.g., "mouse","fly").
+<dt>input_species</dt>
+<dd><p>Name of the input species (e.g., "mouse","fly").
 Use <a href="map_species.html">map_species</a> to return a full list
 of available species.</p></dd>
-</dl><dl><dt>output_species</dt><dd><p>Name of the output species (e.g. "human","chicken").
+<dt>output_species</dt>
+<dd><p>Name of the output species (e.g. "human","chicken").
 Use <a href="map_species.html">map_species</a> to return a full list
  of available species.</p></dd>
-</dl><dl><dt>method</dt><dd><p>R package to to use for gene mapping:
-</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
+<dt>method</dt>
+<dd><p>R package to to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
 <li><p><code>"babelgene"</code> : Faster but fewer species and genes.
 Also gives</p></li>
-</ul>
- (slower but more species and genes) or
-<code>"homologene"</code> (faster but fewer species and genes).</dd>
-</dl><dl><dt>drop_nonorths</dt><dd><p>Drop genes that don't have an ortholog
+</ul><p>(slower but more species and genes) or
+<code>"homologene"</code> (faster but fewer species and genes).</p></dd>
+<dt>drop_nonorths</dt>
+<dd><p>Drop genes that don't have an ortholog
 in the <code>output_species</code>.</p></dd>
-</dl><dl><dt>non121_strategy</dt><dd><p>How to handle genes that don't have
+<dt>non121_strategy</dt>
+<dd><p>How to handle genes that don't have
 1:1 mappings between <code>input_species</code>:<code>output_species</code>.
 Options include:<br></p><ul><li><p><code>"drop_both_species" or "dbs" or 1</code> : <br>
 Drop genes that have duplicate
@@ -170,22 +174,26 @@ Return only the most "popular" interspecies ortholog mappings.
   (<code>input_species</code>-to-<code>output_species</code>)
   after dropping any duplicate genes in the <code>output_species</code>.</p></li>
 </ul></dd>
-</dl><dl><dt>mthreshold</dt><dd><p>Maximum number of ortholog names per gene to show.
+<dt>mthreshold</dt>
+<dd><p>Maximum number of ortholog names per gene to show.
 Passed to <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.
 Only used when <code>method="gprofiler"</code> (<em>DEFAULT : </em><code>Inf</code>).</p></dd>
-</dl><dl><dt>as_sparse</dt><dd><p>Convert <code>gene_df</code> to a sparse matrix.
+<dt>as_sparse</dt>
+<dd><p>Convert <code>gene_df</code> to a sparse matrix.
 Only works if <code>gene_df</code> is one of the following classes:<br></p><ul><li><p><code>matrix</code></p></li>
 <li><p><code>Matrix</code></p></li>
 <li><p><code>data.frame</code></p></li>
 <li><p><code>data.table</code></p></li>
 <li><p><code>tibble</code></p></li>
-</ul>
-If <code>gene_df</code> is a sparse matrix to begin with,
+</ul><p>If <code>gene_df</code> is a sparse matrix to begin with,
 it will be returned as a sparse matrix
- (so long as <code>gene_output=</code> <code>"rownames"</code> or <code>"colnames"</code>).</dd>
-</dl><dl><dt>sort_rows</dt><dd><p>Sort <code>gene_df</code> rows alphanumerically.</p></dd>
-</dl><dl><dt>verbose</dt><dd><p>Print messages.</p></dd>
-</dl><dl><dt>...</dt><dd><p>Additional arguments to be passed to
+ (so long as <code>gene_output=</code> <code>"rownames"</code> or <code>"colnames"</code>).</p></dd>
+<dt>sort_rows</dt>
+<dd><p>Sort <code>gene_df</code> rows alphanumerically.</p></dd>
+<dt>verbose</dt>
+<dd><p>Print messages.</p></dd>
+<dt>...</dt>
+<dd><p>Additional arguments to be passed to
 <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a> or <a href="https://rdrr.io/pkg/homologene/man/homologene.html" class="external-link">homologene</a>.<br><br><em>NOTE</em>: To return only the most "popular"
 interspecies ortholog mappings,
 supply <code>mthreshold=1</code> here AND set <code>method="gprofiler"</code> above.
@@ -198,8 +206,7 @@ This procedure tends to yield a greater number of returned genes but at
     <div id="value">
     <h2>Value</h2>
     <p><code>gene_df</code> with  orthologs converted to the
-<code>output_species</code>.<br>
-Instead returned as a dictionary (named list) if
+<code>output_species</code>.<br>Instead returned as a dictionary (named list) if
 <code>gene_output="dict"</code> or <code>"dict_rev"</code>.</p>
     </div>
     </div>

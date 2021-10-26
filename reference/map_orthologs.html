@@ -57,7 +57,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Map orthologs</h1>
-    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/master/R/map_orthologs.R" class="external-link"><code>R/map_orthologs.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/R/map_orthologs.R" class="external-link"><code>R/map_orthologs.R</code></a></small>
     <div class="hidden name"><code>map_orthologs.Rd</code></div>
     </div>
 
@@ -79,35 +79,39 @@
     <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>genes</dt><dd><p>can be a mixture of any format
+    <dl><dt>genes</dt>
+<dd><p>can be a mixture of any format
 (HGNC, Ensembl, RefSeq, UniProt, etc.)
  and will be automatically converted to
   standardised HGNC symbol format.</p></dd>
-</dl><dl><dt>standardise_genes</dt><dd><p>If <code>TRUE</code> AND
+<dt>standardise_genes</dt>
+<dd><p>If <code>TRUE</code> AND
 <code>gene_output="columns"</code>, a new column "input_gene_standard"
 will be added to <code>gene_df</code> containing standardised HGNC symbols
 identified by <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.</p></dd>
-</dl><dl><dt>input_species</dt><dd><p>Name of the input species (e.g., "mouse","fly").
+<dt>input_species</dt>
+<dd><p>Name of the input species (e.g., "mouse","fly").
 Use <a href="map_species.html">map_species</a> to return a full list
 of available species.</p></dd>
-</dl><dl><dt>output_species</dt><dd><p>Name of the output species (e.g. "human","chicken").
+<dt>output_species</dt>
+<dd><p>Name of the output species (e.g. "human","chicken").
 Use <a href="map_species.html">map_species</a> to return a full list
  of available species.</p></dd>
-</dl><dl><dt>method</dt><dd><p>R package to to use for gene mapping:
-</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
+<dt>method</dt>
+<dd><p>R package to to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
 <li><p><code>"babelgene"</code> : Faster but fewer species and genes.
 Also gives</p></li>
-</ul>
- (slower but more species and genes) or
-<code>"homologene"</code> (faster but fewer species and genes).</dd>
-</dl><dl><dt>mthreshold</dt><dd><p>Maximum number of ortholog names per gene to show.
+</ul><p>(slower but more species and genes) or
+<code>"homologene"</code> (faster but fewer species and genes).</p></dd>
+<dt>mthreshold</dt>
+<dd><p>Maximum number of ortholog names per gene to show.
 Passed to <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.
 Only used when <code>method="gprofiler"</code> (<em>DEFAULT : </em><code>Inf</code>).</p></dd>
-</dl><dl><dt>verbose</dt><dd><p>Print messages.</p></dd>
-</dl><dl><dt>...</dt><dd><p>Additional arguments to be passed to
+<dt>verbose</dt>
+<dd><p>Print messages.</p></dd>
+<dt>...</dt>
+<dd><p>Additional arguments to be passed to
 <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a> or <a href="https://rdrr.io/pkg/homologene/man/homologene.html" class="external-link">homologene</a>.<br><br><em>NOTE</em>: To return only the most "popular"
 interspecies ortholog mappings,
 supply <code>mthreshold=1</code> here AND set <code>method="gprofiler"</code> above.
