@@ -333,13 +333,12 @@ jobs:
       - uses: docker/build-push-action@v1
         if: "!contains(github.event.head_commit.message, '/nodocker') && env.run_docker == 'true' && runner.os == 'Linux' "
         with:
-          file: |
-            https://github.com/neurogenomics/${{ env.packageName }}/releases/download/latest/Dockerfile
+          dockerfile: https://github.com/neurogenomics/${{ env.packageName }}/releases/download/latest/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}
           tag_with_ref: true
-          tag_with_sha: true
+          tag_with_sha: false
           tags: |
             ${{ env.packageVersion }}
             latest
