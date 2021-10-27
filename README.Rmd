@@ -24,7 +24,6 @@ editor_options:
 [![](https://codecov.io/gh/neurogenomics/orthogene/branch/master/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
 [![License: GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 `r badger::badge_bioc_download(color="blue", by="total")`
-
 <!-- badges: end --> 
 
 

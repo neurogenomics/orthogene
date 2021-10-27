@@ -11,9 +11,27 @@ vignette: >
 ---
   
 
+```{r setup}
+#### Package name ####
+if(!"desc" %in% rownames(installed.packages())) install.packages("desc")
+pkg <- desc::desc_get("Package")
+#### Username of DockerHub account ####
+docker_user <- "bschilder"
+```
+
+
+
+```{r style, echo=FALSE, results='asis', message=FALSE}
+BiocStyle::markdown()
+knitr::opts_chunk$set(tidy = FALSE, 
+                      message = FALSE)
+```
+
+
 # Docker
 
-`orthogene` is now available via [DockerHub](https://hub.docker.com/repository/docker/bschilder/orthogene) 
+`r pkg` is now available via 
+[DockerHub](https://hub.docker.com/repository/docker/`r docker_user`/`r pkg`) 
 as a containerised environment with Rstudio and 
 all necessary dependencies pre-installed.
 
@@ -28,7 +46,7 @@ Create an image of the [Docker](https://www.docker.com/) container
 in command line:  
 
 ```
-docker pull bschilder/orthogene
+docker pull `r docker_user`/`r pkg`
 ```
 
 Once the image has been created, you can launch it with:  
@@ -42,7 +60,7 @@ docker run \
   -v ~/Desktop:/Desktop \
   -v /Volumes:/Volumes \
   -p 8788:8787 \
-  bschilder/orthogene
+  `r docker_user`/`r pkg`
 ```  
 
 * The `-d` ensures the container will run in "detached" mode,
@@ -60,7 +78,7 @@ If you are using a system that does not allow Docker
 you can instead [install Docker images via Singularity](https://sylabs.io/guides/2.6/user-guide/singularity_and_docker.html).  
 
 ```
-singularity pull docker://bschilder/orthogene
+singularity pull docker://`r docker_user`/`r pkg`
 ```
 
 

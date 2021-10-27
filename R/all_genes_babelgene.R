@@ -12,21 +12,23 @@ all_genes_babelgene <- function(species,
     )
     #### Upload babelgene orths to releases (too large for bioc) ####
     tmp <- file.path(tempdir(),"babelgene_orths.rda")
-    # ## Create/upload file
-    # orths <- babelgene:::orthologs_df
-    # ## Add humans as another species
-    # human_df <- orths
-    # human_df$taxon_id <- 9606
-    # human_df$symbol <- human_df$human_symbol
-    # human_df$entrez <- human_df$human_entrez
-    # human_df$ensembl <- human_df$human_ensembl
-    # human_df$support <- NA
-    # human_df$support_n <- NA
-    # orths <- rbind(orths, unique(human_df))
-    # save(orths, file = tmp)
-    # piggyback::pb_upload(file = tmp,
-    #                      repo = "neurogenomics/orthogene",
-    #                      overwrite = TRUE)
+    # {
+    #     ## Create/upload file
+    #     orths <- babelgene:::orthologs_df
+    #     ## Add humans as another species
+    #     human_df <- orths
+    #     human_df$taxon_id <- 9606
+    #     human_df$symbol <- human_df$human_symbol
+    #     human_df$entrez <- human_df$human_entrez
+    #     human_df$ensembl <- human_df$human_ensembl
+    #     human_df$support <- NA
+    #     human_df$support_n <- NA
+    #     orths <- rbind(orths, unique(human_df))
+    #     save(orths, file = tmp)
+    #     piggyback::pb_upload(file = tmp,
+    #                          repo = "neurogenomics/orthogene",
+    #                          overwrite = TRUE)
+    # }
     ##### Download file #####
     requireNamespace("piggyback")
     piggyback::pb_download(file = "babelgene_orths.rda", 

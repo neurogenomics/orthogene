@@ -56,7 +56,8 @@ Suggests:
     testthat (>= 3.0.0),
     piggyback,
     badger,
-    magick
+    magick,
+    desc
 RoxygenNote: 7.1.2
 Encoding: UTF-8
 Config/testthat/edition: 3
