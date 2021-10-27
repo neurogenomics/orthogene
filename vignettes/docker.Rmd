@@ -11,7 +11,7 @@ vignette: >
 ---
   
 
-```{r setup}
+```{r setup, include=FALSE}
 #### Package name ####
 if(!"desc" %in% rownames(installed.packages())) install.packages("desc")
 pkg <- desc::desc_get("Package")
