@@ -16,6 +16,7 @@ editor_options:
 <!-- badger::badge_license() -->
 `r badger::badge_devel(color="black")`
 [![R build status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions) 
+[![R build status](https://github.com/neurogenomics/orthogene/workflows/DockerHub/badge.svg)](https://github.com/neurogenomics/orthogene/actions) 
 [![BioC status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
 [![](https://img.shields.io/badge/doi-10.18129/B9.bioc.orthogene %20-green.svg)](https://doi.org/10.18129/B9.bioc.orthogene)
@@ -161,6 +162,18 @@ knitr::kable(as.matrix(head(gene_df)))
 Please see the
 [documentation website](https://neurogenomics.github.io/orthogene/articles/orthogene) 
 for the full vignette.
+
+
+# Docker
+
+`orthogene` is now available via DockerHub as a containerised environment with 
+Rstudio and all necessary dependencies pre-installed.
+
+To use it, follow these steps:
+
+```
+
+```
 
 
 ## [Hex sticker creation](https://github.com/neurogenomics/orthogene/blob/main/inst/hex/hexSticker.Rmd)

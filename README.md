@@ -5,7 +5,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Oct-23-2021</i>
+Most recent update: <i>Oct-27-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -15,7 +15,7 @@ Most recent update: <i>Oct-23-2021</i>
 <!-- badger::badge_last_commit()  -->
 <!-- badger::badge_license() -->
 
-[![](https://img.shields.io/badge/devel%20version-0.99.9-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.1.0-black.svg)](https://github.com/neurogenomics/orthogene)
 [![R build
 status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
 [![BioC
@@ -26,7 +26,7 @@ status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](htt
 [![](https://codecov.io/gh/neurogenomics/orthogene/branch/master/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
-[![](https://img.shields.io/badge/download-17/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-41/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 
 <!-- badges: end -->
 
@@ -71,7 +71,11 @@ BiocManager::install("orthogene")
 
 ``` r
 library(orthogene)
+```
 
+    ## Warning: package 'orthogene' was built under R version 4.1.1
+
+``` r
 data("exp_mouse")
 # Setting to "homologene" for the purposes of quick demonstration.
 # We generally recommend using method="gprofiler" (default).
@@ -246,7 +250,7 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_0.99.8
+    ## [1] orthogene_0.99.9
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] httr_1.4.2                tidyr_1.1.4              
