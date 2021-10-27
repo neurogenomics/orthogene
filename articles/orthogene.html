@@ -180,37 +180,37 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
                                         output_species <span class="op">=</span> <span class="st">"human"</span>,
                                         non121_strategy <span class="op">=</span> <span class="st">"drop_both_species"</span>,
                                         method <span class="op">=</span> <span class="va">method</span><span class="op">)</span> </code></pre></div>
-<pre><code>## Preparing gene_df.</code></pre>
-<pre><code>## sparseMatrix format detected.</code></pre>
-<pre><code>## Extracting genes from rownames.</code></pre>
-<pre><code>## 15,259 genes extracted.</code></pre>
-<pre><code>## Converting mouse ==&gt; human orthologs using: homologene</code></pre>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: mouse</code></pre>
-<pre><code>## Common name mapping found for mouse</code></pre>
-<pre><code>## 1 organism identified from search: 10090</code></pre>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: human</code></pre>
-<pre><code>## Common name mapping found for human</code></pre>
-<pre><code>## 1 organism identified from search: 9606</code></pre>
-<pre><code>## Checking for genes without orthologs in human.</code></pre>
-<pre><code>## Extracting genes from input_gene.</code></pre>
-<pre><code>## 13,416 genes extracted.</code></pre>
-<pre><code>## Extracting genes from ortholog_gene.</code></pre>
-<pre><code>## 13,416 genes extracted.</code></pre>
-<pre><code>## Checking for genes without 1:1 orthologs.</code></pre>
-<pre><code>## Dropping 46 genes that have multiple input_gene per ortholog_gene.</code></pre>
-<pre><code>## Dropping 56 genes that have multiple ortholog_gene per input_gene.</code></pre>
-<pre><code>## Filtering gene_df with gene_map</code></pre>
-<pre><code>## Setting ortholog_gene to rownames.</code></pre>
-<pre><code>## 
-## =========== REPORT SUMMARY ===========</code></pre>
-<pre><code>## Total genes dropped after convert_orthologs :
-##    2,016 / 15,259 (13%)</code></pre>
-<pre><code>## Total genes remaining after convert_orthologs :
-##    13,243 / 15,259 (87%)</code></pre>
+<pre><code><span class="co">## Preparing gene_df.</span></code></pre>
+<pre><code><span class="co">## sparseMatrix format detected.</span></code></pre>
+<pre><code><span class="co">## Extracting genes from rownames.</span></code></pre>
+<pre><code><span class="co">## 15,259 genes extracted.</span></code></pre>
+<pre><code><span class="co">## Converting mouse ==&gt; human orthologs using: homologene</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 10090</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: human</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for human</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 9606</span></code></pre>
+<pre><code><span class="co">## Checking for genes without orthologs in human.</span></code></pre>
+<pre><code><span class="co">## Extracting genes from input_gene.</span></code></pre>
+<pre><code><span class="co">## 13,416 genes extracted.</span></code></pre>
+<pre><code><span class="co">## Extracting genes from ortholog_gene.</span></code></pre>
+<pre><code><span class="co">## 13,416 genes extracted.</span></code></pre>
+<pre><code><span class="co">## Checking for genes without 1:1 orthologs.</span></code></pre>
+<pre><code><span class="co">## Dropping 46 genes that have multiple input_gene per ortholog_gene.</span></code></pre>
+<pre><code><span class="co">## Dropping 56 genes that have multiple ortholog_gene per input_gene.</span></code></pre>
+<pre><code><span class="co">## Filtering gene_df with gene_map</span></code></pre>
+<pre><code><span class="co">## Setting ortholog_gene to rownames.</span></code></pre>
+<pre><code><span class="co">## </span>
+<span class="co">## =========== REPORT SUMMARY ===========</span></code></pre>
+<pre><code><span class="co">## Total genes dropped after convert_orthologs :</span>
+<span class="co">##    2,016 / 15,259 (13%)</span></code></pre>
+<pre><code><span class="co">## Total genes remaining after convert_orthologs :</span>
+<span class="co">##    13,243 / 15,259 (87%)</span></code></pre>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gene_df</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -309,26 +309,26 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <code class="sourceCode R"><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/map_species.html">map_species</a></span><span class="op">(</span>species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"human"</span>,<span class="fl">9544</span>,<span class="st">"mus musculus"</span>,
                                               <span class="st">"fruit fly"</span>,<span class="st">"Celegans"</span><span class="op">)</span>, 
                                   output_format <span class="op">=</span> <span class="st">"scientific_name"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: human</code></pre>
-<pre><code>## Common name mapping found for human</code></pre>
-<pre><code>## 1 organism identified from search: Homo sapiens</code></pre>
-<pre><code>## Mapping species name: 9544</code></pre>
-<pre><code>## 1 organism identified from search: Macaca mulatta</code></pre>
-<pre><code>## Mapping species name: mus musculus</code></pre>
-<pre><code>## 1 organism identified from search: Mus musculus</code></pre>
-<pre><code>## Mapping species name: fruit fly</code></pre>
-<pre><code>## Common name mapping found for fruit fly</code></pre>
-<pre><code>## 1 organism identified from search: Drosophila melanogaster</code></pre>
-<pre><code>## Mapping species name: Celegans</code></pre>
-<pre><code>## 1 organism identified from search: Caenorhabditis elegans</code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: human</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for human</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: Homo sapiens</span></code></pre>
+<pre><code><span class="co">## Mapping species name: 9544</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: Macaca mulatta</span></code></pre>
+<pre><code><span class="co">## Mapping species name: mus musculus</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: Mus musculus</span></code></pre>
+<pre><code><span class="co">## Mapping species name: fruit fly</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for fruit fly</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: Drosophila melanogaster</span></code></pre>
+<pre><code><span class="co">## Mapping species name: Celegans</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: Caenorhabditis elegans</span></code></pre>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span></code></pre></div>
-<pre><code>##                     human                      9544              mus musculus 
-##            "Homo sapiens"          "Macaca mulatta"            "Mus musculus" 
-##                 fruit fly                  Celegans 
-## "Drosophila melanogaster"  "Caenorhabditis elegans"</code></pre>
+<pre><code><span class="co">##                     human                      9544              mus musculus </span>
+<span class="co">##            "Homo sapiens"          "Macaca mulatta"            "Mus musculus" </span>
+<span class="co">##                 fruit fly                  Celegans </span>
+<span class="co">## "Drosophila melanogaster"  "Caenorhabditis elegans"</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="report-orthologs">Report orthologs<a class="anchor" aria-label="anchor" href="#report-orthologs"></a>
@@ -340,64 +340,64 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
                                         reference_species <span class="op">=</span> <span class="st">"human"</span>,
                                         method_all_genes <span class="op">=</span> <span class="va">method</span>,
                                         method_convert_orthologs <span class="op">=</span> <span class="va">method</span><span class="op">)</span> </code></pre></div>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: zebrafish</code></pre>
-<pre><code>## Common name mapping found for zebrafish</code></pre>
-<pre><code>## 1 organism identified from search: drerio</code></pre>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: human</code></pre>
-<pre><code>## Common name mapping found for human</code></pre>
-<pre><code>## 1 organism identified from search: hsapiens</code></pre>
-<pre><code>## Retrieving all genes using: homologene.</code></pre>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: drerio</code></pre>
-<pre><code>## 1 organism identified from search: 7955</code></pre>
-<pre><code>## Gene table with 20,897 rows retrieved.</code></pre>
-<pre><code>## Returning all 20,897 genes from drerio.</code></pre>
-<pre><code>## Retrieving all genes using: homologene.</code></pre>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: hsapiens</code></pre>
-<pre><code>## 1 organism identified from search: 9606</code></pre>
-<pre><code>## Gene table with 19,129 rows retrieved.</code></pre>
-<pre><code>## Returning all 19,129 genes from hsapiens.</code></pre>
-<pre><code>## Preparing gene_df.</code></pre>
-<pre><code>## data.frame format detected.</code></pre>
-<pre><code>## Extracting genes from Gene.Symbol.</code></pre>
-<pre><code>## 20,897 genes extracted.</code></pre>
-<pre><code>## Converting drerio ==&gt; hsapiens orthologs using: homologene</code></pre>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: drerio</code></pre>
-<pre><code>## 1 organism identified from search: 7955</code></pre>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: hsapiens</code></pre>
-<pre><code>## 1 organism identified from search: 9606</code></pre>
-<pre><code>## Checking for genes without orthologs in hsapiens.</code></pre>
-<pre><code>## Extracting genes from input_gene.</code></pre>
-<pre><code>## 14,768 genes extracted.</code></pre>
-<pre><code>## Extracting genes from ortholog_gene.</code></pre>
-<pre><code>## 14,768 genes extracted.</code></pre>
-<pre><code>## Checking for genes without 1:1 orthologs.</code></pre>
-<pre><code>## Dropping 47 genes that have multiple input_gene per ortholog_gene.</code></pre>
-<pre><code>## Dropping 2,708 genes that have multiple ortholog_gene per input_gene.</code></pre>
-<pre><code>## Filtering gene_df with gene_map</code></pre>
-<pre><code>## Adding input_gene col to gene_df.</code></pre>
-<pre><code>## Adding ortholog_gene col to gene_df.</code></pre>
-<pre><code>## 
-## =========== REPORT SUMMARY ===========</code></pre>
-<pre><code>## Total genes dropped after convert_orthologs :
-##    10,338 / 20,895 (49%)</code></pre>
-<pre><code>## Total genes remaining after convert_orthologs :
-##    10,557 / 20,895 (51%)</code></pre>
-<pre><code>## 
-## =========== REPORT SUMMARY ===========</code></pre>
-<pre><code>## 10,556 / 20,895 (50.52%) target_species genes remain after ortholog conversion.</code></pre>
-<pre><code>## 10,556 / 19,129 (55.18%) reference_species genes remain after ortholog conversion.</code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: zebrafish</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for zebrafish</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: drerio</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: human</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for human</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: hsapiens</span></code></pre>
+<pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: drerio</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 7955</span></code></pre>
+<pre><code><span class="co">## Gene table with 20,897 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 20,897 genes from drerio.</span></code></pre>
+<pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: hsapiens</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 9606</span></code></pre>
+<pre><code><span class="co">## Gene table with 19,129 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 19,129 genes from hsapiens.</span></code></pre>
+<pre><code><span class="co">## Preparing gene_df.</span></code></pre>
+<pre><code><span class="co">## data.frame format detected.</span></code></pre>
+<pre><code><span class="co">## Extracting genes from Gene.Symbol.</span></code></pre>
+<pre><code><span class="co">## 20,897 genes extracted.</span></code></pre>
+<pre><code><span class="co">## Converting drerio ==&gt; hsapiens orthologs using: homologene</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: drerio</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 7955</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: hsapiens</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 9606</span></code></pre>
+<pre><code><span class="co">## Checking for genes without orthologs in hsapiens.</span></code></pre>
+<pre><code><span class="co">## Extracting genes from input_gene.</span></code></pre>
+<pre><code><span class="co">## 14,768 genes extracted.</span></code></pre>
+<pre><code><span class="co">## Extracting genes from ortholog_gene.</span></code></pre>
+<pre><code><span class="co">## 14,768 genes extracted.</span></code></pre>
+<pre><code><span class="co">## Checking for genes without 1:1 orthologs.</span></code></pre>
+<pre><code><span class="co">## Dropping 47 genes that have multiple input_gene per ortholog_gene.</span></code></pre>
+<pre><code><span class="co">## Dropping 2,708 genes that have multiple ortholog_gene per input_gene.</span></code></pre>
+<pre><code><span class="co">## Filtering gene_df with gene_map</span></code></pre>
+<pre><code><span class="co">## Adding input_gene col to gene_df.</span></code></pre>
+<pre><code><span class="co">## Adding ortholog_gene col to gene_df.</span></code></pre>
+<pre><code><span class="co">## </span>
+<span class="co">## =========== REPORT SUMMARY ===========</span></code></pre>
+<pre><code><span class="co">## Total genes dropped after convert_orthologs :</span>
+<span class="co">##    10,338 / 20,895 (49%)</span></code></pre>
+<pre><code><span class="co">## Total genes remaining after convert_orthologs :</span>
+<span class="co">##    10,557 / 20,895 (51%)</span></code></pre>
+<pre><code><span class="co">## </span>
+<span class="co">## =========== REPORT SUMMARY ===========</span></code></pre>
+<pre><code><span class="co">## 10,556 / 20,895 (50.52%) target_species genes remain after ortholog conversion.</span></code></pre>
+<pre><code><span class="co">## 10,556 / 19,129 (55.18%) reference_species genes remain after ortholog conversion.</span></code></pre>
 <div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">orth_zeb</span><span class="op">$</span><span class="va">map</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -509,12 +509,12 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <span class="va">mapped_genes</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/map_genes.html">map_genes</a></span><span class="op">(</span>genes <span class="op">=</span> <span class="va">genes</span>,
                                      species <span class="op">=</span> <span class="st">"mouse"</span>, 
                                      drop_na <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: mouse</code></pre>
-<pre><code>## Common name mapping found for mouse</code></pre>
-<pre><code>## 1 organism identified from search: mmusculus</code></pre>
-<pre><code>## 8 / 7 (87.5%) genes mapped.</code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: mmusculus</span></code></pre>
+<pre><code><span class="co">## 8 / 7 (87.5%) genes mapped.</span></code></pre>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mapped_genes</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -697,16 +697,16 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <code class="sourceCode R"><span class="va">exp_agg</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/aggregate_mapped_genes.html">aggregate_mapped_genes</a></span><span class="op">(</span>gene_df<span class="op">=</span><span class="va">exp_mouse_enst</span>,
                                              species<span class="op">=</span><span class="st">"mouse"</span>,
                                              FUN <span class="op">=</span> <span class="st">"sum"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: mouse</code></pre>
-<pre><code>## Common name mapping found for mouse</code></pre>
-<pre><code>## 1 organism identified from search: mmusculus</code></pre>
-<pre><code>## 482 / 482 (100%) genes mapped.</code></pre>
-<pre><code>## Aggregating rows using: monocle3</code></pre>
-<pre><code>## Matrix aggregated:
-##   - Input: 482 x 7 
-##   - Output: 92 x 7</code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: mmusculus</span></code></pre>
+<pre><code><span class="co">## 482 / 482 (100%) genes mapped.</span></code></pre>
+<pre><code><span class="co">## Aggregating rows using: monocle3</span></code></pre>
+<pre><code><span class="co">## Matrix aggregated:</span>
+<span class="co">##   - Input: 482 x 7 </span>
+<span class="co">##   - Output: 92 x 7</span></code></pre>
 <div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">exp_agg</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table style="width:100%;" class="table">
@@ -801,14 +801,14 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">genome_mouse</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/all_genes.html">all_genes</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, 
                                      method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
-<pre><code>## Retrieving all genes using: homologene.</code></pre>
-<pre><code>## Retrieving all organisms available in gprofiler.</code></pre>
-<pre><code>## Using stored `gprofiler_orgs`.</code></pre>
-<pre><code>## Mapping species name: mouse</code></pre>
-<pre><code>## Common name mapping found for mouse</code></pre>
-<pre><code>## 1 organism identified from search: 10090</code></pre>
-<pre><code>## Gene table with 21,207 rows retrieved.</code></pre>
-<pre><code>## Returning all 21,207 genes from mouse.</code></pre>
+<pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
+<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
+<pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 10090</span></code></pre>
+<pre><code><span class="co">## Gene table with 21,207 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 21,207 genes from mouse.</span></code></pre>
 <div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genome_mouse</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -871,73 +871,73 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 </h1>
 <details><div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## R version 4.1.1 (2021-08-10)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.3 LTS
-## 
-## Matrix products: default
-## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
-## 
-## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-## [1] orthogene_0.99.9 BiocStyle_2.21.4
-## 
-## loaded via a namespace (and not attached):
-##  [1] bitops_1.0-7              fs_1.5.0                 
-##  [3] httr_1.4.2                rprojroot_2.0.2          
-##  [5] tools_4.1.1               backports_1.2.1          
-##  [7] bslib_0.3.1               utf8_1.2.2               
-##  [9] R6_2.5.1                  lazyeval_0.2.2           
-## [11] colorspace_2.0-2          tidyselect_1.1.1         
-## [13] curl_4.3.2                compiler_4.1.1           
-## [15] textshaping_0.3.6         cli_3.0.1                
-## [17] desc_1.4.0                plotly_4.10.0            
-## [19] bookdown_0.24             sass_0.4.0               
-## [21] scales_1.1.1              pkgdown_1.9000.9000.9000 
-## [23] systemfonts_1.0.3         stringr_1.4.0            
-## [25] digest_0.6.28             foreign_0.8-81           
-## [27] rmarkdown_2.11            rio_0.5.27               
-## [29] pkgconfig_2.0.3           htmltools_0.5.2          
-## [31] fastmap_1.1.0             highr_0.9                
-## [33] htmlwidgets_1.5.4         rlang_0.99.0.9000        
-## [35] readxl_1.3.1              jquerylib_0.1.4          
-## [37] generics_0.1.1            jsonlite_1.7.2           
-## [39] dplyr_1.0.7               zip_2.2.0                
-## [41] car_3.0-11                RCurl_1.98-1.5           
-## [43] homologene_1.4.68.19.3.27 magrittr_2.0.1           
-## [45] GenomeInfoDbData_1.2.7    patchwork_1.1.1          
-## [47] Matrix_1.3-4              Rcpp_1.0.7               
-## [49] munsell_0.5.0             fansi_0.5.0              
-## [51] abind_1.4-5               babelgene_21.4           
-## [53] lifecycle_1.0.1           stringi_1.7.5            
-## [55] yaml_2.2.1                carData_3.0-4            
-## [57] grid_4.1.1                parallel_4.1.1           
-## [59] forcats_0.5.1             crayon_1.4.1             
-## [61] lattice_0.20-45           haven_2.4.3              
-## [63] hms_1.1.1                 knitr_1.36               
-## [65] pillar_1.6.4              ggpubr_0.4.0             
-## [67] ggsignif_0.6.3            glue_1.4.2               
-## [69] gprofiler2_0.2.1          evaluate_0.14            
-## [71] data.table_1.14.2         BiocManager_1.30.16      
-## [73] vctrs_0.3.8               cellranger_1.1.0         
-## [75] grr_0.9.5                 gtable_0.3.0             
-## [77] purrr_0.3.4               tidyr_1.1.4              
-## [79] cachem_1.0.6              ggplot2_3.3.5            
-## [81] xfun_0.27                 openxlsx_4.2.4           
-## [83] broom_0.7.9               rstatix_0.7.0            
-## [85] ragg_1.1.3                viridisLite_0.4.0        
-## [87] tibble_3.1.5              Matrix.utils_0.9.8       
-## [89] memoise_2.0.0             ellipsis_0.3.2</code></pre>
+<pre><code><span class="co">## R version 4.1.1 (2021-08-10)</span>
+<span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span>
+<span class="co">## Running under: Ubuntu 20.04.3 LTS</span>
+<span class="co">## </span>
+<span class="co">## Matrix products: default</span>
+<span class="co">## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so</span>
+<span class="co">## </span>
+<span class="co">## locale:</span>
+<span class="co">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
+<span class="co">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
+<span class="co">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             </span>
+<span class="co">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
+<span class="co">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+<span class="co">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
+<span class="co">## </span>
+<span class="co">## attached base packages:</span>
+<span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+<span class="co">## </span>
+<span class="co">## other attached packages:</span>
+<span class="co">## [1] orthogene_0.99.9 BiocStyle_2.21.4</span>
+<span class="co">## </span>
+<span class="co">## loaded via a namespace (and not attached):</span>
+<span class="co">##  [1] bitops_1.0-7              fs_1.5.0                 </span>
+<span class="co">##  [3] httr_1.4.2                rprojroot_2.0.2          </span>
+<span class="co">##  [5] tools_4.1.1               backports_1.2.1          </span>
+<span class="co">##  [7] bslib_0.3.1               utf8_1.2.2               </span>
+<span class="co">##  [9] R6_2.5.1                  lazyeval_0.2.2           </span>
+<span class="co">## [11] colorspace_2.0-2          tidyselect_1.1.1         </span>
+<span class="co">## [13] curl_4.3.2                compiler_4.1.1           </span>
+<span class="co">## [15] textshaping_0.3.6         cli_3.0.1                </span>
+<span class="co">## [17] desc_1.4.0                plotly_4.10.0            </span>
+<span class="co">## [19] bookdown_0.24             sass_0.4.0               </span>
+<span class="co">## [21] scales_1.1.1              pkgdown_1.9000.9000.9000 </span>
+<span class="co">## [23] systemfonts_1.0.3         stringr_1.4.0            </span>
+<span class="co">## [25] digest_0.6.28             foreign_0.8-81           </span>
+<span class="co">## [27] rmarkdown_2.11            rio_0.5.27               </span>
+<span class="co">## [29] pkgconfig_2.0.3           htmltools_0.5.2          </span>
+<span class="co">## [31] fastmap_1.1.0             highr_0.9                </span>
+<span class="co">## [33] htmlwidgets_1.5.4         rlang_0.99.0.9000        </span>
+<span class="co">## [35] readxl_1.3.1              jquerylib_0.1.4          </span>
+<span class="co">## [37] generics_0.1.1            jsonlite_1.7.2           </span>
+<span class="co">## [39] dplyr_1.0.7               zip_2.2.0                </span>
+<span class="co">## [41] car_3.0-11                RCurl_1.98-1.5           </span>
+<span class="co">## [43] homologene_1.4.68.19.3.27 magrittr_2.0.1           </span>
+<span class="co">## [45] GenomeInfoDbData_1.2.7    patchwork_1.1.1          </span>
+<span class="co">## [47] Matrix_1.3-4              Rcpp_1.0.7               </span>
+<span class="co">## [49] munsell_0.5.0             fansi_0.5.0              </span>
+<span class="co">## [51] abind_1.4-5               babelgene_21.4           </span>
+<span class="co">## [53] lifecycle_1.0.1           stringi_1.7.5            </span>
+<span class="co">## [55] yaml_2.2.1                carData_3.0-4            </span>
+<span class="co">## [57] grid_4.1.1                parallel_4.1.1           </span>
+<span class="co">## [59] forcats_0.5.1             crayon_1.4.1             </span>
+<span class="co">## [61] lattice_0.20-45           haven_2.4.3              </span>
+<span class="co">## [63] hms_1.1.1                 knitr_1.36               </span>
+<span class="co">## [65] pillar_1.6.4              ggpubr_0.4.0             </span>
+<span class="co">## [67] ggsignif_0.6.3            glue_1.4.2               </span>
+<span class="co">## [69] gprofiler2_0.2.1          evaluate_0.14            </span>
+<span class="co">## [71] data.table_1.14.2         BiocManager_1.30.16      </span>
+<span class="co">## [73] vctrs_0.3.8               cellranger_1.1.0         </span>
+<span class="co">## [75] grr_0.9.5                 gtable_0.3.0             </span>
+<span class="co">## [77] purrr_0.3.4               tidyr_1.1.4              </span>
+<span class="co">## [79] cachem_1.0.6              ggplot2_3.3.5            </span>
+<span class="co">## [81] xfun_0.27                 openxlsx_4.2.4           </span>
+<span class="co">## [83] broom_0.7.9               rstatix_0.7.0            </span>
+<span class="co">## [85] ragg_1.1.3                viridisLite_0.4.0        </span>
+<span class="co">## [87] tibble_3.1.5              Matrix.utils_0.9.8       </span>
+<span class="co">## [89] memoise_2.0.0             ellipsis_0.3.2</span></code></pre>
 </details>
 </div>
   </div>
