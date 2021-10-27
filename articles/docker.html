@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -100,10 +100,21 @@ Most recent update: <i>Oct-27-2021</i>
 
     
     
-<div class="section level1">
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector("h1").className = "title";
+});
+</script><script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+  var links = document.links;  
+  for (var i = 0, linksLength = links.length; i < linksLength; i++)
+    if (links[i].hostname != window.location.hostname)
+      links[i].target = '_blank';
+});
+</script><div class="section level1">
 <h1 id="docker">Docker<a class="anchor" aria-label="anchor" href="#docker"></a>
 </h1>
-<p><code>orthogene</code> is now available via <a href="https://hub.docker.com/repository/docker/bschilder/orthogene" class="external-link">DockerHub</a> as a containerised environment with Rstudio and all necessary dependencies pre-installed.</p>
+<p>orthogene is now available via <a href="https://hub.docker.com/repository/docker/bschilder/orthogene" class="external-link">DockerHub</a> as a containerised environment with Rstudio and all necessary dependencies pre-installed.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -171,7 +182,7 @@ Most recent update: <i>Oct-27-2021</i>
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] BiocStyle_2.21.4</span>
+<span class="co">## [1] BiocStyle_2.22.0</span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
 <span class="co">##  [1] knitr_1.36               magrittr_2.0.1           R6_2.5.1                </span>
