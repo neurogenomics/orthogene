@@ -166,9 +166,16 @@ jobs:
           remotes::install_cran("BiocManager")
         shell: Rscript {0}
 
+      # Linux Bioconductor docker comes with bioconductor installed
       - name: Set BiocVersion
+        if: runner.os != 'Linux'
         run: |
-          BiocManager::install(version = "${{ matrix.config.bioc }}", ask = FALSE, force = TRUE)
+          #### BiocManager::install doesn't understand "latest" #####
+          if("${{ matrix.config.bioc }}" %in% c("latest","release")){
+            BiocManager::install(ask = FALSE, force = TRUE)
+          } else {
+            BiocManager::install(version = "${{ matrix.config.bioc }}", ask = FALSE, force = TRUE)
+          }
         shell: Rscript {0}
 
       - name: Install dependencies pass 1
