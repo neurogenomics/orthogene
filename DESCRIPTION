@@ -1,7 +1,7 @@
 Package: orthogene
 Type: Package
 Title: Interspecies gene mapping 
-Version: 0.99.9
+Version: 1.1.0
 Authors@R:
     c( 
      person(given = "Brian",
