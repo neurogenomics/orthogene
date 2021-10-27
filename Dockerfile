@@ -52,11 +52,7 @@ WORKDIR /build_zone
 # Install dependencies with AnVil (faster)
 RUN Rscript -e 'install.packages("BiocManager"); \
                 bioc_ver <- BiocManager::version(); \
-                options(repos = c(BioCsoft = "https://bioconductor.org/packages/devel/bioc",\
-                                  BioCann = "https://bioconductor.org/packages/devel/data/annotation",\
-                                  BioCexp = "https://bioconductor.org/packages/devel/data/experiment",\
-                                  BioCworkflows = "https://bioconductor.org/packages/devel/workflows",\
-                                  BioCbooks = "https://bioconductor.org/packages/devel/books",\
+                options(repos = c(BiocManager::repositories(),\
                                   AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
                                   CRAN = "https://cran.rstudio.com/"),\
                                   download.file.method = "libcurl", Ncpus = 4); \
