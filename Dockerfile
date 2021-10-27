@@ -52,20 +52,18 @@ RUN R -e 'install.packages(c("remotes","devtools"))'
 # install the R package and all its imports/depends/suggests
 # RUN R -e 'devtools::install_dev_deps(dependencies = TRUE, upgrade = "never")'
 # Install dependencies with AnVil (faster)
-RUN Rscript -e '#### Install packages #### \
-                install.packages("BiocManager"); \
+RUN Rscript -e 'install.packages("BiocManager"); \
                 remotes::install_github("bergant/rapiclient"); \ 
                 BiocManager::install("AnVIL"); \
-                #### Get dependencies #### \
                 pkg <- gsub("Package: ","",grep("^Package",readLines("DESCRIPTION"), value = TRUE)); \
                 deps <- tools::package_dependencies(packages = pkg, which = "all")[[1]]; \
                 AnVIL::install(pkgs = deps);'
 # Run R CMD check - will fail with any errors or warnings
 Run Rscript -e 'devtools::check()'
-# Run Rscript -e 'install.packages("rcmdcheck");
-# rcmdcheck::rcmdcheck(args = c("--no-manual", "--timings"),
-#                                      build_args = c("--no-manual", "--keep-empty-dirs", "--no-resave-data"),
-#                                      error_on = "warning",
+# Run Rscript -e 'install.packages("rcmdcheck"); \
+#                 rcmdcheck::rcmdcheck(args = c("--no-manual", "--timings"), \
+#                                      build_args = c("--no-manual", "--keep-empty-dirs", "--no-resave-data"), \
+#                                      error_on = "warning", \
 #                                      check_dir = "check");'
 # Install R package from source
 RUN R -e 'remotes::install_local(upgrade="never")'
