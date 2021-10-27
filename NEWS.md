@@ -1,6 +1,12 @@
-# orthogene  1.0.0
+# orthogene  1.1.1
 
-NEW FEATURES
+BUG FIXES  
+
+* Made GHA less dependent on hard-coded R/bioc versions. 
+
+# orthogene  1.1.0
+
+NEW FEATURES  
 
 * Now on [Bioconductor release 3.14](https://bioconductor.org/packages/devel/bioc/html/orthogene.html).  
 * Docker containers automatically built and pushed to [DockerHub](https://hub.docker.com/repository/docker/bschilder/orthogene) via 
@@ -14,26 +20,25 @@ provided to build and check any R package efficiently with [AnVil](https://bioco
 
 # orthogene  0.99.9
 
-NEW FEATURES
+NEW FEATURES  
 
 * Replaced R-CMD GHA with bioc-check GHA.
 * Added new badges.
 
-BUG FIXES
+BUG FIXES  
 
 * Adjusted vignette yamls to make resulting htmls smaller.  
 
-
 # orthogene  0.99.8
 
-NEW FEATURES
+NEW FEATURES  
 
 * `orthogene` now supports `DelayedArray` objects as `gene_df` input.  
 * `create_background` now uses `all_genes` when all 3 species are the same.  
 
 # orthogene  0.99.7
 
-NEW FEATURES
+NEW FEATURES  
 
 * Added new function `create_background`.  
 * Added new function `infer_species`.  
@@ -47,13 +52,11 @@ BUG FIXES
 
 * `report_orthologs` no longer throws error due to not finding `tar_genes`.
 
-
 # orthogene  0.99.6
 
 BUG FIXES
 
 * Allow all messages to be suppressed in `report_orthologs`.  
-
 
 # orthogene  0.99.3
 
@@ -62,15 +65,15 @@ NEW FEATURES
 * License switched to GPL-3 (to be compliant with Bioc).  
 * New method "babelgene" added to `convert_orthologs`.
 
-
 # orthogene  0.99.2
+
+NEW FEATURES  
 
 * License switched to GPL3 (>=3).
 
 BUG FIXES
 
 * `GenomeInfoDbData` now required.
-
 
 # orthogene  0.1.0
 

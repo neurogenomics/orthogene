@@ -13,7 +13,6 @@ vignette: >
 
 ```{r setup, include=FALSE}
 #### Package name ####
-if(!"desc" %in% rownames(installed.packages())) install.packages("desc")
 pkg <- desc::desc_get("Package")
 #### Username of DockerHub account ####
 docker_user <- "bschilder"
