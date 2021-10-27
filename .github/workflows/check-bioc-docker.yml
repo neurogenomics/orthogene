@@ -90,6 +90,15 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }} 
+      
+      # "devel" doesn't tell you which version R it actually is, 
+      # which is needed to properly reference cache folders.
+      # Without caching, workflows are extraordinarily slow (or fail entirely).
+      - name: Get actual R version
+        run: |
+          unset R_HOME
+          r_ver=$(Rscript -e 'cat(paste0(R.version$major,".",R.version$minor))')
+          echo "R version:" $r_ver
 
       ## pandoc is already included in the Bioconductor docker images
       - name: Setup pandoc from r-lib
@@ -107,16 +116,16 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ env.cache-version }}-${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ matrix.config.r }}-
+          key: ${{ env.cache-version }}-${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ r_ver }}-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ r_ver }}-
 
       - name: Cache R packages on Linux
         if: "!contains(github.event.head_commit.message, '/nocache') && runner.os == 'Linux' "
         uses: actions/cache@v2
         with:
           path: /home/runner/work/_temp/Library
-          key: ${{ env.cache-version }}-${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ matrix.config.r }}-
+          key: ${{ env.cache-version }}-${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ r_ver }}-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ r_ver }}-
 
       - name: Install Linux system dependencies
         if: runner.os == 'Linux'
@@ -260,6 +269,8 @@ jobs:
         env:
           DISPLAY: 99.0
         run: |
+          if(!"BiocManager" %in% rownames(install.packages())) install.packages("BiocManager")
+          if(!"BiocCheck" %in% rownames(install.packages())) BiocManager::install("BiocCheck")
           BiocCheck::BiocCheck(
               dir('check', 'tar.gz$', full.names = TRUE),
               `quit-with-status` = TRUE,
@@ -304,7 +315,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@master
         with:
-          name: ${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ matrix.config.r }}-results
+          name: ${{ runner.os }}-biocversion-${{ matrix.config.bioc }}-r-${{ r_ver }}-results
           path: check
       
       # ## DockerHub steps 
