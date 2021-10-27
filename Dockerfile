@@ -3,7 +3,7 @@ RUN apt-get update && apt-get install -y  git-core libcurl4-openssl-dev libgit2-
 RUN echo "options(repos = c(BioCsoft = 'https://bioconductor.org/packages/devel/bioc',\
                             BioCann = 'https://bioconductor.org/packages/devel/data/annotation',\
                             BioCexp = 'https://bioconductor.org/packages/devel/data/experiment',\
-                            BioCworkflows = 'https://bioconductor.org/packages/devel/workflows',
+                            BioCworkflows = 'https://bioconductor.org/packages/devel/workflows',\
                             BioCbooks = 'https://bioconductor.org/packages/devel/books',\
                             CRAN = 'https://cran.rstudio.com/'),\
                             download.file.method = 'libcurl', Ncpus = 4)" >> /usr/local/lib/R/etc/Rprofile.site
