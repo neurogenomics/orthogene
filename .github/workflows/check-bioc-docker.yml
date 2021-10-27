@@ -174,10 +174,11 @@ jobs:
           ## Alternatively use https://storage.googleapis.com/bioconductor_docker/packages/
           ## though based on https://bit.ly/bioc2021-package-binaries
           ## the Azure link will be the main one going forward.
+          bioc_ver <- BiocManager::version()
           gha_repos <- if(
               .Platform$OS.type == "unix" && Sys.info()["sysname"] != "Darwin"
           ) c(
-              "AnVIL" = "https://bioconductordocker.blob.core.windows.net/packages/3.14/bioc",
+              "AnVIL" = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),
               BiocManager::repositories()
               ) else BiocManager::repositories()
 

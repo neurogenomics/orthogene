@@ -15,7 +15,17 @@
 # push the Docker container to DockerHub (using the username and token credentials 
 # stored as GitHub Secrets).
 # 
-# Adapted from the [scFlow Dockerfile](https://github.com/combiz/scFlow/blob/master/Dockerfile).
+# You can then create an image of the Docker container in any command line:
+#   docker pull <DockerHub_repo_name>/<package_name>
+# Once the image has been created, you can launch it with:
+#   docker run -d -e ROOT=true -e PASSWORD=bioc -v ~/Desktop:/Desktop -v /Volumes:/Volumes --rm -p 8788:8787 <DockerHub_repo_name>/<package_name>
+# Finally, launch the containerised Rstudio by entering the following URL in any web browser:
+#   http://localhost:8788/
+#
+# The username will be "rstudio" by default, 
+# and you can set the password to whatever you like, 
+#
+# This DockerFile was partly adapted from the [scFlow Dockerfile](https://github.com/combiz/scFlow/blob/master/Dockerfile).
 FROM bioconductor/bioconductor_docker:devel
 RUN apt-get update && \
     apt-get install -y \
@@ -36,25 +46,23 @@ RUN apt-get update && \
 	qpdf \
 	&& apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-RUN echo "options(repos = c(BioCsoft = 'https://bioconductor.org/packages/devel/bioc',\
-                            BioCann = 'https://bioconductor.org/packages/devel/data/annotation',\
-                            BioCexp = 'https://bioconductor.org/packages/devel/data/experiment',\
-                            BioCworkflows = 'https://bioconductor.org/packages/devel/workflows',\
-                            BioCbooks = 'https://bioconductor.org/packages/devel/books',\
-                            AnVIL = 'https://bioconductordocker.blob.core.windows.net/packages/devel/bioc',\
-                            CRAN = 'https://cran.rstudio.com/'),\
-                            download.file.method = 'libcurl', Ncpus = 4)" >> /usr/local/lib/R/etc/Rprofile.site
 RUN mkdir /build_zone
 ADD . /build_zone
 WORKDIR /build_zone
-# Install packages 
-RUN R -e 'install.packages(c("remotes","devtools"))'
-# install the R package and all its imports/depends/suggests
-# RUN R -e 'devtools::install_dev_deps(dependencies = TRUE, upgrade = "never")'
 # Install dependencies with AnVil (faster)
 RUN Rscript -e 'install.packages("BiocManager"); \
+                bioc_ver <- BiocManager::version(); \
+                options(repos = c(BioCsoft = "https://bioconductor.org/packages/devel/bioc",\
+                                  BioCann = "https://bioconductor.org/packages/devel/data/annotation",\
+                                  BioCexp = "https://bioconductor.org/packages/devel/data/experiment",\
+                                  BioCworkflows = "https://bioconductor.org/packages/devel/workflows",\
+                                  BioCbooks = "https://bioconductor.org/packages/devel/books",\
+                                  AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
+                                  CRAN = "https://cran.rstudio.com/"),\
+                                  download.file.method = "libcurl", Ncpus = 4); \
+                BiocManager::install("AnVIL"); \                                  
+                AnVIL::install(c("remotes","devtools")); \
                 remotes::install_github("bergant/rapiclient"); \ 
-                BiocManager::install("AnVIL"); \
                 pkg <- gsub("Package: ","",grep("^Package",readLines("DESCRIPTION"), value = TRUE)); \
                 deps <- tools::package_dependencies(packages = pkg, which = "all")[[1]]; \
                 AnVIL::install(pkgs = deps);'
