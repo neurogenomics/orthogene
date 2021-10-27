@@ -22,7 +22,7 @@ jobs:
       - name: Setup R
         uses: r-lib/actions/setup-r@v1
         with:
-          install-r: true
+          install-r: false
           
       - name: Install remotes
         run: |
