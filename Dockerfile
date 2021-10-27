@@ -13,5 +13,8 @@ RUN R -e | "devtools::install_dev_deps(dependencies = TRUE, upgrade = 'never')"
 RUN mkdir /build_zone
 ADD . /build_zone
 WORKDIR /build_zone
+# Run R CMD check - will fail with any errors or warnings
+Run Rscript -e 'devtools::check()'
+# Install R package from source
 RUN R -e 'remotes::install_local(upgrade="never")'
 RUN rm -rf /build_zone
