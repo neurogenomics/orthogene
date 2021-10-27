@@ -1,3 +1,17 @@
+# orthogene  1.0.0
+
+NEW FEATURES
+
+* Now on [Bioconductor release 3.14](https://bioconductor.org/packages/devel/bioc/html/orthogene.html).  
+* Docker containers automatically built and pushed to [DockerHub](https://hub.docker.com/repository/docker/bschilder/orthogene) via 
+[GitHub Actions](https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/dockerhub.yml).  
+* [Dockerfile](https://github.com/neurogenomics/orthogene/blob/ad0b5e015805d1f154ec4ef93dd33821e68e580a/Dockerfile) 
+provided to build and check any R package efficiently with [AnVil](https://bioconductor.org/packages/release/bioc/html/AnVIL.html).  
+* CRAN checks and Bioc checks run via [GitHub Actions](https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml).  
+* Added documentation on using Docker container to README.  
+* Documentation website now automatically built via [GitHub Actions](https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml).   
+* Code coverage tests now automatically run and uploaded via [GitHub Actions](https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml).   
+
 # orthogene  0.99.9
 
 NEW FEATURES

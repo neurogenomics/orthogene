@@ -60,6 +60,14 @@ if(BiocManager::version()<"3.14") BiocManager::install(version = "3.14")
 BiocManager::install("orthogene")
 ```
 
+## Docker 
+
+`orthogene` can also be installed via a  [Docker](https://hub.docker.com/repository/docker/bschilder/orthogene) or [Singularity](https://sylabs.io/guides/2.6/user-guide/singularity_and_docker.html)
+container with Rstudio pre-installed. Further [instructions provided here](https://neurogenomics.github.io/orthogene/articles/docker).  
+
+
+# Methods 
+
 ```{r setup}
 library(orthogene)
 
@@ -68,8 +76,6 @@ data("exp_mouse")
 # We generally recommend using method="gprofiler" (default).
 method <- "homologene"  
 ```
-
-# Methods 
 
 For most functions, `orthogene` lets users choose between different methods,
 each with complementary strengths and weaknesses: 
@@ -164,21 +170,12 @@ Please see the
 for the full vignette.
 
 
-# Docker
-
-`orthogene` is now available via DockerHub as a containerised environment with 
-Rstudio and all necessary dependencies pre-installed.
-
-To use it, follow these steps:
-
-```
-
-```
-
+# Additional resources 
 
 ## [Hex sticker creation](https://github.com/neurogenomics/orthogene/blob/main/inst/hex/hexSticker.Rmd)
 
 ## [Benchmarking methods](https://github.com/neurogenomics/orthogene/blob/main/inst/benchmark/benchmarks.Rmd)
+
 
 # Session Info 
 

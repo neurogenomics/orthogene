@@ -15,9 +15,11 @@ Most recent update: <i>Oct-27-2021</i>
 <!-- badger::badge_last_commit()  -->
 <!-- badger::badge_license() -->
 
-[![](https://img.shields.io/badge/devel%20version-1.1.0-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.0.0-black.svg)](https://github.com/neurogenomics/orthogene)
 [![R build
 status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
+[![R build
+status](https://github.com/neurogenomics/orthogene/workflows/DockerHub/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
 [![BioC
 status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
@@ -69,6 +71,17 @@ if(BiocManager::version()<"3.14") BiocManager::install(version = "3.14")
 BiocManager::install("orthogene")
 ```
 
+## Docker
+
+`orthogene` can also be installed via a
+[Docker](https://hub.docker.com/repository/docker/bschilder/orthogene)
+or
+[Singularity](https://sylabs.io/guides/2.6/user-guide/singularity_and_docker.html)
+container with Rstudio pre-installed. Further [instructions provided
+here](https://neurogenomics.github.io/orthogene/articles/docker).
+
+# Methods
+
 ``` r
 library(orthogene)
 ```
@@ -81,8 +94,6 @@ data("exp_mouse")
 # We generally recommend using method="gprofiler" (default).
 method <- "homologene"  
 ```
-
-# Methods
 
 For most functions, `orthogene` lets users choose between different
 methods, each with complementary strengths and weaknesses:
@@ -222,6 +233,8 @@ knitr::kable(as.matrix(head(gene_df)))
 `orthogene`. Please see the [documentation
 website](https://neurogenomics.github.io/orthogene/articles/orthogene)
 for the full vignette.
+
+# Additional resources
 
 ## [Hex sticker creation](https://github.com/neurogenomics/orthogene/blob/main/inst/hex/hexSticker.Rmd)
 
