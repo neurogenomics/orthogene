@@ -12,3 +12,5 @@
 ^docs$
 ^pkgdown$ 
 .dockerignore
+Dockerfile
+DOCKERFILE
