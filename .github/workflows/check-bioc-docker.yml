@@ -96,7 +96,6 @@ jobs:
       # Without caching, workflows are extraordinarily slow (or fail entirely).
       - name: Get actual R version
         run: |
-          unset R_HOME
           r_version=$(Rscript -e 'cat(paste0(R.version$major,".",R.version$minor))')
           echo "r_ver=${r_version}" >> $GITHUB_ENV
           echo "R version:" $r_ver
