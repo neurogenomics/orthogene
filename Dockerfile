@@ -9,7 +9,7 @@ RUN echo "options(repos = c(BioCsoft = 'https://bioconductor.org/packages/devel/
                             download.file.method = 'libcurl', Ncpus = 4)" >> /usr/local/lib/R/etc/Rprofile.site
 RUN R -e 'install.packages(c("remotes","devtools"))'
 # install the R package and all its imports/depends/suggests
-RUN R -e "devtools::install_dev_deps(dependencies = TRUE, upgrade = 'never')"
+RUN R -e 'devtools::install_dev_deps(dependencies = TRUE, upgrade = "never")'
 RUN mkdir /build_zone
 ADD . /build_zone
 WORKDIR /build_zone
