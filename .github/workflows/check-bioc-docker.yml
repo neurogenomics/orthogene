@@ -52,7 +52,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: ubuntu-latest, r: 'latest', bioc: 'devel', cont: "bioconductor/bioconductor_docker:devel", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/devel"}
+          - { os: ubuntu-latest, r: 'latest', bioc: 'release', cont: "bioconductor/bioconductor_docker:devel", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/devel"}
           - { os: macOS-latest, r: 'latest', bioc: 'release'}
           - { os: windows-latest, r: 'latest', bioc: 'release'}
           ## Check https://github.com/r-lib/actions/tree/master/examples
@@ -99,11 +99,11 @@ jobs:
       # "devel" doesn't tell you which version R it actually is, 
       # which is needed to properly reference cache folders.
       # Without caching, workflows are extraordinarily slow (or fail entirely).
-      - name: Get actual R version
-        run: |
-          r_version=$(Rscript -e 'cat(paste0(version$major,".",version$minor))')
-          echo "r_ver=${r_version}" >> $GITHUB_ENV
-          echo "R version:" $r_ver
+      # - name: Get actual R version
+      #   run: |
+      #     r_version=$(Rscript -e 'cat(paste0(version$major,".",version$minor))')
+      #     echo "r_ver=${r_version}" >> $GITHUB_ENV
+      #     echo "R version:" $r_ver
 
       - name: Query dependencies
         run: |
