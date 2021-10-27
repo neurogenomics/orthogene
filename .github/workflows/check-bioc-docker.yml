@@ -89,21 +89,21 @@ jobs:
         uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
-          http-user-agent: ${{ matrix.config.http-user-agent }} 
-      
-      # "devel" doesn't tell you which version R it actually is, 
-      # which is needed to properly reference cache folders.
-      # Without caching, workflows are extraordinarily slow (or fail entirely).
-      - name: Get actual R version
-        run: |
-          r_version=$(Rscript -e 'cat(paste0(R.version$major,".",R.version$minor))')
-          echo "r_ver=${r_version}" >> $GITHUB_ENV
-          echo "R version:" $r_ver
+          http-user-agent: ${{ matrix.config.http-user-agent }}  
 
       ## pandoc is already included in the Bioconductor docker images
       - name: Setup pandoc from r-lib
         if: runner.os != 'Linux'
         uses: r-lib/actions/setup-pandoc@master
+        
+      # "devel" doesn't tell you which version R it actually is, 
+      # which is needed to properly reference cache folders.
+      # Without caching, workflows are extraordinarily slow (or fail entirely).
+      - name: Get actual R version
+        run: |
+          r_version=$(Rscript -e 'cat(paste0(version$major,".",version$minor))')
+          echo "r_ver=${r_version}" >> $GITHUB_ENV
+          echo "R version:" $r_ver
 
       - name: Query dependencies
         run: |
