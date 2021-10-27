@@ -276,8 +276,8 @@ jobs:
         env:
           DISPLAY: 99.0
         run: |
-          if(!"BiocManager" %in% rownames(install.packages())) install.packages("BiocManager")
-          if(!"BiocCheck" %in% rownames(install.packages())) BiocManager::install("BiocCheck")
+          if(!"BiocManager" %in% rownames(installed.packages())) install.packages("BiocManager")
+          if(!"BiocCheck" %in% rownames(installed.packages())) BiocManager::install("BiocCheck")
           BiocCheck::BiocCheck(
               dir('check', 'tar.gz$', full.names = TRUE),
               `quit-with-status` = TRUE,
