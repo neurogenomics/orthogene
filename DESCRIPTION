@@ -58,7 +58,10 @@ Suggests:
     badger,
     magick,
     desc,
-    hrbrthemes
+    hrbrthemes,
+    Cairo,
+    yulab.utils,
+    haven
 RoxygenNote: 7.1.2
 Encoding: UTF-8
 Config/testthat/edition: 3

@@ -12,9 +12,20 @@ infer_species_plot <- function(matches,
     
     #### Resolves the issue described here ####
     # https://stackoverflow.com/a/66423481/13214824
-    if("hrbrthemes" %in% rownames(utils::installed.packages())){
-        hrbrthemes::import_roboto_condensed()    
+    # Solution:
+    ## https://gi th ub.com/hrbrmstr/hrbrthemes/issues/56#issuecomment-689857655
+    if(Sys.info()["sysname"] == "Darwin"){
+        requireNamespace("knitr")
+        knitr::opts_chunk$set(dev=c('png', 'cairo_pdf'),
+                              comment="", 
+                              echo=TRUE,
+                              warning=FALSE, 
+                              cache=FALSE,
+                              message=FALSE) 
     }
+    if(requireNamespace("hrbrthemes")){
+        hrbrthemes::import_roboto_condensed()    
+    } 
     #### Plot ####
     gg <- ggplot(matches, aes(y=species, 
                               x=percent_match, 
