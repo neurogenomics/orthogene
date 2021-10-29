@@ -5,7 +5,7 @@
 Author: <i>Brian M. Schilder</i>
 </h4>
 <h4>
-Most recent update: <i>Oct-27-2021</i>
+Most recent update: <i>Oct-29-2021</i>
 </h4>
 
 <!-- badges: start -->
@@ -65,7 +65,8 @@ In brief, `orthogene` lets you easily:
 if (!requireNamespace("BiocManager", quietly = TRUE))
      install.packages("BiocManager")
 # orthogene is only available on Bioconductor>=3.14
-if(BiocManager::version()<"3.14") BiocManager::install(version = "3.14")
+if(BiocManager::version()<"3.14") 
+  BiocManager::install(update = TRUE, ask = FALSE)
 
 BiocManager::install("orthogene")
 ```
@@ -262,7 +263,7 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_0.99.9
+    ## [1] orthogene_1.0.0
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] httr_1.4.2                tidyr_1.1.4              
@@ -272,7 +273,7 @@ utils::sessionInfo()
     ##  [9] BiocManager_1.30.16       rvcheck_0.2.1            
     ## [11] yulab.utils_0.0.4         GenomeInfoDbData_1.2.7   
     ## [13] cellranger_1.1.0          yaml_2.2.1               
-    ## [15] pillar_1.6.4              backports_1.2.1          
+    ## [15] pillar_1.6.4              backports_1.3.0          
     ## [17] lattice_0.20-45           glue_1.4.2               
     ## [19] digest_0.6.28             RColorBrewer_1.1-2       
     ## [21] ggsignif_0.6.3            colorspace_2.0-2         
@@ -282,7 +283,7 @@ utils::sessionInfo()
     ## [29] purrr_0.3.4               patchwork_1.1.1          
     ## [31] scales_1.1.1              openxlsx_4.2.4           
     ## [33] rio_0.5.27                tibble_3.1.5             
-    ## [35] generics_0.1.0            car_3.0-11               
+    ## [35] generics_0.1.1            car_3.0-11               
     ## [37] ggplot2_3.3.5             ellipsis_0.3.2           
     ## [39] ggpubr_0.4.0              lazyeval_0.2.2           
     ## [41] magrittr_2.0.1            crayon_1.4.1             

@@ -64,6 +64,9 @@ RUN Rscript -e 'install.packages("BiocManager"); \
                 AnVIL::install(pkgs = deps);'
 # Run R CMD check - will fail with any errors or warnings
 Run Rscript -e 'devtools::check()'
+# Run Bioconductor's BiocCheck (optional)
+Run Rscript -e 'AnVIL::install("BiocCheck");\
+                BiocCheck::BiocCheck()'
 # Run Rscript -e 'install.packages("rcmdcheck"); \
 #                 rcmdcheck::rcmdcheck(args = c("--no-manual", "--timings"), \
 #                                      build_args = c("--no-manual", "--keep-empty-dirs", "--no-resave-data"), \

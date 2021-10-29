@@ -54,7 +54,8 @@ In brief, `orthogene` lets you easily:
 if (!requireNamespace("BiocManager", quietly = TRUE))
      install.packages("BiocManager")
 # orthogene is only available on Bioconductor>=3.14
-if(BiocManager::version()<"3.14") BiocManager::install(version = "3.14")
+if(BiocManager::version()<"3.14") 
+  BiocManager::install(update = TRUE, ask = FALSE)
 
 BiocManager::install("orthogene")
 ```
