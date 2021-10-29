@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -107,7 +107,8 @@ Most recent update: <i>Oct-29-2021</i>
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
      <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span> 
 <span class="co"># orthogene is only available on Bioconductor&gt;=3.14</span>
-<span class="kw">if</span><span class="op">(</span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/version.html" class="external-link">version</a></span><span class="op">(</span><span class="op">)</span><span class="op">&lt;</span><span class="st">"3.14"</span><span class="op">)</span> <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"devel"</span><span class="op">)</span>
+<span class="kw">if</span><span class="op">(</span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/version.html" class="external-link">version</a></span><span class="op">(</span><span class="op">)</span><span class="op">&lt;</span><span class="st">"3.14"</span><span class="op">)</span> 
+  <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span>update <span class="op">=</span> <span class="cn">TRUE</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"orthogene"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -136,7 +137,8 @@ Most recent update: <i>Oct-29-2021</i>
 <h3 id="infer-the-species">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span>, 
+                                    method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Preparing gene_df.</span></code></pre>
 <pre><code><span class="co">## sparseMatrix format detected.</span></code></pre>
 <pre><code><span class="co">## Extracting genes from rownames.</span></code></pre>
@@ -212,7 +214,7 @@ Most recent update: <i>Oct-29-2021</i>
 <code class="sourceCode R"><span class="va">exp_rat</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/convert_orthologs.html">convert_orthologs</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span>, 
                                         input_species <span class="op">=</span> <span class="st">"mouse"</span>, 
                                         output_species <span class="op">=</span> <span class="st">"rat"</span>,
-                                        method <span class="op">=</span> <span class="st">"homologene"</span><span class="op">)</span></code></pre></div>
+                                        method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Preparing gene_df.</span></code></pre>
 <pre><code><span class="co">## sparseMatrix format detected.</span></code></pre>
 <pre><code><span class="co">## Extracting genes from rownames.</span></code></pre>
@@ -249,7 +251,8 @@ Most recent update: <i>Oct-29-2021</i>
 <h3 id="infer-the-species-1">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species-1"></a>
 </h3>
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_rat</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_rat</span>, 
+                                    method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Preparing gene_df.</span></code></pre>
 <pre><code><span class="co">## sparseMatrix format detected.</span></code></pre>
 <pre><code><span class="co">## Extracting genes from rownames.</span></code></pre>
@@ -325,7 +328,7 @@ Most recent update: <i>Oct-29-2021</i>
 <code class="sourceCode R"><span class="va">exp_human</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/convert_orthologs.html">convert_orthologs</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span>, 
                                           input_species <span class="op">=</span> <span class="st">"mouse"</span>, 
                                           output_species <span class="op">=</span> <span class="st">"human"</span>,
-                                          method <span class="op">=</span> <span class="st">"homologene"</span><span class="op">)</span></code></pre></div>
+                                          method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Preparing gene_df.</span></code></pre>
 <pre><code><span class="co">## sparseMatrix format detected.</span></code></pre>
 <pre><code><span class="co">## Extracting genes from rownames.</span></code></pre>
@@ -362,7 +365,8 @@ Most recent update: <i>Oct-29-2021</i>
 <h3 id="infer-the-species-2">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species-2"></a>
 </h3>
 <div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_human</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_human</span>, 
+                                    method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Preparing gene_df.</span></code></pre>
 <pre><code><span class="co">## sparseMatrix format detected.</span></code></pre>
 <pre><code><span class="co">## Extracting genes from rownames.</span></code></pre>
@@ -435,7 +439,7 @@ Most recent update: <i>Oct-29-2021</i>
 <p>For example, by setting <code>test_species="homologene"</code> we automatically test for % gene matches in each of the 20+ species available in <code>homologene</code>.</p>
 <div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_human</span>, 
-                                    test_species <span class="op">=</span> <span class="st">"homologene"</span><span class="op">)</span></code></pre></div>
+                                    test_species <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Preparing gene_df.</span></code></pre>
 <pre><code><span class="co">## sparseMatrix format detected.</span></code></pre>
@@ -646,7 +650,7 @@ Most recent update: <i>Oct-29-2021</i>
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] orthogene_1.1.1  BiocStyle_2.22.0</span>
+<span class="co">## [1] orthogene_1.1.2  BiocStyle_2.22.0</span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
 <span class="co">##  [1] httr_1.4.2                sass_0.4.0               </span>

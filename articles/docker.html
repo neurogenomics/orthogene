@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script><div class="section level1">
 <h1 id="docker">Docker<a class="anchor" aria-label="anchor" href="#docker"></a>
 </h1>
-<p>orthogene is now available via <a href="https://hub.docker.com/repository/docker/bschilder/orthogene" class="external-link">DockerHub</a> as a containerised environment with Rstudio and all necessary dependencies pre-installed.</p>
+<p>orthogene is now available via <a href="https://hub.docker.com/repository/docker/neurogenomicslab/orthogene" class="external-link">DockerHub</a> as a containerised environment with Rstudio and all necessary dependencies pre-installed.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </h2>
 <p>First, <a href="https://docs.docker.com/get-docker/" class="external-link">install Docker</a> if you have not already.</p>
 <p>Create an image of the <a href="https://www.docker.com/" class="external-link">Docker</a> container in command line:</p>
-<pre><code>docker pull bschilder/orthogene</code></pre>
+<pre><code>docker pull neurogenomicslab/orthogene</code></pre>
 <p>Once the image has been created, you can launch it with:</p>
 <pre><code>docker run \
   -d \
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
   -v ~/Desktop:/Desktop \
   -v /Volumes:/Volumes \
   -p 8788:8787 \
-  bschilder/orthogene</code></pre>
+  neurogenomicslab/orthogene</code></pre>
 <ul>
 <li>The <code>-d</code> ensures the container will run in “detached” mode, which means it will persist even after you’ve closed your command line session.<br>
 </li>
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <h2 id="method-2-via-singularity">Method 2: via Singularity<a class="anchor" aria-label="anchor" href="#method-2-via-singularity"></a>
 </h2>
 <p>If you are using a system that does not allow Docker (as is the case for many institutional computing clusters), you can instead <a href="https://sylabs.io/guides/2.6/user-guide/singularity_and_docker.html" class="external-link">install Docker images via Singularity</a>.</p>
-<pre><code>singularity pull docker://bschilder/orthogene</code></pre>
+<pre><code>singularity pull docker://neurogenomicslab/orthogene</code></pre>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
