@@ -59,7 +59,8 @@ be automatically be mapped and standardised using `map_species`.
 ### Infer the species
 
 ```{r}
-matches <- orthogene::infer_species(gene_df = exp_mouse)
+matches <- orthogene::infer_species(gene_df = exp_mouse, 
+                                    method = method)
 ```
 
 ## Rat genes
@@ -72,13 +73,14 @@ To create an example dataset, turn the gene names into rat genes.
 exp_rat <- orthogene::convert_orthologs(gene_df = exp_mouse, 
                                         input_species = "mouse", 
                                         output_species = "rat",
-                                        method = "homologene")
+                                        method = method)
 ```
 
 ### Infer the species  
 
 ```{r}
-matches <- orthogene::infer_species(gene_df = exp_rat)
+matches <- orthogene::infer_species(gene_df = exp_rat, 
+                                    method = method)
 ```
 
 ## Human genes
@@ -91,13 +93,14 @@ To create an example dataset, turn the gene names into human genes.
 exp_human <- orthogene::convert_orthologs(gene_df = exp_mouse, 
                                           input_species = "mouse", 
                                           output_species = "human",
-                                          method = "homologene")
+                                          method = method)
 ```
 
 ### Infer the species  
 
 ```{r}
-matches <- orthogene::infer_species(gene_df = exp_human)
+matches <- orthogene::infer_species(gene_df = exp_human, 
+                                    method = method)
 ```
 
 
@@ -112,7 +115,7 @@ For example, by setting `test_species="homologene"` we automatically test for
 
 ```{r}
 matches <- orthogene::infer_species(gene_df = exp_human, 
-                                    test_species = "homologene")
+                                    test_species = method)
 ```
 
 
