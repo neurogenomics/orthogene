@@ -68,8 +68,12 @@ RUN Rscript -e 'options(download.file.method= "libcurl"); \
 # Run R CMD check - will fail with any errors or warnings
 Run Rscript -e 'devtools::check()'
 # Run Bioconductor's BiocCheck (optional)
-Run Rscript -e 'AnVIL::install("BiocCheck");\
-                BiocCheck::BiocCheck()'
+Run Rscript -e 'if(!"BiocCheck" %in% rownames(utils::installed.packages)) install.packages("BiocCheck");\
+                 BiocCheck::BiocCheck( \
+                    dir("check"", "tar.gz$"", full.names = TRUE),\
+                    `quit-with-status` = TRUE,\
+                    `no-check-R-ver` = TRUE,\
+                    `no-check-bioc-help` = TRUE)'
 # Run Rscript -e 'install.packages("rcmdcheck"); \
 #                 rcmdcheck::rcmdcheck(args = c("--no-manual", "--timings"), \
 #                                      build_args = c("--no-manual", "--keep-empty-dirs", "--no-resave-data"), \

@@ -6,7 +6,10 @@
 \usage{
 infer_species_plot(matches, show_plot = TRUE)
 }
+\value{
+ggplot object.
+}
 \description{
-infer_species_plot
+Plot results from \link[orthogene]{infer_species_plot}.
 }
 \keyword{internal}

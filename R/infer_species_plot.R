@@ -1,5 +1,9 @@
 #' infer_species_plot
 #' 
+#' Plot results from \link[orthogene]{infer_species_plot}.
+#' 
+#' @return ggplot object.
+#' 
 #' @keywords internal
 #' @importFrom utils installed.packages
 infer_species_plot <- function(matches,
