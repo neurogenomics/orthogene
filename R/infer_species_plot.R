@@ -1,10 +1,14 @@
+#' infer_species_plot
+#' 
+#' @keywords internal
+#' @importFrom utils installed.packages
 infer_species_plot <- function(matches,
                                show_plot = TRUE){
     percent_match <- NULL
     
     #### Resolves the issue described here ####
     # https://stackoverflow.com/a/66423481/13214824
-    if("hrbrthemes" %in% rownames(installed.packages())){
+    if("hrbrthemes" %in% rownames(utils::installed.packages())){
         hrbrthemes::import_roboto_condensed()    
     }
     #### Plot ####
