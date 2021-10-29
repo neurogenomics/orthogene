@@ -57,12 +57,14 @@ RUN Rscript -e 'options(download.file.method= "libcurl"); \
                                   AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
                                   CRAN = "https://cran.rstudio.com/"),\
                                   download.file.method = "libcurl", Ncpus = 2); \
-                BiocManager::install("AnVIL"); \                                  
+                BiocManager::install("AnVIL", ask = FALSE); \                                  
                 AnVIL::install(c("remotes","devtools")); \
                 remotes::install_github("bergant/rapiclient"); \ 
                 pkg <- gsub("Package: ","",grep("^Package",readLines("DESCRIPTION"), value = TRUE)); \
                 deps <- tools::package_dependencies(packages = pkg, which = "all")[[1]]; \
-                AnVIL::install(pkgs = deps);'
+                AnVIL::install(pkgs = deps,  ask = FALSE); \
+                deps_left <- deps[!deps %in% rownames(installed.packages())]; \
+                if(length(deps_left)>0) devtools::install_dev_deps(dependencies = TRUE, upgrade = "never");'
 # Run R CMD check - will fail with any errors or warnings
 Run Rscript -e 'devtools::check()'
 # Run Bioconductor's BiocCheck (optional)

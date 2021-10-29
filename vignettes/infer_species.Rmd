@@ -115,7 +115,8 @@ For example, by setting `test_species="homologene"` we automatically test for
 
 ```{r}
 matches <- orthogene::infer_species(gene_df = exp_human, 
-                                    test_species = method)
+                                    test_species = method, 
+                                    method = method)
 ```
 
 
@@ -128,4 +129,4 @@ utils::sessionInfo()
 ```
 
 </details>  
-
+<br>
