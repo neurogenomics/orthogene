@@ -55,7 +55,7 @@ RUN Rscript -e 'install.packages("BiocManager"); \
                 options(repos = c(BiocManager::repositories(),\
                                   AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
                                   CRAN = "https://cran.rstudio.com/"),\
-                                  download.file.method = "libcurl", Ncpus = 4); \
+                                  download.file.method = "libcurl", Ncpus = 2); \
                 BiocManager::install("AnVIL"); \                                  
                 AnVIL::install(c("remotes","devtools")); \
                 remotes::install_github("bergant/rapiclient"); \ 
