@@ -18,15 +18,6 @@ pkg <- "orthogene" #desc::desc_get("Package")
 docker_user <- "neurogenomicslab"
 ```
 
-
-
-```{r style, echo=FALSE, results='asis', message=FALSE}
-BiocStyle::markdown()
-knitr::opts_chunk$set(tidy = FALSE, 
-                      message = FALSE)
-```
-
-
 # Docker
 
 `r pkg` is now available via 

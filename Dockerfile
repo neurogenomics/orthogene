@@ -50,7 +50,8 @@ RUN mkdir /build_zone
 ADD . /build_zone
 WORKDIR /build_zone
 # Install dependencies with AnVil (faster)
-RUN Rscript -e 'install.packages("BiocManager"); \
+RUN Rscript -e 'options(download.file.method= "libcurl"); \
+                install.packages("BiocManager"); \
                 bioc_ver <- BiocManager::version(); \
                 options(repos = c(BiocManager::repositories(),\
                                   AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
