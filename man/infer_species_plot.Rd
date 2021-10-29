@@ -10,6 +10,6 @@ infer_species_plot(matches, show_plot = TRUE)
 ggplot object.
 }
 \description{
-Plot results from \link[orthogene]{infer_species_plot}.
+Plot results from \link[orthogene]{infer_species}.
 }
 \keyword{internal}
