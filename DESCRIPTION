@@ -66,4 +66,3 @@ RoxygenNote: 7.1.2
 Encoding: UTF-8
 Config/testthat/edition: 3
 Config/rcmdcheck/_R_CHECK_FORCE_SUGGESTS_: false
-
