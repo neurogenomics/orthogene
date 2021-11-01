@@ -23,9 +23,9 @@ infer_species_plot <- function(matches,
                               cache=FALSE,
                               message=FALSE) 
     }
-    if(requireNamespace("hrbrthemes")){
-        hrbrthemes::import_roboto_condensed()    
-    } 
+    # if(requireNamespace("hrbrthemes")){
+    #     hrbrthemes::import_roboto_condensed()    
+    # } 
     #### Plot ####
     gg <- ggplot(matches, aes(y=species, 
                               x=percent_match, 
