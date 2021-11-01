@@ -157,8 +157,9 @@ jobs:
           ## Required for some ggplot2 functions
           # brew tap homebrew/cask
           # brew tap homebrew/cask-fonts
-          brew install svn
-          brew install --cask font-roboto
+          # brew install svn
+          # brew install --cask font-roboto
+          brew install libxfont
 
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
