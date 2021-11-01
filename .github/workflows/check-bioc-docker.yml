@@ -153,6 +153,12 @@ jobs:
 
           ## Required for tcltk
           brew install xquartz --cask
+          
+          ## Required for some ggplot2 functions
+          # brew tap homebrew/cask
+          # brew tap homebrew/cask-fonts
+          brew install svn
+          brew install --cask font-roboto
 
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'

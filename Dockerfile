@@ -56,9 +56,7 @@ RUN Rscript -e 'options(download.file.method= "libcurl"); \
                 deps <- remotes::dev_package_deps(dependencies = TRUE)$package; \
                 AnVIL::install(pkgs = deps,  ask = FALSE); \
                 deps_left <- deps[!deps %in% rownames(installed.packages())]; \
-                bioc_ver <- basename(dirname(AnVIL::repositories(version = "latest")[["BioCsoft"]])); \
-                options(repos = c(AnVIL::repositories(version = "latest"),\
-                                  AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
+                options(repos = c(AnVIL::repositories(),\
                                   CRAN = "https://cran.rstudio.com/"),\
                                   download.file.method = "libcurl", Ncpus = 2); \
                 if(length(deps_left)>0) devtools::install_dev_deps(dependencies = TRUE, upgrade = "never");'

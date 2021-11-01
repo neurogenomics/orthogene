@@ -113,7 +113,7 @@ infer_species <- function(gene_df,
     #### Plot ####
     if(make_plot){
        gg <- tryCatch(expr = {infer_species_plot(matches = res, 
-                                          show_plot = show_plot)}, 
+                                                 show_plot = show_plot)}, 
                       error =function(e){NULL}) 
     } else {
         gg <- NULL
