@@ -50,17 +50,17 @@ WORKDIR /build_zone
 # Install dependencies with AnVil (faster)
 RUN Rscript -e 'options(download.file.method= "libcurl"); \
                 if(!"BiocManager" %in% rownames(utils::installed.packages)) {install.packages("BiocManager")}; \
-                bioc_ver <- BiocManager::version(); \
-                options(repos = c(BiocManager::repositories(),\
-                                  AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
-                                  CRAN = "https://cran.rstudio.com/"),\
-                                  download.file.method = "libcurl", Ncpus = 2); \
                 if(!"AnVIL" %in% rownames(utils::installed.packages)) {BiocManager::install("AnVIL", ask = FALSE)}; \
                 AnVIL::install(c("remotes","devtools")); \
                 try({remotes::install_github("bergant/rapiclient")}); \
                 deps <- remotes::dev_package_deps(dependencies = TRUE)$package; \
                 AnVIL::install(pkgs = deps,  ask = FALSE); \
                 deps_left <- deps[!deps %in% rownames(installed.packages())]; \
+                bioc_ver <- basename(dirname(AnVIL::repositories(version = "latest")[["BioCsoft"]])); \
+                options(repos = c(AnVIL::repositories(version = "latest"),\
+                                  AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
+                                  CRAN = "https://cran.rstudio.com/"),\
+                                  download.file.method = "libcurl", Ncpus = 2); \
                 if(length(deps_left)>0) devtools::install_dev_deps(dependencies = TRUE, upgrade = "never");'
 # Run R CMD check - will fail with any errors or warnings
 Run Rscript -e 'devtools::check()'
