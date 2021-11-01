@@ -93,11 +93,13 @@
 <div class="page-header"><h1 id="orthogene-interspecies-gene-mapping">
 <code>orthogene</code>: Interspecies gene mapping<a class="anchor" aria-label="anchor" href="#orthogene-interspecies-gene-mapping"></a>
 </h1></div>
-<img src="https://github.com/neurogenomics/orthogene/raw/main/inst/hex/orthogene.png" height="400"><h4>
+<img src="https://github.com/neurogenomics/orthogene/raw/main/inst/hex/orthogene.png" height="400"><h4 id="orthogene-interspecies-gene-mapping-1">
 Author: <i>Brian M. Schilder</i>
+<a class="anchor" aria-label="anchor" href="#orthogene-interspecies-gene-mapping-1"></a>
 </h4>
-<h4>
-Most recent update: <i>Oct-29-2021</i>
+<h4 id="orthogene-interspecies-gene-mapping-2">
+Most recent update: <i>Nov-01-2021</i>
+<a class="anchor" aria-label="anchor" href="#orthogene-interspecies-gene-mapping-2"></a>
 </h4>
 <!-- badges: start -->
 <!-- badger::badge_codecov() -->
@@ -410,7 +412,7 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 </h1>
 <details><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R version 4.1.1 (2021-08-10)</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## R Under development (unstable) (2021-10-28 r81109)</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Running under: Ubuntu 20.04.3 LTS</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
@@ -432,46 +434,46 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] orthogene_1.1.2</span></span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="do">## loaded via a namespace (and not attached):</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] httr_1.4.2                tidyr_1.1.4              </span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] jsonlite_1.7.2            viridisLite_0.4.0        </span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] carData_3.0-4             gprofiler2_0.2.1         </span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] highr_0.9                 BiocManager_1.30.16      </span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] rvcheck_0.2.1             yulab.utils_0.0.4        </span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] GenomeInfoDbData_1.2.7    cellranger_1.1.0         </span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] yaml_2.2.1                pillar_1.6.4             </span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] backports_1.3.0           lattice_0.20-45          </span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] glue_1.4.2                digest_0.6.28            </span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] RColorBrewer_1.1-2        ggsignif_0.6.3           </span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] colorspace_2.0-2          htmltools_0.5.2          </span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] Matrix_1.3-4              pkgconfig_2.0.3          </span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] babelgene_21.4            broom_0.7.9              </span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] haven_2.4.3               purrr_0.3.4              </span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] patchwork_1.1.1           scales_1.1.1             </span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="do">## [31] openxlsx_4.2.4            rio_0.5.27               </span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="do">## [33] tibble_3.1.5              generics_0.1.1           </span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="do">## [35] car_3.0-11                ggplot2_3.3.5            </span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [37] ellipsis_0.3.2            ggpubr_0.4.0             </span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [39] lazyeval_0.2.2            cli_3.1.0                </span></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="do">## [41] magrittr_2.0.1            crayon_1.4.1             </span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [43] readxl_1.3.1              evaluate_0.14            </span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="do">## [45] badger_0.1.0              fansi_0.5.0              </span></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="do">## [47] rstatix_0.7.0             homologene_1.4.68.19.3.27</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="do">## [49] forcats_0.5.1             foreign_0.8-81           </span></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="do">## [51] tools_4.1.1               data.table_1.14.2        </span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="do">## [53] hms_1.1.1                 lifecycle_1.0.1          </span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="do">## [55] stringr_1.4.0             plotly_4.10.0            </span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="do">## [57] munsell_0.5.0             zip_2.2.0                </span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="do">## [59] compiler_4.1.1            rlang_0.99.0.9000        </span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="do">## [61] grid_4.1.1                htmlwidgets_1.5.4        </span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="do">## [63] rmarkdown_2.11            gtable_0.3.0             </span></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="do">## [65] abind_1.4-5               curl_4.3.2               </span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="do">## [67] R6_2.5.1                  knitr_1.36               </span></span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="do">## [69] dplyr_1.0.7               fastmap_1.1.0            </span></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="do">## [71] utf8_1.2.2                rprojroot_2.0.2          </span></span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="do">## [73] dlstats_0.1.4             desc_1.4.0               </span></span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="do">## [75] stringi_1.7.5             parallel_4.1.1           </span></span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="do">## [77] Rcpp_1.0.7                vctrs_0.3.8              </span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="do">## [79] tidyselect_1.1.1          xfun_0.27</span></span></code></pre></div>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] Rcpp_1.0.7                lattice_0.20-45          </span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] tidyr_1.1.4               rprojroot_2.0.2          </span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] digest_0.6.28             utf8_1.2.2               </span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] R6_2.5.1                  cellranger_1.1.0         </span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] backports_1.3.0           evaluate_0.14            </span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] highr_0.9                 httr_1.4.2               </span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] ggplot2_3.3.5             pillar_1.6.4             </span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] yulab.utils_0.0.4         rlang_0.4.12             </span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] lazyeval_0.2.2            curl_4.3.2               </span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] readxl_1.3.1              data.table_1.14.2        </span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] car_3.0-11                Matrix_1.3-4             </span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] rmarkdown_2.11            desc_1.4.0               </span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] stringr_1.4.0             foreign_0.8-81           </span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] htmlwidgets_1.5.4         dlstats_0.1.4            </span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] munsell_0.5.0             broom_0.7.10             </span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="do">## [31] gprofiler2_0.2.1          compiler_4.2.0           </span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="do">## [33] xfun_0.27                 pkgconfig_2.0.3          </span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="do">## [35] htmltools_0.5.2           tidyselect_1.1.1         </span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [37] tibble_3.1.5              GenomeInfoDbData_1.2.7   </span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [39] rio_0.5.27                viridisLite_0.4.0        </span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="do">## [41] fansi_0.5.0               crayon_1.4.2             </span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="do">## [43] dplyr_1.0.7               ggpubr_0.4.0             </span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="do">## [45] grid_4.2.0                jsonlite_1.7.2           </span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="do">## [47] gtable_0.3.0              lifecycle_1.0.1          </span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="do">## [49] magrittr_2.0.1            scales_1.1.1             </span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="do">## [51] zip_2.2.0                 stringi_1.7.5            </span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="do">## [53] carData_3.0-4             ggsignif_0.6.3           </span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="do">## [55] ellipsis_0.3.2            rvcheck_0.2.1            </span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="do">## [57] generics_0.1.1            vctrs_0.3.8              </span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="do">## [59] openxlsx_4.2.4            RColorBrewer_1.1-2       </span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="do">## [61] tools_4.2.0               forcats_0.5.1            </span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="do">## [63] homologene_1.4.68.19.3.27 glue_1.4.2               </span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="do">## [65] purrr_0.3.4               hms_1.1.1                </span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="do">## [67] parallel_4.2.0            abind_1.4-5              </span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="do">## [69] fastmap_1.1.0             yaml_2.2.1               </span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="do">## [71] babelgene_21.4            colorspace_2.0-2         </span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="do">## [73] BiocManager_1.30.16       rstatix_0.7.0            </span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="do">## [75] plotly_4.10.0             badger_0.1.0             </span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="do">## [77] knitr_1.36                haven_2.4.3              </span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="do">## [79] patchwork_1.1.1</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level1">
@@ -542,7 +544,7 @@ It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms.</
 <li><a href="https://github.com/neurogenomics/orthogene/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg"></a></li>
 <li><a href="https://codecov.io/gh/neurogenomics/orthogene" class="external-link"><img src="https://codecov.io/gh/neurogenomics/orthogene/branch/master/graph/badge.svg"></a></li>
 <li><a href="https://cran.r-project.org/web/licenses/GPL-3" class="external-link"><img src="https://img.shields.io/badge/license-GPL--3-blue.svg" alt="License: GPL-3"></a></li>
-<li><a href="https://bioconductor.org/packages/stats/bioc/orthogene" class="external-link"><img src="https://img.shields.io/badge/download-41/total-blue.svg"></a></li>
+<li><a href="https://bioconductor.org/packages/stats/bioc/orthogene" class="external-link"><img src="https://img.shields.io/badge/download-65/total-blue.svg"></a></li>
 </ul>
 </div>
 
