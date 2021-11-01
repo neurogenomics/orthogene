@@ -49,13 +49,13 @@ ADD . /build_zone
 WORKDIR /build_zone
 # Install dependencies with AnVil (faster)
 RUN Rscript -e 'options(download.file.method= "libcurl"); \
-                if(!"BiocManager" %in% rownames(utils::installed.packages)) install.packages("BiocManager"); \ \
+                if(!"BiocManager" %in% rownames(utils::installed.packages)) install.packages("BiocManager"); \
                 bioc_ver <- BiocManager::version(); \
                 options(repos = c(BiocManager::repositories(),\
                                   AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages",bioc_ver,"bioc"),\
                                   CRAN = "https://cran.rstudio.com/"),\
                                   download.file.method = "libcurl", Ncpus = 2); \
-                BiocManager::install("AnVIL", ask = FALSE); \                                  
+                if(!"AnVIL" %in% rownames(utils::installed.packages)) BiocManager::install("AnVIL", ask = FALSE); \
                 AnVIL::install(c("remotes","devtools"); \
                 try({remotes::install_github("bergant/rapiclient")}); \
                 deps <- remotes::dev_package_deps(dependencies = TRUE)$package; \
