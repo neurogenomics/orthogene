@@ -66,7 +66,8 @@ RUN Rscript -e 'options(download.file.method= "libcurl"); \
 Run Rscript -e 'devtools::check()'
 # Run Bioconductor's BiocCheck (optional)
 Run Rscript -e 'if(!"BiocCheck" %in% rownames(utils::installed.packages)) AnVIL::install("BiocCheck", quiet = TRUE);\
-                BiocCheck::BiocCheck(package = ".",\
+                pkg <- read.dcf("DESCRIPTION", field="Package")[[1]];
+                BiocCheck::BiocCheck(package = pkg,\
                                      `quit-with-status` = TRUE,\
                                      `no-check-R-ver` = TRUE,\
                                      `no-check-bioc-help` = TRUE);'
