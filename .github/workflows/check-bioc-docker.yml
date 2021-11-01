@@ -172,7 +172,7 @@ jobs:
         run: |
           #### BiocManager::install doesn't understand "latest" #####
           if("${{ matrix.config.bioc }}" %in% c("latest","release")){
-            BiocManager::install(ask = FALSE)
+            BiocManager::install(update = TRUE, ask = FALSE)
           } else {
             BiocManager::install(version = "${{ matrix.config.bioc }}", ask = FALSE)
           }

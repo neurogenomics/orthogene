@@ -66,19 +66,22 @@ RUN Rscript -e 'options(download.file.method= "libcurl"); \
                 deps_left <- deps[!deps %in% rownames(installed.packages())]; \
                 if(length(deps_left)>0) devtools::install_dev_deps(dependencies = TRUE, upgrade = "never");'
 # Run R CMD check - will fail with any errors or warnings
-# Run Rscript -e 'devtools::check()'
-Run Rscript -e 'if(!"rcmdcheck" %in% rownames(utils::installed.packages)) AnVIL::install("rcmdcheck"); \
-                options(crayon.enabled = TRUE); \
-                rcmdcheck::rcmdcheck(args = c("--no-manual", "--timings"), \
-                                     build_args = c("--no-manual", "--keep-empty-dirs", "--no-resave-data"), \
-                                     error_on = "warning", \
-                                     check_dir = "check");'
+Run Rscript -e 'devtools::check()'
+#Run Rscript -e 'Sys.setenv(_R_CHECK_FORCE_SUGGESTS_="false"); \
+#                if(!"rcmdcheck" %in% rownames(utils::installed.packages)) AnVIL::install("rcmdcheck"); \
+#                rcmdcheck::rcmdcheck(args = c("--no-manual", "--timings"), \
+#                                     build_args = c("--no-manual", "--keep-empty-dirs", "--no-resave-data"), \
+#                                     error_on = "warning", \
+#                                     check_dir = "check");'
 # Run Bioconductor's BiocCheck (optional)
 Run Rscript -e 'if(!"BiocCheck" %in% rownames(utils::installed.packages)) AnVIL::install("BiocCheck");\
-                BiocCheck::BiocCheck(dir("check", "tar.gz$", full.names = TRUE),\
-                                     `quit-with-status` = TRUE,\
-                                     `no-check-R-ver` = TRUE,\
-                                     `no-check-bioc-help` = TRUE);'
+                BiocCheck::BiocCheck();'
+#Run Rscript -e 'Sys.setenv(_R_CHECK_FORCE_SUGGESTS_="false"); \
+#                if(!"BiocCheck" %in% rownames(utils::installed.packages)) AnVIL::install("BiocCheck");\
+#                BiocCheck::BiocCheck(dir("check", "tar.gz$", full.names = TRUE),\
+#                                     `quit-with-status` = TRUE,\
+#                                     `no-check-R-ver` = TRUE,\
+#                                     `no-check-bioc-help` = TRUE);'
 # Install R package from source
 RUN R -e 'remotes::install_local(upgrade="never")'
 RUN rm -rf /build_zone
