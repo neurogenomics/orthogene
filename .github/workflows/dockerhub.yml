@@ -57,8 +57,6 @@ jobs:
             ${{ secrets.DOCKER_ORG }}/${{ env.packageName }}:${{ env.packageVersion }}
             ${{ secrets.DOCKER_ORG }}/${{ env.packageName }}:latest
           
-
-
       - name: push service
         run: |
           docker push ${{ secrets.DOCKER_ORG }}/${{ env.packageName }}:${{ env.packageVersion }}
