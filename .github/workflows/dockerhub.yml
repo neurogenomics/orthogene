@@ -47,8 +47,8 @@ jobs:
         with:
           load: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
-            ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:latest
+            ${{ secrets.DOCKER_ORG }}/${{ env.packageName }}:${{ env.packageVersion }}
+            ${{ secrets.DOCKER_ORG }}/${{ env.packageName }}:latest
           
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -58,6 +58,6 @@ jobs:
 
       - name: push service
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:${{ env.packageVersion }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.packageName }}:latest
+          docker push ${{ secrets.DOCKER_ORG }}/${{ env.packageName }}:${{ env.packageVersion }}
+          docker push ${{ secrets.DOCKER_ORG }}/${{ env.packageName }}:latest
           
