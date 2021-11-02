@@ -46,7 +46,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 #RUN mkdir /build_zone
 #ADD . /build_zone
-#WORKDIR /build_zone
+WORKDIR .
 # Install dependencies with AnVil (faster)
 RUN Rscript -e 'options(download.file.method= "libcurl"); \
                 if(!"BiocManager" %in% rownames(utils::installed.packages)) {install.packages("BiocManager")}; \
