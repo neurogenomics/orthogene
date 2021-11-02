@@ -52,7 +52,7 @@ RUN Rscript -e 'options(download.file.method= "libcurl"); \
                 if(!"BiocManager" %in% rownames(utils::installed.packages)) {install.packages("BiocManager")}; \
                 if(!"AnVIL" %in% rownames(utils::installed.packages)) {BiocManager::install("AnVIL", ask = FALSE)}; \
                 options(repos = c(AnVIL::repositories(),\
-                                  AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages","3.14","bioc"),
+                                  AnVIL = file.path("https://bioconductordocker.blob.core.windows.net/packages","3.14","bioc"),\
                                   CRAN = "https://cran.rstudio.com/"),\
                                   download.file.method = "libcurl", Ncpus = 2); \
                 AnVIL::install(c("remotes","devtools")); \
