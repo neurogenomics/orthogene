@@ -44,9 +44,9 @@ RUN apt-get update && \
 	qpdf \
 	&& apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-#RUN mkdir /build_zone
-#ADD . /build_zone
-WORKDIR .
+RUN mkdir /build_zone
+ADD . /build_zone
+WORKDIR /build_zone
 # Install dependencies with AnVil (faster)
 RUN Rscript -e 'options(download.file.method= "libcurl"); \
                 if(!"BiocManager" %in% rownames(utils::installed.packages)) {install.packages("BiocManager")}; \
@@ -64,10 +64,10 @@ RUN Rscript -e 'options(download.file.method= "libcurl"); \
 Run Rscript -e 'devtools::check()'
 # Run Bioconductor's BiocCheck (optional)
 # Fixed here: https://github.com/Bioconductor/BiocCheck/pull/145 
-Run Rscript -e 'if(!"BiocCheck" %in% rownames(utils::installed.packages)) {AnVIL::install("BiocCheck")}; \
-                BiocCheck::BiocCheck(`quit-with-status` = TRUE,\
-                                     `no-check-R-ver` = TRUE,\
-                                     `no-check-bioc-help` = TRUE);'
+#Run Rscript -e 'if(!"BiocCheck" %in% rownames(utils::installed.packages)) {AnVIL::install("BiocCheck")}; \
+#                BiocCheck::BiocCheck(`quit-with-status` = TRUE,\
+#                                     `no-check-R-ver` = TRUE,\
+#                                     `no-check-bioc-help` = TRUE);'
 # Install R package from source
 RUN R -e 'remotes::install_local(upgrade="never")'
-#RUN rm -rf /build_zone
+RUN rm -rf /build_zone
