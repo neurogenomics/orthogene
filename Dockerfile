@@ -64,7 +64,7 @@ RUN Rscript -e 'options(download.file.method= "libcurl"); \
 Run Rscript -e 'devtools::check()'
 # Run Bioconductor's BiocCheck (optional)
 # Fixed here: https://github.com/Bioconductor/BiocCheck/pull/145 
-Run Rscript -e 'remotes::install_github("Bioconductor/BiocCheck", upgrade = "never", force = TRUE);\
+Run Rscript -e 'if(!"BiocCheck" %in% rownames(utils::installed.packages)) {AnVIL::install("BiocCheck")}; \
                 BiocCheck::BiocCheck(`quit-with-status` = TRUE,\
                                      `no-check-R-ver` = TRUE,\
                                      `no-check-bioc-help` = TRUE);'
