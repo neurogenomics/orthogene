@@ -43,10 +43,12 @@ map_orthologs_gprofiler <- function(genes,
     #            "ENSMUSG00000012396","ENSMUSG00000074637")
     source_organism <- map_species(
         species = input_species,
+        method = "gprofiler",
         verbose = verbose
     )
     target_organism <- map_species(
         species = output_species,
+        method = "gprofiler",
         verbose = verbose
     )
     gene_map <- gprofiler2::gorth(

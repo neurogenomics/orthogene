@@ -101,11 +101,10 @@
 #' \item{\code{"gprofiler"} : Slower but more species and genes.}
 #' \item{\code{"homologene"} : Faster but fewer species and genes.}
 #' \item{\code{"babelgene"} : Faster but fewer species and genes.
-#' Also gives }
+#' Also gives consensus scores for each gene mapping based on a
+#'  several different data sources.}
 #' }
-#'  (slower but more species and genes) or
-#' \code{"homologene"} (faster but fewer species and genes).
-#'
+#' 
 #' @param as_sparse Convert \code{gene_df} to a sparse matrix.
 #' Only works if \code{gene_df} is one of the following classes:\cr
 #' \itemize{

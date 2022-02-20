@@ -10,20 +10,6 @@ vignette: >
     %\VignetteEngine{knitr::rmarkdown}
 ---
 
-<!-- badges: start -->
-<!-- badger::badge_codecov() -->
-<!-- copied from MungeSumstats README.Rmd -->
-<!-- badger::badge_lifecycle("stable", "green") -->
-<!-- badger::badge_last_commit()  -->
-<!-- badger::badge_license() -->
-[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
-[![R-CMD-check](https://github.com/neurogenomics/orthogene/workflows/R-full/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
-[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
-[![License: GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
-<!-- badges: end --> 
-
-
 ## `orthogene`: Interspecies gene mapping 
 
 `orthogene` is an R package for easy mapping of orthologous genes 
@@ -148,7 +134,7 @@ knitr::kable(orth_zeb$report)
 
 [`map_genes`](https://neurogenomics.github.io/orthogene/reference/map_genes.html) finds matching *within-species* synonyms across a wide variety of gene naming conventions (HGNC, Ensembl, RefSeq, UniProt, etc.) and returns a table with standardised gene symbols (or whatever output format you prefer). 
 
-```{r map_genes}
+```{r map_genes, error=TRUE}
 genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",9999,
              "ENSMUSG00000012396","ENSMUSG00000074637")
 mapped_genes <- orthogene::map_genes(genes = genes,
@@ -168,12 +154,12 @@ knitr::kable(head(mapped_genes))
 
 Note, this only works when the input data (`gene_df`) is a sparse or dense matrix, and the genes are row names. 
 
-```{r}
+```{r, error=TRUE}
 data("exp_mouse_enst") 
 knitr::kable(tail(as.matrix(exp_mouse_enst)))
 
 exp_agg <- orthogene::aggregate_mapped_genes(gene_df=exp_mouse_enst,
-                                             species="mouse",
+                                             species="mouse", 
                                              FUN = "sum")
 knitr::kable(tail(as.matrix(exp_agg)))
 ```
@@ -201,4 +187,6 @@ utils::sessionInfo()
 ```
 
 </details>  
+
+<br>
 

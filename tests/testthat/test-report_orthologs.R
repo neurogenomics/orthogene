@@ -1,4 +1,5 @@
 test_that("report_orthologs works", {
+    
     n_genes <- function(dat) {
         length(unique(dat$map$Gene.Symbol))
     }
@@ -26,7 +27,7 @@ test_that("report_orthologs works", {
             method_convert_orthologs = method,
             ...
         )
-        orth_mus <- report_orthologs(
+        orth_hum <- report_orthologs(
             target_species = "human",
             reference_species = "human",
             method_all_genes = method,
@@ -38,18 +39,35 @@ test_that("report_orthologs works", {
         observed_mouse <- n_genes(orth_mus)
         testthat::expect_gte(observed_mouse, expected_mouse)
 
-        expected_zeb <- if (method == "gprofiler") 7500 else 8000
+        expected_zeb <- if (method %in% c("gprofiler","babelgene")) 7500 else 10000
         observed_zeb <- n_genes(orth_zeb)
         testthat::expect_gte(observed_zeb, expected_zeb)
 
-        expected_fly <- if (method == "gprofiler") 550 else 500
+        expected_fly <- if (method == "gprofiler") {
+            600
+        } else if(method == "homologene") {
+            4000
+        } else if(method == "babelgene") {
+            3200
+        }
         observed_fly <- n_genes(orth_fly)
         testthat::expect_gte(observed_fly, expected_fly)
+        
+        expected_hum <- if (method == "gprofiler") {
+            39000
+        } else if(method == "homologene") {
+            19000
+        } else if(method == "babelgene") {
+            20000
+        }
+        observed_hum <- n_genes(orth_hum)
+        testthat::expect_gte(observed_hum, expected_hum)
 
         res <- data.frame(rbind(
             c(species = "mouse", expected = expected_mouse, observed = observed_mouse),
             c(species = "zebrafish", expected = expected_zeb, observed = observed_zeb),
-            c(species = "fly", expected = expected_fly, observed = observed_fly)
+            c(species = "fly", expected = expected_fly, observed = observed_fly),
+            c(species = "human", expected = expected_hum, observed = observed_hum)
         ))
         res <- cbind(method = method, res)
         return(res)
@@ -67,4 +85,18 @@ test_that("report_orthologs works", {
 
     #### homologene tests ####
     h_res <- run_tests(method = "homologene")
+    #### babelgene tests ####
+    b_res <- run_tests(method = "babelgene")
+    #### grprofiler tests ####
+    ## Takes too long to run in tests
+    # g_res <- run_tests(method = "gprofiler")
+    
+    #### Test recursion ####
+    multi_species <- c("mouse","monkey")
+    orth_multi <- report_orthologs(
+        target_species = multi_species,
+        reference_species = "human",
+        method_all_genes = "homologene")
+    testthat::expect_true(methods::is(orth_multi,"data.frame"))
+    testthat::expect_equal(nrow(orth_multi), length(multi_species))
 })

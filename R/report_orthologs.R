@@ -7,13 +7,23 @@
 #'
 #' @param method_all_genes R package to to use in
 #' \link[orthogene]{all_genes} step:
-#' \code{"gprofiler"} (slower but more species and genes) or
-#' \code{"homologene"} (faster but fewer species and genes).
+#' \itemize{
+#' \item{\code{"gprofiler"} : Slower but more species and genes.}
+#' \item{\code{"homologene"} : Faster but fewer species and genes.}
+#' \item{\code{"babelgene"} : Faster but fewer species and genes.
+#' Also gives consensus scores for each gene mapping based on a
+#'  several different data sources.}
+#' }
 #'
 #' @param method_convert_orthologs R package to to use in
 #' \link[orthogene]{convert_orthologs} step:
-#' \code{"gprofiler"} (slower but more species and genes) or
-#' \code{"homologene"} (faster but fewer species and genes).
+#' \itemize{
+#' \item{\code{"gprofiler"} : Slower but more species and genes.}
+#' \item{\code{"homologene"} : Faster but fewer species and genes.}
+#' \item{\code{"babelgene"} : Faster but fewer species and genes.
+#' Also gives consensus scores for each gene mapping based on a
+#'  several different data sources.}
+#' }
 #'
 #' @param return_report Return just the ortholog mapping
 #' between two species (\code{FALSE}) or return both the
@@ -21,57 +31,97 @@
 #'  of the report statistics (\code{TRUE}).
 #'
 #' @param round_digits Number of digits to round to when printing percentages.
+#' @param mc.cores Number of cores to parallelise each
+#'  \code{target_species} with. 
 #' @inheritParams convert_orthologs
 #'
-#' @return List of ortholog report statistics
+#' @returns A list containing: 
+#' \itemize{
+#' \item{map : }{A table of inter-species gene mappings.}
+#' \item{report : }{A list of aggregate orthology report statistics.}
+#' }
+#' If >1 \code{target_species} are provided, then a table of 
+#' aggregated \code{report} statistics concatenated across species 
+#' will be returned instead. 
 #' @export
-#' @importFrom dplyr n_distinct
+#' @importFrom dplyr n_distinct %>%
+#' @importFrom data.table rbindlist
+#' @importFrom parallel mclapply
 #' @examples
-#' orth_fly <- report_orthologs(
+#' orth_fly <- orthogene::report_orthologs(
 #'     target_species = "fly",
 #'     reference_species = "human"
 #' )
 report_orthologs <- function(target_species = "mouse",
                              reference_species = "human",
                              standardise_genes = FALSE,
-                             method_all_genes = c("gprofiler", "homologene"),
-                             method_convert_orthologs = c(
-                                 "gprofiler",
+                             method_all_genes = c(
                                  "homologene",
+                                 "gprofiler", 
                                  "babelgene"
                              ),
+                             method_convert_orthologs = method_all_genes,
                              drop_nonorths = TRUE,
                              non121_strategy = "drop_both_species",
                              round_digits = 2,
                              return_report = TRUE,
+                             mc.cores = 1,
                              verbose = TRUE,
                              ...) {
+    #### Recursion ####
+    if(length(target_species)>1){
+        messager("Gathering ortholog reports.",v=verbose)
+        orth_report <- parallel::mclapply(target_species, function(s){
+            if(verbose) message_parallel("\n-- ",s)
+            tryCatch({
+                report_orthologs(
+                    target_species = s, 
+                    reference_species = reference_species, 
+                    method_all_genes = method_all_genes,
+                    method_convert_orthologs = method_convert_orthologs)$report
+            }, error = function(e) NULL)
+        }, mc.cores = mc.cores) %>% data.table::rbindlist()
+        return(orth_report)
+    }
+    
+    #### Standardise args ####
+    method_convert_orthologs <- tolower(method_convert_orthologs[1])
+    method_all_genes <- tolower(method_all_genes[1])
+    #### Save original target_species name ####
+    input_species <- target_species 
     #### Check species here to see if they're synonymous ####
-    target_species <- map_species(species = target_species, 
-                                  verbose = verbose)
-    target_species <- unname(target_species)
-    reference_species <- map_species(species = reference_species, 
-                                     verbose = verbose)
-    reference_species <- unname(reference_species)
-    #### Species are the same ####
-    if(target_species==reference_species){
+    species1 <- map_species(species = target_species,
+                            method = method_all_genes,
+                            verbose = FALSE) %>% unname() 
+    species2 <- map_species(species = reference_species,
+                            method = method_all_genes,
+                            verbose = FALSE) %>% unname() 
+    #### Species are the same #### 
+    if(species1==species2){
         gene_df <- all_genes(species = reference_species, 
-                             method = method_all_genes)
+                             method = method_all_genes,
+                             run_map_species = TRUE,
+                             verbose = verbose)
         gene_df$ortholog_gene <- gene_df$Gene.Symbol
         tar_genes <- ref_genes <- gene_df
+        message("--")
     } else {
         #### Species are different ####
-        #### Get full genomes for each species ####
+        #### Get full genomes for each species #### 
         tar_genes <- all_genes(
             species = target_species,
             method = method_all_genes,
+            run_map_species = TRUE,
             verbose = verbose
-        )
+        ) 
+        message("--")
         ref_genes <- all_genes(
             species = reference_species,
             method = method_all_genes,
+            run_map_species = TRUE,
             verbose = verbose
         )
+        message("--")
         #### Map genes from target to references species ####
         gene_df <- convert_orthologs(
             gene_df = tar_genes,
@@ -80,12 +130,13 @@ report_orthologs <- function(target_species = "mouse",
             standardise_genes = standardise_genes,
             input_species = target_species,
             output_species = reference_species,
-            method = method_convert_orthologs[1],
+            method = method_convert_orthologs,
             drop_nonorths = drop_nonorths,
             non121_strategy = non121_strategy,
             verbose = verbose,
             ...
         )
+        message("--")
     }
     messager("\n=========== REPORT SUMMARY ===========\n",v=verbose)
     one2one_orthologs <- dplyr::n_distinct(gene_df$ortholog_gene)
@@ -115,9 +166,10 @@ report_orthologs <- function(target_species = "mouse",
         list(
             map = gene_df,
             report = data.frame(
-                "target_species" = target_species,
+                "input_species" = input_species,
+                "target_species" = species1,
                 "target_total_genes" = target_total_genes,
-                "reference_species" = reference_species,
+                "reference_species" = species2,
                 "reference_total_genes" = reference_total_genes,
                 "one2one_orthologs" = one2one_orthologs,
                 "target_percent" = target_percent,

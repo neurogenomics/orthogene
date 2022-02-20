@@ -1,15 +1,20 @@
 all_genes_babelgene <- function(species,
+                                run_map_species = TRUE,
                                 verbose = TRUE) {
     
     ### Avoid confusing Biocheck
     taxon_id <- symbol <- NULL
     
     messager("Retrieving all genes using: babelgene.", v = verbose)
-    target_id <- map_species(
-        species = species,
-        output_format = "taxonomy_id", 
-        verbose = verbose
-    )
+    if(run_map_species){
+        target_id <- map_species(
+            species = species,
+            output_format = "taxonomy_id", 
+            method = "babelgene",
+            verbose = verbose
+        )
+    } else {target_id <- species}
+   
     #### Upload babelgene orths to releases (too large for bioc) ####
     tmp <- file.path(tempdir(),"babelgene_orths.rda")
     # {

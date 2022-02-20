@@ -60,10 +60,9 @@ If set to \code{NULL}, will default to a list of humans and
 \item{\code{"gprofiler"} : Slower but more species and genes.}
 \item{\code{"homologene"} : Faster but fewer species and genes.}
 \item{\code{"babelgene"} : Faster but fewer species and genes.
-Also gives }
-}
- (slower but more species and genes) or
-\code{"homologene"} (faster but fewer species and genes).}
+Also gives consensus scores for each gene mapping based on a
+ several different data sources.}
+}}
 
 \item{make_plot}{Make a plot of the results.}
 

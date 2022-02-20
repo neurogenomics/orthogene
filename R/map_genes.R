@@ -19,7 +19,9 @@
 #' by \pkg{orthogene}.
 #'
 #' @param verbose Print messages.
+#' @inheritParams all_genes
 #' @inheritParams gprofiler2::gconvert
+#' 
 #'
 #' @return Table with standardised genes.
 #' @export
@@ -41,11 +43,16 @@ map_genes <- function(genes,
                       mthreshold = Inf,
                       drop_na = FALSE,
                       numeric_ns = "",
+                      run_map_species = TRUE,
                       verbose = TRUE) {
-    organism <- map_species(
-        species = species,
-        verbose = verbose
-    )
+    if(run_map_species){
+        organism <- map_species(
+            species = species,
+            method = "gprofiler",
+            verbose = verbose
+        )
+    } else {organism <- species}
+    
     syn_map <- gprofiler2::gconvert(
         query = genes,
         organism = organism,
@@ -61,7 +68,6 @@ map_genes <- function(genes,
             verbose = verbose
         )
     }
-
     n_genes <- length(genes)
     n_mapped <- length(stats::na.omit(syn_map$name))
     messager(formatC(n_genes, big.mark = ","), "/",

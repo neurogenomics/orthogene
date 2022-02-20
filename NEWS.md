@@ -1,3 +1,26 @@
+# orthogene  1.1.2
+
+BUG FIXES  
+
+* `convert_orthologs(method="babelgene")` now gets gene mappings
+from `all_genes_babelgene` instead `babelgene::orthologs` (which doesn't seem to work very well, despite being dedicated for this purpose).   
+* `map_species`: 
+    + Avoid running this function redundantly when nested in multiple layers of other functions. 
+    + `common_species_names_dict` now return "scientific_name" by default, instead of "taxonomy_id" 
+    + Match `map_species` method to whatever method is being used in the function it's wrapped within, to avoid dropping species due to naming differences.  
+    + Add "id" column (e.g. "celegans") to all org databases to enhance their searchability. 
+    + Add `map_species_check_args`. 
+    
+NEW FEATURES  
+
+* `plot_orthotree`: Automated plotting of phylogenetic trees with 1:1 ortholog report annotations. Includes several subfunctions: 
+    + `prepare_tree` (exported): Read, prune and  standardise a phylogenetic tree. 
+    + `gather_images` (internal): More robust way to find and import valid phylopic silhouettes. Will make PR requests to `rphylopic` and `ggimage`/`ggtree` to include this functionality. 
+* Added unit tests for `report_orthologs`, especially when `method="babelgene"`.  
+* GitHub Actions: 
+    + Merge both GHA workflows into one, as implemented in [`templateR`](https://github.com/neurogenomics/templateR).  
+
+
 # orthogene  1.1.1
 
 BUG FIXES  

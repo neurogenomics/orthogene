@@ -9,7 +9,6 @@
 #' GenomeInfoDbData GitHub}
 #' @return Organisms \code{data.table}
 #'
-#' @import GenomeInfoDbData
 #' @importFrom data.table data.table setnames :=
 #' @importFrom utils data
 #' @keywords internal

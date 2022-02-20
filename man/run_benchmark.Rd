@@ -5,9 +5,8 @@
 \title{Run benchmark tests}
 \usage{
 run_benchmark(
-  species_mapped,
-  benchmark_homologene = TRUE,
-  benchmark_gprofiler = TRUE,
+  species,
+  method_list = c("homologene", "gprofiler", "babelgene"),
   run_convert_orthologs = TRUE,
   remove_failed_times = FALSE,
   save_path = tempfile(fileext = ".csv"),
@@ -16,11 +15,7 @@ run_benchmark(
 )
 }
 \arguments{
-\item{species_mapped}{Species names.}
-
-\item{benchmark_homologene}{Benchmark method "homologene".}
-
-\item{benchmark_gprofiler}{Benchmark method "gprofiler".}
+\item{species}{Species names.}
 
 \item{run_convert_orthologs}{Benchmark
 \link[orthogene]{convert_orthologs} function.}
@@ -33,6 +28,12 @@ no genes were returned, set time to \code{NA}.}
 \item{mc.cores}{Number of cores to parallelise species across.}
 
 \item{verbose}{Print messages.}
+
+\item{benchmark_homologene}{Benchmark method "homologene".}
+
+\item{benchmark_gprofiler}{Benchmark method "gprofiler".}
+
+\item{benchmark_babelgene}{Benchmark method "babelgene".}
 }
 \value{
 \code{data.table} with benchmark results

@@ -43,8 +43,8 @@ Imports:
     DelayedMatrixStats,
     Matrix.utils,
     grr, 
-    repmis,
-    GenomeInfoDbData
+    repmis, 
+    ggtree
 Suggests: 
     remotes,
     knitr,
@@ -61,7 +61,13 @@ Suggests:
     hrbrthemes,
     Cairo,
     yulab.utils,
-    haven
+    haven,
+    GenomeInfoDbData,
+    ape,
+    phytools,
+    rphylopic,
+    TreeTools,
+    RColorBrewer
 RoxygenNote: 7.1.2
 Encoding: UTF-8
 Config/testthat/edition: 3

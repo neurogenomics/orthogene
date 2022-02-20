@@ -8,12 +8,13 @@ report_orthologs(
   target_species = "mouse",
   reference_species = "human",
   standardise_genes = FALSE,
-  method_all_genes = c("gprofiler", "homologene"),
-  method_convert_orthologs = c("gprofiler", "homologene", "babelgene"),
+  method_all_genes = c("homologene", "gprofiler", "babelgene"),
+  method_convert_orthologs = method_all_genes,
   drop_nonorths = TRUE,
   non121_strategy = "drop_both_species",
   round_digits = 2,
   return_report = TRUE,
+  mc.cores = 1,
   verbose = TRUE,
   ...
 )
@@ -30,13 +31,23 @@ identified by \link[gprofiler2]{gorth}.}
 
 \item{method_all_genes}{R package to to use in
 \link[orthogene]{all_genes} step:
-\code{"gprofiler"} (slower but more species and genes) or
-\code{"homologene"} (faster but fewer species and genes).}
+\itemize{
+\item{\code{"gprofiler"} : Slower but more species and genes.}
+\item{\code{"homologene"} : Faster but fewer species and genes.}
+\item{\code{"babelgene"} : Faster but fewer species and genes.
+Also gives consensus scores for each gene mapping based on a
+ several different data sources.}
+}}
 
 \item{method_convert_orthologs}{R package to to use in
 \link[orthogene]{convert_orthologs} step:
-\code{"gprofiler"} (slower but more species and genes) or
-\code{"homologene"} (faster but fewer species and genes).}
+\itemize{
+\item{\code{"gprofiler"} : Slower but more species and genes.}
+\item{\code{"homologene"} : Faster but fewer species and genes.}
+\item{\code{"babelgene"} : Faster but fewer species and genes.
+Also gives consensus scores for each gene mapping based on a
+ several different data sources.}
+}}
 
 \item{drop_nonorths}{Drop genes that don't have an ortholog
 in the \code{output_species}.}
@@ -77,6 +88,9 @@ between two species (\code{FALSE}) or return both the
  ortholog mapping as well a \code{data.frame}
  of the report statistics (\code{TRUE}).}
 
+\item{mc.cores}{Number of cores to parallelise each
+\code{target_species} with.}
+
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to
@@ -91,13 +105,20 @@ This procedure tends to yield a greater number of returned genes but at
  here}.}
 }
 \value{
-List of ortholog report statistics
+A list containing: 
+\itemize{
+\item{map : }{A table of inter-species gene mappings.}
+\item{report : }{A list of aggregate orthology report statistics.}
+}
+If >1 \code{target_species} are provided, then a table of 
+aggregated \code{report} statistics concatenated across species 
+will be returned instead.
 }
 \description{
 Identify the number of orthologous genes between two species.
 }
 \examples{
-orth_fly <- report_orthologs(
+orth_fly <- orthogene::report_orthologs(
     target_species = "fly",
     reference_species = "human"
 )

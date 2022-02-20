@@ -21,11 +21,13 @@ map_orthologs_homologene <- function(genes,
     source_id <- map_species(
         species = input_species,
         output_format = "taxonomy_id",
+        method = "homologene",
         verbose = verbose
     )
     target_id <- map_species(
         species = output_species,
         output_format = "taxonomy_id",
+        method = "homologene",
         verbose = verbose
     )
     gene_map <- homologene::homologene(
