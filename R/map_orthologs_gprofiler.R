@@ -37,22 +37,25 @@ map_orthologs_gprofiler <- function(genes,
                                     verbose = TRUE,
                                     ...) {
     ## Avoid confusing Biocheck
-    input <- ortholog_name <- NULL
+    input <- ortholog_name <- NULL;
     ### Can take any mixtures of gene name types/IDs
     # genes <- c("Klf4", "Sox2", "71950",
     #            "ENSMUSG00000012396","ENSMUSG00000074637")
     source_organism <- map_species(
         species = input_species,
         method = "gprofiler",
+        output_format = "id",
         verbose = verbose
     )
     target_organism <- map_species(
         species = output_species,
         method = "gprofiler",
+        output_format = "id",
         verbose = verbose
     )
     gene_map <- gprofiler2::gorth(
         query = genes,
+        ## organism must be in "mmusculus" format
         source_organism = source_organism,
         target_organism = target_organism,
         mthreshold = mthreshold,

@@ -1,5 +1,7 @@
 all_genes_babelgene <- function(species,
                                 run_map_species = TRUE,
+                                save_dir = tools::R_user_dir("orthogene",
+                                                             which="cache"),
                                 verbose = TRUE) {
     
     ### Avoid confusing Biocheck
@@ -16,7 +18,8 @@ all_genes_babelgene <- function(species,
     } else {target_id <- species}
    
     #### Upload babelgene orths to releases (too large for bioc) ####
-    tmp <- file.path(tempdir(),"babelgene_orths.rda")
+    dir.create(save_dir, showWarnings = FALSE, recursive = TRUE)
+    tmp <- file.path(save_dir,"babelgene_orths.rda")
     # {
     #     ## Create/upload file
     #     orths <- babelgene:::orthologs_df
@@ -38,7 +41,7 @@ all_genes_babelgene <- function(species,
     requireNamespace("piggyback")
     piggyback::pb_download(file = "babelgene_orths.rda", 
                            repo = "neurogenomics/orthogene",
-                           dest = tempdir())
+                           dest = save_dir)
     orths <- load_data(tmp)
     tar_genes <- subset(orths, taxon_id == target_id) %>%
         dplyr::rename(taxonomy_id=taxon_id,

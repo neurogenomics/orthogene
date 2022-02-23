@@ -1,6 +1,6 @@
 ---
 title: "`orthogene`: Interspecies gene mapping"  
-author: "<img src='`r read.dcf('DESCRIPTION', fields = 'URL')[1]`/raw/`r gsub('[*] ','',system('git branch', intern = TRUE)[1])`/inst/hex/hex.png' height='300'><br><br>
+author: "<img src='`r read.dcf('DESCRIPTION', fields = 'URL')[1]`/raw/main/inst/hex/hex.png' height='300'><br><br>
         `r badger::badge_github_version(color = 'black')` 
         `r badger::badge_bioc_release(color = 'green')`
         [![BioC status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
@@ -36,16 +36,21 @@ In brief, `orthogene` lets you easily:
 - [**`aggregate_mapped_genes`** in a matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes)  
 - [get **`all_genes`** from any species](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes) 
 
+## Citation 
+
+If you use `orthogene`, please cite: 
+
+> `r citation("orthogene")$textVersion`, https://doi.org/doi:10.18129/B9.bioc.orthogene
+
+
 ## [Documentation website](https://neurogenomics.github.io/orthogene/) 
 
 # Installation
 
 ```{r, eval=FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-     install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 # orthogene is only available on Bioconductor>=3.14
-if(BiocManager::version()<"3.14") 
-  BiocManager::install(update = TRUE, ask = FALSE)
+if(BiocManager::version()<"3.14") BiocManager::install(update = TRUE, ask = FALSE)
 
 BiocManager::install("orthogene")
 ```
@@ -77,7 +82,8 @@ as it tends to be more comprehensive.
 While `"babelgene"` contains less species, it queries a wide variety 
 of orthology databases and can return a column "support_n" that tells 
 you how many databases support each ortholog gene mapping. 
-This can be helpful when you need a quantitative measure of mapping quality.
+This can be helpful when you need a semi-quantitative
+measure of mapping quality.
 
 It's also worth noting that for smaller gene sets, 
 the speed difference between these methods becomes negligible. 

@@ -10,6 +10,7 @@ from `all_genes_babelgene` instead `babelgene::orthologs` (which doesn't seem to
     + Match `map_species` method to whatever method is being used in the function it's wrapped within, to avoid dropping species due to naming differences.  
     + Add "id" column (e.g. "celegans") to all org databases to enhance their searchability. 
     + Add `map_species_check_args`. 
+* Ensure proper method-specific `output_format` when passing species to other functions. 
     
 NEW FEATURES  
 
@@ -19,6 +20,8 @@ NEW FEATURES
 * Added unit tests for `report_orthologs`, especially when `method="babelgene"`.  
 * GitHub Actions: 
     + Merge both GHA workflows into one, as implemented in [`templateR`](https://github.com/neurogenomics/templateR).  
+* Added citation info to README. 
+* Save `all_genes_babelgene` ortholog data to orthogene-specific cache instead of tempdir to avoid re-downloading every R session. 
 
 
 # orthogene  1.1.1

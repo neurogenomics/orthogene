@@ -51,7 +51,12 @@ prepare_tree <- function(tree_path =
     requireNamespace("TreeTools")
     
     method <- tolower(method)[1]
-    tr <- ape::read.tree(file = tree_path) 
+    # if(any(endsWith(tree_path,c("nh","nhx")))){
+    #     requireNamespace("treeio")
+    #     tr <- treeio::read.nhx(file = tree_path) 
+    # } else {
+        tr <- ape::read.tree(file = tree_path)
+    # } 
     if(!ape::is.ultrametric(tr) && force_ultrametric){
         tr <- phytools::force.ultrametric(tr)
     } 

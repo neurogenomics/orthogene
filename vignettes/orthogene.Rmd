@@ -134,7 +134,7 @@ knitr::kable(orth_zeb$report)
 
 [`map_genes`](https://neurogenomics.github.io/orthogene/reference/map_genes.html) finds matching *within-species* synonyms across a wide variety of gene naming conventions (HGNC, Ensembl, RefSeq, UniProt, etc.) and returns a table with standardised gene symbols (or whatever output format you prefer). 
 
-```{r map_genes, error=TRUE}
+```{r map_genes}
 genes <-  c("Klf4", "Sox2", "TSPAN12","NM_173007","Q8BKT6",9999,
              "ENSMUSG00000012396","ENSMUSG00000074637")
 mapped_genes <- orthogene::map_genes(genes = genes,
@@ -154,7 +154,7 @@ knitr::kable(head(mapped_genes))
 
 Note, this only works when the input data (`gene_df`) is a sparse or dense matrix, and the genes are row names. 
 
-```{r, error=TRUE}
+```{r}
 data("exp_mouse_enst") 
 knitr::kable(tail(as.matrix(exp_mouse_enst)))
 

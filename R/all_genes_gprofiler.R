@@ -10,6 +10,7 @@ all_genes_gprofiler <- function(species,
         species <- map_species(
             species = species,
             method = "gprofiler",
+            output_format = "id",
             verbose = verbose
         )
     } 
@@ -18,7 +19,8 @@ all_genes_gprofiler <- function(species,
     ranges <- all_ranges()
     tar_genes <- gprofiler2::gconvert(
         query = ranges,
-        organism = species,
+        ## organism must be in "mmusculus" format
+        organism = unname(species),
         ...
     )
     ### make similar to homologene

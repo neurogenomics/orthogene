@@ -1,4 +1,36 @@
-
+#' Gather 1 valid image per species
+#' 
+#' There are multiple images per species, and not all image UIDs are valid.
+#' This function makes searching for a valid image for each species much easier.
+#' Searches for the best name match per \code{species} and 
+#' iteratively tries image UIDs until a viable image is found.
+#' 
+#' Contributed by \href{https://github.com/bschilder}{Brian M. Schilder}.
+#' 
+#' @param species Species list.
+#' @param include_image_data Include the image data itself 
+#' (not just the image UID) in the results.
+#' @param mc.cores Accelerate multiple species queries by parallelising 
+#' across multiple cores.
+#' @param verbose Print messages.
+#' @inheritParams rphylopic::name
+#' @returns data.frame with:
+#' \itemize{
+#' \item{species : }{Species name.}
+#' \item{uid : }{Species UID.}
+#' \item{namebankID : }{\href{http://ubio.org/}{uBio} species ID.}
+#' \item{string : }{Standardised species name.}
+#' \item{picid : }{Image UID.}
+#' }
+#' @source \href{https://github.com/GuangchuangYu/ggimage/blob/master/R/geom_phylopic.R}{
+#' Related function: \code{ggimage::geom_phylopic}}
+#' 
+#' @keywords internal 
+#' @source 
+#' \code{
+#' species <- c("Mus_musculus","Pan_troglodytes","Homo_sapiens")
+#' res <- rphylopic::gather_images(species=species)
+#' }  
 gather_images <- function(species,
                           options=c("namebankID","names","string"),
                           include_image_data=FALSE,
@@ -8,6 +40,8 @@ gather_images <- function(species,
     # uids <- ggimage::phylopic_uid(name = tree$tip.label)
     # uids$input_species <- gsub("_"," ",uids$name)
     requireNamespace("rphylopic")
+    requireNamespace("data.table")
+    requireNamespace("parallel")
     string <- NULL;
     
     messager("Gathering phylopic silhouettes.",v=verbose)
@@ -44,13 +78,11 @@ gather_images <- function(species,
             uids
         }, error=function(e) NULL)
     }, mc.cores = mc.cores)  
-    #### rbindlist handles this more robustly thna rbind #####
-    res <- res %>% `names<-`(orig_names) %>%
-        data.table::rbindlist(use.names = TRUE,
-                              idcol = "input_species",
-                              fill = TRUE)
-    res <- res %>% dplyr::rename(species=string)
-    # res <- cbind(species=orig_names,
-    #              do.call("rbind2",res))
+    #### rbindlist handles this more robustly than rbind #####
+    names(res) <- orig_names
+    res <- data.table::rbindlist(res, use.names = TRUE,
+                                 idcol = "input_species",
+                                 fill = TRUE)
+    data.table::setnames(res,"string","species") 
     return(res)
 }

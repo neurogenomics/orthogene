@@ -49,13 +49,15 @@ map_genes <- function(genes,
         organism <- map_species(
             species = species,
             method = "gprofiler",
+            output_format = "id",
             verbose = verbose
         )
     } else {organism <- species}
     
     syn_map <- gprofiler2::gconvert(
         query = genes,
-        organism = organism,
+        ## organism must be in "mmusculus" format
+        organism = unname(organism),
         target = target,
         mthreshold = mthreshold,
         filter_na = drop_na,

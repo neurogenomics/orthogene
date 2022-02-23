@@ -1,13 +1,13 @@
 `orthogene`: Interspecies gene mapping
 ================
-<img src='https://github.com/neurogenomics/orthogene/raw/  RELEASE_3_14/inst/hex/hex.png' height='300'><br><br>
+<img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' height='300'><br><br>
 [![](https://img.shields.io/badge/devel%20version-1.1.2-black.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/badge/release%20version-1.0.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
 [![BioC
 status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
 [![](https://img.shields.io/badge/doi-https://doi.org/10.18129/B9.bioc.orthogene-green.svg)](https://doi.org/https://doi.org/10.18129/B9.bioc.orthogene)
-[![](https://img.shields.io/badge/download-399/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-407/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![R build
 status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
@@ -18,7 +18,7 @@ GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-pro
 Authors: <i>Brian Schilder</i>
 </h4>
 <h4>
-README updated: <i>Feb-18-2022</i>
+README updated: <i>Feb-20-2022</i>
 </h4>
 
 # Intro
@@ -47,16 +47,22 @@ In brief, `orthogene` lets you easily:
 -   [get **`all_genes`** from any
     species](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes)
 
+## Citation
+
+If you use `orthogene`, please cite:
+
+> Brian Schilder (NA). orthogene: Interspecies gene mapping. R package
+> version 1.1.2. <https://github.com/neurogenomics/orthogene>,
+> <https://doi.org/doi:10.18129/B9.bioc.orthogene>
+
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
 
 # Installation
 
 ``` r
-if (!requireNamespace("BiocManager", quietly = TRUE))
-     install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 # orthogene is only available on Bioconductor>=3.14
-if(BiocManager::version()<"3.14") 
-  BiocManager::install(update = TRUE, ask = FALSE)
+if(BiocManager::version()<"3.14") BiocManager::install(update = TRUE, ask = FALSE)
 
 BiocManager::install("orthogene")
 ```
@@ -91,7 +97,7 @@ tends to be more comprehensive.
 While `"babelgene"` contains less species, it queries a wide variety of
 orthology databases and can return a column “support\_n” that tells you
 how many databases support each ortholog gene mapping. This can be
-helpful when you need a quantitative measure of mapping quality.
+helpful when you need a semi-quantitative measure of mapping quality.
 
 It’s also worth noting that for smaller gene sets, the speed difference
 between these methods becomes negligible.
@@ -153,9 +159,7 @@ gene_df <- orthogene::convert_orthologs(gene_df = exp_mouse,
 
     ## Converting mouse ==> human orthologs using: homologene
 
-    ## Retrieving all organisms available in gprofiler.
-
-    ## Using stored `gprofiler_orgs`.
+    ## Retrieving all organisms available in homologene.
 
     ## Mapping species name: mouse
 
@@ -163,9 +167,7 @@ gene_df <- orthogene::convert_orthologs(gene_df = exp_mouse,
 
     ## 1 organism identified from search: 10090
 
-    ## Retrieving all organisms available in gprofiler.
-
-    ## Using stored `gprofiler_orgs`.
+    ## Retrieving all organisms available in homologene.
 
     ## Mapping species name: human
 
@@ -252,42 +254,47 @@ utils::sessionInfo()
     ## [1] orthogene_1.1.2
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] lattice_0.20-45           tidyr_1.2.0              
-    ##  [3] assertthat_0.2.1          rprojroot_2.0.2          
-    ##  [5] digest_0.6.29             utf8_1.2.2               
-    ##  [7] R6_2.5.1                  backports_1.4.1          
-    ##  [9] evaluate_0.14             highr_0.9                
-    ## [11] httr_1.4.2                ggplot2_3.3.5            
-    ## [13] pillar_1.7.0              yulab.utils_0.0.4        
-    ## [15] rlang_1.0.1               lazyeval_0.2.2           
-    ## [17] rstudioapi_0.13           data.table_1.14.2        
-    ## [19] car_3.0-12                Matrix_1.4-0             
-    ## [21] rmarkdown_2.11            desc_1.4.0               
-    ## [23] stringr_1.4.0             htmlwidgets_1.5.4        
-    ## [25] dlstats_0.1.4             munsell_0.5.0            
-    ## [27] broom_0.7.12              compiler_4.1.0           
-    ## [29] gprofiler2_0.2.1          xfun_0.29                
-    ## [31] pkgconfig_2.0.3           htmltools_0.5.2          
-    ## [33] tidyselect_1.1.1          tibble_3.1.6             
-    ## [35] GenomeInfoDbData_1.2.7    viridisLite_0.4.0        
-    ## [37] fansi_1.0.2               crayon_1.5.0             
-    ## [39] dplyr_1.0.8               ggpubr_0.4.0             
-    ## [41] grid_4.1.0                jsonlite_1.7.3           
-    ## [43] gtable_0.3.0              lifecycle_1.0.1          
-    ## [45] DBI_1.1.2                 magrittr_2.0.2           
-    ## [47] scales_1.1.1              cli_3.2.0                
-    ## [49] stringi_1.7.6             carData_3.0-5            
-    ## [51] ggsignif_0.6.3            ellipsis_0.3.2           
-    ## [53] rvcheck_0.2.1             generics_0.1.2           
-    ## [55] vctrs_0.3.8               RColorBrewer_1.1-2       
-    ## [57] tools_4.1.0               homologene_1.4.68.19.3.27
-    ## [59] glue_1.6.1                purrr_0.3.4              
-    ## [61] parallel_4.1.0            abind_1.4-5              
-    ## [63] fastmap_1.1.0             yaml_2.2.2               
-    ## [65] babelgene_21.4            colorspace_2.0-2         
-    ## [67] BiocManager_1.30.16       rstatix_0.7.0            
-    ## [69] plotly_4.10.0             badger_0.1.0             
-    ## [71] knitr_1.37                patchwork_1.1.1
+    ##  [1] httr_1.4.2                tidyr_1.2.0              
+    ##  [3] jsonlite_1.7.3            viridisLite_0.4.0        
+    ##  [5] carData_3.0-5             gprofiler2_0.2.1         
+    ##  [7] assertthat_0.2.1          BiocManager_1.30.16      
+    ##  [9] rvcheck_0.2.1             highr_0.9                
+    ## [11] yulab.utils_0.0.4         yaml_2.3.4               
+    ## [13] pillar_1.7.0              backports_1.4.1          
+    ## [15] lattice_0.20-45           glue_1.6.1               
+    ## [17] digest_0.6.29             RColorBrewer_1.1-2       
+    ## [19] ggsignif_0.6.3            colorspace_2.0-2         
+    ## [21] ggfun_0.0.5               htmltools_0.5.2          
+    ## [23] Matrix_1.4-0              pkgconfig_2.0.3          
+    ## [25] babelgene_21.4            broom_0.7.12             
+    ## [27] purrr_0.3.4               patchwork_1.1.1          
+    ## [29] tidytree_0.3.8            scales_1.1.1             
+    ## [31] ggplotify_0.1.0           tibble_3.1.6             
+    ## [33] generics_0.1.2            car_3.0-12               
+    ## [35] ggplot2_3.3.5             ellipsis_0.3.2           
+    ## [37] ggpubr_0.4.0              lazyeval_0.2.2           
+    ## [39] cli_3.2.0                 magrittr_2.0.2           
+    ## [41] crayon_1.5.0              evaluate_0.15            
+    ## [43] badger_0.1.0              fansi_1.0.2              
+    ## [45] nlme_3.1-155              rstatix_0.7.0            
+    ## [47] homologene_1.4.68.19.3.27 tools_4.1.0              
+    ## [49] data.table_1.14.2         lifecycle_1.0.1          
+    ## [51] stringr_1.4.0             plotly_4.10.0            
+    ## [53] aplot_0.1.2               ggtree_3.2.1             
+    ## [55] munsell_0.5.0             compiler_4.1.0           
+    ## [57] gridGraphics_0.5-1        rlang_1.0.1              
+    ## [59] grid_4.1.0                rstudioapi_0.13          
+    ## [61] htmlwidgets_1.5.4         rmarkdown_2.11           
+    ## [63] gtable_0.3.0              abind_1.4-5              
+    ## [65] DBI_1.1.2                 R6_2.5.1                 
+    ## [67] knitr_1.37                dplyr_1.0.8              
+    ## [69] fastmap_1.1.0             utf8_1.2.2               
+    ## [71] rprojroot_2.0.2           treeio_1.18.1            
+    ## [73] dlstats_0.1.4             desc_1.4.0               
+    ## [75] ape_5.6-1                 stringi_1.7.6            
+    ## [77] parallel_4.1.0            Rcpp_1.0.8               
+    ## [79] vctrs_0.3.8               tidyselect_1.1.1         
+    ## [81] xfun_0.29
 
 </details>
 
@@ -338,3 +345,16 @@ utils::sessionInfo()
 
 -   [OrtholoGene](http://orthologene.org/resources.html): Compiled list
     of gene orthology resources.
+
+## Contact
+
+### [Neurogenomics Lab](https://www.neurogenomics.co.uk/)
+
+UK Dementia Research Institute  
+Department of Brain Sciences  
+Faculty of Medicine  
+Imperial College London  
+[GitHub](https://github.com/neurogenomics)  
+[DockerHub](https://hub.docker.com/orgs/neurogenomicslab)
+
+<br>

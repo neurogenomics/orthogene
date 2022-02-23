@@ -37,8 +37,10 @@ taxa_id_dict <- function(species = c(
     if (any(!species %in% names(dict))) {
         missing_species <- species[!(species %in% names(dict))]
         messager(
-            "WARNING: Species '", paste(missing_species, collapse = ", "),
-            "' not found in taxa dict."
+            paste0(
+                "WARNING: Species '", paste(missing_species, collapse = ", "),
+                "' not found in taxa dict."
+            )
         )
         species <- species[species %in% names(dict)]
     }

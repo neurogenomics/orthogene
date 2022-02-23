@@ -26,15 +26,15 @@ map_orthologs_babelgene <- function(genes,
         taxonomy_id <- entrez <- taxon_id <- support <- support_n <- NULL
 
     source_id <- map_species(
-        species = input_species,
-        output_format = "scientific_name",
+        species = input_species, 
         method = "babelgene",
+        output_format = "scientific_name",
         verbose = verbose
     ) %>% unname()
     target_id <- map_species(
-        species = output_species,
-        output_format = "scientific_name",
+        species = output_species, 
         method = "babelgene",
+        output_format = "scientific_name",
         verbose = verbose
     ) %>% unname()
     check_species_babelgene(

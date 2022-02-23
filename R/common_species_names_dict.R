@@ -2,6 +2,12 @@ common_species_names_dict <- function(species = NULL,
                                       type = c("scientific_name",
                                                "taxonomy_id"),
                                       verbose = TRUE) {
+    #### return type ####
+    type <- tolower(type[1]) 
+    type_dict = c("scientific_name"=1,
+                  "taxonomy_id"=2) 
+    type_select <- type_dict[[type]]
+    #### dictionary ####
     dict <- list(
         "human" = c("Homo sapiens",9606),
         "humans" = c("Homo sapiens",9606),
@@ -41,7 +47,8 @@ common_species_names_dict <- function(species = NULL,
     )
     #### Return entire dict if NULL ####
     if (is.null(species)) {
-        return(dict)
+        out <- unlist(lapply(dict, function(x)x[type_select] ))
+        return(out)
     } 
     #### Standardise queries ####
     species <- tolower(species)
@@ -60,11 +67,6 @@ common_species_names_dict <- function(species = NULL,
         species <- species[species %in% names(dict)]
     }
     messager("Common name mapping found for", species, v = verbose)
-    #### return types ####
-    type_dict = c("scientific_name"=1,
-                  "taxonomy_id"=2)
-    type <- tolower(type[1])
-    type_select <- type_dict[[type]]
     out <- unlist(lapply(dict[species], function(x)x[type_select] ))
     return(out)
 }
