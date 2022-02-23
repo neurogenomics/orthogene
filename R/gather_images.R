@@ -29,7 +29,7 @@
 #' @source 
 #' \code{
 #' species <- c("Mus_musculus","Pan_troglodytes","Homo_sapiens")
-#' res <- rphylopic::gather_images(species=species)
+#' res <- orthogene:::gather_images(species=species)
 #' }  
 gather_images <- function(species,
                           options=c("namebankID","names","string"),

@@ -19,6 +19,9 @@ ggtree_plot <- function(tr,
                         reference_species = NULL, 
                         verbose = TRUE){
     requireNamespace("ggtree")
+    ## ggimage is required but only listed as a Suggest in ggtree 
+    ## for some reason.
+    requireNamespace("ggimage") 
     requireNamespace("ggplot2")  
     
     one2one_orthologs <- node <- name <- picid <-

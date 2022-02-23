@@ -1,3 +1,12 @@
+#' Get all genes: babelgene
+#' 
+#' Get all genes for a given species using the method "babelgene".
+#' 
+#' @param save_dir Directory to save babelgene mapping files to.
+#' @inheritParams all_genes
+#' 
+#' @keywords internal
+#' @importFrom tools R_user_dir
 all_genes_babelgene <- function(species,
                                 run_map_species = TRUE,
                                 save_dir = tools::R_user_dir("orthogene",

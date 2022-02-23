@@ -9,7 +9,7 @@ Related function: \code{ggimage::geom_phylopic}}
 
 \code{
 species <- c("Mus_musculus","Pan_troglodytes","Homo_sapiens")
-res <- rphylopic::gather_images(species=species)
+res <- orthogene:::gather_images(species=species)
 }
 }
 \usage{
