@@ -37,7 +37,7 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/docker.html">Docker</a>
+      <a href="../articles/docker.html">Docker/Singularity Containers</a>
     </li>
     <li>
       <a href="../articles/infer_species.html">Infer species</a>
@@ -72,26 +72,22 @@
  using multiple methods ("homologene", and "gprofiler").</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">run_benchmark</span><span class="op">(</span>
-  <span class="va">species_mapped</span>,
-  benchmark_homologene <span class="op">=</span> <span class="cn">TRUE</span>,
-  benchmark_gprofiler <span class="op">=</span> <span class="cn">TRUE</span>,
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">run_benchmark</span><span class="op">(</span>
+  <span class="va">species</span>,
+  method_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"homologene"</span>, <span class="st">"gprofiler"</span>, <span class="st">"babelgene"</span><span class="op">)</span>,
   run_convert_orthologs <span class="op">=</span> <span class="cn">TRUE</span>,
   remove_failed_times <span class="op">=</span> <span class="cn">FALSE</span>,
   save_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span>,
   mc.cores <span class="op">=</span> <span class="fl">1</span>,
   verbose <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>species_mapped</dt>
+    <dl><dt>species</dt>
 <dd><p>Species names.</p></dd>
-<dt>benchmark_homologene</dt>
-<dd><p>Benchmark method "homologene".</p></dd>
-<dt>benchmark_gprofiler</dt>
-<dd><p>Benchmark method "gprofiler".</p></dd>
 <dt>run_convert_orthologs</dt>
 <dd><p>Benchmark
 <a href="convert_orthologs.html">convert_orthologs</a> function.</p></dd>
@@ -104,11 +100,16 @@ no genes were returned, set time to <code>NA</code>.</p></dd>
 <dd><p>Number of cores to parallelise species across.</p></dd>
 <dt>verbose</dt>
 <dd><p>Print messages.</p></dd>
+<dt>benchmark_homologene</dt>
+<dd><p>Benchmark method "homologene".</p></dd>
+<dt>benchmark_gprofiler</dt>
+<dd><p>Benchmark method "gprofiler".</p></dd>
+<dt>benchmark_babelgene</dt>
+<dd><p>Benchmark method "babelgene".</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     <p><code>data.table</code> with benchmark results</p>
-    </div>
     </div>
 
   </div>
@@ -123,7 +124,8 @@ no genes were returned, set time to <code>NA</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.9000.</p>
 </div>
 
       </footer></div>

@@ -41,7 +41,7 @@ to test against in analyses with data from multiple species
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/docker.html">Docker</a>
+      <a href="../articles/docker.html">Docker/Singularity Containers</a>
     </li>
     <li>
       <a href="../articles/infer_species.html">Infer species</a>
@@ -80,7 +80,8 @@ to test against in analyses with data from multiple species
   human GWAS-derived gene sets).</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">create_background</span><span class="op">(</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_background</span><span class="op">(</span>
   <span class="va">species1</span>,
   <span class="va">species2</span>,
   output_species <span class="op">=</span> <span class="st">"human"</span>,
@@ -92,8 +93,8 @@ to test against in analyses with data from multiple species
   non121_strategy <span class="op">=</span> <span class="st">"drop_both_species"</span>,
   verbose <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>species1</dt>
@@ -125,9 +126,9 @@ user after removing duplicate genes.</p></dd>
 <dd><p>R package to to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
 <li><p><code>"babelgene"</code> : Faster but fewer species and genes.
-Also gives</p></li>
-</ul><p>(slower but more species and genes) or
-<code>"homologene"</code> (faster but fewer species and genes).</p></dd>
+Also gives consensus scores for each gene mapping based on a
+ several different data sources.</p></li>
+</ul></dd>
 <dt>non121_strategy</dt>
 <dd><p>How to handle genes that don't have
 1:1 mappings between <code>input_species</code>:<code>output_species</code>.
@@ -161,52 +162,43 @@ Return only the most "popular" interspecies ortholog mappings.
     <h2>Value</h2>
     <p>Background gene list.</p>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">bg</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu">create_background</span><span class="op">(</span>species1 <span class="op">=</span> <span class="st">"mouse"</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">bg</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu">create_background</span><span class="op">(</span>species1 <span class="op">=</span> <span class="st">"mouse"</span>, </span>
 <span class="r-in">                                   species2 <span class="op">=</span> <span class="st">"rat"</span>,</span>
 <span class="r-in">                                   output_species <span class="op">=</span> <span class="st">"human"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Generating gene background for mouse x rat ==&gt; human</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all genes using: homologene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: mouse</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for mouse</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: mmusculus</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: human</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for human</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: hsapiens</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all genes using: homologene.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: mmusculus</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 10090</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 21,207 rows retrieved.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 21,207 genes from mmusculus.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 21,207 genes from mouse.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all genes using: homologene.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: hsapiens</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: human</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for human</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 9606</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 19,129 rows retrieved.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 19,129 genes from hsapiens.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 19,129 genes from human.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing gene_df.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> data.frame format detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from Gene.Symbol.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 21,207 genes extracted.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting mmusculus ==&gt; hsapiens orthologs using: homologene</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: mmusculus</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting mouse ==&gt; human orthologs using: homologene</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: mouse</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for mouse</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 10090</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: hsapiens</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: human</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for human</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 9606</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without orthologs in hsapiens.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without orthologs in human.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from input_gene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 17,355 genes extracted.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from ortholog_gene.</span>
@@ -223,48 +215,41 @@ Return only the most "popular" interspecies ortholog mappings.
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    4,725 / 21,207 (22%)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Total genes remaining after convert_orthologs :</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    16,482 / 21,207 (78%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> =========== REPORT SUMMARY ===========</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 16,482 / 21,207 (77.72%) target_species genes remain after ortholog conversion.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 16,482 / 19,129 (86.16%) reference_species genes remain after ortholog conversion.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all genes using: homologene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: rat</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for rat</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: rnorvegicus</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: human</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for human</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: hsapiens</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all genes using: homologene.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: rnorvegicus</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 10116</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 20,616 rows retrieved.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 20,616 genes from rnorvegicus.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 20,616 genes from rat.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all genes using: homologene.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: hsapiens</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: human</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for human</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 9606</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 19,129 rows retrieved.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 19,129 genes from hsapiens.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 19,129 genes from human.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing gene_df.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> data.frame format detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from Gene.Symbol.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 20,616 genes extracted.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting rnorvegicus ==&gt; hsapiens orthologs using: homologene</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: rnorvegicus</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting rat ==&gt; human orthologs using: homologene</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: rat</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for rat</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 10116</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: hsapiens</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: human</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for human</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 9606</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without orthologs in hsapiens.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without orthologs in human.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from input_gene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 16,989 genes extracted.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from ortholog_gene.</span>
@@ -281,6 +266,7 @@ Return only the most "popular" interspecies ortholog mappings.
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    4,813 / 20,616 (23%)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Total genes remaining after convert_orthologs :</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    15,803 / 20,616 (77%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> =========== REPORT SUMMARY ===========</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 15,803 / 20,616 (76.65%) target_species genes remain after ortholog conversion.</span>
@@ -300,7 +286,8 @@ Return only the most "popular" interspecies ortholog mappings.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.9000.</p>
 </div>
 
       </footer></div>

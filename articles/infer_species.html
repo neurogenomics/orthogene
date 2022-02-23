@@ -53,7 +53,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/docker.html">Docker</a>
+      <a href="../articles/docker.html">Docker/Singularity Containers</a>
     </li>
     <li>
       <a href="../articles/infer_species.html">Infer species</a>
@@ -90,7 +90,7 @@ Author: <i>Brian M. Schilder</i>
 </h4></h4>
             
             <h4 data-toc-skip class="date"><h4>
-Most recent update: <i>Nov-02-2021</i>
+Most recent update: <i>Feb-23-2022</i>
 </h4></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/vignettes/infer_species.Rmd" class="external-link"><code>vignettes/infer_species.Rmd</code></a></small>
@@ -100,9 +100,9 @@ Most recent update: <i>Nov-02-2021</i>
 
     
     
-<div class="section level1">
-<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h1>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
      <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span> 
@@ -119,23 +119,30 @@ Most recent update: <i>Nov-02-2021</i>
 <span class="co"># We generally recommend using method="gprofiler" (default).</span>
 <span class="va">method</span> <span class="op">&lt;-</span> <span class="st">"homologene"</span>  </code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h1>
-<p>It’s not always clear whether a dataset is using the original species gene names, human gene names, or some other species’ gene names.</p>
-<p><code>infer_species</code> takes a list/matrix/data.frame with genes and infers the species that they best match to!</p>
-<p>For the sake of speed, the genes extracted from <code>gene_df</code> are tested against genomes from only the following 6 <code>test_species</code> by default: - human - monkey - rat - mouse - zebrafish - fly</p>
-<p>However, you can supply your own list of <code>test_species</code>, which will be automatically be mapped and standardised using <code>map_species</code>.</p>
-</div>
-<div class="section level1">
-<h1 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
-</h1>
 <div class="section level2">
-<h2 id="mouse-genes">Mouse genes<a class="anchor" aria-label="anchor" href="#mouse-genes"></a>
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>It’s not always clear whether a dataset is using the original species
+gene names, human gene names, or some other species’ gene names.</p>
+<p><code>infer_species</code> takes a list/matrix/data.frame with genes
+and infers the species that they best match to!</p>
+<p>For the sake of speed, the genes extracted from <code>gene_df</code>
+are tested against genomes from only the following 6
+<code>test_species</code> by default: - human - monkey - rat - mouse -
+zebrafish - fly</p>
+<p>However, you can supply your own list of <code>test_species</code>,
+which will be automatically be mapped and standardised using
+<code>map_species</code>.</p>
+</div>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
 <div class="section level3">
-<h3 id="infer-the-species">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species"></a>
+<h3 id="mouse-genes">Mouse genes<a class="anchor" aria-label="anchor" href="#mouse-genes"></a>
 </h3>
+<div class="section level4">
+<h4 id="infer-the-species">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species"></a>
+</h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span>, 
                                     method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
@@ -145,8 +152,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## 15,259 genes extracted.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: human</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: human</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for human</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9606</span></code></pre>
@@ -154,8 +160,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 19,129 genes from human.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: monkey</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: monkey</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for monkey</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9544</span></code></pre>
@@ -163,8 +168,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 16,843 genes from monkey.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: rat</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: rat</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for rat</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10116</span></code></pre>
@@ -172,8 +176,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 20,616 genes from rat.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: mouse</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10090</span></code></pre>
@@ -181,8 +184,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 21,207 genes from mouse.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: zebrafish</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: zebrafish</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for zebrafish</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7955</span></code></pre>
@@ -190,8 +192,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 20,897 genes from zebrafish.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: fly</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: fly</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for fly</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7227</span></code></pre>
@@ -203,14 +204,14 @@ Most recent update: <i>Nov-02-2021</i>
 <p><img src="infer_species_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="rat-genes">Rat genes<a class="anchor" aria-label="anchor" href="#rat-genes"></a>
-</h2>
 <div class="section level3">
-<h3 id="create-example-data">Create example data<a class="anchor" aria-label="anchor" href="#create-example-data"></a>
+<h3 id="rat-genes">Rat genes<a class="anchor" aria-label="anchor" href="#rat-genes"></a>
 </h3>
+<div class="section level4">
+<h4 id="create-example-data">Create example data<a class="anchor" aria-label="anchor" href="#create-example-data"></a>
+</h4>
 <p>To create an example dataset, turn the gene names into rat genes.</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">exp_rat</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/convert_orthologs.html">convert_orthologs</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span>, 
                                         input_species <span class="op">=</span> <span class="st">"mouse"</span>, 
                                         output_species <span class="op">=</span> <span class="st">"rat"</span>,
@@ -220,13 +221,11 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Extracting genes from rownames.</span></code></pre>
 <pre><code><span class="co">## 15,259 genes extracted.</span></code></pre>
 <pre><code><span class="co">## Converting mouse ==&gt; rat orthologs using: homologene</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10090</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: rat</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for rat</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10116</span></code></pre>
@@ -247,10 +246,10 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Total genes remaining after convert_orthologs :</span>
 <span class="co">##    12,937 / 15,259 (85%)</span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="infer-the-species-1">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species-1"></a>
-</h3>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="infer-the-species-1">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species-1"></a>
+</h4>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_rat</span>, 
                                     method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Preparing gene_df.</span></code></pre>
@@ -259,8 +258,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## 12,937 genes extracted.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: human</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: human</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for human</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9606</span></code></pre>
@@ -268,8 +266,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 19,129 genes from human.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: monkey</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: monkey</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for monkey</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9544</span></code></pre>
@@ -277,8 +274,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 16,843 genes from monkey.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: rat</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: rat</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for rat</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10116</span></code></pre>
@@ -286,8 +282,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 20,616 genes from rat.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: mouse</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10090</span></code></pre>
@@ -295,8 +290,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 21,207 genes from mouse.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: zebrafish</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: zebrafish</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for zebrafish</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7955</span></code></pre>
@@ -304,8 +298,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 20,897 genes from zebrafish.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: fly</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: fly</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for fly</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7227</span></code></pre>
@@ -317,14 +310,15 @@ Most recent update: <i>Nov-02-2021</i>
 <p><img src="infer_species_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="human-genes">Human genes<a class="anchor" aria-label="anchor" href="#human-genes"></a>
-</h2>
 <div class="section level3">
-<h3 id="create-example-data-1">Create example data<a class="anchor" aria-label="anchor" href="#create-example-data-1"></a>
+<h3 id="human-genes">Human genes<a class="anchor" aria-label="anchor" href="#human-genes"></a>
 </h3>
-<p>To create an example dataset, turn the gene names into human genes.</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="create-example-data-1">Create example data<a class="anchor" aria-label="anchor" href="#create-example-data-1"></a>
+</h4>
+<p>To create an example dataset, turn the gene names into human
+genes.</p>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">exp_human</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/convert_orthologs.html">convert_orthologs</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span>, 
                                           input_species <span class="op">=</span> <span class="st">"mouse"</span>, 
                                           output_species <span class="op">=</span> <span class="st">"human"</span>,
@@ -334,13 +328,11 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Extracting genes from rownames.</span></code></pre>
 <pre><code><span class="co">## 15,259 genes extracted.</span></code></pre>
 <pre><code><span class="co">## Converting mouse ==&gt; human orthologs using: homologene</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10090</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: human</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for human</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9606</span></code></pre>
@@ -361,10 +353,10 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Total genes remaining after convert_orthologs :</span>
 <span class="co">##    13,243 / 15,259 (87%)</span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="infer-the-species-2">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species-2"></a>
-</h3>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="infer-the-species-2">Infer the species<a class="anchor" aria-label="anchor" href="#infer-the-species-2"></a>
+</h4>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_human</span>, 
                                     method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Preparing gene_df.</span></code></pre>
@@ -373,8 +365,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## 13,243 genes extracted.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: human</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: human</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for human</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9606</span></code></pre>
@@ -382,8 +373,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 19,129 genes from human.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: monkey</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: monkey</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for monkey</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9544</span></code></pre>
@@ -391,8 +381,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 16,843 genes from monkey.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: rat</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: rat</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for rat</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10116</span></code></pre>
@@ -400,8 +389,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 20,616 genes from rat.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: mouse</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: mouse</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for mouse</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10090</span></code></pre>
@@ -409,8 +397,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 21,207 genes from mouse.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: zebrafish</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: zebrafish</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for zebrafish</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7955</span></code></pre>
@@ -418,8 +405,7 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## Returning all 20,897 genes from zebrafish.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: fly</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: fly</span></code></pre>
 <pre><code><span class="co">## Common name mapping found for fly</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7227</span></code></pre>
@@ -432,12 +418,17 @@ Most recent update: <i>Nov-02-2021</i>
 </div>
 </div>
 </div>
-<div class="section level1">
-<h1 id="additional-test_species">Additional <code>test_species</code><a class="anchor" aria-label="anchor" href="#additional-test_species"></a>
-</h1>
-<p>You can even supply <code>test_species</code> with the name of one of the R packages that <code>orthogene</code> gets orthologs from. This will test against all species available in that particular R package.</p>
-<p>For example, by setting <code>test_species="homologene"</code> we automatically test for % gene matches in each of the 20+ species available in <code>homologene</code>.</p>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="section level2">
+<h2 id="additional-test_species">Additional <code>test_species</code><a class="anchor" aria-label="anchor" href="#additional-test_species"></a>
+</h2>
+<p>You can even supply <code>test_species</code> with the name of one of
+the R packages that <code>orthogene</code> gets orthologs from. This
+will test against all species available in that particular R
+package.</p>
+<p>For example, by setting <code>test_species="homologene"</code> we
+automatically test for % gene matches in each of the 20+ species
+available in <code>homologene</code>.</p>
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/infer_species.html">infer_species</a></span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_human</span>, 
                                     test_species <span class="op">=</span> <span class="va">method</span>, 
                                     method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></code></pre></div>
@@ -448,191 +439,162 @@ Most recent update: <i>Nov-02-2021</i>
 <pre><code><span class="co">## 13,243 genes extracted.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Mus musculus</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Mus musculus</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10090</span></code></pre>
 <pre><code><span class="co">## Gene table with 21,207 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 21,207 genes from Mus musculus.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Rattus norvegicus</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Rattus norvegicus</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 10116</span></code></pre>
 <pre><code><span class="co">## Gene table with 20,616 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 20,616 genes from Rattus norvegicus.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Kluyveromyces lactis</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Kluyveromyces lactis</span></code></pre>
-<pre><code><span class="co">## WARNING: No organisms identified matched  'kluyveromyces lactis' Try a different query.</span></code></pre>
-<pre><code><span class="co">## Gene table with 0 rows retrieved.</span></code></pre>
-<pre><code><span class="co">## Returning all 0 genes from Kluyveromyces lactis.</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 28985</span></code></pre>
+<pre><code><span class="co">## Gene table with 4,283 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 4,283 genes from Kluyveromyces lactis.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Magnaporthe oryzae</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Magnaporthe oryzae</span></code></pre>
-<pre><code><span class="co">## 1 organism identified from search: 242507</span></code></pre>
-<pre><code><span class="co">## Gene table with 0 rows retrieved.</span></code></pre>
-<pre><code><span class="co">## Returning all 0 genes from Magnaporthe oryzae.</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 318829</span></code></pre>
+<pre><code><span class="co">## Gene table with 6,598 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 6,598 genes from Magnaporthe oryzae.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Eremothecium gossypii</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Eremothecium gossypii</span></code></pre>
-<pre><code><span class="co">## 1 organism identified from search: 284811</span></code></pre>
-<pre><code><span class="co">## Gene table with 0 rows retrieved.</span></code></pre>
-<pre><code><span class="co">## Returning all 0 genes from Eremothecium gossypii.</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 33169</span></code></pre>
+<pre><code><span class="co">## Gene table with 3,874 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 3,874 genes from Eremothecium gossypii.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Arabidopsis thaliana</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Arabidopsis thaliana</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 3702</span></code></pre>
 <pre><code><span class="co">## Gene table with 19,143 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 19,143 genes from Arabidopsis thaliana.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Oryza sativa</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Oryza sativa</span></code></pre>
-<pre><code><span class="co">## 2 organisms identified from search.</span>
-<span class="co">## Selecting first:</span>
-<span class="co">##    - 39946</span>
-<span class="co">##    - 39947</span></code></pre>
-<pre><code><span class="co">## Gene table with 0 rows retrieved.</span></code></pre>
-<pre><code><span class="co">## Returning all 0 genes from Oryza sativa.</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 4530</span></code></pre>
+<pre><code><span class="co">## Gene table with 16,112 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 16,112 genes from Oryza sativa.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Schizosaccharomyces pombe</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Schizosaccharomyces pombe</span></code></pre>
-<pre><code><span class="co">## 1 organism identified from search: 284812</span></code></pre>
-<pre><code><span class="co">## Gene table with 0 rows retrieved.</span></code></pre>
-<pre><code><span class="co">## Returning all 0 genes from Schizosaccharomyces pombe.</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 4896</span></code></pre>
+<pre><code><span class="co">## Gene table with 3,018 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 3,018 genes from Schizosaccharomyces pombe.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Saccharomyces cerevisiae</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Saccharomyces cerevisiae</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 4932</span></code></pre>
 <pre><code><span class="co">## Gene table with 4,579 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 4,579 genes from Saccharomyces cerevisiae.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Neurospora crassa</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Neurospora crassa</span></code></pre>
-<pre><code><span class="co">## 1 organism identified from search: 367110</span></code></pre>
-<pre><code><span class="co">## Gene table with 0 rows retrieved.</span></code></pre>
-<pre><code><span class="co">## Returning all 0 genes from Neurospora crassa.</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 5141</span></code></pre>
+<pre><code><span class="co">## Gene table with 5,807 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 5,807 genes from Neurospora crassa.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Caenorhabditis elegans</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Caenorhabditis elegans</span></code></pre>
-<pre><code><span class="co">## 2 organisms identified from search.</span>
-<span class="co">## Selecting first:</span>
-<span class="co">##    - 6239</span>
-<span class="co">##    - 6239</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 6239</span></code></pre>
 <pre><code><span class="co">## Gene table with 7,575 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 7,575 genes from Caenorhabditis elegans.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Anopheles gambiae</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Anopheles gambiae</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7165</span></code></pre>
 <pre><code><span class="co">## Gene table with 8,428 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 8,428 genes from Anopheles gambiae.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Drosophila melanogaster</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Drosophila melanogaster</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7227</span></code></pre>
 <pre><code><span class="co">## Gene table with 8,438 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 8,438 genes from Drosophila melanogaster.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Danio rerio</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Danio rerio</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 7955</span></code></pre>
 <pre><code><span class="co">## Gene table with 20,897 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 20,897 genes from Danio rerio.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Xenopus (Silurana) tropicalis</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Xenopus (Silurana) tropicalis</span></code></pre>
-<pre><code><span class="co">## Warning in grepl(spec_queries, display_name, ignore.case = TRUE): TRE pattern</span>
-<span class="co">## compilation error 'Missing ')''</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 8364</span></code></pre>
+<pre><code><span class="co">## Gene table with 18,446 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 18,446 genes from Xenopus (Silurana) tropicalis.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Gallus gallus</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Gallus gallus</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9031</span></code></pre>
 <pre><code><span class="co">## Gene table with 14,600 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 14,600 genes from Gallus gallus.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Macaca mulatta</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Macaca mulatta</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9544</span></code></pre>
 <pre><code><span class="co">## Gene table with 16,843 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 16,843 genes from Macaca mulatta.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Pan troglodytes</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Pan troglodytes</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9598</span></code></pre>
 <pre><code><span class="co">## Gene table with 18,730 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 18,730 genes from Pan troglodytes.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Homo sapiens</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Homo sapiens</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9606</span></code></pre>
 <pre><code><span class="co">## Gene table with 19,129 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 19,129 genes from Homo sapiens.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Canis lupus familiaris</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Canis lupus familiaris</span></code></pre>
 <pre><code><span class="co">## 1 organism identified from search: 9615</span></code></pre>
 <pre><code><span class="co">## Gene table with 18,117 rows retrieved.</span></code></pre>
 <pre><code><span class="co">## Returning all 18,117 genes from Canis lupus familiaris.</span></code></pre>
 <pre><code><span class="co">## Testing for gene overlap with: Bos taurus</span></code></pre>
 <pre><code><span class="co">## Retrieving all genes using: homologene.</span></code></pre>
-<pre><code><span class="co">## Retrieving all organisms available in gprofiler.</span></code></pre>
-<pre><code><span class="co">## Using stored `gprofiler_orgs`.</span></code></pre>
+<pre><code><span class="co">## Retrieving all organisms available in homologene.</span></code></pre>
 <pre><code><span class="co">## Mapping species name: Bos taurus</span></code></pre>
-<pre><code><span class="co">## 2 organisms identified from search.</span>
-<span class="co">## Selecting first:</span>
-<span class="co">##    - 30522</span>
-<span class="co">##    - 9913</span></code></pre>
-<pre><code><span class="co">## Gene table with 0 rows retrieved.</span></code></pre>
-<pre><code><span class="co">## Returning all 0 genes from Bos taurus.</span></code></pre>
+<pre><code><span class="co">## 1 organism identified from search: 9913</span></code></pre>
+<pre><code><span class="co">## Gene table with 18,797 rows retrieved.</span></code></pre>
+<pre><code><span class="co">## Returning all 18,797 genes from Bos taurus.</span></code></pre>
 <pre><code><span class="co">## Top match:</span>
 <span class="co">##   - species: Homo sapiens </span>
 <span class="co">##   - percent_match: 100%</span></code></pre>
 <p><img src="infer_species_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 </div>
-<div class="section level1">
-<h1 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
-</h1>
-<details><div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<div class="section level2">
+<h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
+</h2>
+<details><div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## R Under development (unstable) (2021-10-28 r81109)</span>
+<pre><code><span class="co">## R Under development (unstable) (2022-02-17 r81757)</span>
 <span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">## Running under: Ubuntu 20.04.3 LTS</span>
 <span class="co">## </span>
@@ -642,7 +604,7 @@ Most recent update: <i>Nov-02-2021</i>
 <span class="co">## locale:</span>
 <span class="co">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
 <span class="co">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
-<span class="co">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             </span>
+<span class="co">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
 <span class="co">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
 <span class="co">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
 <span class="co">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
@@ -651,53 +613,53 @@ Most recent update: <i>Nov-02-2021</i>
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] orthogene_1.1.2  BiocStyle_2.23.0</span>
+<span class="co">## [1] orthogene_1.1.2  BiocStyle_2.23.1</span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
 <span class="co">##  [1] httr_1.4.2                sass_0.4.0               </span>
-<span class="co">##  [3] tidyr_1.1.4               viridisLite_0.4.0        </span>
-<span class="co">##  [5] jsonlite_1.7.2            carData_3.0-4            </span>
+<span class="co">##  [3] tidyr_1.2.0               viridisLite_0.4.0        </span>
+<span class="co">##  [5] jsonlite_1.8.0            carData_3.0-5            </span>
 <span class="co">##  [7] gprofiler2_0.2.1          bslib_0.3.1              </span>
 <span class="co">##  [9] highr_0.9                 BiocManager_1.30.16      </span>
-<span class="co">## [11] GenomeInfoDbData_1.2.7    cellranger_1.1.0         </span>
-<span class="co">## [13] yaml_2.2.1                pillar_1.6.4             </span>
-<span class="co">## [15] backports_1.3.0           lattice_0.20-45          </span>
-<span class="co">## [17] glue_1.4.2                digest_0.6.28            </span>
-<span class="co">## [19] ggsignif_0.6.3            colorspace_2.0-2         </span>
-<span class="co">## [21] htmltools_0.5.2           Matrix_1.3-4             </span>
+<span class="co">## [11] yulab.utils_0.0.4         yaml_2.3.5               </span>
+<span class="co">## [13] pillar_1.7.0              backports_1.4.1          </span>
+<span class="co">## [15] lattice_0.20-45           glue_1.6.1               </span>
+<span class="co">## [17] digest_0.6.29             ggsignif_0.6.3           </span>
+<span class="co">## [19] colorspace_2.0-3          ggfun_0.0.5              </span>
+<span class="co">## [21] htmltools_0.5.2           Matrix_1.4-0             </span>
 <span class="co">## [23] pkgconfig_2.0.3           babelgene_21.4           </span>
-<span class="co">## [25] broom_0.7.10              haven_2.4.3              </span>
-<span class="co">## [27] bookdown_0.24             purrr_0.3.4              </span>
-<span class="co">## [29] patchwork_1.1.1           scales_1.1.1             </span>
-<span class="co">## [31] openxlsx_4.2.4            rio_0.5.27               </span>
-<span class="co">## [33] tibble_3.1.5              farver_2.1.0             </span>
-<span class="co">## [35] generics_0.1.1            car_3.0-11               </span>
-<span class="co">## [37] ggplot2_3.3.5             ellipsis_0.3.2           </span>
-<span class="co">## [39] ggpubr_0.4.0              cachem_1.0.6             </span>
-<span class="co">## [41] lazyeval_0.2.2            cli_3.1.0                </span>
-<span class="co">## [43] magrittr_2.0.1            crayon_1.4.2             </span>
-<span class="co">## [45] readxl_1.3.1              memoise_2.0.0            </span>
-<span class="co">## [47] evaluate_0.14             fs_1.5.0                 </span>
-<span class="co">## [49] fansi_0.5.0               rstatix_0.7.0            </span>
-<span class="co">## [51] homologene_1.4.68.19.3.27 forcats_0.5.1            </span>
-<span class="co">## [53] foreign_0.8-81            textshaping_0.3.6        </span>
-<span class="co">## [55] tools_4.2.0               data.table_1.14.2        </span>
-<span class="co">## [57] hms_1.1.1                 lifecycle_1.0.1          </span>
-<span class="co">## [59] stringr_1.4.0             plotly_4.10.0            </span>
-<span class="co">## [61] munsell_0.5.0             zip_2.2.0                </span>
-<span class="co">## [63] compiler_4.2.0            pkgdown_1.9000.9000.9000 </span>
-<span class="co">## [65] jquerylib_0.1.4           systemfonts_1.0.3        </span>
-<span class="co">## [67] rlang_0.4.12              grid_4.2.0               </span>
-<span class="co">## [69] htmlwidgets_1.5.4         labeling_0.4.2           </span>
-<span class="co">## [71] rmarkdown_2.11            gtable_0.3.0             </span>
-<span class="co">## [73] abind_1.4-5               curl_4.3.2               </span>
-<span class="co">## [75] R6_2.5.1                  knitr_1.36               </span>
-<span class="co">## [77] dplyr_1.0.7               fastmap_1.1.0            </span>
-<span class="co">## [79] utf8_1.2.2                rprojroot_2.0.2          </span>
-<span class="co">## [81] ragg_1.2.0                desc_1.4.0               </span>
-<span class="co">## [83] stringi_1.7.5             parallel_4.2.0           </span>
-<span class="co">## [85] Rcpp_1.0.7                vctrs_0.3.8              </span>
-<span class="co">## [87] tidyselect_1.1.1          xfun_0.27</span></code></pre>
+<span class="co">## [25] broom_0.7.12              bookdown_0.24            </span>
+<span class="co">## [27] purrr_0.3.4               patchwork_1.1.1          </span>
+<span class="co">## [29] tidytree_0.3.8            scales_1.1.1             </span>
+<span class="co">## [31] ggplotify_0.1.0           tibble_3.1.6             </span>
+<span class="co">## [33] farver_2.1.0              generics_0.1.2           </span>
+<span class="co">## [35] car_3.0-12                ggplot2_3.3.5            </span>
+<span class="co">## [37] ellipsis_0.3.2            ggpubr_0.4.0             </span>
+<span class="co">## [39] cachem_1.0.6              lazyeval_0.2.2           </span>
+<span class="co">## [41] cli_3.2.0                 magrittr_2.0.2           </span>
+<span class="co">## [43] crayon_1.5.0              memoise_2.0.1            </span>
+<span class="co">## [45] evaluate_0.15             fs_1.5.2                 </span>
+<span class="co">## [47] fansi_1.0.2               nlme_3.1-155             </span>
+<span class="co">## [49] rstatix_0.7.0             homologene_1.4.68.19.3.27</span>
+<span class="co">## [51] textshaping_0.3.6         tools_4.2.0              </span>
+<span class="co">## [53] data.table_1.14.2         lifecycle_1.0.1          </span>
+<span class="co">## [55] stringr_1.4.0             plotly_4.10.0            </span>
+<span class="co">## [57] aplot_0.1.2               ggtree_3.3.1             </span>
+<span class="co">## [59] munsell_0.5.0             compiler_4.2.0           </span>
+<span class="co">## [61] pkgdown_2.0.2.9000        jquerylib_0.1.4          </span>
+<span class="co">## [63] systemfonts_1.0.4         gridGraphics_0.5-1       </span>
+<span class="co">## [65] rlang_1.0.1               grid_4.2.0               </span>
+<span class="co">## [67] htmlwidgets_1.5.4         labeling_0.4.2           </span>
+<span class="co">## [69] rmarkdown_2.11            gtable_0.3.0             </span>
+<span class="co">## [71] abind_1.4-5               R6_2.5.1                 </span>
+<span class="co">## [73] knitr_1.37                dplyr_1.0.8              </span>
+<span class="co">## [75] fastmap_1.1.0             utf8_1.2.2               </span>
+<span class="co">## [77] rprojroot_2.0.2           treeio_1.19.1            </span>
+<span class="co">## [79] ragg_1.2.2                desc_1.4.0               </span>
+<span class="co">## [81] ape_5.6-1                 stringi_1.7.6            </span>
+<span class="co">## [83] parallel_4.2.0            Rcpp_1.0.8               </span>
+<span class="co">## [85] vctrs_0.3.8               tidyselect_1.1.2         </span>
+<span class="co">## [87] xfun_0.29</span></code></pre>
 </details><p><br></p>
 </div>
   </div>
@@ -719,7 +681,8 @@ Most recent update: <i>Nov-02-2021</i>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.9000.</p>
 </div>
 
       </footer>

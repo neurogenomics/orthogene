@@ -36,7 +36,7 @@ using orthologs."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/docker.html">Docker</a>
+      <a href="../articles/docker.html">Docker/Singularity Containers</a>
     </li>
     <li>
       <a href="../articles/infer_species.html">Infer species</a>
@@ -70,15 +70,18 @@ using orthologs."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
 using <a href="https://igordot.github.io/babelgene/reference/orthologs.html" class="external-link">orthologs</a>.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">map_orthologs_babelgene</span><span class="op">(</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">map_orthologs_babelgene</span><span class="op">(</span>
   <span class="va">genes</span>,
   <span class="va">input_species</span>,
   output_species <span class="op">=</span> <span class="st">"human"</span>,
+  min_support <span class="op">=</span> <span class="fl">1</span>,
+  top <span class="op">=</span> <span class="cn">FALSE</span>,
   verbose <span class="op">=</span> <span class="cn">TRUE</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="source">
     <h2>Source</h2>
     <p><a href="https://cran.r-project.org/web/packages/babelgene/vignettes/babelgene-intro.html" class="external-link">
@@ -96,16 +99,26 @@ of available species.</p></dd>
 <dd><p>Name of the output species (e.g. "human","chicken").
 Use <a href="map_species.html">map_species</a> to return a full list
  of available species.</p></dd>
+<dt>min_support</dt>
+<dd><p>Minimum number of supporting sources.</p></dd>
+<dt>top</dt>
+<dd><p>For each gene, output only the match with the highest support level.</p></dd>
 <dt>verbose</dt>
 <dd><p>Print messages.</p></dd>
 <dt>...</dt>
-<dd><p>Additional arguments passed
-to <a href="https://igordot.github.io/babelgene/reference/orthologs.html" class="external-link">orthologs</a>.</p></dd>
+<dd><p>Additional arguments to be passed to
+<a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a> or <a href="https://rdrr.io/pkg/homologene/man/homologene.html" class="external-link">homologene</a>.<br><br><em>NOTE</em>: To return only the most "popular"
+interspecies ortholog mappings,
+supply <code>mthreshold=1</code> here AND set <code>method="gprofiler"</code> above.
+This procedure tends to yield a greater number of returned genes but at
+ the cost of many of them not being true biological 1:1 orthologs.<br><br>
+ For more details, please see
+<a href="https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html" class="external-link">
+ here</a>.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>Ortholog map <code>data.frame</code></p>
-    </div>
     </div>
 
   </div>
@@ -120,7 +133,8 @@ to <a href="https://igordot.github.io/babelgene/reference/orthologs.html" class=
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.9000.</p>
 </div>
 
       </footer></div>

@@ -37,7 +37,7 @@ Then translate to a standardised species ID."><!-- mathjax --><script src="https
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/docker.html">Docker</a>
+      <a href="../articles/docker.html">Docker/Singularity Containers</a>
     </li>
     <li>
       <a href="../articles/infer_species.html">Infer species</a>
@@ -72,16 +72,17 @@ that match the input text string.
 Then translate to a standardised species ID.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">map_species</span><span class="op">(</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">map_species</span><span class="op">(</span>
   species <span class="op">=</span> <span class="cn">NULL</span>,
   search_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"display_name"</span>, <span class="st">"id"</span>, <span class="st">"scientific_name"</span>, <span class="st">"taxonomy_id"</span><span class="op">)</span>,
-  output_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"display_name"</span>, <span class="st">"scientific_name"</span>, <span class="st">"taxonomy_id"</span>, <span class="st">"version"</span><span class="op">)</span>,
-  method <span class="op">=</span> <span class="st">"gprofiler"</span>,
+  output_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scientific_name"</span>, <span class="st">"id"</span>, <span class="st">"display_name"</span>, <span class="st">"taxonomy_id"</span>, <span class="st">"version"</span><span class="op">)</span>,
+  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"homologene"</span>, <span class="st">"gprofiler"</span>, <span class="st">"babelgene"</span><span class="op">)</span>,
   use_local <span class="op">=</span> <span class="cn">TRUE</span>,
   verbose <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>species</dt>
@@ -100,9 +101,9 @@ API</a>.</p></dd>
 <dd><p>R package to to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
 <li><p><code>"babelgene"</code> : Faster but fewer species and genes.
-Also gives</p></li>
-</ul><p>(slower but more species and genes) or
-<code>"homologene"</code> (faster but fewer species and genes).</p></dd>
+Also gives consensus scores for each gene mapping based on a
+ several different data sources.</p></li>
+</ul></dd>
 <dt>use_local</dt>
 <dd><p>If <code>TRUE</code> <em>default</em>,
 map_species
@@ -117,28 +118,26 @@ but should suffice for most use cases.</p></dd>
     <h2>Value</h2>
     <p>Species ID of type <code>output_format</code></p>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu">map_species</span><span class="op">(</span>species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu">map_species</span><span class="op">(</span>species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span class="r-in">    <span class="st">"human"</span>, <span class="fl">9606</span>, <span class="st">"mus musculus"</span>,</span>
 <span class="r-in">    <span class="st">"fly"</span>, <span class="st">"C elegans"</span></span>
 <span class="r-in"><span class="op">)</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in gprofiler.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using stored `gprofiler_orgs`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in homologene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: human</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for human</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: hsapiens</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: Homo sapiens</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: 9606</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: hsapiens</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: Homo sapiens</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: mus musculus</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: mmusculus</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: Mus musculus</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: fly</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for fly</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: dmelanogaster</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: Drosophila melanogaster</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: C elegans</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: celegans</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: Caenorhabditis elegans</span>
 </code></pre></div>
     </div>
   </div>
@@ -153,7 +152,8 @@ but should suffice for most use cases.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.9000.</p>
 </div>
 
       </footer></div>
