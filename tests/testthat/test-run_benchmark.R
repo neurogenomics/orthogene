@@ -1,15 +1,21 @@
 test_that("run_benchmark works", {
     
+    ## Only run on local methods for now since Bioc servers 
+    ## are failing to connect to the internet appropriately.
+    
+    ### Extract methods ####
+    # args <- formals(orthogene:::run_benchmark)
+    # method_list <- eval(args$method_list)
+    method_list <- c("homologene",
+                     # "gprofiler",
+                     "babelgene")
     bench_res <- orthogene:::run_benchmark(
         species = "fruit fly",
+        method_list = method_list,
         run_convert_orthologs = TRUE,
         mc.cores = 1
     )
-    
-    ### Extract methods ####
-    args <- formals(orthogene:::run_benchmark)
-    method_list <- eval(args$method_list)
-    
+     
     testthat::expect_equal(unique(bench_res$method),method_list)
     testthat::expect_equal(nrow(bench_res), length(method_list)*2)
     testthat::expect_equal(ncol(bench_res), 5)

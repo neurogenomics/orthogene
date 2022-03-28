@@ -18,6 +18,8 @@ Will first be standardised with \code{map_species}.}
 \item{run_map_species}{Standardise \code{species} names with 
 \link[orthogene]{map_species} first (Default: \code{TRUE}).}
 
+\item{save_dir}{Directory to save babelgene mapping files to.}
+
 \item{verbose}{Print messages.}
 }
 \description{
