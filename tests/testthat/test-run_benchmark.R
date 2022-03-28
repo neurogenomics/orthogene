@@ -8,7 +8,7 @@ test_that("run_benchmark works", {
     
     ### Extract methods ####
     args <- formals(orthogene:::run_benchmark)
-    method_list <- unlist(as.list(args$method_list)[-1])
+    method_list <- eval(args$method_list)
     
     testthat::expect_equal(unique(bench_res$method),method_list)
     testthat::expect_equal(nrow(bench_res), length(method_list)*2)

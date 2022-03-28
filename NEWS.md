@@ -1,3 +1,13 @@
+# orthogene  1.1.3
+
+NEW FEATURES
+
+* Update GHA
+
+BUG FIXES
+
+* Fix failing benchmarking tests.
+
 # orthogene  1.1.2
 
 BUG FIXES  
