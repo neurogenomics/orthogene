@@ -1,3 +1,9 @@
+# orthogene  1.1.4
+
+BUG FIXES
+
+- Remove `source_all` as it included a `library` call. 
+
 # orthogene  1.1.3
 
 NEW FEATURES

@@ -8,10 +8,11 @@
 #' no genes were returned, set time to \code{NA}.
 #' @param show_plot Print plot.
 #'
-#' @return ggplot object
-#' @import ggplot2
+#' @returns ggplot object
+#' 
 #' @importFrom dplyr mutate
 #' @importFrom patchwork plot_annotation
+#' @importFrom methods show
 #' @keywords internal
 plot_benchmark_bar <- function(bench_res,
                                remove_failed_times = FALSE,
@@ -19,7 +20,7 @@ plot_benchmark_bar <- function(bench_res,
 
     # Avoid confusing Biocheck
     genes <- time <- species <- method <- test <- NULL
-
+    requireNamespace("ggplot2")
     #### Remove time that failed entirely ####
     if (remove_failed_times) {
         bench_res <- dplyr::mutate(bench_res,
@@ -31,58 +32,58 @@ plot_benchmark_bar <- function(bench_res,
         unique(bench_res$species),
         ordered = TRUE
     )
-    fill_colors <- c(gprofiler = "orange", homologene = "darkslateblue")
+    fill_colors <- method_fill_colors()
 
-    time_plot <- ggplot(
+    time_plot <- ggplot2::ggplot(
         bench_res,
-        aes(
+        ggplot2::aes(
             x = species, y = time,
             fill = method, shape = test
         )
     ) +
-        scale_fill_manual(values = fill_colors, drop = FALSE) +
-        scale_color_manual(values = fill_colors, drop = FALSE) +
-        geom_bar(stat = "identity", position = "dodge", alpha = .7) +
-        geom_point(aes(color = method),
-            position = position_dodge(width = .9),
+        ggplot2::scale_fill_manual(values = fill_colors, drop = FALSE) +
+        ggplot2::scale_color_manual(values = fill_colors, drop = FALSE) +
+        ggplot2::geom_bar(stat = "identity", position = "dodge", alpha = .7) +
+        ggplot2::geom_point(ggplot2::aes(color = method),
+            position = ggplot2::position_dodge(width = .9),
             size = 3, show.legend = FALSE
         ) +
-        facet_grid(facets = test ~ ., scales = "free") +
-        labs(title = "Run time by method", x = NULL, y = "time (seconds)") +
-        theme_bw() +
-        theme(
-            axis.text.x = element_text(angle = 45, hjust = 1),
-            strip.background = element_rect(fill = "white"),
+        ggplot2::facet_grid(facets = test ~ ., scales = "free") +
+        ggplot2::labs(title = "Run time by method", x = NULL, y = "time (seconds)") +
+        ggplot2::theme_bw() +
+        ggplot2::theme(
+            axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
+            strip.background = ggplot2::element_rect(fill = "white"),
             legend.position = "bottom"
         )
 
-    genes_plot <- ggplot(
+    genes_plot <- ggplot2::ggplot(
         bench_res,
-        aes(
+        ggplot2::aes(
             x = species, y = genes,
             fill = method, shape = test
         )
     ) +
-        scale_fill_manual(values = fill_colors, drop = FALSE) +
-        scale_color_manual(values = fill_colors, drop = FALSE) +
-        geom_bar(
+        ggplot2::scale_fill_manual(values = fill_colors, drop = FALSE) +
+        ggplot2::scale_color_manual(values = fill_colors, drop = FALSE) +
+        ggplot2::geom_bar(
             stat = "identity", position = "dodge", alpha = .7,
             show.legend = FALSE
         ) +
-        geom_point(aes(color = method),
-            position = position_dodge(width = .9),
+        ggplot2::geom_point(ggplot2::aes(color = method),
+            position = ggplot2::position_dodge(width = .9),
             size = 3, show.legend = FALSE
         ) +
-        facet_grid(facets = test ~ ., scales = "free") +
-        labs(title = "Genes retrieved by method") +
-        theme_bw() +
-        theme(
-            axis.text.x = element_text(angle = 45, hjust = 1),
-            strip.background = element_rect(fill = "white")
+        ggplot2::facet_grid(facets = test ~ ., scales = "free") +
+        ggplot2::labs(title = "Genes retrieved by method") +
+        ggplot2::theme_bw() +
+        ggplot2::theme(
+            axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
+            strip.background = ggplot2::element_rect(fill = "white")
         )
 
     all_genes_plots <- (time_plot / genes_plot) +
         patchwork::plot_annotation(tag_levels = letters)
-    if (show_plot) print(all_genes_plots)
+    if (show_plot) methods::show(all_genes_plots)
     return(all_genes_plots)
 }

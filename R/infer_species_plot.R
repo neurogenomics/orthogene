@@ -4,12 +4,13 @@
 #' 
 #' @return ggplot object.
 #' 
-#' @keywords internal
-#' @importFrom utils installed.packages install.packages
+#' @keywords internal 
+#' @importFrom methods show
 infer_species_plot <- function(matches,
                                show_plot = TRUE){
-    percent_match <- NULL
     
+    percent_match <- NULL
+    requireNamespace("ggplot2")
     #### Resolves the issue described here ####
     # https://stackoverflow.com/a/66423481/13214824
     # Solution:
@@ -27,14 +28,16 @@ infer_species_plot <- function(matches,
     #     hrbrthemes::import_roboto_condensed()    
     # } 
     #### Plot ####
-    gg <- ggplot(matches, aes(y=species, 
+    gg <- ggplot2::ggplot(matches, 
+                          ggplot2::aes(y=species, 
                               x=percent_match, 
                               fill=percent_match, 
                               label=paste0(percent_match,"%"))) +
-        geom_col(position = "identity") +
-        geom_label(color="white") + 
-        theme_bw() +
-        scale_fill_gradient(low = "black", high = "purple")
-    if(show_plot) print(gg)
+        ggplot2::geom_col(position = "identity") +
+        ggplot2::geom_label(color="white") + 
+        ggplot2::theme_bw() +
+        ggplot2::scale_fill_gradient(low = "black", 
+                                     high = "purple")
+    if(show_plot) methods::show(gg)
     return(gg)        
 }

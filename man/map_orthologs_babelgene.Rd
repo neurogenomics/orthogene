@@ -29,9 +29,9 @@ of available species.}
 Use \link[orthogene]{map_species} to return a full list
  of available species.}
 
-\item{min_support}{Minimum number of supporting sources.}
+\item{min_support}{Minimum number of supporting source databases.}
 
-\item{top}{For each gene, output only the match with the highest support level.}
+\item{top}{For each gene, output only the match with the highest support level if there are multiple hits.}
 
 \item{verbose}{Print messages.}
 

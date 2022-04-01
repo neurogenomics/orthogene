@@ -22,6 +22,9 @@ Will first be standardised with \code{map_species}.}
 
 \item{verbose}{Print messages.}
 }
+\value{
+All genes.
+}
 \description{
 Get all genes for a given species using the method "babelgene".
 }

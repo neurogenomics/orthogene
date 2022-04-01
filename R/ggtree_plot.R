@@ -9,6 +9,8 @@
 #' @param clades_palette Palette to color highlighted \code{clades} with. 
 #' @param verbose Print messages.
 #' 
+#' @returns \link[ggplot2]{ggplot} object.
+#' 
 #' @keywords internal
 #' @importFrom ggtree %<+% 
 ggtree_plot <- function(tr,

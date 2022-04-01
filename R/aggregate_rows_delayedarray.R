@@ -8,7 +8,7 @@ aggregate_rows_delayedarray <- function(X,
 
     #### Iterate over each gene ####
     agg_list <- lapply(unique(labels), function(g) {
-        print(as.character(g))
+        message(as.character(g))
         grp <- DelayedMatrixStats::colMeans2(
             x = X,
             rows = rownames(X)[labels == g]

@@ -27,6 +27,9 @@ ggtree_plot(
 
 \item{verbose}{Print messages.}
 }
+\value{
+\link[ggplot2]{ggplot} object.
+}
 \description{
 Plot a phylogenetic tree with ggtree and metadata from
  \link[orthogene]{report_orthologs}.

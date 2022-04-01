@@ -40,6 +40,7 @@
 #' \item{save_paths : }{\code{save_paths} to plot.}
 #' } 
 #' @export
+#' @importFrom methods show
 #' @examples 
 #' orthotree <- orthogene::plot_orthotree(species = c("human","monkey","mouse"))
 plot_orthotree <- function(tree = NULL,
@@ -141,7 +142,7 @@ plot_orthotree <- function(tree = NULL,
                      reference_species = reference_species, 
                      verbose = verbose)  
     #### Show plot ####
-    if(show_plot) print(p) 
+    if(show_plot) methods::show(p) 
     #### Save plot ####
     if(length(save_paths)>0){
         for(path in save_paths){

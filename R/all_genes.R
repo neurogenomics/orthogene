@@ -19,10 +19,10 @@
 #' \link[orthogene]{map_species} first (Default: \code{TRUE}). 
 #' @param verbose Print messages.
 #'
-#' @return Table with all gene symbols
+#' @returns Table with all gene symbols
 #'  from the given \code{species}.
+#'  
 #' @export
-#'
 #' @examples
 #' genome_mouse <- all_genes(species = "mouse")
 #' genome_human <- all_genes(species = "human")

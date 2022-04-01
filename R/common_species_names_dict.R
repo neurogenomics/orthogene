@@ -4,7 +4,7 @@ common_species_names_dict <- function(species = NULL,
                                       verbose = TRUE) {
     #### return type ####
     type <- tolower(type[1]) 
-    type_dict = c("scientific_name"=1,
+    type_dict <- c("scientific_name"=1,
                   "taxonomy_id"=2) 
     type_select <- type_dict[[type]]
     #### dictionary ####

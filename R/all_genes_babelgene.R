@@ -5,6 +5,8 @@
 #' @param save_dir Directory to save babelgene mapping files to.
 #' @inheritParams all_genes
 #' 
+#' @returns All genes.
+#' 
 #' @keywords internal
 #' @importFrom tools R_user_dir
 all_genes_babelgene <- function(species,
