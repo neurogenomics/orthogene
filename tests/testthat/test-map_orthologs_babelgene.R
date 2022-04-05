@@ -30,7 +30,7 @@ test_that("map_orthologs_babelgene works", {
 
     #### mouse ==> chicken ####
     testthat::expect_error(
-        gene_map3 <- map_orthologs_babelgene(
+        gene_map3 <- orthogene:::map_orthologs_babelgene(
             genes = rownames(exp_mouse),
             input_species = "mouse",
             output_species = "Gallus gallus"
