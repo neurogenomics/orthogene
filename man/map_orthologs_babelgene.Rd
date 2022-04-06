@@ -12,6 +12,8 @@ map_orthologs_babelgene(
   genes,
   input_species,
   output_species = "human",
+  min_support = 1,
+  top = FALSE,
   verbose = TRUE,
   ...
 )
@@ -27,10 +29,22 @@ of available species.}
 Use \link[orthogene]{map_species} to return a full list
  of available species.}
 
+\item{min_support}{Minimum number of supporting source databases.}
+
+\item{top}{For each gene, output only the match with the highest support level if there are multiple hits.}
+
 \item{verbose}{Print messages.}
 
-\item{...}{Additional arguments passed
-to \link[babelgene]{orthologs}.}
+\item{...}{Additional arguments to be passed to
+\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr
+\emph{NOTE}: To return only the most "popular"
+interspecies ortholog mappings,
+supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above.
+This procedure tends to yield a greater number of returned genes but at
+ the cost of many of them not being true biological 1:1 orthologs.\cr\cr
+ For more details, please see
+\href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
+ here}.}
 }
 \value{
 Ortholog map \code{data.frame}

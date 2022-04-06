@@ -39,36 +39,38 @@ map_species <- function(species = NULL,
                             "taxonomy_id"
                         ),
                         output_format = c(
+                            "scientific_name",
                             "id",
                             "display_name",
-                            "scientific_name",
                             "taxonomy_id",
                             "version"
                         ),
-                        method = "gprofiler",
+                        method = c( 
+                            "homologene",
+                            "gprofiler",
+                            "babelgene"
+                        ),
                         use_local = TRUE,
                         verbose = TRUE) {
-
+    
     ## Avoid confusing Biocheck
-    scientific_name <- . <- NULL
-
-    #### Ensure only one output_format ####
-    output_format <- output_format[1]
+    . <- NULL;
+    
     #### Load organism reference ####
+    method <- tolower(method)[1]
     orgs <- get_all_orgs(method = method, 
                          use_local = use_local, 
-                         verbose = verbose)
+                         verbose = verbose) 
     #### Return all species as an option ####
     if (is.null(species)) {
         messager("Returning table with all species.", v = verbose)
         return(orgs)
     }
-
-    if (!output_format %in% colnames(orgs)) {
-        cols <- paste0("   - '", colnames(orgs), "'", collapse = "\n")
-        stop("output_format must be one of:\n", cols)
-    }
-
+    msca_out <- map_species_check_args(orgs = orgs, 
+                                       output_format = output_format,
+                                       search_cols = search_cols)
+    output_format <- msca_out$output_format
+    search_cols <- msca_out$search_cols
     ### Iterate over multiple queries ####
     species_results <- lapply(species, function(spec) {
         messager("Mapping species name:", spec, v = verbose)
@@ -82,13 +84,13 @@ map_species <- function(species = NULL,
             mod_spec <- format_species_name(species = spec, gs_s = TRUE)
             mod_spec2 <- format_species_name(
                 species = spec,
-                remove_chars = " |[.]|[-]"
+                remove_chars = " |[.]|[-]|[(]|[)]"
             )
+            mod_spec2 <- gsub("_"," ",mod_spec2)
             spec_queries <- paste(unname(spec), mod_spec, mod_spec2, sep = "|")
         } else {
             spec_queries <- spec
-        }
-
+        } 
         orgs_sub <- orgs %>%
             dplyr::filter_at(
                 .vars = search_cols,
@@ -98,7 +100,8 @@ map_species <- function(species = NULL,
             )
         if (nrow(orgs_sub) > 0) {
             if (nrow(orgs_sub) > 1) {
-                messager(nrow(orgs_sub),
+                messager(
+                    nrow(orgs_sub),
                     "organisms identified from search.\nSelecting first:\n",
                     paste("  -", orgs_sub[[output_format]], collapse = "\n "),
                     v = verbose
@@ -106,17 +109,17 @@ map_species <- function(species = NULL,
                 orgs_sub <- orgs_sub[1, ]
             } else {
                 messager(nrow(orgs_sub), "organism identified from search:",
-                    orgs_sub[[output_format]],
-                    v = verbose
+                         orgs_sub[[output_format]],
+                         v = verbose
                 )
                 orgs_sub <- orgs_sub[1, ]
             }
             return(orgs_sub[[output_format]])
         } else {
             messager("WARNING: No organisms identified matched ",
-                paste0("'", spec, "'"),
-                "Try a different query.",
-                v = verbose
+                     paste0("'", spec, "'"),
+                     "Try a different query.",
+                     v = verbose
             )
             return(NULL)
         }

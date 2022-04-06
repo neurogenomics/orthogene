@@ -101,11 +101,10 @@
 #' \item{\code{"gprofiler"} : Slower but more species and genes.}
 #' \item{\code{"homologene"} : Faster but fewer species and genes.}
 #' \item{\code{"babelgene"} : Faster but fewer species and genes.
-#' Also gives }
+#' Also gives consensus scores for each gene mapping based on a
+#'  several different data sources.}
 #' }
-#'  (slower but more species and genes) or
-#' \code{"homologene"} (faster but fewer species and genes).
-#'
+#' 
 #' @param as_sparse Convert \code{gene_df} to a sparse matrix.
 #' Only works if \code{gene_df} is one of the following classes:\cr
 #' \itemize{
@@ -170,7 +169,7 @@ convert_orthologs <- function(gene_df,
                               sort_rows = FALSE,
                               verbose = TRUE,
                               ...) {
-
+    
     #### Check gene_output ####
     check_gene_output(gene_output = gene_output)
     #### Check one2one_strategy is a valid option ####
@@ -215,8 +214,8 @@ convert_orthologs <- function(gene_df,
     )
     gene_df <- check_gene_df_type_out$gene_df
     gene_input <- check_gene_df_type_out$gene_input
-
-
+    
+    
     #### Check if previously converted ####
     # If so, skip ahead.
     if (!is_converted(gene_df, verbose = verbose)) {
@@ -246,7 +245,7 @@ convert_orthologs <- function(gene_df,
         genes <- gene_df$input_gene
         gene_map <- gene_df
     }
-
+    
     #### Drop non-orthologs ####
     if (drop_nonorths) {
         gene_map <- drop_nonorth_genes(

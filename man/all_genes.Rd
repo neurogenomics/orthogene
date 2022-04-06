@@ -8,6 +8,7 @@ all_genes(
   species,
   method = c("gprofiler", "homologene", "babelgene"),
   ensure_filter_nas = FALSE,
+  run_map_species = TRUE,
   verbose = TRUE,
   ...
 )
@@ -22,6 +23,9 @@ Will first be standardised with \code{map_species}.}
 
 \item{ensure_filter_nas}{Perform an extra check to remove
 genes that are \code{NA}s of any kind.}
+
+\item{run_map_species}{Standardise \code{species} names with 
+\link[orthogene]{map_species} first (Default: \code{TRUE}).}
 
 \item{verbose}{Print messages.}
 

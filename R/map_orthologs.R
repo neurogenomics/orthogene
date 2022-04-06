@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' data("exp_mouse")
-#' gene_map <- map_orthologs(
+#' gene_map <- orthogene::map_orthologs(
 #'     genes = rownames(exp_mouse),
 #'     input_species = "mouse"
 #' )
@@ -32,11 +32,12 @@ map_orthologs <- function(genes,
                           mthreshold = Inf,
                           verbose = TRUE,
                           ...) {
+    
+    method <- tolower(method)[1]
     messager("Converting", input_species, "==>", output_species,
-        "orthologs using:", method[1],
-        v = verbose
+             "orthologs using:", method,
+             v = verbose
     )
-
     #### Standardise gene names first ####
     if (standardise_genes) {
         messager("Standardising gene names first.", v = verbose)
@@ -48,12 +49,9 @@ map_orthologs <- function(genes,
         )
         genes <- syn_map$name
     }
-
-
     #### Select mapping method ####
     # Both methods will return a dataframe with at least the columns
     # "input_gene" and "ortholog_gene"
-
     #### gprofiler ####
     if (methods_opts(method = method, gprofiler_opts = TRUE)) {
         gene_map <- map_orthologs_gprofiler(

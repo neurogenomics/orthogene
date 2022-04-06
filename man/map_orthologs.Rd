@@ -39,10 +39,9 @@ Use \link[orthogene]{map_species} to return a full list
 \item{\code{"gprofiler"} : Slower but more species and genes.}
 \item{\code{"homologene"} : Faster but fewer species and genes.}
 \item{\code{"babelgene"} : Faster but fewer species and genes.
-Also gives }
-}
- (slower but more species and genes) or
-\code{"homologene"} (faster but fewer species and genes).}
+Also gives consensus scores for each gene mapping based on a
+ several different data sources.}
+}}
 
 \item{mthreshold}{Maximum number of ortholog names per gene to show.
 Passed to \link[gprofiler2]{gorth}.
@@ -76,7 +75,7 @@ and \code{drop_nonorths}.
 }
 \examples{
 data("exp_mouse")
-gene_map <- map_orthologs(
+gene_map <- orthogene::map_orthologs(
     genes = rownames(exp_mouse),
     input_species = "mouse"
 )

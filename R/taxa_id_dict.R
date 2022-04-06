@@ -11,12 +11,12 @@
 #' @importFrom stats setNames
 #' @keywords internal
 taxa_id_dict <- function(species = c(
-                             "human", "chimp", "monkey", "mouse", "rat",
-                             "dog", "cow", "chicken",
-                             "zebrafish", "frog", "fly", "worm",
-                             "rice"
-                         ),
-                         include_common_names = TRUE) {
+    "human", "chimp", "monkey", "mouse", "rat",
+    "dog", "cow", "chicken",
+    "zebrafish", "frog", "fly", "worm",
+    "rice"
+),
+include_common_names = TRUE) {
     dict <- setNames(
         homologene::taxData$tax_id,
         homologene::taxData$name_txt
@@ -33,12 +33,14 @@ taxa_id_dict <- function(species = c(
     } else {
         species <- tolower(species)
     }
-
+    
     if (any(!species %in% names(dict))) {
         missing_species <- species[!(species %in% names(dict))]
         messager(
-            "WARNING: Species '", paste(missing_species, collapse = ", "),
-            "' not found in taxa dict."
+            paste0(
+                "WARNING: Species '", paste(missing_species, collapse = ", "),
+                "' not found in taxa dict."
+            )
         )
         species <- species[species %in% names(dict)]
     }

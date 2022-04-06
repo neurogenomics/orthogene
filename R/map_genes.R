@@ -17,9 +17,13 @@
 #' Sets \code{gprofiler2::gconvert(filter_na=)} as well
 #' an additional round of more comprehensive \code{NA} filtering
 #' by \pkg{orthogene}.
+#' @param run_map_species Run \link[orthogene]{map_species} on \code{species}
+#' first.
 #'
 #' @param verbose Print messages.
+#' @inheritParams all_genes
 #' @inheritParams gprofiler2::gconvert
+#' 
 #'
 #' @return Table with standardised genes.
 #' @export
@@ -41,14 +45,21 @@ map_genes <- function(genes,
                       mthreshold = Inf,
                       drop_na = FALSE,
                       numeric_ns = "",
+                      run_map_species = TRUE,
                       verbose = TRUE) {
-    organism <- map_species(
-        species = species,
-        verbose = verbose
-    )
+    if(run_map_species){
+        organism <- map_species(
+            species = species,
+            method = "gprofiler",
+            output_format = "id",
+            verbose = verbose
+        )
+    } else {organism <- species}
+    
     syn_map <- gprofiler2::gconvert(
         query = genes,
-        organism = organism,
+        ## organism must be in "mmusculus" format
+        organism = unname(organism),
         target = target,
         mthreshold = mthreshold,
         filter_na = drop_na,
@@ -61,14 +72,13 @@ map_genes <- function(genes,
             verbose = verbose
         )
     }
-
     n_genes <- length(genes)
     n_mapped <- length(stats::na.omit(syn_map$name))
     messager(formatC(n_genes, big.mark = ","), "/",
-        formatC(n_mapped, big.mark = ","),
-        paste0("(", round(n_mapped / n_genes * 100, digits = 2), "%)"),
-        "genes mapped.",
-        v = verbose
+             formatC(n_mapped, big.mark = ","),
+             paste0("(", round(n_mapped / n_genes * 100, digits = 2), "%)"),
+             "genes mapped.",
+             v = verbose
     )
     return(syn_map)
 }

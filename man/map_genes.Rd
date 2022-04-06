@@ -11,6 +11,7 @@ map_genes(
   mthreshold = Inf,
   drop_na = FALSE,
   numeric_ns = "",
+  run_map_species = TRUE,
   verbose = TRUE
 )
 }
@@ -29,6 +30,9 @@ an additional round of more comprehensive \code{NA} filtering
 by \pkg{orthogene}.}
 
 \item{numeric_ns}{namespace to use for fully numeric IDs (\href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{list of available namespaces}).}
+
+\item{run_map_species}{Run \link[orthogene]{map_species} on \code{species}
+first.}
 
 \item{verbose}{Print messages.}
 }
