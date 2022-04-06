@@ -2,18 +2,23 @@
 
 BUG FIXES
 
+* Update GHA yaml and *Dockerfile* to unified pipeline.   
+* Update *.Rbuildignore* and *.gitignore*.   
 * Fix `all_genes` and associated subfunctions. 
 * Fix `convert_orthologs` and associated subfunctions. 
 * Fix `map_orthologs_babelgene` after recent updates to `babelgene`.  
 * `convert_orthologs(method="babelgene")` now gets gene mappings
-from `all_genes_babelgene` instead `babelgene::orthologs` (which doesn't seem to work very well, despite being dedicated for this purpose).   
+from `all_genes_babelgene` instead `babelgene::orthologs`
+(which doesn't seem to work very well, despite being dedicated for this purpose).   
 * `map_species`: 
     + Avoid running this function redundantly when nested in multiple layers of other functions. 
     + `common_species_names_dict` now return "scientific_name" by default, instead of "taxonomy_id" 
     + Match `map_species` method to whatever method is being used in the function it's wrapped within, to avoid dropping species due to naming differences.  
     + Add "id" column (e.g. "celegans") to all org databases to enhance their searchability. 
     + Add `map_species_check_args`. 
+    + Cache `babelgene` file in orthogene-specific dir.  
 * Ensure proper method-specific `output_format` when passing species to other functions. 
+
 
 
 # orthogene  1.0.0
