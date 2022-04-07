@@ -54,8 +54,9 @@ map_orthologs_babelgene <- function(genes,
         return(gene_map)
     }
     #### Convert ####
-    ## For some reason, this works far better than babelgene::orthologs,
-    ## however, it can only be used for nonhuman:human mappings.
+    ## For some reason, this works far better than babelgene::orthologs(),
+    ## even when  min_support=1.
+    ## However, it can only be used for nonhuman:human mappings.
     if(is_human(target_id)){
         gene_map <- all_genes(method = "babelgene",
                               species = source_id,

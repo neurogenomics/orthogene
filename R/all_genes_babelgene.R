@@ -53,6 +53,7 @@ all_genes_babelgene <- function(species,
     piggyback::pb_download(file = "babelgene_orths.rda", 
                            repo = "neurogenomics/orthogene",
                            dest = save_dir)
+    get_data_check(tmp = tmp)
     orths <- load_data(tmp)
     tar_genes <- subset(orths, taxon_id == target_id) %>%
         dplyr::rename(taxonomy_id=taxon_id,
