@@ -1,7 +1,7 @@
 get_data_check <- function(tmp){
     l <- readLines(tmp)
     if(any(grepl("Bad credentials",l, ignore.case = TRUE))){
-        file.remove(tmp)
+        file.remove(tmp, showWarnings = FALSE)
         stp <- paste(
             "piggyback::pb_download() failed due to bad GitHub credentials.",
             "Please add a GitHub Personal Access Token (PAT)",
