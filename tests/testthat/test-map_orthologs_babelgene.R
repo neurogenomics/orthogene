@@ -32,7 +32,8 @@ test_that("map_orthologs_babelgene works", {
         input_species = "mouse",
         output_species = "human"
     )
-    testthat::expect_gte(nrow(gene_map1), 30000)
+    # Used to be 30000 in old version of babelgene
+    testthat::expect_gte(nrow(gene_map1), 29700) 
 
     #### human ==> mouse ####
     gene_map2 <- orthogene:::map_orthologs_babelgene(

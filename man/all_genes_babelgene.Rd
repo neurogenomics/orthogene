@@ -3,11 +3,16 @@
 \name{all_genes_babelgene}
 \alias{all_genes_babelgene}
 \title{Get all genes: babelgene}
+\source{
+\href{https://github.com/igordot/babelgene/issues/2}{
+babelgene::orthologs_df version differences}
+}
 \usage{
 all_genes_babelgene(
   species,
   run_map_species = TRUE,
   save_dir = tools::R_user_dir("orthogene", which = "cache"),
+  use_old = TRUE,
   verbose = TRUE
 )
 }
@@ -19,6 +24,9 @@ Will first be standardised with \code{map_species}.}
 \link[orthogene]{map_species} first (Default: \code{TRUE}).}
 
 \item{save_dir}{Directory to save babelgene mapping files to.}
+
+\item{use_old}{Use an old version of \code{babelgene::orthologs_df} 
+(stored on GitHub Releases) for consistency.}
 
 \item{verbose}{Print messages.}
 }
