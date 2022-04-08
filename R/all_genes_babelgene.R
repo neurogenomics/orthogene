@@ -45,7 +45,7 @@ all_genes_babelgene <- function(species,
         human_df$entrez <- human_df$human_entrez
         human_df$ensembl <- human_df$human_ensembl
         human_df$support <- NA
-        human_df$support_n <- NA
+        human_df$support_n <- NA 
         orths <- rbind(orths, unique(human_df)) 
     #### Upload babelgene orths to releases (too large for data/ ) ####
     #     save(orths, file = tmp)
