@@ -1,3 +1,11 @@
+# orthogene  1.0.2
+
+BUG FIXES
+
+* Fix `map_orthologs_babelgene` 
+    + Fix col renaming bug. 
+    + Use built-in up-to-date `babelgene:::orthologs_df` in `all_genes_babelgene`.
+
 # orthogene  1.0.1
 
 BUG FIXES
