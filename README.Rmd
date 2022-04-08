@@ -35,6 +35,7 @@ In brief, `orthogene` lets you easily:
 - [**`map_genes`** onto standard ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene#map-genes) 
 - [**`aggregate_mapped_genes`** in a matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes)  
 - [get **`all_genes`** from any species](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes) 
+- [**`infer_species`** from gene names](https://neurogenomics.github.io/orthogene/articles/infer_species.html)   
 
 ## Citation 
 

@@ -1,24 +1,24 @@
 `orthogene`: Interspecies gene mapping
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' height='300'><br><br>
-[![](https://img.shields.io/badge/devel%20version-1.1.2-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.1.5-black.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/badge/release%20version-1.0.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
 [![BioC
 status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
 [![](https://img.shields.io/badge/doi-https://doi.org/10.18129/B9.bioc.orthogene-green.svg)](https://doi.org/https://doi.org/10.18129/B9.bioc.orthogene)
-[![](https://img.shields.io/badge/download-407/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-529/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![R build
 status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
-[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
+[![](https://app.codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://app.codecov.io/gh/neurogenomics/orthogene)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 <h4>
 Authors: <i>Brian Schilder</i>
 </h4>
 <h4>
-README updated: <i>Feb-20-2022</i>
+README updated: <i>Apr-08-2022</i>
 </h4>
 
 # Intro
@@ -46,13 +46,15 @@ In brief, `orthogene` lets you easily:
     matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes)  
 -   [get **`all_genes`** from any
     species](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes)
+-   [**`infer_species`** from gene
+    names](https://neurogenomics.github.io/orthogene/articles/infer_species.html)
 
 ## Citation
 
 If you use `orthogene`, please cite:
 
 > Brian Schilder (NA). orthogene: Interspecies gene mapping. R package
-> version 1.1.2. <https://github.com/neurogenomics/orthogene>,
+> version 1.1.5. <https://github.com/neurogenomics/orthogene>,
 > <https://doi.org/doi:10.18129/B9.bioc.orthogene>
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
@@ -80,7 +82,13 @@ here](https://neurogenomics.github.io/orthogene/articles/docker).
 
 ``` r
 library(orthogene)
+```
 
+    ## Registered S3 method overwritten by 'ggtree':
+    ##   method      from 
+    ##   identify.gg ggfun
+
+``` r
 data("exp_mouse")
 # Setting to "homologene" for the purposes of quick demonstration.
 # We generally recommend using method="gprofiler" (default).
@@ -95,7 +103,7 @@ In general, we recommend you use `"gprofiler"` when possible, as it
 tends to be more comprehensive.
 
 While `"babelgene"` contains less species, it queries a wide variety of
-orthology databases and can return a column “support\_n” that tells you
+orthology databases and can return a column “support_n” that tells you
 how many databases support each ortholog gene mapping. This can be
 helpful when you need a semi-quantitative measure of mapping quality.
 
@@ -208,14 +216,14 @@ gene_df <- orthogene::convert_orthologs(gene_df = exp_mouse,
 knitr::kable(as.matrix(head(gene_df)))
 ```
 
-|          | astrocytes\_ependymal | endothelial-mural | interneurons | microglia | oligodendrocytes | pyramidal CA1 | pyramidal SS |
-|:---------|----------------------:|------------------:|-------------:|----------:|-----------------:|--------------:|-------------:|
-| TSPAN12  |             0.3303571 |         0.5872340 |    0.6413793 | 0.1428571 |        0.1207317 |     0.2864750 |    0.1453634 |
-| TSHZ1    |             0.4285714 |         0.4468085 |    1.1551724 | 0.4387755 |        0.3621951 |     0.0692226 |    0.8320802 |
-| ADAMTS15 |             0.0089286 |         0.0978723 |    0.2206897 | 0.0000000 |        0.0231707 |     0.0117146 |    0.0375940 |
-| CLDN12   |             0.2232143 |         0.1148936 |    0.5517241 | 0.0510204 |        0.2609756 |     0.4376997 |    0.6842105 |
-| RXFP1    |             0.0000000 |         0.0127660 |    0.2551724 | 0.0000000 |        0.0158537 |     0.0511182 |    0.0751880 |
-| SEMA3C   |             0.1964286 |         0.9957447 |    8.6379310 | 0.2040816 |        0.1853659 |     0.1608094 |    0.2280702 |
+|          | astrocytes_ependymal | endothelial-mural | interneurons | microglia | oligodendrocytes | pyramidal CA1 | pyramidal SS |
+|:---------|---------------------:|------------------:|-------------:|----------:|-----------------:|--------------:|-------------:|
+| TSPAN12  |            0.3303571 |         0.5872340 |    0.6413793 | 0.1428571 |        0.1207317 |     0.2864750 |    0.1453634 |
+| TSHZ1    |            0.4285714 |         0.4468085 |    1.1551724 | 0.4387755 |        0.3621951 |     0.0692226 |    0.8320802 |
+| ADAMTS15 |            0.0089286 |         0.0978723 |    0.2206897 | 0.0000000 |        0.0231707 |     0.0117146 |    0.0375940 |
+| CLDN12   |            0.2232143 |         0.1148936 |    0.5517241 | 0.0510204 |        0.2609756 |     0.4376997 |    0.6842105 |
+| RXFP1    |            0.0000000 |         0.0127660 |    0.2551724 | 0.0000000 |        0.0158537 |     0.0511182 |    0.0751880 |
+| SEMA3C   |            0.1964286 |         0.9957447 |    8.6379310 | 0.2040816 |        0.1853659 |     0.1608094 |    0.2280702 |
 
 `convert_orthologs` is just one of the many useful functions in
 `orthogene`. Please see the [documentation
@@ -236,12 +244,12 @@ for the full vignette.
 utils::sessionInfo()
 ```
 
-    ## R version 4.1.0 (2021-05-18)
+    ## R version 4.1.3 (2022-03-10)
     ## Platform: x86_64-apple-darwin17.0 (64-bit)
-    ## Running under: macOS Big Sur 10.16
+    ## Running under: macOS Big Sur/Monterey 10.16
     ## 
     ## Matrix products: default
-    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
     ## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
     ## 
     ## locale:
@@ -251,50 +259,50 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_1.1.2
+    ## [1] orthogene_1.1.5
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] httr_1.4.2                tidyr_1.2.0              
-    ##  [3] jsonlite_1.7.3            viridisLite_0.4.0        
+    ##  [3] jsonlite_1.8.0            viridisLite_0.4.0        
     ##  [5] carData_3.0-5             gprofiler2_0.2.1         
     ##  [7] assertthat_0.2.1          BiocManager_1.30.16      
     ##  [9] rvcheck_0.2.1             highr_0.9                
-    ## [11] yulab.utils_0.0.4         yaml_2.3.4               
+    ## [11] yulab.utils_0.0.4         yaml_2.3.5               
     ## [13] pillar_1.7.0              backports_1.4.1          
-    ## [15] lattice_0.20-45           glue_1.6.1               
+    ## [15] lattice_0.20-45           glue_1.6.2               
     ## [17] digest_0.6.29             RColorBrewer_1.1-2       
-    ## [19] ggsignif_0.6.3            colorspace_2.0-2         
-    ## [21] ggfun_0.0.5               htmltools_0.5.2          
+    ## [19] ggsignif_0.6.3            colorspace_2.0-3         
+    ## [21] ggfun_0.0.6               htmltools_0.5.2          
     ## [23] Matrix_1.4-0              pkgconfig_2.0.3          
-    ## [25] babelgene_21.4            broom_0.7.12             
+    ## [25] babelgene_22.3            broom_0.7.12             
     ## [27] purrr_0.3.4               patchwork_1.1.1          
-    ## [29] tidytree_0.3.8            scales_1.1.1             
+    ## [29] tidytree_0.3.9            scales_1.1.1             
     ## [31] ggplotify_0.1.0           tibble_3.1.6             
     ## [33] generics_0.1.2            car_3.0-12               
     ## [35] ggplot2_3.3.5             ellipsis_0.3.2           
     ## [37] ggpubr_0.4.0              lazyeval_0.2.2           
-    ## [39] cli_3.2.0                 magrittr_2.0.2           
-    ## [41] crayon_1.5.0              evaluate_0.15            
-    ## [43] badger_0.1.0              fansi_1.0.2              
+    ## [39] cli_3.2.0                 magrittr_2.0.3           
+    ## [41] crayon_1.5.1              evaluate_0.15            
+    ## [43] badger_0.2.0              fansi_1.0.3              
     ## [45] nlme_3.1-155              rstatix_0.7.0            
-    ## [47] homologene_1.4.68.19.3.27 tools_4.1.0              
+    ## [47] homologene_1.4.68.19.3.27 tools_4.1.3              
     ## [49] data.table_1.14.2         lifecycle_1.0.1          
     ## [51] stringr_1.4.0             plotly_4.10.0            
-    ## [53] aplot_0.1.2               ggtree_3.2.1             
-    ## [55] munsell_0.5.0             compiler_4.1.0           
-    ## [57] gridGraphics_0.5-1        rlang_1.0.1              
-    ## [59] grid_4.1.0                rstudioapi_0.13          
-    ## [61] htmlwidgets_1.5.4         rmarkdown_2.11           
+    ## [53] aplot_0.1.3               ggtree_3.2.1             
+    ## [55] munsell_0.5.0             compiler_4.1.3           
+    ## [57] gridGraphics_0.5-1        rlang_1.0.2              
+    ## [59] grid_4.1.3                rstudioapi_0.13          
+    ## [61] htmlwidgets_1.5.4         rmarkdown_2.13           
     ## [63] gtable_0.3.0              abind_1.4-5              
     ## [65] DBI_1.1.2                 R6_2.5.1                 
-    ## [67] knitr_1.37                dplyr_1.0.8              
+    ## [67] knitr_1.38                dplyr_1.0.8              
     ## [69] fastmap_1.1.0             utf8_1.2.2               
-    ## [71] rprojroot_2.0.2           treeio_1.18.1            
-    ## [73] dlstats_0.1.4             desc_1.4.0               
-    ## [75] ape_5.6-1                 stringi_1.7.6            
-    ## [77] parallel_4.1.0            Rcpp_1.0.8               
-    ## [79] vctrs_0.3.8               tidyselect_1.1.1         
-    ## [81] xfun_0.29
+    ## [71] rprojroot_2.0.3           treeio_1.18.1            
+    ## [73] dlstats_0.1.4             desc_1.4.1               
+    ## [75] ape_5.6-2                 stringi_1.7.6            
+    ## [77] parallel_4.1.3            Rcpp_1.0.8.3             
+    ## [79] vctrs_0.4.0               tidyselect_1.1.2         
+    ## [81] xfun_0.30
 
 </details>
 
