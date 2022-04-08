@@ -23,7 +23,7 @@ all_genes_babelgene <- function(species,
                                 verbose = TRUE) {
     
     ### Avoid confusing Biocheck
-    taxon_id <- symbol <- NULL
+    taxon_id <- symbol <- support_n <- NULL
     
     messager("Retrieving all genes using: babelgene.", v = verbose)
     if(run_map_species){
@@ -70,7 +70,8 @@ all_genes_babelgene <- function(species,
         dplyr::rename(taxonomy_id=taxon_id,
                       Gene.Symbol=symbol) 
     if(min_support>0){
-        orths <- subset(orths, support>=min_support)
+        ## When min_support=1, simply removes rows where support is NA.
+        orths <- subset(orths, support_n>=min_support)
     }
     messager("Gene table with", formatC(nrow(tar_genes), big.mark = ","),
              "rows retrieved.",

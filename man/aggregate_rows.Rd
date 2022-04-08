@@ -8,7 +8,7 @@ aggregate_rows(
   X,
   groupings,
   FUN = "sum",
-  method = c("monocle3", "stats", "delayedarray"),
+  method = c("monocle3", "stats"),
   as_sparse = TRUE,
   as_DelayedArray = TRUE,
   dropNA = TRUE,

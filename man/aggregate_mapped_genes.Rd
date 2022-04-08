@@ -8,7 +8,7 @@ aggregate_mapped_genes(
   gene_df,
   species = "human",
   FUN = "sum",
-  method = c("monocle3", "stats", "delayedarray"),
+  method = c("monocle3", "stats"),
   transpose = FALSE,
   gene_map = NULL,
   gene_map_col = "name",

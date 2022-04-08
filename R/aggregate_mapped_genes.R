@@ -24,16 +24,14 @@
 #'
 #' @return Aggregated matrix
 #' @export
+#' @importFrom Matrix t
 #' @examples
 #' data("exp_mouse")
 #' X_agg <- aggregate_mapped_genes(gene_df = exp_mouse, species = "mouse")
 aggregate_mapped_genes <- function(gene_df,
                                    species = "human",
                                    FUN = "sum",
-                                   method = c(
-                                       "monocle3", "stats",
-                                       "delayedarray"
-                                   ),
+                                   method = c("monocle3", "stats"),
                                    transpose = FALSE,
                                    gene_map = NULL,
                                    gene_map_col = "name",

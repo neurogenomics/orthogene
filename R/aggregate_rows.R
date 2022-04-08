@@ -14,7 +14,7 @@
 aggregate_rows <- function(X,
                            groupings,
                            FUN = "sum",
-                           method = c("monocle3", "stats", "delayedarray"),
+                           method = c("monocle3", "stats"),
                            as_sparse = TRUE,
                            as_DelayedArray = TRUE,
                            dropNA = TRUE,
@@ -42,13 +42,8 @@ aggregate_rows <- function(X,
                 stats::na.pass
             }
         )
-    } else if (tolower(method[1]) == "delayedarray") {
-        X_agg <- aggregate_rows_delayedarray(
-            X = X,
-            labels = groupings
-        )
     } else {
-        method_opts <- c("stats", "monocle3", "delayedarray")
+        method_opts <- eval(formals(orthogene:::aggregate_rows)$method)
         stop_msg <- c(
             "method must be one of:\n",
             paste("  -", method_opts, collapse = "\n")

@@ -11,6 +11,14 @@ BUG FIXES
     + Filter support==NA mappings by default, not but support>=2 
     like `babelgene` does by default (even when `babelgene::orthologs(min_support = 1)`). 
     + See here for discussion of discrepancies with babelgene maintainer: https://github.com/igordot/babelgene/issues/2 
+    
+NEW FEATURES
+
+* Removed `aggregate_rows_delayedarray` as it wasn't being used and was far less efficient than the other methods anyway (which are also compatible with DelayedArray matrices anyway). * New unit tests:
+    + `load_data`  
+    + `aggregate_mapped_genes(method='stat')`  
+    + `sparsity`  
+
 
 # orthogene  1.1.4
 

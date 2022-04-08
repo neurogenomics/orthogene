@@ -12,7 +12,7 @@ test_that("aggregate_mapped_genes works", {
         # Failing with homologene/babelgene currently 
         method = "gprofiler"
     )
-    agg_exp <- aggregate_mapped_genes(
+    agg_exp <- orthogene::aggregate_mapped_genes(
         gene_df = exp_mouse,
         species = "mouse",
         FUN = "sum",
@@ -43,6 +43,21 @@ test_that("aggregate_mapped_genes works", {
         FUN = "sum" ,
         gene_map = gene_map,
         gene_map_col = "ortholog_gene"
+    )
+    testthat::expect_lte(nrow(agg_exp), nrow(exp_da))
+    testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp)) 
+    testthat::expect_equal(ncol(agg_exp), ncol(exp_da))
+    
+    
+    #### Aggregate: method="stats" ####
+    exp_da <- orthogene:::as_delayed_array(exp_mouse) 
+    agg_exp <- orthogene::aggregate_mapped_genes(
+        gene_df = exp_da,
+        species = "mouse",
+        FUN = "sum" ,
+        gene_map = gene_map,
+        gene_map_col = "ortholog_gene",
+        method = "stats"
     )
     testthat::expect_lte(nrow(agg_exp), nrow(exp_da))
     testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp)) 
