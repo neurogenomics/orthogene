@@ -18,7 +18,8 @@ all_genes_babelgene <- function(species,
                                 run_map_species = TRUE,
                                 save_dir = tools::R_user_dir("orthogene",
                                                              which="cache"),
-                                use_old = TRUE,
+                                use_old = FALSE,
+                                min_support = 1,
                                 verbose = TRUE) {
     
     ### Avoid confusing Biocheck
@@ -26,13 +27,13 @@ all_genes_babelgene <- function(species,
     
     messager("Retrieving all genes using: babelgene.", v = verbose)
     if(run_map_species){
-        target_id <- map_species(
+        source_id <- map_species(
             species = species,
             output_format = "taxonomy_id", 
             method = "babelgene",
             verbose = verbose
         )
-    } else {target_id <- species}
+    } else {source_id <- species}
     #### Retrieve updated local version included with babelgene ####
     if(isFALSE(use_old)){ 
         messager("Preparing babelgene::orthologs_df.",v=verbose)
@@ -65,9 +66,12 @@ all_genes_babelgene <- function(species,
         orths <- load_data(tmp)
     } 
     #### Filter by species ####
-    tar_genes <- subset(orths, taxon_id == target_id) %>%
+    tar_genes <- subset(orths, taxon_id == source_id) %>%
         dplyr::rename(taxonomy_id=taxon_id,
                       Gene.Symbol=symbol) 
+    if(min_support>0){
+        orths <- subset(orths, support>=min_support)
+    }
     messager("Gene table with", formatC(nrow(tar_genes), big.mark = ","),
              "rows retrieved.",
              v = verbose

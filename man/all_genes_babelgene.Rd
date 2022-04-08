@@ -12,7 +12,8 @@ all_genes_babelgene(
   species,
   run_map_species = TRUE,
   save_dir = tools::R_user_dir("orthogene", which = "cache"),
-  use_old = TRUE,
+  use_old = FALSE,
+  min_support = 1,
   verbose = TRUE
 )
 }

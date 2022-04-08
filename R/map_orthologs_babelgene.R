@@ -57,55 +57,44 @@ map_orthologs_babelgene <- function(genes,
     ## For some reason, this works far better than babelgene::orthologs(),
     ## even when  min_support=1.
     ## However, it can only be used for nonhuman:human mappings.
-    if(is_human(target_id)){
-        gene_map <- all_genes(method = "babelgene",
-                              species = source_id,
-                              run_map_species = TRUE,
-                              verbose = verbose) 
-        gene_map <- gene_map %>% dplyr::select(
-            input_gene = Gene.Symbol,
-            ortholog_gene = human_symbol,
-            input_geneID = ensembl,
-            ortholog_geneID = human_ensembl,
-            entrez,
-            taxonomy_id,
-            support,
-            support_n
-        ) 
-    } else { 
-        gene_map <- babelgene::orthologs( 
-            genes = genes,
-            species = if (is_human(target_id)) source_id else target_id,
-            human = is_human(source_id), ### Referring to gene format
-            min_support = min_support, 
-            top = top
-        )  
-        #### non-human ==> human ####
-        if ((!is_human(source_id)) & (is_human(target_id))) {
+    if(is_human(source_id) | is_human(target_id)){
+        ### Identify the non-human species ####
+        mapping_species <- c(source_id,target_id)[
+            c(!is_human(source_id), !is_human(target_id))
+        ]
+        gene_map <- all_genes_babelgene(species = mapping_species, 
+                                        min_support = min_support,
+                                        verbose = verbose) 
+        if(is_human(source_id)){
             gene_map <- gene_map %>% dplyr::select(
-                input_gene = symbol,
+                input_gene = human_symbol,
+                ortholog_gene = Gene.Symbol,
+                input_geneID = human_ensembl,
+                ortholog_geneID = ensembl,
+                entrez,
+                taxonomy_id,
+                support,
+                support_n
+            ) 
+        } else {
+            gene_map <- gene_map %>% dplyr::select(
+                input_gene = Gene.Symbol,
                 ortholog_gene = human_symbol,
                 input_geneID = ensembl,
                 ortholog_geneID = human_ensembl,
                 entrez,
-                taxon_id,
+                taxonomy_id,
                 support,
                 support_n
-            )
+            ) 
         }
-        #### Human ==> non-human ####
-        if ((is_human(source_id)) & (!is_human(target_id))) {
-            gene_map <- gene_map %>% dplyr::select(
-                input_gene = human_symbol,
-                ortholog_gene = symbol,
-                input_geneID = human_ensembl,
-                ortholog_geneID = ensembl,
-                entrez,
-                taxon_id,
-                support,
-                support_n
-            )
-        }
-    }   
+    } else {
+        stp <- paste(
+            "babelgene cannot convert orthlogs",
+            "between pairs of non-human species.",
+            "Please set method to to one of the following instead:",
+            paste("\n -",c("'homologene'","'gprofiler2"),collapse = ""))
+        stop(stp)
+    }
     return(gene_map)
 }
