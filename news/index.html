@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.5</span>
       </span>
     </div>
 
@@ -63,6 +63,26 @@
       <small>Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.1.5" id="orthogene-115">orthogene 1.1.5<a class="anchor" aria-label="anchor" href="#orthogene-115"></a></h2>
+<p>BUG FIXES</p>
+<ul><li>
+<code>map_orthologs_babelgene</code>
+<ul><li>Add “Bad credentials” check for <code>piggyback</code>.</li>
+<li>Add <code>use_old</code> as an optional arg so I can switch to more
+recent versions of <code>babelgene::orthologs_df</code> if need
+be.<br></li>
+<li>Use updated built-in <code>babelgene::orthologs_df</code> by
+default.</li>
+<li>Throw error if trying to map between two non-human species.</li>
+<li>Filter support==NA mappings by default, not but support&gt;=2 like
+<code>babelgene</code> does by default (even when
+<code>babelgene::orthologs(min_support = 1)</code>).</li>
+<li>See here for discussion of discrepancies with babelgene maintainer:
+<a href="https://github.com/igordot/babelgene/issues/2" class="external-link uri">https://github.com/igordot/babelgene/issues/2</a>
+</li>
+</ul></li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.4" id="orthogene-114">orthogene 1.1.4<a class="anchor" aria-label="anchor" href="#orthogene-114"></a></h2>
 <p>BUG FIXES</p>
