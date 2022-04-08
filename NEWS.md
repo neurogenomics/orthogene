@@ -6,6 +6,11 @@ BUG FIXES
     + Add "Bad credentials" check for `piggyback`. 
     + Add `use_old` as an optional arg so I can switch to more recent versions 
     of `babelgene::orthologs_df` if need be.  
+    + Use updated built-in `babelgene::orthologs_df` by default.
+    + Throw error if trying to map between two non-human species. 
+    + Filter support==NA mappings by default, not but support>=2 
+    like `babelgene` does by default (even when `babelgene::orthologs(min_support = 1)`). 
+    + See here for discussion of discrepancies with babelgene maintainer: https://github.com/igordot/babelgene/issues/2 
 
 # orthogene  1.1.4
 
