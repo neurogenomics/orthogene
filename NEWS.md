@@ -1,4 +1,4 @@
-# orthogene  1.1.6
+# orthogene  1.3.0
 
 ## New features  
 
@@ -27,6 +27,8 @@ in `gprofiler2` functions.
 and placed them in their own new own (`agg_fun`) since these options are
 no longer mutually exclusive due to many:many expansion/aggregation. 
 * Pass up `as_DelayedArray` 
+* Bump to v1.3.0 now that we're developing on Bioc 3.16. 
+* Add *ISSUE_TEMPLATE*. 
 
 ## Bug fixes 
 
