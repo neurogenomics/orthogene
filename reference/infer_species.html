@@ -19,7 +19,7 @@ the genes from each test_species."><!-- mathjax --><script src="https://cdnjs.cl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.6</span>
       </span>
     </div>
 
@@ -114,12 +114,12 @@ If set to <code>NULL</code>, will default to a list of humans and
  5 common model organisms.
  If <code>test_species</code> is set to one of the following options, 
  it will automatically pull all species from that respective package and 
- test against each of them:</p><ul><li><p>"homologene"20+ species (default)</p></li>
-<li><p>"gprofiler"700+ species</p></li>
-<li><p>"babelgene"19 species</p></li>
+ test against each of them:</p><ul><li><p>"homologene" : 20+ species (default)</p></li>
+<li><p>"gprofiler" : 700+ species</p></li>
+<li><p>"babelgene" : 19 species</p></li>
 </ul></dd>
 <dt>method</dt>
-<dd><p>R package to to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
+<dd><p>R package to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
 <li><p><code>"babelgene"</code> : Faster but fewer species and genes.
 Also gives consensus scores for each gene mapping based on a
@@ -141,7 +141,7 @@ Also gives consensus scores for each gene mapping based on a
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"> </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"exp_mouse"</span><span class="op">)</span> </span>
-<span class="r-in"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">infer_species</span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">200</span>,<span class="op">]</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu">infer_species</span><span class="op">(</span>gene_df <span class="op">=</span> <span class="va">exp_mouse</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">200</span>,<span class="op">]</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing gene_df.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> sparseMatrix format detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from rownames.</span>
@@ -212,8 +212,7 @@ Also gives consensus scores for each gene mapping based on a
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
 </div>
 
       </footer></div>

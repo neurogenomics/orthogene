@@ -64,6 +64,9 @@
     <loc>/reference/ggtree_plot.html</loc>
   </url>
   <url>
+    <loc>/reference/gprofiler_namespace.html</loc>
+  </url>
+  <url>
     <loc>/reference/gprofiler_orgs.html</loc>
   </url>
   <url>
@@ -77,6 +80,9 @@
   </url>
   <url>
     <loc>/reference/invert_dictionary.html</loc>
+  </url>
+  <url>
+    <loc>/reference/many2many_rows.html</loc>
   </url>
   <url>
     <loc>/reference/map_genes.html</loc>

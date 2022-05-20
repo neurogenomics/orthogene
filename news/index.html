@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.6</span>
       </span>
     </div>
 
@@ -64,181 +64,218 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="1.1.6" id="orthogene-116">orthogene 1.1.6<a class="anchor" aria-label="anchor" href="#orthogene-116"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-1-6">New features<a class="anchor" aria-label="anchor" href="#new-features-1-1-6"></a></h3>
+<ul><li>
+<code>aggregate_mapped_genes</code>:
+<ul><li>Pass up additional args from <code>map_genes</code>.</li>
+<li>Add <code>map_orthologs</code> as a way to create <code>gene_map</code> automatically, when <code>gene_map=NULL</code> and <code>input_species!=output_species</code>.<br></li>
+<li>Split <code>species</code> into <code>input_species</code> and <code>output_species</code> args.</li>
+<li>Change <code>method</code> –&gt; <code>agg_method</code>, and use <code>method</code> to pass to <code>map_orthologs</code> instead.</li>
+<li>Pass up additional args from <code>map_orthologs</code>.</li>
+<li>Add link to detailed explanation of matrix aggregation/expansion in <code>many2many_rows</code> docs.</li>
+<li>Automatically pick best method for many:1 or many:many mapping.</li>
+<li>
+<code>as_integers</code>: new arg that uses <code>floor</code>.</li>
+<li>Rename <code>FUN</code> to <code>agg_fun</code>.</li>
+</ul></li>
+<li>Add new <em>data</em> <code>gprofiler_namespace</code>. Used to validate <code>target=</code> arg in <code>gprofiler2</code> functions.</li>
+<li>Upgraded <code>aggregate_mapped_genes</code>:
+<ul><li>Can now used <code>gene_map</code> made by <code>map_orthologs</code> or <code>map_genes</code>.</li>
+<li>Can now handle many:many relationships.</li>
+<li>Will automatically pick the best method to perform aggregation and/or expansion.</li>
+</ul></li>
+<li>Removed internal function <code>aggregate_mapped_genes_twice</code>
+</li>
+<li>Extracted aggregation args from <code>non121_strategy</code> and placed them in their own new own (<code>agg_fun</code>) since these options are no longer mutually exclusive due to many:many expansion/aggregation.</li>
+<li>Pass up <code>as_DelayedArray</code>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-1-6">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-1-6"></a></h3>
+<ul><li>
+<code>map_genes</code>: Fix report at completion.<br></li>
+<li>Add safeguards against using aggregation when <code>gene_df</code> isn’t a matrix.</li>
+<li>Removed <code>DelayedMatrixStats</code> <em>Import</em> (no longer needed).<br></li>
+<li>Fix all unit tests and examples after making all updates.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.5" id="orthogene-115">orthogene 1.1.5<a class="anchor" aria-label="anchor" href="#orthogene-115"></a></h2>
-<p>BUG FIXES</p>
+<div class="section level3">
+<h3 id="bug-fixes-1-1-5">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-1-5"></a></h3>
 <ul><li>
 <code>map_orthologs_babelgene</code>
 <ul><li>Add “Bad credentials” check for <code>piggyback</code>.</li>
-<li>Add <code>use_old</code> as an optional arg so I can switch to more
-recent versions of <code>babelgene::orthologs_df</code> if need
-be.<br></li>
-<li>Use updated built-in <code>babelgene::orthologs_df</code> by
-default.</li>
+<li>Add <code>use_old</code> as an optional arg so I can switch to more recent versions of <code>babelgene::orthologs_df</code> if need be.<br></li>
+<li>Use updated built-in <code>babelgene::orthologs_df</code> by default.</li>
 <li>Throw error if trying to map between two non-human species.</li>
-<li>Filter support==NA mappings by default, not but support&gt;=2 like
-<code>babelgene</code> does by default (even when
-<code>babelgene::orthologs(min_support = 1)</code>).</li>
-<li>See here for discussion of discrepancies with babelgene maintainer:
-<a href="https://github.com/igordot/babelgene/issues/2" class="external-link uri">https://github.com/igordot/babelgene/issues/2</a>
+<li>Filter support==NA mappings by default, not but support&gt;=2 like <code>babelgene</code> does by default (even when <code>babelgene::orthologs(min_support = 1)</code>).</li>
+<li>See here for discussion of discrepancies with babelgene maintainer: <a href="https://github.com/igordot/babelgene/issues/2" class="external-link uri">https://github.com/igordot/babelgene/issues/2</a>
 </li>
 </ul></li>
-</ul><p>NEW FEATURES</p>
-<ul><li>Removed <code>aggregate_rows_delayedarray</code> as it wasn’t being
-used and was far less efficient than the other methods anyway (which are
-also compatible with DelayedArray matrices anyway). * New unit tests:
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-1-1-5">New features<a class="anchor" aria-label="anchor" href="#new-features-1-1-5"></a></h3>
+<ul><li>Removed <code>aggregate_rows_delayedarray</code> as it wasn’t being used and was far less efficient than the other methods anyway (which are also compatible with DelayedArray matrices anyway). * New unit tests:
 <ul><li>
 <code>load_data</code><br></li>
 <li>
 <code>aggregate_mapped_genes(method='stat')</code><br></li>
-<li><code>sparsity</code></li>
+<li>
+<code>sparsity</code><br></li>
+<li><code>infer_species</code></li>
 </ul></li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.4" id="orthogene-114">orthogene 1.1.4<a class="anchor" aria-label="anchor" href="#orthogene-114"></a></h2>
-<p>BUG FIXES</p>
-<ul><li>Remove <code>source_all</code> as it included a <code>library</code>
-call.</li>
+<div class="section level3">
+<h3 id="bug-fixes-1-1-4">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-1-4"></a></h3>
+<ul><li>Remove <code>source_all</code> as it included a <code>library</code> call.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.3" id="orthogene-113">orthogene 1.1.3<a class="anchor" aria-label="anchor" href="#orthogene-113"></a></h2>
-<p>NEW FEATURES</p>
+<div class="section level3">
+<h3 id="new-features-1-1-3">New features<a class="anchor" aria-label="anchor" href="#new-features-1-1-3"></a></h3>
 <ul><li>Update GHA</li>
-</ul><p>BUG FIXES</p>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-1-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-1-3"></a></h3>
 <ul><li>Fix failing benchmarking tests.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.2" id="orthogene-112">orthogene 1.1.2<a class="anchor" aria-label="anchor" href="#orthogene-112"></a></h2>
-<p>BUG FIXES</p>
+<div class="section level3">
+<h3 id="bug-fixes-1-1-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-1-2"></a></h3>
 <ul><li>
-<code>convert_orthologs(method="babelgene")</code> now gets gene
-mappings from <code>all_genes_babelgene</code> instead
-<code><a href="https://igordot.github.io/babelgene/reference/orthologs.html" class="external-link">babelgene::orthologs</a></code> (which doesn’t seem to work very well,
-despite being dedicated for this purpose).<br></li>
+<code>convert_orthologs(method="babelgene")</code> now gets gene mappings from <code>all_genes_babelgene</code> instead <code><a href="https://igordot.github.io/babelgene/reference/orthologs.html" class="external-link">babelgene::orthologs</a></code> (which doesn’t seem to work very well, despite being dedicated for this purpose).<br></li>
 <li>
 <code>map_species</code>:
-<ul><li>Avoid running this function redundantly when nested in multiple
-layers of other functions.</li>
+<ul><li>Avoid running this function redundantly when nested in multiple layers of other functions.</li>
 <li>
-<code>common_species_names_dict</code> now return “scientific_name”
-by default, instead of “taxonomy_id”</li>
-<li>Match <code>map_species</code> method to whatever method is being
-used in the function it’s wrapped within, to avoid dropping species due
-to naming differences.<br></li>
-<li>Add “id” column (e.g. “celegans”) to all org databases to enhance
-their searchability.</li>
+<code>common_species_names_dict</code> now return “scientific_name” by default, instead of “taxonomy_id”</li>
+<li>Match <code>map_species</code> method to whatever method is being used in the function it’s wrapped within, to avoid dropping species due to naming differences.<br></li>
+<li>Add “id” column (e.g. “celegans”) to all org databases to enhance their searchability.</li>
 <li>Add <code>map_species_check_args</code>.</li>
 </ul></li>
-<li>Ensure proper method-specific <code>output_format</code> when
-passing species to other functions.</li>
-</ul><p>NEW FEATURES</p>
+<li>Ensure proper method-specific <code>output_format</code> when passing species to other functions.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-1-1-2">New features<a class="anchor" aria-label="anchor" href="#new-features-1-1-2"></a></h3>
 <ul><li>
-<code>plot_orthotree</code>: Automated plotting of phylogenetic
-trees with 1:1 ortholog report annotations. Includes several
-subfunctions:
+<code>plot_orthotree</code>: Automated plotting of phylogenetic trees with 1:1 ortholog report annotations. Includes several subfunctions:
 <ul><li>
-<code>prepare_tree</code> (exported): Read, prune and standardise a
-phylogenetic tree.</li>
+<code>prepare_tree</code> (exported): Read, prune and standardise a phylogenetic tree.</li>
 <li>
-<code>gather_images</code> (internal): More robust way to find and
-import valid phylopic silhouettes. Will make PR requests to
-<code>rphylopic</code> and <code>ggimage</code>/<code>ggtree</code> to
-include this functionality.</li>
+<code>gather_images</code> (internal): More robust way to find and import valid phylopic silhouettes. Will make PR requests to <code>rphylopic</code> and <code>ggimage</code>/<code>ggtree</code> to include this functionality.</li>
 </ul></li>
-<li>Added unit tests for <code>report_orthologs</code>, especially when
-<code>method="babelgene"</code>.<br></li>
+<li>Added unit tests for <code>report_orthologs</code>, especially when <code>method="babelgene"</code>.<br></li>
 <li>GitHub Actions:
 <ul><li>Merge both GHA workflows into one, as implemented in <a href="https://github.com/neurogenomics/templateR" class="external-link"><code>templateR</code></a>.<br></li>
 </ul></li>
 <li>Added citation info to README.</li>
-<li>Save <code>all_genes_babelgene</code> ortholog data to
-orthogene-specific cache instead of tempdir to avoid re-downloading
-every R session.</li>
+<li>Save <code>all_genes_babelgene</code> ortholog data to orthogene-specific cache instead of tempdir to avoid re-downloading every R session.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.1" id="orthogene-111">orthogene 1.1.1<a class="anchor" aria-label="anchor" href="#orthogene-111"></a></h2>
-<p>BUG FIXES</p>
+<div class="section level3">
+<h3 id="bug-fixes-1-1-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-1-1"></a></h3>
 <ul><li>Made GHA less dependent on hard-coded R/bioc versions.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.0" id="orthogene-110">orthogene 1.1.0<a class="anchor" aria-label="anchor" href="#orthogene-110"></a></h2>
-<p>NEW FEATURES</p>
-<ul><li>Now on <a href="https://bioconductor.org/packages/devel/bioc/html/orthogene.html" class="external-link">Bioconductor
-release 3.14</a>.<br></li>
-<li>Docker containers automatically built and pushed to <a href="https://hub.docker.com/repository/docker/bschilder/orthogene" class="external-link">DockerHub</a>
-via <a href="https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/dockerhub.yml" class="external-link">GitHub
-Actions</a>.<br></li>
+<div class="section level3">
+<h3 id="new-features-1-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-1-1-0"></a></h3>
+<ul><li>Now on <a href="https://bioconductor.org/packages/devel/bioc/html/orthogene.html" class="external-link">Bioconductor release 3.14</a>.<br></li>
+<li>Docker containers automatically built and pushed to <a href="https://hub.docker.com/repository/docker/bschilder/orthogene" class="external-link">DockerHub</a> via <a href="https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/dockerhub.yml" class="external-link">GitHub Actions</a>.<br></li>
 <li>
-<a href="https://github.com/neurogenomics/orthogene/blob/ad0b5e015805d1f154ec4ef93dd33821e68e580a/Dockerfile" class="external-link">Dockerfile</a>
-provided to build and check any R package efficiently with <a href="https://bioconductor.org/packages/release/bioc/html/AnVIL.html" class="external-link">AnVil</a>.<br></li>
-<li>CRAN checks and Bioc checks run via <a href="https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml" class="external-link">GitHub
-Actions</a>.<br></li>
+<a href="https://github.com/neurogenomics/orthogene/blob/ad0b5e015805d1f154ec4ef93dd33821e68e580a/Dockerfile" class="external-link">Dockerfile</a> provided to build and check any R package efficiently with <a href="https://bioconductor.org/packages/release/bioc/html/AnVIL.html" class="external-link">AnVil</a>.<br></li>
+<li>CRAN checks and Bioc checks run via <a href="https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml" class="external-link">GitHub Actions</a>.<br></li>
 <li>Added documentation on using Docker container to README.<br></li>
-<li>Documentation website now automatically built via <a href="https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml" class="external-link">GitHub
-Actions</a>.<br></li>
-<li>Code coverage tests now automatically run and uploaded via <a href="https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml" class="external-link">GitHub
-Actions</a>.</li>
+<li>Documentation website now automatically built via <a href="https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml" class="external-link">GitHub Actions</a>.<br></li>
+<li>Code coverage tests now automatically run and uploaded via <a href="https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml" class="external-link">GitHub Actions</a>.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.99.9" id="orthogene-0999">orthogene 0.99.9<a class="anchor" aria-label="anchor" href="#orthogene-0999"></a></h2>
-<p>NEW FEATURES</p>
+<div class="section level3">
+<h3 id="new-features-0-99-9">New features<a class="anchor" aria-label="anchor" href="#new-features-0-99-9"></a></h3>
 <ul><li>Replaced R-CMD GHA with bioc-check GHA.</li>
 <li>Added new badges.</li>
-</ul><p>BUG FIXES</p>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-99-9">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-99-9"></a></h3>
 <ul><li>Adjusted vignette yamls to make resulting htmls smaller.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.99.8" id="orthogene-0998">orthogene 0.99.8<a class="anchor" aria-label="anchor" href="#orthogene-0998"></a></h2>
-<p>NEW FEATURES</p>
+<div class="section level3">
+<h3 id="new-features-0-99-8">New features<a class="anchor" aria-label="anchor" href="#new-features-0-99-8"></a></h3>
 <ul><li>
-<code>orthogene</code> now supports <code>DelayedArray</code>
-objects as <code>gene_df</code> input.<br></li>
+<code>orthogene</code> now supports <code>DelayedArray</code> objects as <code>gene_df</code> input.<br></li>
 <li>
-<code>create_background</code> now uses <code>all_genes</code> when
-all 3 species are the same.</li>
+<code>create_background</code> now uses <code>all_genes</code> when all 3 species are the same.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.99.7" id="orthogene-0997">orthogene 0.99.7<a class="anchor" aria-label="anchor" href="#orthogene-0997"></a></h2>
-<p>NEW FEATURES</p>
+<div class="section level3">
+<h3 id="new-features-0-99-7">New features<a class="anchor" aria-label="anchor" href="#new-features-0-99-7"></a></h3>
 <ul><li>Added new function <code>create_background</code>.<br></li>
 <li>Added new function <code>infer_species</code>.<br></li>
 <li>
-<code>report_orthologs</code> and <code>convert_orthologs</code> can
-now handle cases where <code>input_species</code> is the same as
-<code>output_species</code>.</li>
-<li>Add internal function <code>get_all_orgs</code> to easily list all
-organisms from different packages.<br></li>
+<code>report_orthologs</code> and <code>convert_orthologs</code> can now handle cases where <code>input_species</code> is the same as <code>output_species</code>.</li>
+<li>Add internal function <code>get_all_orgs</code> to easily list all organisms from different packages.<br></li>
 <li>Added <code>all_genes</code> method “babelgene”.</li>
-</ul><p>BUG FIXES</p>
-<ul><li>
-<code>report_orthologs</code> no longer throws error due to not
-finding <code>tar_genes</code>.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-99-7">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-99-7"></a></h3>
+<ul><li>
+<code>report_orthologs</code> no longer throws error due to not finding <code>tar_genes</code>.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.99.6" id="orthogene-0996">orthogene 0.99.6<a class="anchor" aria-label="anchor" href="#orthogene-0996"></a></h2>
-<p>BUG FIXES</p>
-<ul><li>Allow all messages to be suppressed in
-<code>report_orthologs</code>.</li>
+<div class="section level3">
+<h3 id="bug-fixes-0-99-6">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-99-6"></a></h3>
+<ul><li>Allow all messages to be suppressed in <code>report_orthologs</code>.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.99.3" id="orthogene-0993">orthogene 0.99.3<a class="anchor" aria-label="anchor" href="#orthogene-0993"></a></h2>
-<p>NEW FEATURES</p>
+<div class="section level3">
+<h3 id="new-features-0-99-3">New features<a class="anchor" aria-label="anchor" href="#new-features-0-99-3"></a></h3>
 <ul><li>License switched to GPL-3 (to be compliant with Bioc).<br></li>
 <li>New method “babelgene” added to <code>convert_orthologs</code>.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.99.2" id="orthogene-0992">orthogene 0.99.2<a class="anchor" aria-label="anchor" href="#orthogene-0992"></a></h2>
-<p>NEW FEATURES</p>
+<div class="section level3">
+<h3 id="new-features-0-99-2">New features<a class="anchor" aria-label="anchor" href="#new-features-0-99-2"></a></h3>
 <ul><li>License switched to GPL3 (&gt;=3).</li>
-</ul><p>BUG FIXES</p>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-99-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-99-2"></a></h3>
 <ul><li>
 <code>GenomeInfoDbData</code> now required.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0" id="orthogene-010">orthogene 0.1.0<a class="anchor" aria-label="anchor" href="#orthogene-010"></a></h2>
-<p>NEW FEATURES</p>
+<div class="section level3">
+<h3 id="new-features-0-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-0"></a></h3>
 <ul><li>
 <code>orthogene</code> released to Bioconductor.</li>
 </ul></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -253,8 +290,7 @@ finding <code>tar_genes</code>.</li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
 </div>
 
       </footer></div>
