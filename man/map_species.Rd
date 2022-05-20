@@ -26,7 +26,7 @@ API}.}
 
 \item{output_format}{Which column to return.}
 
-\item{method}{R package to to use for gene mapping:
+\item{method}{R package to use for gene mapping:
 \itemize{
 \item{\code{"gprofiler"} : Slower but more species and genes.}
 \item{\code{"homologene"} : Faster but fewer species and genes.}

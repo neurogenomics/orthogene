@@ -1,7 +1,7 @@
 Package: orthogene
 Type: Package
 Title: Interspecies gene mapping 
-Version: 1.1.5
+Version: 1.1.6
 Authors@R:
     c( 
      person(given = "Brian",
@@ -40,7 +40,6 @@ Imports:
     ggpubr,
     patchwork,
     DelayedArray,
-    DelayedMatrixStats,
     Matrix.utils,
     grr, 
     repmis, 
@@ -70,7 +69,7 @@ Suggests:
     TreeTools,
     RColorBrewer,
     ggimage
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Encoding: UTF-8
 Config/testthat/edition: 3
 Config/rcmdcheck/_R_CHECK_FORCE_SUGGESTS_: false

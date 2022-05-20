@@ -1,6 +1,6 @@
 check_agg_opts <- function(func = NULL) {
     funcs <- c("sum", "mean", "median", "min", "max")
-    agg_dict <- setNames(funcs, funcs)
+    agg_dict <- stats::setNames(funcs, funcs)
     if (is.null(func)) {
         return(agg_dict)
     } else {

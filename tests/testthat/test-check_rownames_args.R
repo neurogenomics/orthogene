@@ -1,30 +1,34 @@
 test_that("check_rownames_args works", {
-    out <- check_rownames_args(
+    out <- orthogene:::check_rownames_args(
         gene_output = "rownames",
         drop_nonorths = TRUE,
-        non121_strategy = "dbs"
+        non121_strategy = "dbs",
+        as_sparse = FALSE
     )
-    testthat::expect_equal(length(out), 3)
+    testthat::expect_equal(length(out), 4)
 
-    out <- check_rownames_args(
+    out <- orthogene::: check_rownames_args(
         gene_output = "rownames",
         drop_nonorths = FALSE,
-        non121_strategy = "dbs"
+        non121_strategy = "dbs",
+        as_sparse = FALSE
     )
-    testthat::expect_equal(out$drop_nonorths, TRUE)
+    testthat::expect_equal(out$as_sparse, TRUE)
 
-    out <- check_rownames_args(
+    out <- orthogene:::check_rownames_args(
         gene_output = "rownames",
         drop_nonorths = TRUE,
-        non121_strategy = "kbs"
+        non121_strategy = "kbs",
+        as_sparse = FALSE
     )
-    testthat::expect_equal(out$drop_nonorths, TRUE)
+    testthat::expect_equal(out$as_sparse, TRUE)
 
     testthat::expect_error(
-        out <- check_rownames_args(
+        out <- orthogene:::check_rownames_args(
             gene_output = "rownames",
             drop_nonorths = TRUE,
-            non121_strategy = "dbsTYPO"
+            non121_strategy = "dbsTYPO",
+            as_sparse = FALSE
         )
     )
 })

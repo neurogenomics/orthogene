@@ -45,6 +45,7 @@ map_genes <- function(genes,
                       numeric_ns = "",
                       run_map_species = TRUE,
                       verbose = TRUE) {
+    
     if(run_map_species){
         organism <- map_species(
             species = species,
@@ -53,6 +54,9 @@ map_genes <- function(genes,
             verbose = verbose
         )
     } else {organism <- species}
+    
+    target <- gconvert_target_opts(target = target, 
+                                   species = species)
     
     syn_map <- gprofiler2::gconvert(
         query = genes,
@@ -71,9 +75,14 @@ map_genes <- function(genes,
         )
     }
     n_genes <- length(genes)
-    n_mapped <- length(stats::na.omit(syn_map$name))
-    messager(formatC(n_genes, big.mark = ","), "/",
-        formatC(n_mapped, big.mark = ","),
+    mapped_genes <- syn_map$target[
+        (!is.na(syn_map$input)) & 
+        (!is.na(syn_map$name))
+    ]
+    n_mapped <- length(mapped_genes)
+    messager(
+        formatC(n_mapped, big.mark = ","), "/",
+        formatC(n_genes, big.mark = ","),
         paste0("(", round(n_mapped / n_genes * 100, digits = 2), "%)"),
         "genes mapped.",
         v = verbose

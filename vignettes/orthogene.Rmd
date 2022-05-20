@@ -78,7 +78,16 @@ Users can address this using different strategies via `non121_strategy=`:
 3. `"drop_output_species"` : Only drop genes that have duplicate mappings in the `output_species`. 
 4. `"keep_both_species"` : Keep all genes regardless of whether they have duplicate mappings in either species.  
 5. `"keep_popular"` : Return only the most "popular" interspecies ortholog mappings. This procedure tends to yield a greater number of returned genes but at the cost of many of them not being true biological 1:1 orthologs. 
-6. `"sum"`,`"mean"`,`"median"`,`"min"` or `"max"`: When `gene_df` is a matrix and `gene_output="rownames"`, these options will aggregate many-to-one gene mappings (`input_species`-to-`output_species`) after dropping any duplicate genes in the `output_species`.
+
+When `gene_df` is a matrix. These strategies can be used together with `agg_fun`. This feature automatically performs both ortholog aggregation (many:1 mappings) and expansion (1:many mappings) of matrices, depending on the situation. This means that you have the option to keep non-1:1 ortholog genes, and still produce a matrix with only 1 gene per row.
+Options include:
+1. `"sum"` 
+2. `"mean"`
+3. `"median"`
+4. `"min"`
+5. `"max"` 
+
+For more information on how `orthogene` performs matrix aggregation/expansion, see the documentation for the underlying function: `?orthogene:::many2many_rows`
 
 ```{r convert_orthologs}
 gene_df <- orthogene::convert_orthologs(gene_df = exp_mouse,
@@ -159,8 +168,8 @@ data("exp_mouse_enst")
 knitr::kable(tail(as.matrix(exp_mouse_enst)))
 
 exp_agg <- orthogene::aggregate_mapped_genes(gene_df=exp_mouse_enst,
-                                             species="mouse", 
-                                             FUN = "sum")
+                                             input_species="mouse", 
+                                             agg_fun = "sum")
 knitr::kable(tail(as.matrix(exp_agg)))
 ```
 

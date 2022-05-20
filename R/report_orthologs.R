@@ -68,6 +68,10 @@ report_orthologs <- function(target_species = "mouse",
                              mc.cores = 1,
                              verbose = TRUE,
                              ...) {
+    # echoverseTemplate:::source_all(packages = "dplyr")
+    # echoverseTemplate:::args2vars(report_orthologs)
+    
+    
     #### Recursion ####
     if(length(target_species)>1){
         messager("Gathering ortholog reports.",v=verbose)
@@ -127,6 +131,7 @@ report_orthologs <- function(target_species = "mouse",
             gene_df = tar_genes,
             gene_input = "Gene.Symbol",
             gene_output = "columns",
+            agg_fun = NULL,
             standardise_genes = standardise_genes,
             input_species = target_species,
             output_species = reference_species,

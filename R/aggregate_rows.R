@@ -1,6 +1,6 @@
 #' Aggregate rows of matrix
 #'
-#' Aggregate rows of a matrix using a grouping vector.
+#' Aggregate rows of a matrix for many:1 mappings,  using a grouping vector.
 #'
 #' @param X Input matrix.
 #' @param groupings Gene groups of the same length as \code{nrow(X)}.
@@ -11,31 +11,43 @@
 #'
 #' @keywords internal
 #' @importFrom methods is
+#' @source 
+#' \code{
+#' data("exp_mouse_enst")
+#' X <- exp_mouse_enst
+#' gene_map <- map_genes(genes = rownames(X),species = "mouse")
+#' X_agg <- orthogene:::aggregate_rows(X = X, 
+#'                                     groupings = gene_map$name)
+#' sum(duplicated(rownames(exp_mouse))) # 0 
+#' sum(duplicated(rownames(X))) # 1215 
+#' sum(duplicated(rownames(X_agg))) # 0 
+#' }
 aggregate_rows <- function(X,
                            groupings,
-                           FUN = "sum",
-                           method = c("monocle3", "stats"),
+                           agg_fun = "sum",
+                           agg_method = c("monocle3", "stats"),
                            as_sparse = TRUE,
                            as_DelayedArray = TRUE,
                            dropNA = TRUE,
                            verbose = TRUE) {
-    messager("Aggregating rows using:", method[1], v = verbose)
+    agg_method <- tolower(agg_method[1])
+    messager("Aggregating rows using:", agg_method, v = verbose) 
     #### Find NA genes ####
     na_genes <- find_all_nas(v = groupings)
     groupings[na_genes] <- NA
 
-    if (tolower(method[1]) == "stats") {
+    if (agg_method == "stats") {
         X_agg <- aggregate_rows_stats(
             X = X,
             groupings = groupings,
-            FUN = FUN,
+            FUN = agg_fun,
             dropNA = dropNA
         )
-    } else if (tolower(method[1]) == "monocle3") {
+    } else if (agg_method == "monocle3") {
         X_agg <- aggregate_rows_monocle3(
             x = X,
             groupings = groupings,
-            fun = FUN,
+            fun = agg_fun,
             na.action = if (dropNA) {
                 stats::na.omit
             } else {
@@ -43,14 +55,13 @@ aggregate_rows <- function(X,
             }
         )
     } else {
-        method_opts <- eval(formals(orthogene:::aggregate_rows)$method)
+        method_opts <- eval(formals(aggregate_rows)$agg_method)
         stop_msg <- c(
-            "method must be one of:\n",
+            "agg_method must be one of:\n",
             paste("  -", method_opts, collapse = "\n")
         )
         stop(stop_msg)
-    }
-
+    } 
     #### Remove NA ####
     X_agg <- X_agg[(rownames(X_agg) != "NA") & (!is.na(rownames(X_agg))), ]
 
@@ -59,10 +70,12 @@ aggregate_rows <- function(X,
         X_agg <- as.matrix(X_agg)
     }
     if (as_sparse) {
-        X_agg <- methods::as(X_agg, "sparseMatrix")
+        X_agg <- to_sparse(X_agg)
     }
     if (as_DelayedArray) {
-        X_agg <- DelayedArray::DelayedArray(X_agg)
+        X_agg <- as_delayed_array(X_agg, 
+                                  as_DelayedArray=as_DelayedArray,
+                                  verbose=verbose)
     }
     return(X_agg)
 }

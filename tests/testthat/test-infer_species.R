@@ -45,5 +45,5 @@ test_that("infer_species works", {
     } 
     run_tests(method = "homologene") ## Fastest
     # run_tests(method = "gprofiler") ## Slowest
-    # run_tests(method = "babelgene") ## Slow-ish
+    run_tests(method = "babelgene") ## Slow-ish
 })

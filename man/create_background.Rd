@@ -43,7 +43,7 @@ user after removing duplicate genes.}
 \item{gene_map}{User-supplied \code{gene_map} data table from
 \link[orthogene]{map_orthologs} or \link[orthogene]{map_genes}.}
 
-\item{method}{R package to to use for gene mapping:
+\item{method}{R package to use for gene mapping:
 \itemize{
 \item{\code{"gprofiler"} : Slower but more species and genes.}
 \item{\code{"homologene"} : Faster but fewer species and genes.}

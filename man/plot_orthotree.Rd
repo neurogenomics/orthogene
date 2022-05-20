@@ -20,6 +20,7 @@ plot_orthotree(
     Tetrapods = c("Homo sapiens", "Mus musculus", "Gallus gallus", "Anolis carolinensis",
     "Xenopus tropicalis"), Vertebrates = c("Homo sapiens", "Mus musculus",
     "Gallus gallus", "Anolis carolinensis", "Xenopus tropicalis", "Danio rerio")),
+  scaling_factor = 1,
   show_plot = TRUE,
   save_paths = c(tempfile(fileext = ".ggtree.pdf"), tempfile(fileext = ".ggtree.png")),
   width = 10,
@@ -42,7 +43,7 @@ If \code{NULL}, then all species from the given database (\code{method})
 will be included (via \link[orthogene]{map_species}), 
 so long as they also exist in the \code{tree}.}
 
-\item{method}{R package to to use for gene mapping:
+\item{method}{R package to use for gene mapping:
 \itemize{
 \item{\code{"gprofiler"} : Slower but more species and genes.}
 \item{\code{"homologene"} : Faster but fewer species and genes.}
@@ -56,15 +57,15 @@ Also gives consensus scores for each gene mapping based on a
 \item{clades}{A named list of clades each containing list fo species
 to define the respective clade using \link[ggtree]{MRCA}.}
 
+\item{scaling_factor}{How much to scale y-axis parameters (e.g. offset) by.}
+
 \item{show_plot}{Whether to print the final tree plot.}
 
 \item{save_paths}{Paths to save plot to.}
 
-\item{width}{Plot size in \code{units} ("in", "cm", "mm", or "px").
-If not supplied, uses the size of current graphics device.}
+\item{width}{Saved plot width.}
 
-\item{height}{Plot size in \code{units} ("in", "cm", "mm", or "px").
-If not supplied, uses the size of current graphics device.}
+\item{height}{Saved plot height.}
 
 \item{mc.cores}{Number of cores to parallelise different steps with.}
 
@@ -91,5 +92,6 @@ describing how many orthologous genes each species shares with the
  \code{reference_species} ("human" by default).
 }
 \examples{
-orthotree <- orthogene::plot_orthotree(species = c("human","monkey","mouse"))
+orthotree <- orthogene::plot_orthotree(species = c("human","monkey","mouse"),
+                                       scaling_factor = .3)
 }

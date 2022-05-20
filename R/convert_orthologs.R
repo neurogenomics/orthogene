@@ -92,11 +92,14 @@
 #'  }
 #' }
 #'
+#' @param agg_fun Aggregation function passed to 
+#'  \link[orthogene]{aggregate_mapped_genes}. 
+#' Set to \code{NULL} to skip aggregation step (default). 
 #' @param mthreshold Maximum number of ortholog names per gene to show.
 #' Passed to \link[gprofiler2]{gorth}.
 #' Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}).
 #'
-#' @param method R package to to use for gene mapping:
+#' @param method R package to use for gene mapping:
 #' \itemize{
 #' \item{\code{"gprofiler"} : Slower but more species and genes.}
 #' \item{\code{"homologene"} : Faster but fewer species and genes.}
@@ -132,7 +135,7 @@
 #'  For more details, please see
 #' \href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
 #'  here}.
-#'
+#' @inheritParams aggregate_mapped_genes
 #'
 #' @return \code{gene_df} with  orthologs converted to the
 #' \code{output_species}.\cr
@@ -164,16 +167,22 @@ convert_orthologs <- function(gene_df,
                               ),
                               drop_nonorths = TRUE,
                               non121_strategy = "drop_both_species",
+                              agg_fun = NULL,
                               mthreshold = Inf,
                               as_sparse = FALSE,
+                              as_DelayedArray = FALSE,
                               sort_rows = FALSE,
                               verbose = TRUE,
                               ...) {
+    # echoverseTemplate:::source_all(packages = "dplyr")
+    # echoverseTemplate:::args2vars(convert_orthologs)
 
     #### Check gene_output ####
     check_gene_output(gene_output = gene_output)
     #### Check one2one_strategy is a valid option ####
-    one2one_strategy <- non121_strategy_opts(non121_strategy = non121_strategy)
+    one2one_strategy <- non121_strategy_opts(
+        non121_strategy = non121_strategy
+    )
     #### Check other args are compatible with non121_strategy="kp" ####
     check_keep_popular_out <- check_keep_popular(
         one2one_strategy = one2one_strategy,
@@ -185,14 +194,14 @@ convert_orthologs <- function(gene_df,
     #### Check other args are compatible with aggregation ####
     check_agg_args_out <- check_agg_args(
         gene_df = gene_df,
-        non121_strategy = non121_strategy,
+        agg_fun = agg_fun,
         gene_input = gene_input,
         gene_output = gene_output,
         drop_nonorths = drop_nonorths,
         return_args = TRUE,
         verbose = verbose
     )
-    non121_strategy <- check_agg_args_out$non121_strategy
+    agg_fun <- check_agg_args_out$agg_fun
     gene_input <- check_agg_args_out$gene_input
     gene_output <- check_agg_args_out$gene_output
     drop_nonorths <- check_agg_args_out$drop_nonorths
@@ -201,11 +210,13 @@ convert_orthologs <- function(gene_df,
         gene_output = gene_output,
         drop_nonorths = drop_nonorths,
         non121_strategy = non121_strategy,
+        as_sparse = as_sparse,
         verbose = verbose
     )
     gene_output <- check_rownames_args_out$gene_output
     drop_nonorths <- check_rownames_args_out$drop_nonorths
     non121_strategy <- check_rownames_args_out$non121_strategy
+    as_sparse <- check_rownames_args_out$as_sparse
     #### Standardise input data ####
     check_gene_df_type_out <- check_gene_df_type(
         gene_df = gene_df,
@@ -269,7 +280,9 @@ convert_orthologs <- function(gene_df,
         gene_output = gene_output,
         drop_nonorths = drop_nonorths,
         non121_strategy = non121_strategy,
+        agg_fun = agg_fun,
         as_sparse = as_sparse,
+        as_DelayedArray = as_DelayedArray,
         sort_rows = sort_rows,
         standardise_genes = standardise_genes,
         verbose = verbose

@@ -17,9 +17,14 @@ all_genes(
 \item{species}{Species to get all genes for.
 Will first be standardised with \code{map_species}.}
 
-\item{method}{R package to to use for gene mapping:
-\code{"gprofiler"} (slower but more species and genes) or
-\code{"homologene"} (faster but fewer species and genes).}
+\item{method}{R package to use for gene mapping:
+\itemize{
+\item{\code{"gprofiler"} : Slower but more species and genes.}
+\item{\code{"homologene"} : Faster but fewer species and genes.}
+\item{\code{"babelgene"} : Faster but fewer species and genes.
+Also gives consensus scores for each gene mapping based on a
+ several different data sources.}
+}}
 
 \item{ensure_filter_nas}{Perform an extra check to remove
 genes that are \code{NA}s of any kind.}
@@ -30,8 +35,15 @@ genes that are \code{NA}s of any kind.}
 \item{verbose}{Print messages.}
 
 \item{...}{Additional arguments to be passed to
-\link[gprofiler2]{gconvert} when
-\code{method="gprofiler"}.}
+\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr
+\emph{NOTE}: To return only the most "popular"
+interspecies ortholog mappings,
+supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above.
+This procedure tends to yield a greater number of returned genes but at
+ the cost of many of them not being true biological 1:1 orthologs.\cr\cr
+ For more details, please see
+\href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
+ here}.}
 }
 \value{
 Table with all gene symbols

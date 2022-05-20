@@ -8,16 +8,13 @@ test_that("aggregate_mapped_genes works", {
     # so good to use more than once.
     gene_map <- map_orthologs(
         genes = rownames(exp_mouse),
-        input_species = "mouse",
-        # Failing with homologene/babelgene currently 
-        method = "gprofiler"
+        input_species = "mouse", 
+        method = "homologene"
     )
     agg_exp <- orthogene::aggregate_mapped_genes(
-        gene_df = exp_mouse,
-        species = "mouse",
-        FUN = "sum",
+        gene_df = exp_mouse, 
         gene_map = gene_map,
-        gene_map_col = "ortholog_gene"
+        agg_fun = "sum"
     )
     testthat::expect_lte(nrow(agg_exp), nrow(exp_mouse))
     testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp))
@@ -27,8 +24,8 @@ test_that("aggregate_mapped_genes works", {
     data("exp_mouse_enst")
     agg_enst <- aggregate_mapped_genes(
         gene_df = exp_mouse_enst,
-        species = "mouse",
-        FUN = "sum"
+        input_species = "mouse",
+        agg_fun = "sum"
     )
     testthat::expect_lte(nrow(agg_enst), nrow(exp_mouse_enst))
     testthat::expect_true(orthogene:::is_sparse_matrix(agg_enst))
@@ -36,28 +33,26 @@ test_that("aggregate_mapped_genes works", {
     
     
     #### Aggregate DelayedArray ####
-    exp_da <- orthogene:::as_delayed_array(exp_mouse) 
+    exp_da <- orthogene:::as_delayed_array(exp_mouse)
     agg_exp <- aggregate_mapped_genes(
         gene_df = exp_da,
-        species = "mouse",
-        FUN = "sum" ,
-        gene_map = gene_map,
-        gene_map_col = "ortholog_gene"
+        input_species = "mouse",
+        agg_fun = "sum" ,
+        gene_map = gene_map
     )
     testthat::expect_lte(nrow(agg_exp), nrow(exp_da))
     testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp)) 
     testthat::expect_equal(ncol(agg_exp), ncol(exp_da))
     
     
-    #### Aggregate: method="stats" ####
+    #### Aggregate: method="stats": without supplied gene_map ####
     exp_da <- orthogene:::as_delayed_array(exp_mouse) 
     agg_exp <- orthogene::aggregate_mapped_genes(
-        gene_df = exp_da,
-        species = "mouse",
-        FUN = "sum" ,
-        gene_map = gene_map,
-        gene_map_col = "ortholog_gene",
-        method = "stats"
+        gene_df = exp_da, 
+        input_species = "mouse",
+        output_species = "human",
+        agg_fun = "sum",
+        agg_method = "stats",
     )
     testthat::expect_lte(nrow(agg_exp), nrow(exp_da))
     testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp)) 

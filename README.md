@@ -54,7 +54,7 @@ In brief, `orthogene` lets you easily:
 If you use `orthogene`, please cite:
 
 > Brian Schilder (NA). orthogene: Interspecies gene mapping. R package
-> version 1.1.5. <https://github.com/neurogenomics/orthogene>,
+> version 1.0.1. <https://github.com/neurogenomics/orthogene>,
 > <https://doi.org/doi:10.18129/B9.bioc.orthogene>
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
@@ -82,13 +82,7 @@ here](https://neurogenomics.github.io/orthogene/articles/docker).
 
 ``` r
 library(orthogene)
-```
 
-    ## Registered S3 method overwritten by 'ggtree':
-    ##   method      from 
-    ##   identify.gg ggfun
-
-``` r
 data("exp_mouse")
 # Setting to "homologene" for the purposes of quick demonstration.
 # We generally recommend using method="gprofiler" (default).
@@ -259,50 +253,45 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_1.1.5
+    ## [1] orthogene_1.0.1
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] httr_1.4.2                tidyr_1.2.0              
-    ##  [3] jsonlite_1.8.0            viridisLite_0.4.0        
-    ##  [5] carData_3.0-5             gprofiler2_0.2.1         
-    ##  [7] assertthat_0.2.1          BiocManager_1.30.16      
-    ##  [9] rvcheck_0.2.1             highr_0.9                
-    ## [11] yulab.utils_0.0.4         yaml_2.3.5               
-    ## [13] pillar_1.7.0              backports_1.4.1          
-    ## [15] lattice_0.20-45           glue_1.6.2               
-    ## [17] digest_0.6.29             RColorBrewer_1.1-2       
-    ## [19] ggsignif_0.6.3            colorspace_2.0-3         
-    ## [21] ggfun_0.0.6               htmltools_0.5.2          
-    ## [23] Matrix_1.4-0              pkgconfig_2.0.3          
-    ## [25] babelgene_22.3            broom_0.7.12             
-    ## [27] purrr_0.3.4               patchwork_1.1.1          
-    ## [29] tidytree_0.3.9            scales_1.1.1             
-    ## [31] ggplotify_0.1.0           tibble_3.1.6             
-    ## [33] generics_0.1.2            car_3.0-12               
-    ## [35] ggplot2_3.3.5             ellipsis_0.3.2           
-    ## [37] ggpubr_0.4.0              lazyeval_0.2.2           
-    ## [39] cli_3.2.0                 magrittr_2.0.3           
-    ## [41] crayon_1.5.1              evaluate_0.15            
-    ## [43] badger_0.2.0              fansi_1.0.3              
-    ## [45] nlme_3.1-155              rstatix_0.7.0            
-    ## [47] homologene_1.4.68.19.3.27 tools_4.1.3              
-    ## [49] data.table_1.14.2         lifecycle_1.0.1          
-    ## [51] stringr_1.4.0             plotly_4.10.0            
-    ## [53] aplot_0.1.3               ggtree_3.2.1             
-    ## [55] munsell_0.5.0             compiler_4.1.3           
-    ## [57] gridGraphics_0.5-1        rlang_1.0.2              
-    ## [59] grid_4.1.3                rstudioapi_0.13          
-    ## [61] htmlwidgets_1.5.4         rmarkdown_2.13           
-    ## [63] gtable_0.3.0              abind_1.4-5              
-    ## [65] DBI_1.1.2                 R6_2.5.1                 
-    ## [67] knitr_1.38                dplyr_1.0.8              
-    ## [69] fastmap_1.1.0             utf8_1.2.2               
-    ## [71] rprojroot_2.0.3           treeio_1.18.1            
-    ## [73] dlstats_0.1.4             desc_1.4.1               
-    ## [75] ape_5.6-2                 stringi_1.7.6            
-    ## [77] parallel_4.1.3            Rcpp_1.0.8.3             
-    ## [79] vctrs_0.4.0               tidyselect_1.1.2         
-    ## [81] xfun_0.30
+    ##  [1] lattice_0.20-45           tidyr_1.2.0              
+    ##  [3] assertthat_0.2.1          rprojroot_2.0.3          
+    ##  [5] digest_0.6.29             utf8_1.2.2               
+    ##  [7] R6_2.5.1                  backports_1.4.1          
+    ##  [9] evaluate_0.15             highr_0.9                
+    ## [11] httr_1.4.2                ggplot2_3.3.5            
+    ## [13] pillar_1.7.0              yulab.utils_0.0.4        
+    ## [15] rlang_1.0.2               lazyeval_0.2.2           
+    ## [17] rstudioapi_0.13           data.table_1.14.2        
+    ## [19] car_3.0-12                Matrix_1.4-0             
+    ## [21] rmarkdown_2.13            desc_1.4.1               
+    ## [23] stringr_1.4.0             htmlwidgets_1.5.4        
+    ## [25] dlstats_0.1.4             munsell_0.5.0            
+    ## [27] broom_0.7.12              compiler_4.1.3           
+    ## [29] gprofiler2_0.2.1          xfun_0.30                
+    ## [31] pkgconfig_2.0.3           htmltools_0.5.2          
+    ## [33] tidyselect_1.1.2          tibble_3.1.6             
+    ## [35] GenomeInfoDbData_1.2.7    viridisLite_0.4.0        
+    ## [37] fansi_1.0.3               crayon_1.5.1             
+    ## [39] dplyr_1.0.8               ggpubr_0.4.0             
+    ## [41] grid_4.1.3                jsonlite_1.8.0           
+    ## [43] gtable_0.3.0              lifecycle_1.0.1          
+    ## [45] DBI_1.1.2                 magrittr_2.0.3           
+    ## [47] scales_1.1.1              cli_3.2.0                
+    ## [49] stringi_1.7.6             carData_3.0-5            
+    ## [51] ggsignif_0.6.3            ellipsis_0.3.2           
+    ## [53] rvcheck_0.2.1             generics_0.1.2           
+    ## [55] vctrs_0.4.0               RColorBrewer_1.1-2       
+    ## [57] tools_4.1.3               homologene_1.4.68.19.3.27
+    ## [59] glue_1.6.2                purrr_0.3.4              
+    ## [61] parallel_4.1.3            abind_1.4-5              
+    ## [63] fastmap_1.1.0             yaml_2.3.5               
+    ## [65] babelgene_22.3            colorspace_2.0-3         
+    ## [67] BiocManager_1.30.16       rstatix_0.7.0            
+    ## [69] plotly_4.10.0             badger_0.2.0             
+    ## [71] knitr_1.38                patchwork_1.1.1
 
 </details>
 

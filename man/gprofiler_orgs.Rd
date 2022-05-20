@@ -6,15 +6,23 @@
 \title{Reference organisms}
 \format{
 \code{data.frame}
-\code{
- URL <- 'https://biit.cs.ut.ee/gprofiler/api/util/organisms_list'
- gprofiler_orgs <- jsonlite::fromJSON(URL)
- gprofiler_orgs <-  dplyr::arrange(gprofiler_orgs, scientific_name)
- usethis::use_data(gprofiler_orgs, overwrite = TRUE, internal=TRUE)
-}
 }
 \source{
 \href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler site}
+
+\code{
+# NOTE!: Must run usethis::use_data for all internal data at once.
+# otherwise, the prior internal data will be overwritten.
+#### Internal data 1: gprofiler_namespace ####
+ #### Manually-prepared CSV ####
+ path <- "~/Downloads/gconvert_namespace.csv"
+ gprofiler_namespace <- data.table::fread(path)  
+ #### Internal data 2: gprofiler_orgs
+ gprofiler_orgs <- orthogene:::get_orgdb_gprofiler(use_local=FALSE)
+ #### Save ####
+ usethis::use_data(gprofiler_orgs,gprofiler_namespace,
+  overwrite = TRUE, internal=TRUE) 
+}
 }
 \usage{
 gprofiler_orgs

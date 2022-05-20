@@ -16,6 +16,7 @@ aggregate_rows_monocle3 <- function(x,
     form <- stats::as.formula(form)
     mapping <- Matrix.utils::dMcast(groupings2, form)
     colnames(mapping) <- substring(colnames(mapping), 2)
+    ### This step throws an error when gene mappings are 1:many or many:many.
     result <- Matrix::t(mapping) %*% x
     if (fun == "mean") {
         result <- result / as.numeric(table(groupings)[rownames(result)])

@@ -18,9 +18,12 @@
 #'  to define the respective clade using \link[ggtree]{MRCA}. 
 #' @param show_plot Whether to print the final tree plot.
 #' @param save_paths Paths to save plot to.
+#' @param height Saved plot height.
+#' @param width Saved plot width. 
 #' @param mc.cores Number of cores to parallelise different steps with.  
 #' @inheritParams report_orthologs 
 #' @inheritParams map_species 
+#' @inheritParams ggtree_plot 
 #' @inheritParams ggplot2::ggsave 
 #' 
 #' @source \href{https://yulab-smu.top/treedata-book/chapter8.html#phylopic}{
@@ -41,8 +44,9 @@
 #' } 
 #' @export
 #' @importFrom methods show
-#' @examples 
-#' orthotree <- orthogene::plot_orthotree(species = c("human","monkey","mouse"))
+#' @examples
+#' orthotree <- orthogene::plot_orthotree(species = c("human","monkey","mouse"),
+#'                                        scaling_factor = .3)
 plot_orthotree <- function(tree = NULL,
                            orth_report = NULL,
                            species = NULL,
@@ -74,6 +78,7 @@ plot_orthotree <- function(tree = NULL,
                                                        "Xenopus tropicalis",
                                                        "Danio rerio")
                                          ),
+                           scaling_factor = 1,
                            show_plot = TRUE,
                            save_paths = c(
                                tempfile(fileext = ".ggtree.pdf"),
@@ -137,7 +142,7 @@ plot_orthotree <- function(tree = NULL,
     #### plot #### 
     p <- ggtree_plot(tr = tr,
                      d = d,
-                     scaling_factor = 1,
+                     scaling_factor = scaling_factor,
                      clades = clades,
                      reference_species = reference_species, 
                      verbose = verbose)  

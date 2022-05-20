@@ -50,12 +50,12 @@ If set to \code{NULL}, will default to a list of humans and
  it will automatically pull all species from that respective package and 
  test against each of them:  
  \itemize{
- \item{"homologene"}{20+ species (default)}
- \item{"gprofiler"}{700+ species}
- \item{"babelgene"}{19 species}
+ \item{"homologene" : }{20+ species (default)}
+ \item{"gprofiler" : }{700+ species}
+ \item{"babelgene" : }{19 species}
  }}
 
-\item{method}{R package to to use for gene mapping:
+\item{method}{R package to use for gene mapping:
 \itemize{
 \item{\code{"gprofiler"} : Slower but more species and genes.}
 \item{\code{"homologene"} : Faster but fewer species and genes.}
@@ -82,5 +82,5 @@ the genes from each \code{test_species}.
 \examples{
  
 data("exp_mouse") 
-matches <- infer_species(gene_df = exp_mouse[1:200,])
+matches <- orthogene::infer_species(gene_df = exp_mouse[1:200,])
 }

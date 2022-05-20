@@ -9,7 +9,7 @@ map_orthologs(
   standardise_genes = FALSE,
   input_species,
   output_species = "human",
-  method = c("gprofiler", "homologene"),
+  method = c("gprofiler", "homologene", "babelgene"),
   mthreshold = Inf,
   verbose = TRUE,
   ...
@@ -34,7 +34,7 @@ of available species.}
 Use \link[orthogene]{map_species} to return a full list
  of available species.}
 
-\item{method}{R package to to use for gene mapping:
+\item{method}{R package to use for gene mapping:
 \itemize{
 \item{\code{"gprofiler"} : Slower but more species and genes.}
 \item{\code{"homologene"} : Faster but fewer species and genes.}

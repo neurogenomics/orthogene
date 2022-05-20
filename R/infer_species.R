@@ -11,9 +11,9 @@
 #'  it will automatically pull all species from that respective package and 
 #'  test against each of them:  
 #'  \itemize{
-#'  \item{"homologene"}{20+ species (default)}
-#'  \item{"gprofiler"}{700+ species}
-#'  \item{"babelgene"}{19 species}
+#'  \item{"homologene" : }{20+ species (default)}
+#'  \item{"gprofiler" : }{700+ species}
+#'  \item{"babelgene" : }{19 species}
 #'  }  
 #' @param make_plot Make a plot of the results.
 #' @param show_plot Print the plot of the results.
@@ -28,7 +28,7 @@
 #' @importFrom utils capture.output
 #' @examples  
 #' data("exp_mouse") 
-#' matches <- infer_species(gene_df = exp_mouse[1:200,])
+#' matches <- orthogene::infer_species(gene_df = exp_mouse[1:200,])
 infer_species <- function(gene_df,
                           gene_input = "rownames",
                           test_species = c("human",

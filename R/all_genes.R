@@ -6,18 +6,12 @@
 #' \link[gprofiler2]{gconvert}.
 #'
 #' @param species Species to get all genes for.
-#' Will first be standardised with \code{map_species}.
-#' @param method R package to to use for gene mapping:
-#' \code{"gprofiler"} (slower but more species and genes) or
-#' \code{"homologene"} (faster but fewer species and genes).
-#' @param ... Additional arguments to be passed to
-#'  \link[gprofiler2]{gconvert} when
-#'  \code{method="gprofiler"}.
+#' Will first be standardised with \code{map_species}. 
 #' @param ensure_filter_nas Perform an extra check to remove
 #' genes that are \code{NA}s of any kind.
 #' @param run_map_species Standardise \code{species} names with 
-#' \link[orthogene]{map_species} first (Default: \code{TRUE}). 
-#' @param verbose Print messages.
+#' \link[orthogene]{map_species} first (Default: \code{TRUE}).  
+#' @inheritParams convert_orthologs
 #'
 #' @returns Table with all gene symbols
 #'  from the given \code{species}.

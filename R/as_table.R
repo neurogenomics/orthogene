@@ -6,8 +6,10 @@ as_table <- function(gene_input,
                      standardise_genes,
                      drop_nonorths,
                      non121_strategy,
+                     agg_fun,
                      sort_rows,
                      as_sparse,
+                     as_DelayedArray,
                      verbose = TRUE) {
 
     #### Create input dictionary ####
@@ -39,20 +41,28 @@ as_table <- function(gene_input,
     #### Aggregate matrix ####
     # You don't need to rename rownames if you aggregate
     # bc this is done by aggregate_mapped_genes.
-    if (check_agg_args(
-        gene_df = gene_df2,
-        non121_strategy = non121_strategy,
-        gene_input = gene_input,
-        gene_output = gene_output,
-        drop_nonorths = drop_nonorths,
-        verbose = verbose
-    )) {
-        gene_df2 <- aggregate_mapped_genes_twice(
-            gene_df2 = gene_df2,
-            non121_strategy = non121_strategy,
-            gene_map = gene_map,
-            verbose = verbose
-        )
+    strategy_valid <- check_agg_args(
+                    gene_df = gene_df2,
+                    agg_fun = agg_fun,
+                    gene_input = gene_input,
+                    gene_output = gene_output,
+                    drop_nonorths = drop_nonorths,
+                    verbose = verbose
+                )
+    if (strategy_valid) { 
+        #### Aggregate/expand matrix ####
+        ## Can now handle 1:1, many:1, 1:many, or many:many.
+        gene_df2 <- aggregate_mapped_genes(gene_df = gene_df2,
+                                           gene_map = gene_map, 
+                                           agg_fun = agg_fun,
+                                           input_col = "input_gene",
+                                           output_col = "ortholog_gene",
+                                           aggregate_orthologs = TRUE,
+                                           as_sparse = as_sparse,
+                                           as_DelayedArray = as_DelayedArray,
+                                           dropNA = drop_nonorths,
+                                           sort_rows = sort_rows,
+                                           verbose = verbose)
         gene_output <- "rownames"
     } else {
         gene_df2 <- add_rowcol_names(
@@ -60,6 +70,26 @@ as_table <- function(gene_input,
             orth_dict = orth_dict,
             genes2 = genes2,
             gene_output = gene_output,
+            verbose = verbose
+        )
+        #### Sort rows ####
+        if (sort_rows) {
+            gene_df2 <- sort_rows_func(
+                gene_df = gene_df2,
+                verbose = verbose
+            )
+        }
+        #### Convert to sparse matrix ####
+        if (as_sparse) {
+            gene_df2 <- to_sparse(
+                gene_df2 = gene_df2,
+                verbose = verbose
+            )
+        }
+        #### Convert to DelayedArray ####
+        gene_df2 <- as_delayed_array(
+            exp = gene_df2,
+            as_DelayedArray = as_DelayedArray,
             verbose = verbose
         )
     }
@@ -75,20 +105,6 @@ as_table <- function(gene_input,
             standardise_genes = standardise_genes,
             verbose = verbose
         )
-    }
-    #### Sort rows ####
-    if (sort_rows) {
-        gene_df2 <- sort_rows_func(
-            gene_df = gene_df2,
-            verbose = verbose
-        )
-    }
-    #### Convert to sparse matrix ####
-    if (as_sparse) {
-        gene_df2 <- to_sparse(
-            gene_df2 = gene_df2,
-            verbose = verbose
-        )
-    }
+    } 
     return(gene_df2)
 }

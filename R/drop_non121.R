@@ -19,7 +19,7 @@ drop_non121 <- function(gene_map,
         (length(dup_input_genes) > 0)) {
         messager("Dropping",
             formatC(length(dup_input_genes), big.mark = ","),
-            "genes that have multiple input_gene per ortholog_gene.",
+            "genes that have multiple input_gene per ortholog_gene (many:1).",
             v = verbose
         )
         gene_map <- gene_map[!gene_map$input_gene %in% dup_input_genes, ]
@@ -29,7 +29,7 @@ drop_non121 <- function(gene_map,
         (length(dup_ortholog_genes) > 0)) {
         messager("Dropping",
             formatC(length(dup_ortholog_genes), big.mark = ","),
-            "genes that have multiple ortholog_gene per input_gene.",
+            "genes that have multiple ortholog_gene per input_gene (1:many).",
             v = verbose
         )
         gene_map <- gene_map[!gene_map$ortholog_gene %in% dup_ortholog_genes, ]

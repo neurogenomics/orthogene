@@ -156,7 +156,8 @@ test_that("convert_orthologs works", {
         input_species = "mouse",
         gene_input = "rownames",
         gene_output = "rownames",
-        non121_strategy = "sum",
+        non121_strategy = "kbs",
+        agg_fun = "sum",
         as_sparse = TRUE,
         method = method
     )

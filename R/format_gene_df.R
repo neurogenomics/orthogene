@@ -5,9 +5,11 @@ format_gene_df <- function(gene_df,
                            gene_output,
                            drop_nonorths,
                            non121_strategy,
+                           agg_fun,
                            standardise_genes,
                            sort_rows,
                            as_sparse,
+                           as_DelayedArray,
                            verbose = TRUE) {
 
     #### Use only 1st gene_output item if is a list ####
@@ -48,8 +50,10 @@ format_gene_df <- function(gene_df,
             standardise_genes = standardise_genes,
             drop_nonorths = drop_nonorths,
             non121_strategy = non121_strategy,
+            agg_fun = agg_fun,
             sort_rows = sort_rows,
             as_sparse = as_sparse,
+            as_DelayedArray = as_DelayedArray,
             verbose = verbose
         )
         #### Report ####

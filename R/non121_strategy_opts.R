@@ -1,5 +1,5 @@
 non121_strategy_opts <- function(non121_strategy = NULL,
-                                 include_agg = TRUE) {
+                                 include_agg = FALSE) {
     dbs_opts <- setNames(
         rep("dbs", 3),
         c("drop_both_species", "dbs", 1)
@@ -21,7 +21,7 @@ non121_strategy_opts <- function(non121_strategy = NULL,
             as.character(tolower(FALSE))
         )
     )
-    kp_opts <- setNames(rep("kp", 3), c("keep_popular", "kp", 5))
+    kp_opts <- stats::setNames(rep("kp", 3), c("keep_popular", "kp", 5))
     #### Concat ####
     all_opts <- c(dbs_opts, dis_opts, dos_opts, kbs_opts, kp_opts)
     #### Aggregation options ####
