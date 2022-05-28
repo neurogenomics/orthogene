@@ -5,7 +5,7 @@ test_that("plot_orthotree works", {
   orthotree_hg <- orthogene::plot_orthotree(species=species, 
                                             method = "homologene")
   ### babelgene ####
-  orthotree_bg <- orthogene:: plot_orthotree(species=species, 
+  orthotree_bg <- orthogene::plot_orthotree(species = species, 
                                              # save_paths = c("~/Desktop/ggtree.pdf",
                                              #                "~/Desktop/ggtree.png")
                                              method = "babelgene")
@@ -14,7 +14,7 @@ test_that("plot_orthotree works", {
   # orthotree_gp <- orthogene::plot_orthotree(species = species,
   #                                           method = "gprofiler")
   
-  for(orthotree in list(orthotree_hg, orthotree_bg)){
+  for(orthotree in list(orthotree_hg, orthotree_bg)){ 
     testthat::expect_true(
       all(c("plot","tree","orth_report","metadata") %in% names(orthotree))
     )
@@ -24,7 +24,7 @@ test_that("plot_orthotree works", {
     testthat::expect_true(methods::is(orthotree$metadata,"data.frame"))
     testthat::expect_true(methods::is(orthotree$clades,"data.frame"))
     testthat::expect_equal(length(species), length(orthotree$tree$tip.label))
-    testthat::expect_equal(unname(orthotree$tree$tip.label),
-                           c("Homo sapiens","Macaca mulatta","Mus musculus"))
+    testthat::expect_equal(sort(unname(orthotree$tree$tip.label)),
+                           sort(c("Homo sapiens","Macaca mulatta","Mus musculus")))
   } 
 })

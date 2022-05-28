@@ -12,7 +12,7 @@
 #' \href{http://www.timetree.org/public/data/TimetreeOfLife2015.nwk}{
 #' TimeTree >50k species} phylogenetic tree.}
 #' \item{"OmaDB":\cr}{Construct a tree from \href{omabrowser.org}{OMA} 
-#' (Orthologous Matrix browser) via the \link[OmaDb]{getTaxonomy} function.
+#' (Orthologous Matrix browser) via the \link[OmaDB]{getTaxonomy} function.
 #' \emph{NOTE: } Does not contain branch lengths,
 #'  and therefore may have limited utility.}
 #' \item{"UCSC":\cr}{Import and prune the 
