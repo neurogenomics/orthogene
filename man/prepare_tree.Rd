@@ -5,12 +5,11 @@
 \title{Prepare a phylogenetic tree}
 \usage{
 prepare_tree(
-  tree_path = file.path("http://hgdownload.soe.ucsc.edu/goldenPath",
-    "hg38/multiz100way", "hg38.100way.scientificNames.nh"),
+  tree_source = "timetree",
   species = NULL,
   output_format = "scientific_name",
   run_map_species = c(TRUE, TRUE),
-  method = c("gprofiler", "homologene", "babelgene"),
+  method = c("homologene", "gprofiler", "babelgene"),
   force_ultrametric = TRUE,
   age_max = NULL,
   show_plot = TRUE,
@@ -19,8 +18,21 @@ prepare_tree(
 )
 }
 \arguments{
-\item{tree_path}{Local path or URL to tree to import with
-\link[ape]{read.tree}.}
+\item{tree_source}{Can be one of the following:
+\itemize{
+\item{"timetree":\cr}{Import and prune the
+\href{http://www.timetree.org/public/data/TimetreeOfLife2015.nwk}{
+TimeTree >50k species} phylogenetic tree.}
+\item{"OmaDB":\cr}{Construct a tree from \href{omabrowser.org}{OMA} 
+(Orthologous Matrix browser) via the \link[OmaDb]{getTaxonomy} function.
+\emph{NOTE: } Does not contain branch lengths,
+ and therefore may have limited utility.}
+\item{"UCSC":\cr}{Import and prune the 
+\href{https://hgdownload.soe.ucsc.edu/goldenPath/hg38/multiz100way/}{
+UCSC 100-way alignment} phylogenetic tree (hg38 version).}
+\item{"<path>":\cr}{Read a tree from a newick text file 
+from a local or remote URL using \link[ape]{read.tree}.}  
+}}
 
 \item{species}{Species names to subset the tree by 
 (after \code{standardise_species} step).}

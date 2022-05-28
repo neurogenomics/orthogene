@@ -13,6 +13,7 @@ plot_orthotree(
   orth_report = NULL,
   species = NULL,
   method = c("homologene", "gprofiler", "babelgene"),
+  non121_strategy = "drop_both_species",
   reference_species = "human",
   clades = list(Primates = c("Homo sapiens", "Macaca mulatta"), Eutherians =
     c("Homo sapiens", "Mus musculus", "Bos taurus"), Mammals = c("Homo sapiens",
@@ -50,6 +51,35 @@ so long as they also exist in the \code{tree}.}
 \item{\code{"babelgene"} : Faster but fewer species and genes.
 Also gives consensus scores for each gene mapping based on a
  several different data sources.}
+}}
+
+\item{non121_strategy}{How to handle genes that don't have
+1:1 mappings between \code{input_species}:\code{output_species}.
+Options include:\cr
+\itemize{
+\item{\code{"drop_both_species" or "dbs" or 1} : \cr}{
+Drop genes that have duplicate
+mappings in either the \code{input_species} or \code{output_species} \cr
+(\emph{DEFAULT}).}
+\item{\code{"drop_input_species" or "dis" or 2} : \cr}{
+Only drop genes that have duplicate
+mappings in the \code{input_species}.}
+\item{\code{"drop_output_species" or "dos" or 3} : \cr}{
+Only drop genes that have duplicate
+mappings in the \code{output_species}.}
+\item{\code{"keep_both_species" or "kbs" or 4} : \cr}{
+Keep all genes regardless of whether
+they have duplicate mappings in either species.}
+\item{\code{"keep_popular" or "kp" or 5} : \cr}{
+Return only the most "popular" interspecies ortholog mappings.
+ This procedure tends to yield a greater number of returned genes
+ but at the cost of many of them not being true biological 1:1 orthologs.}
+ \item{\code{"sum","mean","median","min" or "max"} : \cr}{
+ When \code{gene_df} is a matrix and \code{gene_output="rownames"},
+  these options will aggregate many-to-one gene mappings
+  (\code{input_species}-to-\code{output_species})
+  after dropping any duplicate genes in the \code{output_species}.
+ }
 }}
 
 \item{reference_species}{Reference species.}

@@ -6,8 +6,21 @@
 #'  both the tree and the \code{species} argument will first be standardised
 #'  using \link[orthogene]{map_species}. 
 #' 
-#' @param tree_path Local path or URL to tree to import with
-#'  \link[ape]{read.tree}.
+#' @param tree_source Can be one of the following:
+#' \itemize{
+#' \item{"timetree":\cr}{Import and prune the
+#' \href{http://www.timetree.org/public/data/TimetreeOfLife2015.nwk}{
+#' TimeTree >50k species} phylogenetic tree.}
+#' \item{"OmaDB":\cr}{Construct a tree from \href{omabrowser.org}{OMA} 
+#' (Orthologous Matrix browser) via the \link[OmaDb]{getTaxonomy} function.
+#' \emph{NOTE: } Does not contain branch lengths,
+#'  and therefore may have limited utility.}
+#' \item{"UCSC":\cr}{Import and prune the 
+#' \href{https://hgdownload.soe.ucsc.edu/goldenPath/hg38/multiz100way/}{
+#' UCSC 100-way alignment} phylogenetic tree (hg38 version).}
+#' \item{"<path>":\cr}{Read a tree from a newick text file 
+#' from a local or remote URL using \link[ape]{read.tree}.}  
+#' } 
 #' @param species Species names to subset the tree by 
 #' (after \code{standardise_species} step). 
 #' @param run_map_species Whether to first standardise species names with 
@@ -28,17 +41,13 @@
 #' @examples 
 #' species <- c("human","chimp","mouse")
 #' tr <- orthogene::prepare_tree(species = species)
-prepare_tree <- function(tree_path = 
-                             file.path(
-                                 "http://hgdownload.soe.ucsc.edu/goldenPath",
-                                 "hg38/multiz100way",
-                                 "hg38.100way.scientificNames.nh"),
+prepare_tree <- function(tree_source = "timetree", 
                          species = NULL,
                          output_format = "scientific_name",
                          run_map_species = c(TRUE, TRUE),
                          method = c(
-                             "gprofiler",
                              "homologene",
+                             "gprofiler", 
                              "babelgene"
                          ),
                          force_ultrametric = TRUE,
@@ -51,13 +60,42 @@ prepare_tree <- function(tree_path =
     requireNamespace("TreeTools")
     
     method <- tolower(method)[1]
-    # if(any(endsWith(tree_path,c("nh","nhx")))){
-    #     requireNamespace("treeio")
-    #     tr <- treeio::read.nhx(file = tree_path) 
-    # } else {
-        tr <- ape::read.tree(file = tree_path)
-    # } 
-    if(!ape::is.ultrametric(tr) && force_ultrametric){
+    if(tolower(tree_source) %in% c("omadb","oma")){
+        requireNamespace("OmaDB")
+        txt <- OmaDB::getTaxonomy(members=paste(species,collapse = ","))$newick
+        tr <- OmaDB::getTree(newick = txt) 
+      
+    } else if(tolower(tree_source)=="ucsc"){
+        tree_source <- paste(
+            "http://hgdownload.soe.ucsc.edu/goldenPath",
+            "hg38/multiz100way",
+            "hg38.100way.scientificNames.nh",sep="/"
+            )
+        tr <- ape::read.tree(file = tree_source)
+    } else if(tolower(tree_source) %in% c("timetree")){
+        #### >50k species #####
+        tree_source <- paste("http://www.timetree.org/public/data",
+                             "TimetreeOfLife2015.nwk",sep="/")
+        tr <- ape::read.tree(file = tree_source)
+        ## Filter early, bc mapping all 50k species would take too long.
+        species <- map_species(species = species,
+                               output_format = "scientific_name",
+                               method = method,
+                               verbose = FALSE)
+        species_ <- gsub(" +","_",species)
+        unmapped <- !tr$tip.label %in% species_
+        tr <- ape::drop.tip(
+            phy = tr, 
+            tip = tr$tip.label[unmapped]) 
+    }else {
+        # if(any(endsWith(tree_source,c("nh","nhx")))){
+        #     requireNamespace("treeio")
+        #     tr <- treeio::read.nhx(file = tree_source) 
+        # } else {
+        tr <- ape::read.tree(file = tree_source)
+        # } 
+    } 
+    if(!force_ultrametric){
         tr <- phytools::force.ultrametric(tr)
     } 
     #### Find which species are in both homologene and 100-way tree ####

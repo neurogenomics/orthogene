@@ -17,16 +17,18 @@ output:
   github_document
 ---
 
+```{r, echo=FALSE, include=FALSE}
+pkg <- read.dcf("DESCRIPTION", fields = "Package")[1]
+title <- read.dcf("DESCRIPTION", fields = "Title")[1]
+description <- read.dcf("DESCRIPTION", fields = "Description")[1]
+URL <- read.dcf('DESCRIPTION', fields = 'URL')[1]
+owner <- tolower(strsplit(URL,"/")[[1]][4])
+```
+ 
 # Intro 
 
-`orthogene` is an R package for easy mapping of orthologous genes 
-across hundreds of species.   
-It pulls up-to-date interspecies gene ortholog mappings across 700+ organisms. 
-
-It also provides various utility functions to map common objects 
-(e.g. data.frames, gene expression matrices, lists) 
-onto 1:1 gene orthologs from any other species. 
-
+`r description`
+ 
 In brief, `orthogene` lets you easily: 
 
 - [**`convert_orthologs`** between any two species](https://neurogenomics.github.io/orthogene/articles/orthogene#convert-orthologs) 
@@ -35,13 +37,14 @@ In brief, `orthogene` lets you easily:
 - [**`map_genes`** onto standard ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene#map-genes) 
 - [**`aggregate_mapped_genes`** in a matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes)  
 - [get **`all_genes`** from any species](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes) 
-- [**`infer_species`** from gene names](https://neurogenomics.github.io/orthogene/articles/infer_species.html)   
+- [**`infer_species`** from gene names](https://neurogenomics.github.io/orthogene/articles/infer_species.html)    
 
-## Citation 
+## Citation
+ 
+If you use ``r pkg``, please cite: 
 
-If you use `orthogene`, please cite: 
-
-> `r citation("orthogene")$textVersion`, https://doi.org/doi:10.18129/B9.bioc.orthogene
+<!-- Modify this by editing the file: inst/CITATION  -->
+> `r citation(pkg)$textVersion`
 
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/) 

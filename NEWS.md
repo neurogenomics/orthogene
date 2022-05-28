@@ -27,8 +27,10 @@ in `gprofiler2` functions.
 and placed them in their own new own (`agg_fun`) since these options are
 no longer mutually exclusive due to many:many expansion/aggregation. 
 * Pass up `as_DelayedArray` 
-* Bump to v1.3.0 now that we're developing on Bioc 3.16. 
+* Bump to v1.3.0 and R >=4.2 now that we're developing on Bioc 3.16. 
 * Add *ISSUE_TEMPLATE*. 
+* `prepare_tree`:
+    * Add `tree_source` options: path/URL/OmaDB/UCSC/timetree
 
 ## Bug fixes 
 
@@ -36,6 +38,7 @@ no longer mutually exclusive due to many:many expansion/aggregation.
 * Add safeguards against using aggregation when `gene_df` isn't a matrix.
 * Removed `DelayedMatrixStats` *Import* (no longer needed).  
 * Fix all unit tests and examples after making all updates. 
+* Recognize sparse/dense matrix or delayedarray in `check_agg_args`. 
 
 # orthogene  1.1.5
 

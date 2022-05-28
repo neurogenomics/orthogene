@@ -11,12 +11,14 @@ check_agg_args <- function(gene_df,
     #### If so, check that all other args are compatible ####
     if (opt_check) {
         ##### Check class ####
-        class_check <- (methods::is(gene_df, "sparseMatrix") |
-            methods::is(gene_df, "matrix") |
-            methods::is(gene_df, "Matrix"))
-        if (!class_check) {
+        class_check <- (
+                is_sparse_matrix(gene_df) |
+                is_matrix(gene_df) |
+                is_delayed_array(gene_df)
+                )
+        if (isFALSE(class_check)) {
             messager("WARNING: To aggregate gene_df,",
-                "gene_df must be a sparse or dense matrix.",
+                "gene_df must be a matrix or DelayedArray.",
                 "Setting agg_fun=NULL.",
                 v = verbose
             )

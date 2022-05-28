@@ -21,7 +21,8 @@
 #' @param height Saved plot height.
 #' @param width Saved plot width. 
 #' @param mc.cores Number of cores to parallelise different steps with.  
-#' @inheritParams report_orthologs 
+#' @inheritParams report_orthologs
+#' @inheritParams convert_orthologs 
 #' @inheritParams map_species 
 #' @inheritParams ggtree_plot 
 #' @inheritParams ggplot2::ggsave 
@@ -53,6 +54,7 @@ plot_orthotree <- function(tree = NULL,
                            method = c("homologene",
                                       "gprofiler",
                                       "babelgene"),
+                           non121_strategy = "drop_both_species",
                            reference_species = "human", 
                            clades = list("Primates"=c("Homo sapiens",
                                                       "Macaca mulatta"),
@@ -103,6 +105,7 @@ plot_orthotree <- function(tree = NULL,
             method_all_genes =  method,
             method_convert_orthologs = method,
             correct_intraspecies = TRUE,
+            non121_strategy = non121_strategy,
             mc.cores = mc.cores, 
             verbose = verbose)
         #### Correct intra-species estimates ####  
