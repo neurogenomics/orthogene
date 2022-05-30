@@ -21,7 +21,7 @@ Description:
 URL: https://github.com/neurogenomics/orthogene 
 BugReports: https://github.com/neurogenomics/orthogene/issues 
 License: GPL-3
-Depends: R (>= 4.2)
+Depends: R (>= 4.1)
 VignetteBuilder: knitr
 biocViews:
     Genetics, ComparativeGenomics, Preprocessing, 

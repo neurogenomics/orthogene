@@ -62,10 +62,12 @@ prepare_tree <- function(tree_source = "timetree",
     method <- tolower(method)[1]
     if(tolower(tree_source) %in% c("omadb","oma")){
         requireNamespace("OmaDB")
+        messager("Importing tree from: OMA",v=verbose)
         txt <- OmaDB::getTaxonomy(members=paste(species,collapse = ","))$newick
         tr <- OmaDB::getTree(newick = txt) 
       
     } else if(tolower(tree_source)=="ucsc"){
+        messager("Importing tree from: UCSC",v=verbose)
         tree_source <- paste(
             "http://hgdownload.soe.ucsc.edu/goldenPath",
             "hg38/multiz100way",
@@ -73,6 +75,7 @@ prepare_tree <- function(tree_source = "timetree",
             )
         tr <- ape::read.tree(file = tree_source)
     } else if(tolower(tree_source) %in% c("timetree")){
+        messager("Importing tree from: TimeTree",v=verbose)
         #### >50k species #####
         tree_source <- paste("http://www.timetree.org/public/data",
                              "TimetreeOfLife2015.nwk",sep="/")
@@ -87,7 +90,8 @@ prepare_tree <- function(tree_source = "timetree",
         tr <- ape::drop.tip(
             phy = tr, 
             tip = tr$tip.label[unmapped]) 
-    }else {
+    } else {
+        messager("Importing tree from:",tree_source,v=verbose)
         # if(any(endsWith(tree_source,c("nh","nhx")))){
         #     requireNamespace("treeio")
         #     tr <- treeio::read.nhx(file = tree_source) 
@@ -120,13 +124,15 @@ prepare_tree <- function(tree_source = "timetree",
                                        verbose = FALSE)
             messager("--",v=verbose)
             unmapped <- unname(is.na(tip_species[tr$tip.label]))
-            messager(paste0(
-                sum(unmapped),"/",length(tr$tip.label),
-                " (",round(sum(unmapped)/length(tr$tip.label),2)*100,"%)"
-            ),
-            "tips dropped from tree due to inability to",
-            "standardise names with `map_species`.",
-            v=verbose)
+            if(length(unmapped)>0 && all(!is.na(unmapped))){
+                messager(paste0(
+                    sum(unmapped),"/",length(tr$tip.label),
+                    " (",round(sum(unmapped)/length(tr$tip.label),2)*100,"%)"
+                ),
+                "tips dropped from tree due to inability to",
+                "standardise names with `map_species`.",
+                v=verbose)
+            } 
             tr <- ape::drop.tip(
                 phy = tr, 
                 tip = tr$tip.label[unmapped])
@@ -137,11 +143,14 @@ prepare_tree <- function(tree_source = "timetree",
     #### Subset species ####   
     if(!is.null(species)){
         dropped <- !tr$tip.label %in% species 
-        messager(paste0(sum(dropped),"/",length(tr$tip.label),
-                        " (",round(sum(dropped)/length(tr$tip.label),2)*100,"%)"),
-                 "tips dropped from tree",
-                 "according to overlap with selected `species`.",
-                 v=verbose)
+       if(length(dropped)>0 && all(!is.na(dropped))){
+           messager(paste0(sum(dropped),"/",length(tr$tip.label),
+                           " (",round(sum(dropped)/
+                                          length(tr$tip.label),2)*100,"%)"),
+                    "tips dropped from tree",
+                    "according to overlap with selected `species`.",
+                    v=verbose)
+       }
         tr <- ape::drop.tip(
             phy = tr, 
             tip = tr$tip.label[dropped]) 
