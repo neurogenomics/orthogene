@@ -1,3 +1,10 @@
+# orthogene 1.2.0 
+
+BUG FIXES
+
+* Increment to v2.0 now that Bioc 3.15 is the RELEASE. 
+
+
 # orthogene  1.1.5
 
 BUG FIXES
