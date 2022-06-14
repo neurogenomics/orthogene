@@ -90,13 +90,19 @@ Then translate to a standardised species ID.</p>
 (e.g. "human", "homo sapiens", "hapiens", or 9606).
 If given a list, will iterate queries for each item.
 Set to <code>NULL</code> to return all species.</p></dd>
+
+
 <dt>search_cols</dt>
 <dd><p>Which columns to search for
 <code>species</code> substring in
 metadata <a href="https://biit.cs.ut.ee/gprofiler/api/util/organisms_list" class="external-link">
 API</a>.</p></dd>
+
+
 <dt>output_format</dt>
 <dd><p>Which column to return.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>R package to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
@@ -104,6 +110,8 @@ API</a>.</p></dd>
 Also gives consensus scores for each gene mapping based on a
  several different data sources.</p></li>
 </ul></dd>
+
+
 <dt>use_local</dt>
 <dd><p>If <code>TRUE</code> <em>default</em>,
 map_species
@@ -111,12 +119,19 @@ uses a locally stored version of the species metadata table
 instead of pulling directly from the gprofiler API.
 Local version may not be fully up to date,
 but should suffice for most use cases.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Print messages.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Species ID of type <code>output_format</code></p>
+    
+
+<p>Species ID of type <code>output_format</code></p>
+
+
     </div>
 
     <div id="ref-examples">
@@ -152,7 +167,7 @@ but should suffice for most use cases.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.9000.</p>
 </div>
 
       </footer></div>

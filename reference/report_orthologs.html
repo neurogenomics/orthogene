@@ -89,13 +89,19 @@
     <h2>Arguments</h2>
     <dl><dt>target_species</dt>
 <dd><p>Target species.</p></dd>
+
+
 <dt>reference_species</dt>
 <dd><p>Reference species.</p></dd>
+
+
 <dt>standardise_genes</dt>
 <dd><p>If <code>TRUE</code> AND
 <code>gene_output="columns"</code>, a new column "input_gene_standard"
 will be added to <code>gene_df</code> containing standardised HGNC symbols
 identified by <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.</p></dd>
+
+
 <dt>method_all_genes</dt>
 <dd><p>R package to to use in
 <a href="all_genes.html">all_genes</a> step:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
@@ -104,6 +110,8 @@ identified by <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="ext
 Also gives consensus scores for each gene mapping based on a
  several different data sources.</p></li>
 </ul></dd>
+
+
 <dt>method_convert_orthologs</dt>
 <dd><p>R package to to use in
 <a href="convert_orthologs.html">convert_orthologs</a> step:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
@@ -112,9 +120,13 @@ Also gives consensus scores for each gene mapping based on a
 Also gives consensus scores for each gene mapping based on a
  several different data sources.</p></li>
 </ul></dd>
+
+
 <dt>drop_nonorths</dt>
 <dd><p>Drop genes that don't have an ortholog
 in the <code>output_species</code>.</p></dd>
+
+
 <dt>non121_strategy</dt>
 <dd><p>How to handle genes that don't have
 1:1 mappings between <code>input_species</code>:<code>output_species</code>.
@@ -141,18 +153,28 @@ Return only the most "popular" interspecies ortholog mappings.
   (<code>input_species</code>-to-<code>output_species</code>)
   after dropping any duplicate genes in the <code>output_species</code>.</p></li>
 </ul></dd>
+
+
 <dt>round_digits</dt>
 <dd><p>Number of digits to round to when printing percentages.</p></dd>
+
+
 <dt>return_report</dt>
 <dd><p>Return just the ortholog mapping
 between two species (<code>FALSE</code>) or return both the
  ortholog mapping as well a <code>data.frame</code>
  of the report statistics (<code>TRUE</code>).</p></dd>
+
+
 <dt>mc.cores</dt>
 <dd><p>Number of cores to parallelise each
 <code>target_species</code> with.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Print messages.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments to be passed to
 <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a> or <a href="https://rdrr.io/pkg/homologene/man/homologene.html" class="external-link">homologene</a>.<br><br><em>NOTE</em>: To return only the most "popular"
@@ -163,10 +185,13 @@ This procedure tends to yield a greater number of returned genes but at
  For more details, please see
 <a href="https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html" class="external-link">
  here</a>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list containing:</p><ul><li><p>map : A table of inter-species gene mappings.</p></li>
+    
+
+<p>A list containing:</p><ul><li><p>map : A table of inter-species gene mappings.</p></li>
 <li><p>report : A list of aggregate orthology report statistics.</p></li>
 </ul><p>If &gt;1 <code>target_species</code> are provided, then a table of 
 aggregated <code>report</code> statistics concatenated across species 
@@ -245,7 +270,7 @@ will be returned instead.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.9000.</p>
 </div>
 
       </footer></div>

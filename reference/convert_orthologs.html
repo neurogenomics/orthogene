@@ -112,6 +112,8 @@ automatically converted to gene symbols unless
 specified otherwise with the <code>...</code> arguments.<br><em>Note</em>: If you set <code>method="homologene"</code>, you
 must either supply genes in gene symbol format (e.g. "Sox2")
  OR set <code>standardise_genes=TRUE</code>.</p></dd>
+
+
 <dt>gene_input</dt>
 <dd><p>Which aspect of <code>gene_df</code> to
 get gene names from:<br></p><ul><li><p><code>"rownames"</code> : <br>From row names of data.frame/matrix.</p></li>
@@ -119,6 +121,8 @@ get gene names from:<br></p><ul><li><p><code>"rownames"</code> : <br>From row na
 <li><p><code>&lt;column name&gt;</code> : <br>From a column in <code>gene_df</code>,
  e.g. <code>"gene_names"</code>.</p></li>
 </ul></dd>
+
+
 <dt>gene_output</dt>
 <dd><p>How to return genes.
 Options include:<br></p><ul><li><p><code>"rownames"</code> : <br>As row names of <code>gene_df</code>.</p></li>
@@ -131,19 +135,27 @@ are input_gene and the values are ortholog_gene.</p></li>
 <li><p><code>"dict_rev"</code> : <br>As a reversed dictionary (named list)
 where the names are ortholog_gene and the values are input_gene.</p></li>
 </ul></dd>
+
+
 <dt>standardise_genes</dt>
 <dd><p>If <code>TRUE</code> AND
 <code>gene_output="columns"</code>, a new column "input_gene_standard"
 will be added to <code>gene_df</code> containing standardised HGNC symbols
 identified by <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.</p></dd>
+
+
 <dt>input_species</dt>
 <dd><p>Name of the input species (e.g., "mouse","fly").
 Use <a href="map_species.html">map_species</a> to return a full list
 of available species.</p></dd>
+
+
 <dt>output_species</dt>
 <dd><p>Name of the output species (e.g. "human","chicken").
 Use <a href="map_species.html">map_species</a> to return a full list
  of available species.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>R package to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
@@ -151,9 +163,13 @@ Use <a href="map_species.html">map_species</a> to return a full list
 Also gives consensus scores for each gene mapping based on a
  several different data sources.</p></li>
 </ul></dd>
+
+
 <dt>drop_nonorths</dt>
 <dd><p>Drop genes that don't have an ortholog
 in the <code>output_species</code>.</p></dd>
+
+
 <dt>non121_strategy</dt>
 <dd><p>How to handle genes that don't have
 1:1 mappings between <code>input_species</code>:<code>output_species</code>.
@@ -180,14 +196,20 @@ Return only the most "popular" interspecies ortholog mappings.
   (<code>input_species</code>-to-<code>output_species</code>)
   after dropping any duplicate genes in the <code>output_species</code>.</p></li>
 </ul></dd>
+
+
 <dt>agg_fun</dt>
 <dd><p>Aggregation function passed to 
  <a href="aggregate_mapped_genes.html">aggregate_mapped_genes</a>. 
 Set to <code>NULL</code> to skip aggregation step (default).</p></dd>
+
+
 <dt>mthreshold</dt>
 <dd><p>Maximum number of ortholog names per gene to show.
 Passed to <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a>.
 Only used when <code>method="gprofiler"</code> (<em>DEFAULT : </em><code>Inf</code>).</p></dd>
+
+
 <dt>as_sparse</dt>
 <dd><p>Convert <code>gene_df</code> to a sparse matrix.
 Only works if <code>gene_df</code> is one of the following classes:<br></p><ul><li><p><code>matrix</code></p></li>
@@ -198,13 +220,21 @@ Only works if <code>gene_df</code> is one of the following classes:<br></p><ul><
 </ul><p>If <code>gene_df</code> is a sparse matrix to begin with,
 it will be returned as a sparse matrix
  (so long as <code>gene_output=</code> <code>"rownames"</code> or <code>"colnames"</code>).</p></dd>
+
+
 <dt>as_DelayedArray</dt>
 <dd><p>Convert aggregated matrix to
 <a href="https://rdrr.io/pkg/DelayedArray/man/DelayedArray-class.html" class="external-link">DelayedArray</a>.</p></dd>
+
+
 <dt>sort_rows</dt>
 <dd><p>Sort <code>gene_df</code> rows alphanumerically.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Print messages.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments to be passed to
 <a href="https://rdrr.io/pkg/gprofiler2/man/gorth.html" class="external-link">gorth</a> or <a href="https://rdrr.io/pkg/homologene/man/homologene.html" class="external-link">homologene</a>.<br><br><em>NOTE</em>: To return only the most "popular"
@@ -215,11 +245,17 @@ This procedure tends to yield a greater number of returned genes but at
  For more details, please see
 <a href="https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html" class="external-link">
  here</a>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>gene_df</code> with  orthologs converted to the
-<code>output_species</code>.<br>Instead returned as a dictionary (named list) if
+    
+
+<p><code>gene_df</code> with  orthologs converted to the
+<code>output_species</code>.<br></p>
+
+
+<p>Instead returned as a dictionary (named list) if
 <code>gene_output="dict"</code> or <code>"dict_rev"</code>.</p>
     </div>
 
@@ -247,22 +283,22 @@ This procedure tends to yield a greater number of returned genes but at
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: hsapiens</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without orthologs in human.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from input_gene.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 15,999 genes extracted.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 16,022 genes extracted.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from ortholog_gene.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 15,999 genes extracted.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 2,634 NAs of all kinds from ortholog_gene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 16,022 genes extracted.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 2,659 NAs of all kinds from ortholog_gene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without 1:1 orthologs.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 438 genes that have multiple input_gene per ortholog_gene (many:1).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 339 genes that have multiple ortholog_gene per input_gene (1:many).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 452 genes that have multiple input_gene per ortholog_gene (many:1).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 341 genes that have multiple ortholog_gene per input_gene (1:many).</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Filtering gene_df with gene_map</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Setting ortholog_gene to rownames.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: DelayedArray</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> =========== REPORT SUMMARY ===========</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Total genes dropped after convert_orthologs :</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>    2,896 / 15,259 (19%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    2,908 / 15,259 (19%)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Total genes remaining after convert_orthologs :</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>    12,363 / 15,259 (81%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    12,351 / 15,259 (81%)</span>
 </code></pre></div>
     </div>
   </div>
@@ -277,7 +313,7 @@ This procedure tends to yield a greater number of returned genes but at
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.9000.</p>
 </div>
 
       </footer></div>

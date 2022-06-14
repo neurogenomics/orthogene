@@ -99,29 +99,43 @@ to test against in analyses with data from multiple species
     <h2>Arguments</h2>
     <dl><dt>species1</dt>
 <dd><p>First species.</p></dd>
+
+
 <dt>species2</dt>
 <dd><p>Second species.</p></dd>
+
+
 <dt>output_species</dt>
 <dd><p>Species to convert all genes from 
 <code>species1</code> and <code>species2</code> to first.
  <code>Default="human"</code>, but can be to either any species
   supported by <span class="pkg">orthogene</span>, including 
  <code>species1</code> or <code>species2</code>.</p></dd>
+
+
 <dt>as_output_species</dt>
 <dd><p>Return background gene list as 
 <code>output_species</code> orthologs, instead of the
  gene names of the original input species.</p></dd>
+
+
 <dt>use_intersect</dt>
 <dd><p>When <code>species1</code> and <code>species2</code> are both
 different from <code>output_species</code>, this argument will determine whether 
 to use the intersect (<code>TRUE</code>) or union (<code>FALSE</code>) of all genes
 from <code>species1</code> and <code>species2</code>.</p></dd>
+
+
 <dt>bg</dt>
 <dd><p>User supplied background list that will be returned to the 
 user after removing duplicate genes.</p></dd>
+
+
 <dt>gene_map</dt>
 <dd><p>User-supplied <code>gene_map</code> data table from
 <a href="map_orthologs.html">map_orthologs</a> or <a href="map_genes.html">map_genes</a>.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>R package to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
 <li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
@@ -129,6 +143,8 @@ user after removing duplicate genes.</p></dd>
 Also gives consensus scores for each gene mapping based on a
  several different data sources.</p></li>
 </ul></dd>
+
+
 <dt>non121_strategy</dt>
 <dd><p>How to handle genes that don't have
 1:1 mappings between <code>input_species</code>:<code>output_species</code>.
@@ -155,12 +171,17 @@ Return only the most "popular" interspecies ortholog mappings.
   (<code>input_species</code>-to-<code>output_species</code>)
   after dropping any duplicate genes in the <code>output_species</code>.</p></li>
 </ul></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Print messages.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Background gene list.</p>
+    
+
+<p>Background gene list.</p>
     </div>
 
     <div id="ref-examples">
@@ -286,7 +307,7 @@ Return only the most "popular" interspecies ortholog mappings.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.9000.</p>
 </div>
 
       </footer></div>
