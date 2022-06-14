@@ -1,3 +1,10 @@
+# orthogene  1.3.1
+
+## New features
+
+* `plot_orthotree`: Pass up `tree_source` arg. 
+
+
 # orthogene  1.3.0
 
 ## New features  
@@ -30,7 +37,7 @@ no longer mutually exclusive due to many:many expansion/aggregation.
 * Bump to v1.3.0 and R >=4.2 now that we're developing on Bioc 3.16. 
 * Add *ISSUE_TEMPLATE*. 
 * `prepare_tree`:
-    * Add `tree_source` options: path/URL/OmaDB/UCSC/timetree
+    * Add `tree_source` options: path / URL / OmaDB / UCSC / timetree
 
 ## Bug fixes 
 
