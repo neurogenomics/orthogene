@@ -2,7 +2,7 @@
 
 ## New features
 
-* `plot_orthotree`: Pass up `tree_source` arg. 
+* `plot_orthotree`: Pass up `tree_source` arg.  
 
 # orthogene  1.3.0
 
