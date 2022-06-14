@@ -25,6 +25,7 @@
 #' @inheritParams convert_orthologs 
 #' @inheritParams map_species 
 #' @inheritParams ggtree_plot 
+#' @inheritParams prepare_tree 
 #' @inheritParams ggplot2::ggsave 
 #' 
 #' @source \href{https://yulab-smu.top/treedata-book/chapter8.html#phylopic}{
@@ -54,6 +55,7 @@ plot_orthotree <- function(tree = NULL,
                            method = c("homologene",
                                       "gprofiler",
                                       "babelgene"),
+                           tree_source = "timetree",
                            non121_strategy = "drop_both_species",
                            reference_species = "human", 
                            clades = list("Primates"=c("Homo sapiens",
@@ -116,6 +118,7 @@ plot_orthotree <- function(tree = NULL,
     #### tree ####
     if(is.null(tree)){
         tr <- prepare_tree(species = species,
+                           tree_source = tree_source,
                            method = method,
                            run_map_species = c(TRUE, TRUE),
                            verbose = verbose)

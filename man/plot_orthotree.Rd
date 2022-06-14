@@ -13,6 +13,7 @@ plot_orthotree(
   orth_report = NULL,
   species = NULL,
   method = c("homologene", "gprofiler", "babelgene"),
+  tree_source = "timetree",
   non121_strategy = "drop_both_species",
   reference_species = "human",
   clades = list(Primates = c("Homo sapiens", "Macaca mulatta"), Eutherians =
@@ -51,6 +52,22 @@ so long as they also exist in the \code{tree}.}
 \item{\code{"babelgene"} : Faster but fewer species and genes.
 Also gives consensus scores for each gene mapping based on a
  several different data sources.}
+}}
+
+\item{tree_source}{Can be one of the following:
+\itemize{
+\item{"timetree":\cr}{Import and prune the
+\href{http://www.timetree.org/public/data/TimetreeOfLife2015.nwk}{
+TimeTree >50k species} phylogenetic tree.}
+\item{"OmaDB":\cr}{Construct a tree from \href{omabrowser.org}{OMA} 
+(Orthologous Matrix browser) via the \link[OmaDB]{getTaxonomy} function.
+\emph{NOTE: } Does not contain branch lengths,
+ and therefore may have limited utility.}
+\item{"UCSC":\cr}{Import and prune the 
+\href{https://hgdownload.soe.ucsc.edu/goldenPath/hg38/multiz100way/}{
+UCSC 100-way alignment} phylogenetic tree (hg38 version).}
+\item{"<path>":\cr}{Read a tree from a newick text file 
+from a local or remote URL using \link[ape]{read.tree}.}  
 }}
 
 \item{non121_strategy}{How to handle genes that don't have
