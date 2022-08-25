@@ -21,7 +21,7 @@ Optionally, if output_format is not NULL, species names from
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2</span>
       </span>
     </div>
 
@@ -77,18 +77,18 @@ Optionally, if <code>output_format</code> is not <code>NULL</code>, species name
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">prepare_tree</span><span class="op">(</span>
-  tree_source <span class="op">=</span> <span class="st">"timetree"</span>,
-  species <span class="op">=</span> <span class="cn">NULL</span>,
-  output_format <span class="op">=</span> <span class="st">"scientific_name"</span>,
-  run_map_species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>,
-  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"homologene"</span>, <span class="st">"gprofiler"</span>, <span class="st">"babelgene"</span><span class="op">)</span>,
-  force_ultrametric <span class="op">=</span> <span class="cn">TRUE</span>,
-  age_max <span class="op">=</span> <span class="cn">NULL</span>,
-  show_plot <span class="op">=</span> <span class="cn">TRUE</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">prepare_tree</span><span class="op">(</span></span>
+<span>  tree_source <span class="op">=</span> <span class="st">"timetree"</span>,</span>
+<span>  species <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  output_format <span class="op">=</span> <span class="st">"scientific_name"</span>,</span>
+<span>  run_map_species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"homologene"</span>, <span class="st">"gprofiler"</span>, <span class="st">"babelgene"</span><span class="op">)</span>,</span>
+<span>  force_ultrametric <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  age_max <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  show_plot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -165,8 +165,8 @@ Only used if <code>age_max</code>, the max number , is numeric. Times are comput
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"human"</span>,<span class="st">"chimp"</span>,<span class="st">"mouse"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu">prepare_tree</span><span class="op">(</span>species <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"human"</span>,<span class="st">"chimp"</span>,<span class="st">"mouse"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu">prepare_tree</span><span class="op">(</span>species <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Importing tree from: TimeTree</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping 3 species from `species`.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping 3 species from tree.</span>
@@ -189,7 +189,7 @@ Only used if <code>age_max</code>, the max number , is numeric. Times are comput
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>
