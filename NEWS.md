@@ -1,3 +1,17 @@
+# orthogene  1.3.2
+
+## New features
+
+* Add *inst/grofiler_namespace.csv.gz* for documentation purposes. 
+
+## Bug fixes
+
+* `create_background`:
+    - Ensure user-supplied `bg` gets used: 
+    https://github.com/neurogenomics/orthogene/issues/22 
+* Properly document internal data so that `devtools::document` 
+    doesn't expect them to be exported objects. 
+
 # orthogene  1.3.1
 
 ## New features

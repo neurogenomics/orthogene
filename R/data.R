@@ -53,9 +53,7 @@
 #' Organism for which gene references are available via
 #' \href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler}
 #' \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}.
-#'
 #' Used as a backup if API is not available.
-#'
 #' @source \href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler site}
 #' @format \code{data.frame}
 #' @source  
@@ -64,15 +62,16 @@
 #' # otherwise, the prior internal data will be overwritten.
 #' #### Internal data 1: gprofiler_namespace ####
 #'  #### Manually-prepared CSV ####
-#'  path <- "~/Downloads/gconvert_namespace.csv"
+#'  path <- "inst/extdata/gprofiler_namespace.csv.gz"
 #'  gprofiler_namespace <- data.table::fread(path)  
 #'  #### Internal data 2: gprofiler_orgs
 #'  gprofiler_orgs <- orthogene:::get_orgdb_gprofiler(use_local=FALSE)
 #'  #### Save ####
 #'  usethis::use_data(gprofiler_orgs,gprofiler_namespace,
 #'   overwrite = TRUE, internal=TRUE) 
-#' }
-"gprofiler_orgs"
+#' } 
+#' @name gprofiler_orgs
+NULL
 
 
 #' \link[gprofiler2]{gconvert} namespaces
@@ -85,7 +84,8 @@
 #' @source 
 #' \code{
 #'  #### Manually-prepared CSV ####
-#'  path <- "~/Downloads/gconvert_namespace.csv"
+#'  path <- "inst/extdata/gprofiler_namespace.csv.gz"
 #'  gprofiler_namespace <- data.table::fread(path)  
 #' }
-"gprofiler_namespace"
+#' @name gprofiler_namespace
+NULL

@@ -28,14 +28,13 @@
 #' \link[orthogene]{map_orthologs} or \link[orthogene]{map_genes}.
 #' @inheritParams convert_orthologs
 #' 
-#' @return Background gene list.
+#' @returns Background gene list.
 #' 
 #' @export
 #' @examples 
 #' bg <- orthogene::create_background(species1 = "mouse", 
 #'                                    species2 = "rat",
 #'                                    output_species = "human")
-#' @export
 create_background <- function(species1,
                               species2,
                               output_species = "human", 
@@ -49,11 +48,20 @@ create_background <- function(species1,
     species_list <- c(species1,species2)
     gene_var <- if(as_output_species) "ortholog_gene" else "input_gene"
     if(all(species_list==output_species)){
-        #### If all species are the same, just use all_genes ####
-        gene_map <- all_genes(species = output_species, 
-                              method = method,
-                              verbose = verbose)
-        bg <- gene_map$Gene.Symbol
+        if(is.null(bg)){
+            #### If all species are the same, just use all_genes ####
+            gene_map <- all_genes(species = output_species, 
+                                  method = method,
+                                  verbose = verbose)
+            bg <- gene_map$Gene.Symbol
+            messager("Returning",formatC(length(bg), big.mark = ","),
+                     "unique genes from entire",output_species,"genome.",
+                     v=verbose)
+        } else {
+            bg <- unique(bg) 
+            messager("Returning",formatC(length(bg), big.mark = ","),
+                     "unique genes from the user-supplied bg.",v=verbose)
+        }
         return(bg)
     }
     if (is.null(bg)) {
