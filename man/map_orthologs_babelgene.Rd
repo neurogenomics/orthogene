@@ -29,7 +29,7 @@ of available species.}
 Use \link[orthogene]{map_species} to return a full list
  of available species.}
 
-\item{min_support}{Minimum number of supporting source databases.}
+\item{min_support}{Minimum number of supporting source databases. Gene pairs available in this package are supported by 2 to 12 databases (the maximum varies depending on the species).}
 
 \item{top}{For each gene, output only the match with the highest support level if there are multiple hits.}
 
