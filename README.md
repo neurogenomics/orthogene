@@ -1,13 +1,13 @@
 `orthogene`: Interspecies gene mapping
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' height='300'><br><br>
-[![](https://img.shields.io/badge/devel%20version-1.3.0-black.svg)](https://github.com/neurogenomics/orthogene)
-[![](https://img.shields.io/badge/release%20version-1.2.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.3.3-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/release%20version-1.3.2-green.svg)](https://www.bioconductor.org/packages/orthogene)
 [![BioC
 status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
 [![](https://img.shields.io/badge/doi-https://doi.org/10.18129/B9.bioc.orthogene-green.svg)](https://doi.org/https://doi.org/10.18129/B9.bioc.orthogene)
-[![](https://img.shields.io/badge/download-732/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-1334/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![R build
 status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
@@ -18,7 +18,7 @@ GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-pro
 Authors: <i>Brian Schilder</i>
 </h4>
 <h4>
-README updated: <i>May-20-2022</i>
+README updated: <i>Oct-02-2022</i>
 </h4>
 
 # Intro
@@ -51,7 +51,7 @@ In brief, `orthogene` lets you easily:
 
 If you use `orthogene`, please cite:
 
-<!-- Modify this my editing the file: inst/CITATION  -->
+<!-- Modify this by editing the file: inst/CITATION  -->
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
 
@@ -236,9 +236,9 @@ for the full vignette.
 utils::sessionInfo()
 ```
 
-    ## R version 4.2.0 (2022-04-22)
+    ## R version 4.2.1 (2022-06-23)
     ## Platform: x86_64-apple-darwin17.0 (64-bit)
-    ## Running under: macOS Big Sur/Monterey 10.16
+    ## Running under: macOS Big Sur ... 10.16
     ## 
     ## Matrix products: default
     ## BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
@@ -251,53 +251,53 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_1.1.6
+    ## [1] orthogene_1.3.2
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] MatrixGenerics_1.8.0      httr_1.4.3               
-    ##  [3] tidyr_1.2.0               jsonlite_1.8.0           
-    ##  [5] viridisLite_0.4.0         carData_3.0-5            
+    ##  [1] MatrixGenerics_1.9.1      httr_1.4.4               
+    ##  [3] tidyr_1.2.1               jsonlite_1.8.1           
+    ##  [5] viridisLite_0.4.1         carData_3.0-5            
     ##  [7] gprofiler2_0.2.1          assertthat_0.2.1         
-    ##  [9] stats4_4.2.0              BiocManager_1.30.18      
-    ## [11] rvcheck_0.2.1             highr_0.9                
-    ## [13] yulab.utils_0.0.4         yaml_2.3.5               
-    ## [15] pillar_1.7.0              backports_1.4.1          
+    ##  [9] BiocManager_1.30.18       rvcheck_0.2.1            
+    ## [11] highr_0.9                 stats4_4.2.1             
+    ## [13] yulab.utils_0.0.5         yaml_2.3.5               
+    ## [15] pillar_1.8.1              backports_1.4.1          
     ## [17] lattice_0.20-45           glue_1.6.2               
     ## [19] digest_0.6.29             RColorBrewer_1.1-3       
     ## [21] ggsignif_0.6.3            colorspace_2.0-3         
-    ## [23] ggfun_0.0.6               htmltools_0.5.2          
-    ## [25] Matrix_1.4-1              pkgconfig_2.0.3          
-    ## [27] babelgene_22.3            broom_0.8.0              
-    ## [29] purrr_0.3.4               patchwork_1.1.1          
-    ## [31] tidytree_0.3.9            scales_1.2.0             
-    ## [33] ggplotify_0.1.0           tibble_3.1.7             
-    ## [35] IRanges_2.30.0            generics_0.1.2           
-    ## [37] car_3.0-13                ggplot2_3.3.6            
+    ## [23] ggfun_0.0.7               htmltools_0.5.3          
+    ## [25] Matrix_1.5-1              pkgconfig_2.0.3          
+    ## [27] babelgene_22.9            broom_1.0.1              
+    ## [29] purrr_0.3.4               patchwork_1.1.2          
+    ## [31] tidytree_0.4.1            scales_1.2.1             
+    ## [33] ggplotify_0.1.0           tibble_3.1.8             
+    ## [35] IRanges_2.31.2            generics_0.1.3           
+    ## [37] car_3.1-0                 ggplot2_3.3.6            
     ## [39] ellipsis_0.3.2            ggpubr_0.4.0             
-    ## [41] BiocGenerics_0.42.0       lazyeval_0.2.2           
-    ## [43] cli_3.3.0                 magrittr_2.0.3           
-    ## [45] crayon_1.5.1              evaluate_0.15            
-    ## [47] badger_0.2.0              fansi_1.0.3              
-    ## [49] nlme_3.1-157              rstatix_0.7.0            
-    ## [51] homologene_1.4.68.19.3.27 tools_4.2.0              
-    ## [53] data.table_1.14.2         matrixStats_0.62.0       
-    ## [55] lifecycle_1.0.1           stringr_1.4.0            
-    ## [57] S4Vectors_0.34.0          plotly_4.10.0            
-    ## [59] aplot_0.1.4               ggtree_3.4.0             
-    ## [61] munsell_0.5.0             DelayedArray_0.22.0      
-    ## [63] compiler_4.2.0            gridGraphics_0.5-1       
-    ## [65] rlang_1.0.2               grid_4.2.0               
-    ## [67] rstudioapi_0.13           htmlwidgets_1.5.4        
-    ## [69] rmarkdown_2.14            gtable_0.3.0             
-    ## [71] abind_1.4-5               DBI_1.1.2                
-    ## [73] R6_2.5.1                  knitr_1.39               
-    ## [75] dplyr_1.0.9               fastmap_1.1.0            
-    ## [77] utf8_1.2.2                rprojroot_2.0.3          
-    ## [79] treeio_1.20.0             dlstats_0.1.5            
-    ## [81] desc_1.4.1                ape_5.6-2                
-    ## [83] stringi_1.7.6             parallel_4.2.0           
-    ## [85] Rcpp_1.0.8.3              vctrs_0.4.1              
-    ## [87] tidyselect_1.1.2          xfun_0.31
+    ## [41] BiocGenerics_0.43.4       lazyeval_0.2.2           
+    ## [43] cli_3.4.1                 magrittr_2.0.3           
+    ## [45] evaluate_0.16             badger_0.2.1             
+    ## [47] fansi_1.0.3               nlme_3.1-159             
+    ## [49] rstatix_0.7.0             homologene_1.4.68.19.3.27
+    ## [51] tools_4.2.1               data.table_1.14.2        
+    ## [53] matrixStats_0.62.0        lifecycle_1.0.2          
+    ## [55] stringr_1.4.1             S4Vectors_0.35.4         
+    ## [57] plotly_4.10.0             aplot_0.1.7              
+    ## [59] ggtree_3.5.3              munsell_0.5.0            
+    ## [61] DelayedArray_0.23.2       compiler_4.2.1           
+    ## [63] gridGraphics_0.5-1        rlang_1.0.6              
+    ## [65] grid_4.2.1                rstudioapi_0.14          
+    ## [67] htmlwidgets_1.5.4         rmarkdown_2.16           
+    ## [69] gtable_0.3.1              abind_1.4-5              
+    ## [71] DBI_1.1.3                 R6_2.5.1                 
+    ## [73] knitr_1.40                dplyr_1.0.10             
+    ## [75] fastmap_1.1.0             utf8_1.2.2               
+    ## [77] rprojroot_2.0.3           treeio_1.21.2            
+    ## [79] dlstats_0.1.5             desc_1.4.2               
+    ## [81] ape_5.6-2                 stringi_1.7.8            
+    ## [83] parallel_4.2.1            Rcpp_1.0.9               
+    ## [85] vctrs_0.4.2               tidyselect_1.1.2         
+    ## [87] xfun_0.33
 
 </details>
 

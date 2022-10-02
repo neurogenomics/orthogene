@@ -1,3 +1,10 @@
+# orthogene  1.3.3
+
+## Bug fixes
+
+* Make `test-map_orthologs_babelgene` less stringent with the
+    number of genes expected.
+
 # orthogene  1.3.2
 
 ## New features
