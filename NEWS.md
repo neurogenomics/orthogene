@@ -1,13 +1,20 @@
+# orthogene 1.2.1
+
+## Bug fixes
+
+* Make `test-map_orthologs_babelgene` less stringent 
+    with the number of expected genes.
+
 # orthogene 1.2.0 
 
-BUG FIXES
+## Bug fixes
 
 * Increment to v2.0 now that Bioc 3.15 is the RELEASE. 
 
 
 # orthogene  1.1.5
 
-BUG FIXES
+## Bug fixes
 
 * `map_orthologs_babelgene`
     + Add "Bad credentials" check for `piggyback`. 
@@ -19,7 +26,7 @@ BUG FIXES
     like `babelgene` does by default (even when `babelgene::orthologs(min_support = 1)`). 
     + See here for discussion of discrepancies with babelgene maintainer: https://github.com/igordot/babelgene/issues/2 
     
-NEW FEATURES
+## New features
 
 * Removed `aggregate_rows_delayedarray` as it wasn't being used and was far less efficient than the other methods anyway (which are also compatible with DelayedArray matrices anyway). * New unit tests:
     + `load_data`  
@@ -29,23 +36,23 @@ NEW FEATURES
 
 # orthogene  1.1.4
 
-BUG FIXES
+## Bug fixes
 
 - Remove `source_all` as it included a `library` call. 
 
 # orthogene  1.1.3
 
-NEW FEATURES
+## New features
 
 * Update GHA
 
-BUG FIXES
+## Bug fixes
 
 * Fix failing benchmarking tests.
 
 # orthogene  1.1.2
 
-BUG FIXES  
+## Bug fixes  
 
 * `convert_orthologs(method="babelgene")` now gets gene mappings
 from `all_genes_babelgene` instead `babelgene::orthologs` (which doesn't seem to work very well, despite being dedicated for this purpose).   
@@ -57,7 +64,7 @@ from `all_genes_babelgene` instead `babelgene::orthologs` (which doesn't seem to
     + Add `map_species_check_args`. 
 * Ensure proper method-specific `output_format` when passing species to other functions. 
     
-NEW FEATURES  
+## New features  
 
 * `plot_orthotree`: Automated plotting of phylogenetic trees with 1:1 ortholog report annotations. Includes several subfunctions: 
     + `prepare_tree` (exported): Read, prune and  standardise a phylogenetic tree. 
@@ -71,13 +78,13 @@ NEW FEATURES
 
 # orthogene  1.1.1
 
-BUG FIXES  
+## Bug fixes  
 
 * Made GHA less dependent on hard-coded R/bioc versions. 
 
 # orthogene  1.1.0
 
-NEW FEATURES  
+## New features  
 
 * Now on [Bioconductor release 3.14](https://bioconductor.org/packages/devel/bioc/html/orthogene.html).  
 * Docker containers automatically built and pushed to [DockerHub](https://hub.docker.com/repository/docker/bschilder/orthogene) via 
@@ -91,25 +98,25 @@ provided to build and check any R package efficiently with [AnVil](https://bioco
 
 # orthogene  0.99.9
 
-NEW FEATURES  
+## New features  
 
 * Replaced R-CMD GHA with bioc-check GHA.
 * Added new badges.
 
-BUG FIXES  
+## Bug fixes  
 
 * Adjusted vignette yamls to make resulting htmls smaller.  
 
 # orthogene  0.99.8
 
-NEW FEATURES  
+## New features  
 
 * `orthogene` now supports `DelayedArray` objects as `gene_df` input.  
 * `create_background` now uses `all_genes` when all 3 species are the same.  
 
 # orthogene  0.99.7
 
-NEW FEATURES  
+## New features  
 
 * Added new function `create_background`.  
 * Added new function `infer_species`.  
@@ -119,36 +126,36 @@ NEW FEATURES
 different packages.  
 * Added `all_genes` method "babelgene". 
 
-BUG FIXES
+## Bug fixes
 
 * `report_orthologs` no longer throws error due to not finding `tar_genes`.
 
 # orthogene  0.99.6
 
-BUG FIXES
+## Bug fixes
 
 * Allow all messages to be suppressed in `report_orthologs`.  
 
 # orthogene  0.99.3
 
-NEW FEATURES
+## New features
 
 * License switched to GPL-3 (to be compliant with Bioc).  
 * New method "babelgene" added to `convert_orthologs`.
 
 # orthogene  0.99.2
 
-NEW FEATURES  
+## New features  
 
 * License switched to GPL3 (>=3).
 
-BUG FIXES
+## Bug fixes
 
 * `GenomeInfoDbData` now required.
 
 # orthogene  0.1.0
 
-NEW FEATURES
+## New features
 
 * `orthogene` released to Bioconductor.
 
