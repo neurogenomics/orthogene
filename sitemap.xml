@@ -34,6 +34,9 @@
     <loc>/reference/aggregate_rows.html</loc>
   </url>
   <url>
+    <loc>/reference/aggregate_rows_monocle3.html</loc>
+  </url>
+  <url>
     <loc>/reference/all_genes.html</loc>
   </url>
   <url>
@@ -47,6 +50,9 @@
   </url>
   <url>
     <loc>/reference/create_background.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dMcast.html</loc>
   </url>
   <url>
     <loc>/reference/exp_mouse.html</loc>
