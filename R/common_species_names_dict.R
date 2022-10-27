@@ -43,6 +43,8 @@ common_species_names_dict <- function(species = NULL,
         "flies" = c("Drosophila melanogaster",7227),  
         "worm" = c("Caenorhabditis elegans",6239),
         "worms" = c("Caenorhabditis elegans",6239),
+        "earthworm" = c("Eisenia andrei",168636),
+        "earthworms" = c("Eisenia andrei",168636),
         "rice" = c("Oryza sativa",4530)
     )
     #### Return entire dict if NULL ####
