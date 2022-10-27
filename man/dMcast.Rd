@@ -14,9 +14,9 @@ dm <- orthogene:::dMcast(data = groupings, formula = formula)
 dMcast(
   data,
   formula,
-  fun.aggregate = "sum",
   value.var = NULL,
   as.factors = FALSE,
+  na.action = stats::pass,
   factor.nas = TRUE,
   drop.unused.levels = TRUE
 )
@@ -27,8 +27,6 @@ dMcast(
 \item{formula}{Casting \link[stats]{formula}, 
 see details for specifics.}
 
-\item{fun.aggregate}{Name of aggregation function. Defaults to 'sum'.}
-
 \item{value.var}{Name of column that stores values to be aggregated numerics.}
 
 \item{as.factors}{If \code{TRUE}, treat all columns as factors, including}
@@ -38,6 +36,9 @@ Otherwise, rows with NAs will receive zeroes in all columns for that factor.}
 
 \item{drop.unused.levels}{Should factors have unused levels dropped?
 Defaults to \code{TRUE}, in contrast to \code{model.matrix}}
+}
+\value{
+matrix
 }
 \description{
 Reimplementation of function that originally part of the R package

@@ -4,7 +4,9 @@
 #' @param groupings Gene groups of the same length as \code{nrow(X)}.
 #' @param form Formula.
 #' @param fun Aggregation function.
-#' @param ... Additional arguments.
+#' @param na.action Na action.
+#' @returns Aggregated matrix.
+#' 
 #' @keywords internal
 #' @importFrom methods is
 #' @importFrom Matrix Matrix t
@@ -20,7 +22,7 @@ aggregate_rows_monocle3 <- function(x,
                                     groupings = NULL,
                                     form = NULL,
                                     fun = "sum",
-                                    ...) {
+                                    na.action = stats::na.omit) {
     if (!methods::is(x, "Matrix")) {
         x <- Matrix::Matrix(as.matrix(x), sparse = TRUE)
     }
@@ -32,7 +34,9 @@ aggregate_rows_monocle3 <- function(x,
         form <- stats::as.formula("~0+.")
     }
     form <- stats::as.formula(form)
-    mapping <- dMcast(groupings2, form)
+    mapping <- dMcast(data = groupings2, 
+                      formula = form, 
+                      na.action = na.action)
     colnames(mapping) <- substring(colnames(mapping), 2)
     ### This step throws an error when gene mappings are 1:many or many:many.
     result <- Matrix::t(mapping) %*% x

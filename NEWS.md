@@ -1,11 +1,12 @@
-# orthogene  1.3.4
+# orthogene  1.3.4  
 
-## Bug fixes
+## Bug fixes  
 
-* Remove `Matrix.utils` since it's now deprecated.
+* Remove `Matrix.utils` since it's now deprecated.  
     - Reimplement the `dMcast` function as a new internal function within 
-    `orthogene`, since that's the only function I use from `Matrix.utils`.
-* Fix GHA workflow now that *r-lib/actions@master* has been removed.
+    `orthogene`, since that's the only function I use from `Matrix.utils`.  
+* Fix GHA workflow now that *r-lib/actions@master* has been removed.  
+
 
 # orthogene  1.3.3
 

@@ -11,7 +11,13 @@ X2 <- orthogene:::aggregate_rows_monocle3(x = X, groupings=groupings)
 }
 }
 \usage{
-aggregate_rows_monocle3(x, groupings = NULL, form = NULL, fun = "sum", ...)
+aggregate_rows_monocle3(
+  x,
+  groupings = NULL,
+  form = NULL,
+  fun = "sum",
+  na.action = stats::na.omit
+)
 }
 \arguments{
 \item{x}{Input matrix.}
@@ -22,7 +28,10 @@ aggregate_rows_monocle3(x, groupings = NULL, form = NULL, fun = "sum", ...)
 
 \item{fun}{Aggregation function.}
 
-\item{...}{Additional arguments.}
+\item{na.action}{Na action.}
+}
+\value{
+Aggregated matrix.
 }
 \description{
 Aggregate rows: monocle3

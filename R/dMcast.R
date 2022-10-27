@@ -8,15 +8,16 @@
 #' @param data A \link[base]{data.frame}.
 #' @param formula Casting \link[stats]{formula}, 
 #' see details for specifics.
-#' @param fun.aggregate Name of aggregation function. Defaults to 'sum'.
 #' @param value.var Name of column that stores values to be aggregated numerics.
 #' @param as.factors If \code{TRUE}, treat all columns as factors, including
 #' @param factor.nas If \code{TRUE}, treat factors with NAs as new levels. 
 #'  Otherwise, rows with NAs will receive zeroes in all columns for that factor.
 #' @param drop.unused.levels Should factors have unused levels dropped?
 #'  Defaults to \code{TRUE}, in contrast to \code{model.matrix}
+#' @returns matrix
+#' 
 #' @keywords internal
-#' @importFrom stats terms as.formula contrasts
+#' @importFrom stats terms as.formula contrasts na.pass na.omit
 #' @importFrom Matrix sparse.model.matrix
 #' @source 
 #' \code{ 
@@ -26,11 +27,13 @@
 #' }
 dMcast <- function(data,
                    formula, 
-                   fun.aggregate = "sum", 
+                   # fun.aggregate = "sum", 
                    value.var = NULL, 
-                   as.factors = FALSE, 
+                   as.factors = FALSE,
+                   na.action = stats::pass,
                    factor.nas = TRUE, 
                    drop.unused.levels = TRUE) {
+    # #' @param fun.aggregate Name of aggregation function. Defaults to 'sum'.
     
     values <- 1
     if (!is.null(value.var)) 
@@ -71,13 +74,13 @@ dMcast <- function(data,
                       x[is.na(x)] <- "NA"
                   }
               if (drop.unused.levels) 
-                  if (nlevels(x) != length(na.omit(unique(x)))) 
+                  if (nlevels(x) != length(stats::na.omit(unique(x)))) 
                       x <- factor(as.character(x))
               y <- stats::contrasts(x, contrasts = FALSE, sparse = TRUE)
               attr(x, "contrasts") <- y
               return(x)
           })
-    attr(data, "na.action") <- na.pass
+    attr(data, "na.action") <- na.action
     result <- Matrix::sparse.model.matrix(
         newformula, 
         data,
@@ -87,11 +90,12 @@ dMcast <- function(data,
     colnames(result)[brokenNames] <- lapply(
         colnames(result)[brokenNames], 
     function(x) {
-        x <- gsub("paste(", replacement = "", x = x, fixed = TRUE)
+        x <- gsub("paste(", replacement = "", x = x, 
+                  fixed = TRUE)
         x <- gsub(pattern = ", ", replacement = "_", x = x, 
                   fixed = TRUE)
-        x <- gsub(pattern = "_sep = \"_\")", replacement = "", 
-                  x = x, fixed = TRUE)
+        x <- gsub(pattern = "_sep = \"_\")", replacement = "", x = x, 
+                  fixed = TRUE)
         return(x)
     })
     result <- result * values

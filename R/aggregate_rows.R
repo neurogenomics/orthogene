@@ -11,6 +11,7 @@
 #'
 #' @keywords internal
 #' @importFrom methods is
+#' @importFrom stats na.omit na.pass
 #' @source 
 #' \code{
 #' data("exp_mouse_enst")
