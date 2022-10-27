@@ -80,9 +80,9 @@ not include an aggregation feature at the end.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dMcast</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">formula</span>,</span>
-<span>  fun.aggregate <span class="op">=</span> <span class="st">"sum"</span>,</span>
 <span>  value.var <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  as.factors <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  na.action <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="va">pass</span>,</span>
 <span>  factor.nas <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -107,10 +107,6 @@ dm &lt;- orthogene:::dMcast(data = groupings, formula = formula)
 see details for specifics.</p></dd>
 
 
-<dt>fun.aggregate</dt>
-<dd><p>Name of aggregation function. Defaults to 'sum'.</p></dd>
-
-
 <dt>value.var</dt>
 <dd><p>Name of column that stores values to be aggregated numerics.</p></dd>
 
@@ -129,6 +125,12 @@ Otherwise, rows with NAs will receive zeroes in all columns for that factor.</p>
 Defaults to <code>TRUE</code>, in contrast to <code>model.matrix</code></p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>matrix</p>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
