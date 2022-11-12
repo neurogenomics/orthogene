@@ -2,7 +2,7 @@
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' height='300'><br><br>
 [![](https://img.shields.io/badge/devel%20version-1.5.1-black.svg)](https://github.com/neurogenomics/orthogene)
-[![](https://img.shields.io/badge/release%20version-1.4.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
+[![](https://img.shields.io/badge/release%20version-1.4.0-black.svg)](https://www.bioconductor.org/packages/orthogene)
 [![BioC
 status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)

@@ -2,7 +2,7 @@
 title: "`orthogene`: Interspecies gene mapping"  
 author: "<img src='`r read.dcf('DESCRIPTION', fields = 'URL')[1]`/raw/main/inst/hex/hex.png' height='300'><br><br>
         `r badger::badge_github_version(color = 'black')` 
-        `r badger::badge_bioc_release(color = 'green')`
+        `r badger::badge_bioc_release(color = 'black')`
         [![BioC status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
         [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
         `r badger::badge_doi(doi = 'https://doi.org/10.18129/B9.bioc.orthogene', color='green')`
