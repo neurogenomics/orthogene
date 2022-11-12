@@ -1,15 +1,15 @@
 `orthogene`: Interspecies gene mapping
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' height='300'><br><br>
-[![](https://img.shields.io/badge/devel%20version-1.3.3-black.svg)](https://github.com/neurogenomics/orthogene)
-[![](https://img.shields.io/badge/release%20version-1.3.2-green.svg)](https://www.bioconductor.org/packages/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.5.1-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/release%20version-1.4.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
 [![BioC
 status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
 [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
 [![](https://img.shields.io/badge/doi-https://doi.org/10.18129/B9.bioc.orthogene-green.svg)](https://doi.org/https://doi.org/10.18129/B9.bioc.orthogene)
-[![](https://img.shields.io/badge/download-1334/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-1579/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![R build
-status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
+status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 [![](https://app.codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://app.codecov.io/gh/neurogenomics/orthogene)
 [![License:
@@ -18,7 +18,7 @@ GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-pro
 Authors: <i>Brian Schilder</i>
 </h4>
 <h4>
-README updated: <i>Oct-02-2022</i>
+README updated: <i>Nov-12-2022</i>
 </h4>
 
 # Intro
@@ -251,53 +251,53 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_1.3.2
+    ## [1] orthogene_1.5.1
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] MatrixGenerics_1.9.1      httr_1.4.4               
-    ##  [3] tidyr_1.2.1               jsonlite_1.8.1           
+    ##  [1] MatrixGenerics_1.10.0     httr_1.4.4               
+    ##  [3] tidyr_1.2.1               jsonlite_1.8.3           
     ##  [5] viridisLite_0.4.1         carData_3.0-5            
     ##  [7] gprofiler2_0.2.1          assertthat_0.2.1         
-    ##  [9] BiocManager_1.30.18       rvcheck_0.2.1            
-    ## [11] highr_0.9                 stats4_4.2.1             
-    ## [13] yulab.utils_0.0.5         yaml_2.3.5               
+    ##  [9] stats4_4.2.1              BiocManager_1.30.19      
+    ## [11] rvcheck_0.2.1             highr_0.9                
+    ## [13] yulab.utils_0.0.5         yaml_2.3.6               
     ## [15] pillar_1.8.1              backports_1.4.1          
     ## [17] lattice_0.20-45           glue_1.6.2               
-    ## [19] digest_0.6.29             RColorBrewer_1.1-3       
-    ## [21] ggsignif_0.6.3            colorspace_2.0-3         
-    ## [23] ggfun_0.0.7               htmltools_0.5.3          
-    ## [25] Matrix_1.5-1              pkgconfig_2.0.3          
+    ## [19] digest_0.6.30             RColorBrewer_1.1-3       
+    ## [21] ggsignif_0.6.4            colorspace_2.0-3         
+    ## [23] ggfun_0.0.8               htmltools_0.5.3          
+    ## [25] Matrix_1.5-3              pkgconfig_2.0.3          
     ## [27] babelgene_22.9            broom_1.0.1              
-    ## [29] purrr_0.3.4               patchwork_1.1.2          
+    ## [29] purrr_0.3.5               patchwork_1.1.2          
     ## [31] tidytree_0.4.1            scales_1.2.1             
     ## [33] ggplotify_0.1.0           tibble_3.1.8             
-    ## [35] IRanges_2.31.2            generics_0.1.3           
-    ## [37] car_3.1-0                 ggplot2_3.3.6            
-    ## [39] ellipsis_0.3.2            ggpubr_0.4.0             
-    ## [41] BiocGenerics_0.43.4       lazyeval_0.2.2           
-    ## [43] cli_3.4.1                 magrittr_2.0.3           
-    ## [45] evaluate_0.16             badger_0.2.1             
-    ## [47] fansi_1.0.3               nlme_3.1-159             
-    ## [49] rstatix_0.7.0             homologene_1.4.68.19.3.27
-    ## [51] tools_4.2.1               data.table_1.14.2        
-    ## [53] matrixStats_0.62.0        lifecycle_1.0.2          
-    ## [55] stringr_1.4.1             S4Vectors_0.35.4         
-    ## [57] plotly_4.10.0             aplot_0.1.7              
-    ## [59] ggtree_3.5.3              munsell_0.5.0            
-    ## [61] DelayedArray_0.23.2       compiler_4.2.1           
-    ## [63] gridGraphics_0.5-1        rlang_1.0.6              
-    ## [65] grid_4.2.1                rstudioapi_0.14          
-    ## [67] htmlwidgets_1.5.4         rmarkdown_2.16           
-    ## [69] gtable_0.3.1              abind_1.4-5              
-    ## [71] DBI_1.1.3                 R6_2.5.1                 
-    ## [73] knitr_1.40                dplyr_1.0.10             
-    ## [75] fastmap_1.1.0             utf8_1.2.2               
-    ## [77] rprojroot_2.0.3           treeio_1.21.2            
-    ## [79] dlstats_0.1.5             desc_1.4.2               
-    ## [81] ape_5.6-2                 stringi_1.7.8            
-    ## [83] parallel_4.2.1            Rcpp_1.0.9               
-    ## [85] vctrs_0.4.2               tidyselect_1.1.2         
-    ## [87] xfun_0.33
+    ## [35] IRanges_2.32.0            generics_0.1.3           
+    ## [37] grr_0.9.5                 car_3.1-1                
+    ## [39] ggplot2_3.4.0             ggpubr_0.4.0             
+    ## [41] withr_2.5.0               BiocGenerics_0.44.0      
+    ## [43] lazyeval_0.2.2            cli_3.4.1                
+    ## [45] magrittr_2.0.3            evaluate_0.18            
+    ## [47] badger_0.2.2              fansi_1.0.3              
+    ## [49] nlme_3.1-160              rstatix_0.7.1            
+    ## [51] homologene_1.4.68.19.3.27 tools_4.2.1              
+    ## [53] data.table_1.14.4         matrixStats_0.62.0       
+    ## [55] lifecycle_1.0.3           stringr_1.4.1            
+    ## [57] S4Vectors_0.36.0          plotly_4.10.1            
+    ## [59] aplot_0.1.8               ggtree_3.6.2             
+    ## [61] munsell_0.5.0             DelayedArray_0.24.0      
+    ## [63] compiler_4.2.1            gridGraphics_0.5-1       
+    ## [65] rlang_1.0.6               grid_4.2.1               
+    ## [67] rstudioapi_0.14           htmlwidgets_1.5.4        
+    ## [69] rmarkdown_2.18            gtable_0.3.1             
+    ## [71] abind_1.4-5               DBI_1.1.3                
+    ## [73] R6_2.5.1                  knitr_1.40               
+    ## [75] dplyr_1.0.10              fastmap_1.1.0            
+    ## [77] utf8_1.2.2                rprojroot_2.0.3          
+    ## [79] treeio_1.22.0             dlstats_0.1.5            
+    ## [81] desc_1.4.2                ape_5.6-2                
+    ## [83] stringi_1.7.8             parallel_4.2.1           
+    ## [85] Rcpp_1.0.9                vctrs_0.5.0              
+    ## [87] tidyselect_1.2.0          xfun_0.34
 
 </details>
 
