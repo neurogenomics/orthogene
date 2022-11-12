@@ -3,13 +3,13 @@ citHeader("If you use orthogene, please cite:")
 citEntry(
   entry    = "Article",
   title    = "orthogene: an R package for easy mapping of orthologous genes across hundreds of species",
-  author   = "Brian M Schilder, Nathan G. Skene",
+  author   = "Brian M. Schilder, Nathan G. Skene",
   journal  = "Bioconductor",
   year     = "2022",
   volume   = NULL,
   number   = NULL,
   pages    = NULL,
   url      = "https://doi.org/doi:10.18129/B9.bioc.orthogene",
-  textVersion = paste("Brian M Schilder, Nathan G. Skene (2022). orthogene: Interspecies gene mapping. R package version 1.4.0, https://doi.org/doi:10.18129/B9.bioc.orthogene"
+  textVersion = paste("Brian M. Schilder, Nathan G. Skene (2022). orthogene: Interspecies gene mapping. R package version 1.4.0, https://doi.org/doi:10.18129/B9.bioc.orthogene"
   )
 )
