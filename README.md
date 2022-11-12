@@ -53,6 +53,10 @@ If you use `orthogene`, please cite:
 
 <!-- Modify this by editing the file: inst/CITATION  -->
 
+> Brian M Schilder, Nathan G. Skene (2022). orthogene: Interspecies gene
+> mapping. R package version 1.4.0,
+> <https://doi.org/doi:10.18129/B9.bioc.orthogene>
+
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
 
 # Installation

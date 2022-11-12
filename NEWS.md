@@ -11,6 +11,7 @@
 * Upgrade TimeTree phylogeny to v5 (2022):
     - 50k+ species --> 137k+ species!
 * Replace `dplyr::%>%` usage with `|>`
+* Add *CITATION* file
 
 ## Bug fixes  
 
