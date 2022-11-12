@@ -134,14 +134,14 @@ plot_orthotree <- function(tree = NULL,
     #### metadata ####
     if(!is.null(orth_report)){
         d <- merge(uids, 
-                   orth_report %>% 
+                   orth_report |> 
                        dplyr::rename(species=target_species,
                                      input_species_original=input_species),
                    by = "species")
     } else {
         d <- uids
     }
-    d <- d %>% dplyr::relocate(species, .after = dplyr::last_col())
+    d <- d |> dplyr::relocate(species, .after = dplyr::last_col())
     rownames(d) <- d$species
     messager(nrow(d),"species remaining after metadata preparation.",
              v=verbose)

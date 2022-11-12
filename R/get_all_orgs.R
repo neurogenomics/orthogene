@@ -30,7 +30,7 @@ get_all_orgs <- function(method = c(
         messager("Retrieving all organisms available in",
                  paste0(method,"."),v=verbose)
         requireNamespace("babelgene")
-        orgs <- babelgene::species() %>% 
+        orgs <- babelgene::species() |> 
             dplyr::rename(taxonomy_id=taxon_id)
         ### Add humans ###
         orgs <- rbind(orgs, data.frame(taxonomy_id=9606,

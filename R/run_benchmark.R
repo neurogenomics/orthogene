@@ -47,7 +47,7 @@ run_benchmark <- function(species,
                     method = m,
                     verbose = verbose
                 )
-            })  %>% data.table::rbindlist()
+            })  |> data.table::rbindlist()
             #### Report time ####
             message_parallel(
                 paste(
@@ -59,7 +59,7 @@ run_benchmark <- function(species,
             return(res)
         },
         mc.cores = mc.cores
-    ) %>% `names<-`(species) %>%
+    ) |> `names<-`(species) |>
         data.table::rbindlist(idcol = "species")
 
     #### Remove time that failed entirely ####

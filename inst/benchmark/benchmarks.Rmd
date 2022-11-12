@@ -60,7 +60,7 @@ species <- c(human="H sapiens",
              worm = "C elegans",
              rice = "O sativa"
              )
-species_mapped <- map_species(species = species) %>% `names<-`(names(species))
+species_mapped <- map_species(species = species) |> `names<-`(names(species))
 
 ```
 

@@ -24,7 +24,7 @@ all_genes_gprofiler <- function(species,
         ...
     )
     ### make similar to homologene
-    tar_genes <- tar_genes %>% dplyr::rename(Gene.Symbol = name)
+    tar_genes <- tar_genes |> dplyr::rename(Gene.Symbol = name)
     messager("Gene table with", formatC(nrow(tar_genes), big.mark = ","),
              "rows retrieved.",
         v = verbose

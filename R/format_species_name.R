@@ -14,7 +14,7 @@ format_species_name <- function(species,
                     s <- paste(c(gs, subspecies), collapse = " ") 
                 } 
                 return(s) 
-            }) %>% unlist() 
+            }) |> unlist() 
     }
     #### "C l familiaris" ==> "Clfamiliaris" ####
     if (remove_chars != FALSE) {

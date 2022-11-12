@@ -27,7 +27,7 @@ test_that("map_orthologs_babelgene works", {
         top = FALSE
     )  
     testthat::expect_gte(nrow(gene_map_b3), 15500)
-
+    
     
     
     ## ====== orthogene ====== ##
@@ -50,7 +50,7 @@ test_that("map_orthologs_babelgene works", {
             head(gene_map1$input_gene)==toupper(head(gene_map1$input_gene))
         )
     )
-
+    
     #### human ==> mouse ####
     gene_map2 <- orthogene:::map_orthologs_babelgene(
         genes = gene_map1$ortholog_gene,
@@ -78,7 +78,7 @@ test_that("map_orthologs_babelgene works", {
         output_species = "human"
     )
     testthat::expect_gte(nrow(gene_map2), 29500)
-
+    
     #### mouse ==> chicken ####
     testthat::expect_error(
         gene_map3 <- orthogene:::map_orthologs_babelgene(
@@ -87,7 +87,7 @@ test_that("map_orthologs_babelgene works", {
             output_species = "Gallus gallus"
         )
     )
-
+    
     #### human ==> human ####
     gene_map3 <- orthogene:::map_orthologs_babelgene(
         genes = gene_map1$ortholog_gene,

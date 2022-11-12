@@ -5,10 +5,15 @@
 #' Optionally, if \code{output_format} is not \code{NULL}, species names from 
 #'  both the tree and the \code{species} argument will first be standardised
 #'  using \link[orthogene]{map_species}. 
+#' @source \href{https://doi.org/10.1093/molbev/msac174}{
+#' TimeTree 5: An Expanded Resource for Species Divergence Times}
 #' 
 #' @param tree_source Can be one of the following:
 #' \itemize{
-#' \item{"timetree":\cr}{Import and prune the
+#' \item{"timetree2022":\cr}{Import and prune the
+#' \href{https://doi.org/10.1093/molbev/msac174}{
+#' TimeTree >147k species} phylogenetic tree. Can also simply type "timetree".}
+#' \item{"timetree2015":\cr}{Import and prune the
 #' \href{http://www.timetree.org/public/data/TimetreeOfLife2015.nwk}{
 #' TimeTree >50k species} phylogenetic tree.}
 #' \item{"OmaDB":\cr}{Construct a tree from \href{omabrowser.org}{OMA} 
@@ -54,18 +59,23 @@ prepare_tree <- function(tree_source = "timetree",
                          age_max = NULL,
                          show_plot = TRUE,
                          verbose = TRUE,
-                         ...){ 
+                         ...){  
+    # templateR:::source_all()
+    # templateR:::args2vars(prepare_tree)
+    
     requireNamespace("ape")
     requireNamespace("phytools")
     requireNamespace("TreeTools")
     
     method <- tolower(method)[1]
+    #### OmaDB tree ####
     if(tolower(tree_source) %in% c("omadb","oma")){
         requireNamespace("OmaDB")
         messager("Importing tree from: OMA",v=verbose)
         txt <- OmaDB::getTaxonomy(members=paste(species,collapse = ","))$newick
         tr <- OmaDB::getTree(newick = txt) 
       
+    #### UCSC tree ####
     } else if(tolower(tree_source)=="ucsc"){
         messager("Importing tree from: UCSC",v=verbose)
         tree_source <- paste(
@@ -74,22 +84,35 @@ prepare_tree <- function(tree_source = "timetree",
             "hg38.100way.scientificNames.nh",sep="/"
             )
         tr <- ape::read.tree(file = tree_source)
-    } else if(tolower(tree_source) %in% c("timetree")){
-        messager("Importing tree from: TimeTree",v=verbose)
+        
+    #### TimeTree.org tree ####
+    } else if(grepl("timetree",tree_source,ignore.case = TRUE)){ 
+        #### Get a specific version of TimeTree ####
         #### >50k species #####
-        tree_source <- paste("http://www.timetree.org/public/data",
-                             "TimetreeOfLife2015.nwk",sep="/")
+        if(grepl("2015",tree_source)){
+            messager("Importing tree from: TimeTree2015",v=verbose)
+            tree_source <- paste("https://zenodo.org/record/7315419/files",
+                                 "TimetreeOfLife2015.nwk?download=1",sep="/")
+        #### >137k species ##### 
+        } else {
+            messager("Importing tree from: TimeTree2022",v=verbose)
+            tree_source <- paste("https://zenodo.org/record/7315419/files",
+                                 "TimeTree%20v5%20Final.nwk?download=1",sep="/")
+        }
+        #### Read tree ####
         tr <- ape::read.tree(file = tree_source)
         ## Filter early, bc mapping all 50k species would take too long.
         species <- map_species(species = species,
                                output_format = "scientific_name",
                                method = method,
                                verbose = FALSE)
-        species_ <- gsub(" +","_",species)
-        unmapped <- !tr$tip.label %in% species_
-        tr <- ape::drop.tip(
-            phy = tr, 
-            tip = tr$tip.label[unmapped]) 
+        ## Filter tree and ignore case
+        species_ <- tolower(gsub(" +","_",species))
+        ## Trim "'"
+        tr$tip.label <- trimws(tr$tip.label,whitespace = "'")
+        unmapped <- !tolower(tr$tip.label) %in% species_
+        tr <- ape::drop.tip(phy = tr, 
+                            tip = tr$tip.label[unmapped]) 
     } else {
         messager("Importing tree from:",tree_source,v=verbose)
         # if(any(endsWith(tree_source,c("nh","nhx")))){

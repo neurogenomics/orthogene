@@ -23,7 +23,7 @@
 #' from best to worst matches.
 #' 
 #' @export
-#' @importFrom dplyr %>% arrange desc
+#' @importFrom dplyr arrange desc
 #' @importFrom data.table data.table rbindlist
 #' @importFrom utils capture.output
 #' @examples  
@@ -89,7 +89,7 @@ infer_species <- function(gene_df,
             gene_list = length(unique(genes)),
             intersect = sum(unique(genes) %in% genome$Gene.Symbol)
             ) 
-    }) %>% data.table::rbindlist()
+    }) |> data.table::rbindlist()
     res <- dplyr::arrange(res, dplyr::desc(intersect))
     res$species <- factor(res$species,
                           rev(unique(res$species)),

@@ -17,7 +17,7 @@ all_genes_homologene <- function(species,
     tar_genes <- subset(
         homologene::homologeneData,
         Taxonomy == species
-    ) %>% dplyr::rename(taxonomy_id=Taxonomy)
+    ) |> dplyr::rename(taxonomy_id=Taxonomy)
     messager("Gene table with", formatC(nrow(tar_genes),big.mark = ","),
              "rows retrieved.",
         v = verbose

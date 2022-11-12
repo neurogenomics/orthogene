@@ -1,3 +1,24 @@
+# orthogene  1.5.1
+
+## New features
+
+* Bumped to 1.5.1 for Bioc devel 3.17
+* Merged upstream devel.
+* Now using `rworflows` for GHA.
+    - Removed *Dockerfile*
+* Host `orthogene` data resources on Zenodo: 
+    - https://doi.org/10.5281/zenodo.7315418
+* Upgrade TimeTree phylogeny to v5 (2022):
+    - 50k+ species --> 137k+ species!
+* Replace `dplyr::%>%` usage with `|>`
+
+## Bug fixes  
+
+* `prepare_tree`:
+    - Ignore species name case and trim "'" when filtering tree.
+* `map_species`:
+    - Add `trimws` step to remove flanking " " or "'".
+    
 # orthogene  1.3.4  
 
 ## Bug fixes  
@@ -77,6 +98,19 @@ no longer mutually exclusive due to many:many expansion/aggregation.
 * Fix all unit tests and examples after making all updates. 
 * Recognize sparse/dense matrix or delayedarray in `check_agg_args`. 
 
+# orthogene 1.2.1
+
+## Bug fixes
+
+* Make `test-map_orthologs_babelgene` less stringent 
+    with the number of expected genes.
+
+# orthogene 1.2.0 
+
+## Bug fixes
+
+* Increment to v2.0 now that Bioc 3.15 is the RELEASE. 
+
 # orthogene  1.1.5
 
 ## Bug fixes
@@ -89,9 +123,9 @@ no longer mutually exclusive due to many:many expansion/aggregation.
     + Throw error if trying to map between two non-human species. 
     + Filter support==NA mappings by default, not but support>=2 
     like `babelgene` does by default (even when `babelgene::orthologs(min_support = 1)`). 
-    + See here for discussion of discrepancies with babelgene maintainer: https://github.com/igordot/babelgene/issues/2 
+    + See here for discussion of discrepancies with babelgene maintainer: https://github.com/igordot/babelgene/issues/2  
     
-## New features  
+## New features   
 
 * Removed `aggregate_rows_delayedarray` as it wasn't being used and was far less efficient than the other methods anyway (which are also compatible with DelayedArray matrices anyway). * New unit tests:
     + `load_data`  
@@ -99,16 +133,15 @@ no longer mutually exclusive due to many:many expansion/aggregation.
     + `sparsity`  
     + `infer_species`
 
-
 # orthogene  1.1.4
 
 ## Bug fixes
 
 - Remove `source_all` as it included a `library` call. 
 
-# orthogene  1.1.3
+# orthogene  1.1.3 
 
-## New features  
+## New features   
 
 * Update GHA
 
@@ -129,7 +162,7 @@ from `all_genes_babelgene` instead `babelgene::orthologs` (which doesn't seem to
     + Add "id" column (e.g. "celegans") to all org databases to enhance their searchability. 
     + Add `map_species_check_args`. 
 * Ensure proper method-specific `output_format` when passing species to other functions. 
-    
+     
 ## New features    
 
 * `plot_orthotree`: Automated plotting of phylogenetic trees with 1:1 ortholog report annotations. Includes several subfunctions: 
@@ -141,14 +174,13 @@ from `all_genes_babelgene` instead `babelgene::orthologs` (which doesn't seem to
 * Added citation info to README. 
 * Save `all_genes_babelgene` ortholog data to orthogene-specific cache instead of tempdir to avoid re-downloading every R session. 
 
-
 # orthogene  1.1.1
 
 ## Bug fixes  
 
 * Made GHA less dependent on hard-coded R/bioc versions. 
 
-# orthogene  1.1.0
+# orthogene  1.1.0 
 
 ## New features    
 
@@ -160,11 +192,11 @@ provided to build and check any R package efficiently with [AnVil](https://bioco
 * CRAN checks and Bioc checks run via [GitHub Actions](https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml).  
 * Added documentation on using Docker container to README.  
 * Documentation website now automatically built via [GitHub Actions](https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml).   
-* Code coverage tests now automatically run and uploaded via [GitHub Actions](https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml).   
+* Code coverage tests now automatically run and uploaded via [GitHub Actions](https://github.com/neurogenomics/orthogene/blob/main/.github/workflows/check-bioc-docker.yml).      
 
 # orthogene  0.99.9
 
-## New features    
+## New features  
 
 * Replaced R-CMD GHA with bioc-check GHA.
 * Added new badges.
@@ -204,7 +236,7 @@ different packages.
 
 # orthogene  0.99.3
 
-## New features  
+## New features   
 
 * License switched to GPL-3 (to be compliant with Bioc).  
 * New method "babelgene" added to `convert_orthologs`.
@@ -224,4 +256,3 @@ different packages.
 ## New features  
 
 * `orthogene` released to Bioconductor.
-

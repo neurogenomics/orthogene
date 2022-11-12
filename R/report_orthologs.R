@@ -44,7 +44,7 @@
 #' aggregated \code{report} statistics concatenated across species 
 #' will be returned instead. 
 #' @export
-#' @importFrom dplyr n_distinct %>%
+#' @importFrom dplyr n_distinct
 #' @importFrom data.table rbindlist
 #' @importFrom parallel mclapply
 #' @examples
@@ -84,7 +84,7 @@ report_orthologs <- function(target_species = "mouse",
                     method_all_genes = method_all_genes,
                     method_convert_orthologs = method_convert_orthologs)$report
             }, error = function(e) NULL)
-        }, mc.cores = mc.cores) %>% data.table::rbindlist()
+        }, mc.cores = mc.cores) |> data.table::rbindlist()
         return(orth_report)
     }
     
@@ -96,10 +96,10 @@ report_orthologs <- function(target_species = "mouse",
     #### Check species here to see if they're synonymous ####
     species1 <- map_species(species = target_species,
                             method = method_all_genes,
-                            verbose = FALSE) %>% unname() 
+                            verbose = FALSE) |> unname() 
     species2 <- map_species(species = reference_species,
                             method = method_all_genes,
-                            verbose = FALSE) %>% unname() 
+                            verbose = FALSE) |> unname() 
     #### Species are the same #### 
     if(species1==species2){
         gene_df <- all_genes(species = reference_species, 

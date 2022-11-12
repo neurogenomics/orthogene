@@ -56,7 +56,10 @@ Also gives consensus scores for each gene mapping based on a
 
 \item{tree_source}{Can be one of the following:
 \itemize{
-\item{"timetree":\cr}{Import and prune the
+\item{"timetree2022":\cr}{Import and prune the
+\href{https://doi.org/10.1093/molbev/msac174}{
+TimeTree >147k species} phylogenetic tree. Can also simply type "timetree".}
+\item{"timetree2015":\cr}{Import and prune the
 \href{http://www.timetree.org/public/data/TimetreeOfLife2015.nwk}{
 TimeTree >50k species} phylogenetic tree.}
 \item{"OmaDB":\cr}{Construct a tree from \href{omabrowser.org}{OMA} 

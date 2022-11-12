@@ -18,7 +18,7 @@ prepare_clades <- function(tree,
                 data.frame(node=ggtree::MRCA(y, species_list)$node,
                            name=cl)
             } 
-        }) %>% data.table::rbindlist()
+        }) |> data.table::rbindlist()
         return(nodes)
     } else { 
         return(NULL)

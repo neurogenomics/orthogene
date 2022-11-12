@@ -21,7 +21,7 @@
 #
 #   # library(ggplot2)
 #   # library(dplyr)
-#   gp <- ggplot(data = data.frame(bench) %>%
+#   gp <- ggplot(data = data.frame(bench) |>
 #            dplyr::rename(method="expr"),
 #          aes(x=method, y=time, fill=method)) +
 #     geom_bar(stat="identity") +

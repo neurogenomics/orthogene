@@ -12,7 +12,7 @@
 #' babelgene tutorial}
 #' @return Ortholog map \code{data.frame}
 #' @importFrom babelgene orthologs species
-#' @importFrom dplyr %>% select
+#' @importFrom dplyr select
 #' @keywords internal
 map_orthologs_babelgene <- function(genes,
                                     input_species,
@@ -30,13 +30,13 @@ map_orthologs_babelgene <- function(genes,
         method = "babelgene",
         output_format = "scientific_name",
         verbose = verbose
-    ) %>% unname()
+    ) |> unname()
     target_id <- map_species(
         species = output_species, 
         method = "babelgene",
         output_format = "scientific_name",
         verbose = verbose
-    ) %>% unname()
+    ) |> unname()
     check_species_babelgene(
         source_id = source_id,
         target_id = target_id
@@ -66,7 +66,7 @@ map_orthologs_babelgene <- function(genes,
                                         min_support = min_support,
                                         verbose = verbose) 
         if(is_human(source_id)){
-            gene_map <- gene_map %>% dplyr::select(
+            gene_map <- gene_map |> dplyr::select(
                 input_gene = human_symbol,
                 ortholog_gene = Gene.Symbol,
                 input_geneID = human_ensembl,
@@ -77,7 +77,7 @@ map_orthologs_babelgene <- function(genes,
                 support_n
             ) 
         } else {
-            gene_map <- gene_map %>% dplyr::select(
+            gene_map <- gene_map |> dplyr::select(
                 input_gene = Gene.Symbol,
                 ortholog_gene = human_symbol,
                 input_geneID = ensembl,

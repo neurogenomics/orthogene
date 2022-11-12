@@ -66,7 +66,7 @@ all_genes_babelgene <- function(species,
         orths <- load_data(tmp)
     } 
     #### Filter by species ####
-    tar_genes <- subset(orths, taxon_id == source_id) %>%
+    tar_genes <- subset(orths, taxon_id == source_id) |>
         dplyr::rename(taxonomy_id=taxon_id,
                       Gene.Symbol=symbol) 
     if(min_support>0){

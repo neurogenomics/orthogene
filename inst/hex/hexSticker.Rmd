@@ -54,7 +54,7 @@ image_info <- data.frame(
                 alpha=c(.8,.8,1,
                         .8,.8,1)
                 ) 
-image_info <- rbind(image_info, image_info[1,] %>% dplyr::mutate(size=0))
+image_info <- rbind(image_info, image_info[1,] |> dplyr::mutate(size=0))
 
 ### From ggimage code
 polygon_df <- dplyr::tibble(

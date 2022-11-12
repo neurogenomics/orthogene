@@ -25,7 +25,7 @@
 #' @return Species ID of type \code{output_format}
 #' @export
 #' @importFrom jsonlite fromJSON
-#' @importFrom dplyr %>% arrange filter_at any_vars
+#' @importFrom dplyr arrange filter_at any_vars
 #' @examples
 #' ids <- map_species(species = c(
 #'     "human", 9606, "mus musculus",
@@ -66,6 +66,9 @@ map_species <- function(species = NULL,
         messager("Returning table with all species.", v = verbose)
         return(orgs)
     }
+    #### Prepare species names #####
+    species <- base::trimws(base::trimws(species),whitespace = "'")
+    #### Check args ####
     msca_out <- map_species_check_args(orgs = orgs, 
                                        output_format = output_format,
                                        search_cols = search_cols)
@@ -91,7 +94,7 @@ map_species <- function(species = NULL,
         } else {
             spec_queries <- spec
         } 
-        orgs_sub <- orgs %>%
+        orgs_sub <- orgs |>
             dplyr::filter_at(
                 .vars = search_cols,
                 .vars_predicate = dplyr::any_vars(
@@ -122,6 +125,6 @@ map_species <- function(species = NULL,
             )
             return(NULL)
         }
-    }) %>% `names<-`(species)
+    }) |> `names<-`(species)
     return(unlist(species_results))
 }

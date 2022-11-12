@@ -7,7 +7,7 @@ author: "<img src='`r read.dcf('DESCRIPTION', fields = 'URL')[1]`/raw/main/inst/
         [![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
         `r badger::badge_doi(doi = 'https://doi.org/10.18129/B9.bioc.orthogene', color='green')`
         `r badger::badge_bioc_download(color='green', by='total')`
-        `r badger::badge_github_actions(action = 'R-CMD-check-bioc')`
+        `r badger::badge_github_actions(action = 'rworkflows')`
         `r badger::badge_last_commit(branch='main')`
         `r badger::badge_codecov(branch='main')` 
         `r badger::badge_license()` 
