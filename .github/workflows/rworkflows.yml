@@ -2,12 +2,14 @@ name: rworkflows
 'on':
   push:
     branches:
-    - master
     - main
+    - master
+    - RELEASE_3_16
   pull_request:
     branches:
-    - master
     - main
+    - master
+    - RELEASE_3_16
 jobs:
   rworkflows:
     runs-on: ${{ matrix.config.os }}
@@ -37,7 +39,7 @@ jobs:
       shell: bash {0}
     - uses: neurogenomics/rworkflows@master
       with:
-        run_bioccheck: ${{ false }}
+        run_bioccheck: ${{ true }}
         run_crancheck: ${{ true }}
         run_vignettes: ${{ true }}
         has_testthat: ${{ true }}
