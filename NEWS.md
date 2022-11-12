@@ -1,3 +1,13 @@
+# orthogene  1.4.1
+
+## New features
+
+* Bump to 1.4.1 for Bioc release 3.16.
+* Update manual.
+* Use `rworkflows`.
+    - Remove *Dockerfile*
+* Add *CITATION* file.
+
 # orthogene  1.3.4  
 
 ## Bug fixes  
