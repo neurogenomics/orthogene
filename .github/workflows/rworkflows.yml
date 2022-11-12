@@ -35,7 +35,7 @@ jobs:
       name: Hack container for local development
       run: |
         curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-        sudo apt-get install -y nodejs
+        sudo apt-get install -y nodejs 
       shell: bash {0}
     - uses: neurogenomics/rworkflows@master
       with:
