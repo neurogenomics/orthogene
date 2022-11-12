@@ -59,6 +59,8 @@ If you use `orthogene`, please cite:
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
 
+## [PDF manual](https://github.com/neurogenomics/orthogene/blob/main/inst/orthogene_1.5.1.pdf)
+
 # Installation
 
 ``` r
