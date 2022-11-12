@@ -2,12 +2,14 @@ name: rworkflows
 'on':
   push:
     branches:
-    - master
     - main
+    - master
+    - RELEASE_3_16
   pull_request:
     branches:
-    - master
     - main
+    - master
+    - RELEASE_3_16
 jobs:
   rworkflows:
     runs-on: ${{ matrix.config.os }}
