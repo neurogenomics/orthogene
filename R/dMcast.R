@@ -30,7 +30,7 @@ dMcast <- function(data,
                    # fun.aggregate = "sum", 
                    value.var = NULL, 
                    as.factors = FALSE,
-                   na.action = stats::pass,
+                   na.action = stats::na.pass,
                    factor.nas = TRUE, 
                    drop.unused.levels = TRUE) {
     # #' @param fun.aggregate Name of aggregation function. Defaults to 'sum'.

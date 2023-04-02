@@ -43,6 +43,9 @@
         because this column will always be `NA` since it's irrelevant for humans.
 * Fix unit tests:
     - *report_orthologs* 
+* `dMcast`
+    - Fix `stats::pass` --> `stats::na.pass`. Weirdly, only a problem on Linux. 
+        Did base R change a fundamental function name?
 
 # orthogene  1.5.1
 

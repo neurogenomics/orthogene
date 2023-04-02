@@ -16,7 +16,7 @@ dMcast(
   formula,
   value.var = NULL,
   as.factors = FALSE,
-  na.action = stats::pass,
+  na.action = stats::na.pass,
   factor.nas = TRUE,
   drop.unused.levels = TRUE
 )
