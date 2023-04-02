@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# orthogene  1.5.2
+# orthogene  1.4.2
 
 ## New features
 
@@ -48,29 +47,6 @@
     - Fix `stats::pass` --> `stats::na.pass`. Weirdly, only a problem on Linux. 
         Did base R change a fundamental function name?
 
-# orthogene  1.5.1
-
-## New features
-
-* Bumped to 1.5.1 for Bioc devel 3.17
-* Merged upstream devel.
-* Now using `rworkflows` for GHA.
-    - Removed *Dockerfile*
-* Host `orthogene` data resources on Zenodo: 
-    - https://doi.org/10.5281/zenodo.7315418
-* Upgrade TimeTree phylogeny to v5 (2022):
-    - 50k+ species --> 137k+ species!
-* Replace `dplyr::%>%` usage with `|>`
-* Add *CITATION* file
-
-## Bug fixes  
-
-* `prepare_tree`:
-    - Ignore species name case and trim "'" when filtering tree.
-* `map_species`:
-    - Add `trimws` step to remove flanking " " or "'".
-    
-=======
 # orthogene  1.4.1
 
 ## New features
@@ -81,7 +57,7 @@
     - Remove *Dockerfile*
 * Add *CITATION* file.
 
->>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
+
 # orthogene  1.3.4  
 
 ## Bug fixes  

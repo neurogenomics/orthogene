@@ -71,11 +71,7 @@ Suggests:
     RColorBrewer,
     ggimage,
     OmaDB
-<<<<<<< HEAD
-RoxygenNote: 7.2.3
-=======
-RoxygenNote: 7.2.2
->>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
+RoxygenNote: 7.2.3 
 Encoding: UTF-8
 Config/testthat/edition: 3
 Config/rcmdcheck/_R_CHECK_FORCE_SUGGESTS_: false
