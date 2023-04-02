@@ -3,7 +3,7 @@ test_that("report_orthologs works", {
     n_genes <- function(dat) {
         length(unique(dat$map$Gene.Symbol))
     }
-
+    
     run_tests <- function(method,
                           ...) {
         orth_mus <- report_orthologs(
@@ -38,11 +38,11 @@ test_that("report_orthologs works", {
         expected_mouse <- if (method == "gprofiler") 16000 else 15000
         observed_mouse <- n_genes(orth_mus)
         testthat::expect_gte(observed_mouse, expected_mouse)
-
+        
         expected_zeb <- if (method %in% c("gprofiler","babelgene")) 7500 else 10000
         observed_zeb <- n_genes(orth_zeb)
         testthat::expect_gte(observed_zeb, expected_zeb)
-
+        
         expected_fly <- if (method == "gprofiler") {
             600
         } else if(method == "homologene") {
@@ -62,7 +62,7 @@ test_that("report_orthologs works", {
         }
         observed_hum <- n_genes(orth_hum)
         testthat::expect_gte(observed_hum, expected_hum)
-
+        
         res <- data.frame(rbind(
             c(species = "mouse", expected = expected_mouse, observed = observed_mouse),
             c(species = "zebrafish", expected = expected_zeb, observed = observed_zeb),
@@ -72,7 +72,7 @@ test_that("report_orthologs works", {
         res <- cbind(method = method, res)
         return(res)
     }
-
+    
     #### gprofiler tests ####
     # Takes a long time currently (hacky)
     # g_res <- run_tests(method="gprofiler")
@@ -82,7 +82,7 @@ test_that("report_orthologs works", {
     # But is this really an accurate reflection of the biology?...
     # g_res_m1 <- run_tests(method="gprofiler", mthreshold=1)
     # g_res_m3 <- run_tests(method="gprofiler", mthreshold=3)
-
+    
     #### homologene tests ####
     h_res <- run_tests(method = "homologene")
     #### babelgene tests ####
@@ -97,6 +97,7 @@ test_that("report_orthologs works", {
         target_species = multi_species,
         reference_species = "human",
         method_all_genes = "homologene")
-    testthat::expect_true(methods::is(orth_multi,"data.frame"))
-    testthat::expect_equal(nrow(orth_multi), length(multi_species))
+    testthat::expect_true(methods::is(orth_multi$map,"data.frame"))
+    testthat::expect_true(methods::is(orth_multi$report,"data.frame"))
+    testthat::expect_equal(nrow(orth_multi$report), length(multi_species))
 })

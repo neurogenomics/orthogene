@@ -5,7 +5,7 @@
 #' Then translate to a standardised species ID.
 #'
 #' @param species Species query
-#' (e.g. "human", "homo sapiens", "hapiens", or 9606).
+#' (e.g. "human", "homo sapiens", "hsapiens", or 9606).
 #' If given a list, will iterate queries for each item.
 #' Set to \code{NULL} to return all species.
 #' @param search_cols Which columns to search for
@@ -21,6 +21,7 @@
 #' but should suffice for most use cases.
 #' @param verbose Print messages.
 #' @inheritParams convert_orthologs
+#' @inheritParams format_species
 #'
 #' @return Species ID of type \code{output_format}
 #' @export
@@ -43,18 +44,21 @@ map_species <- function(species = NULL,
                             "id",
                             "display_name",
                             "taxonomy_id",
-                            "version"
+                            "version",
+                            "scientific_name_formatted"
                         ),
                         method = c( 
                             "homologene",
                             "gprofiler",
                             "babelgene"
                         ),
-                        use_local = TRUE,
+                        remove_subspecies = TRUE,
+                        remove_subspecies_exceptions = 
+                            c("Canis lupus familiaris"),
+                        use_local = TRUE, 
                         verbose = TRUE) {
-
-    ## Avoid confusing Biocheck
-    scientific_name <- . <- NULL;
+    # devoptera::args2vars(map_species) 
+    . <- NULL;
 
     #### Load organism reference ####
     method <- tolower(method)[1]
@@ -75,7 +79,9 @@ map_species <- function(species = NULL,
     output_format <- msca_out$output_format
     search_cols <- msca_out$search_cols
     ### Iterate over multiple queries ####
-    species_results <- lapply(species, function(spec) {
+    species_results <- lapply(stats::setNames(species,
+                                              species), 
+                              function(spec) {
         messager("Mapping species name:", spec, v = verbose)
         #### Map common species names ####
         spec <- common_species_names_dict(
@@ -84,11 +90,10 @@ map_species <- function(species = NULL,
         )
         #### Query multiple columns ####
         if (is.character(spec)) {
-            mod_spec <- format_species_name(species = spec, gs_s = TRUE)
-            mod_spec2 <- format_species_name(
-                species = spec,
-                remove_chars = " |[.]|[-]|[(]|[)]"
-            )
+            mod_spec <- format_species(species = spec, 
+                                            abbrev = TRUE)
+            mod_spec2 <- format_species(
+                species = spec)
             mod_spec2 <- gsub("_"," ",mod_spec2)
             spec_queries <- paste(unname(spec), mod_spec, mod_spec2, sep = "|")
         } else {
@@ -125,6 +130,13 @@ map_species <- function(species = NULL,
             )
             return(NULL)
         }
-    }) |> `names<-`(species)
+    }) 
+    if(output_format=="scientific_name_formatted"){
+        species_results <- format_species(
+            species = species_results, 
+            remove_subspecies = remove_subspecies,
+            remove_subspecies_exceptions = remove_subspecies_exceptions,
+            standardise_scientific = TRUE)
+    }
     return(unlist(species_results))
 }

@@ -1,7 +1,19 @@
 drop_non121 <- function(gene_map,
                         non121_strategy,
+                        symbol_only = TRUE,
                         verbose = TRUE) {
+    .SD <- NULL
     messager("Checking for genes without 1:1 orthologs.", v = verbose)
+    #### Aggregate ####
+    ## Aggregate the data so that we only consider duplicated 
+    ## gene symbols as non-1:1
+    if(isTRUE(symbol_only)){
+        gene_map <- data.table::as.data.table(gene_map)
+        if("support_n" %in% names(gene_map)){
+            data.table::setorderv(gene_map,"support_n",-1)
+        }
+        gene_map <- gene_map[,.SD[1],by=c("input_gene","ortholog_gene")] 
+    } 
     # Drop not just the extra rows (duplicates)
     # but ALL instances of genes that appear in more than 1 row.
     dup_input_genes <- unname(gene_map$input_gene)[

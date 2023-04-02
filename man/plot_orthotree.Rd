@@ -12,7 +12,7 @@ plot_orthotree(
   tree = NULL,
   orth_report = NULL,
   species = NULL,
-  method = c("homologene", "gprofiler", "babelgene"),
+  method = c("babelgene", "homologene", "gprofiler"),
   tree_source = "timetree",
   non121_strategy = "drop_both_species",
   reference_species = "human",
@@ -21,12 +21,14 @@ plot_orthotree(
     "Mus musculus", "Bos taurus", "Ornithorhynchus anatinus", "Monodelphis domestica"),
     Tetrapods = c("Homo sapiens", "Mus musculus", "Gallus gallus", "Anolis carolinensis",
     "Xenopus tropicalis"), Vertebrates = c("Homo sapiens", "Mus musculus",
-    "Gallus gallus", "Anolis carolinensis", "Xenopus tropicalis", "Danio rerio")),
-  scaling_factor = 1,
+    "Gallus gallus", "Anolis carolinensis", "Xenopus tropicalis", "Danio rerio"),
+    Invertebrates = c("Drosophila melanogaster", 
+     "Caenorhabditis elegans")),
+  scaling_factor = NULL,
   show_plot = TRUE,
   save_paths = c(tempfile(fileext = ".ggtree.pdf"), tempfile(fileext = ".ggtree.png")),
-  width = 10,
-  height = 10,
+  width = 15,
+  height = width,
   mc.cores = 1,
   verbose = TRUE
 )
@@ -142,6 +144,5 @@ describing how many orthologous genes each species shares with the
  \code{reference_species} ("human" by default).
 }
 \examples{
-orthotree <- orthogene::plot_orthotree(species = c("human","monkey","mouse"),
-                                       scaling_factor = .3)
+orthotree <- plot_orthotree(species = c("human","monkey","mouse"))
 }

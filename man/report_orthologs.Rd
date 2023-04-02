@@ -14,6 +14,7 @@ report_orthologs(
   non121_strategy = "drop_both_species",
   round_digits = 2,
   return_report = TRUE,
+  ref_genes = NULL,
   mc.cores = 1,
   verbose = TRUE,
   ...
@@ -88,21 +89,93 @@ between two species (\code{FALSE}) or return both the
  ortholog mapping as well a \code{data.frame}
  of the report statistics (\code{TRUE}).}
 
+\item{ref_genes}{A table of all genes for the \code{reference_species}.
+If \code{NULL} (default), this will automatically be created 
+using \link[orthogene]{all_genes}.}
+
 \item{mc.cores}{Number of cores to parallelise each
 \code{target_species} with.}
 
 \item{verbose}{Print messages.}
 
-\item{...}{Additional arguments to be passed to
-\link[gprofiler2]{gorth} or \link[homologene]{homologene}.\cr\cr
-\emph{NOTE}: To return only the most "popular"
-interspecies ortholog mappings,
-supply \code{mthreshold=1} here AND set \code{method="gprofiler"} above.
-This procedure tends to yield a greater number of returned genes but at
- the cost of many of them not being true biological 1:1 orthologs.\cr\cr
- For more details, please see
-\href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
- here}.}
+\item{...}{
+  Arguments passed on to \code{\link[=convert_orthologs]{convert_orthologs}}
+  \describe{
+    \item{\code{gene_df}}{Data object containing the genes
+(see \code{gene_input} for options on how
+the genes can be stored within the object).\cr
+Can be one of the following formats:\cr
+\itemize{
+\item{\code{matrix} : \cr}{A sparse or dense matrix.}
+\item{\code{data.frame} : \cr}{A \code{data.frame},
+ \code{data.table}. or \code{tibble}.}
+\item{code{list} : \cr}{A \code{list} or character \code{vector}.}
+}
+Genes, transcripts, proteins, SNPs, or genomic ranges
+ can be provided in any format
+(HGNC, Ensembl, RefSeq, UniProt, etc.) and will be
+automatically converted to gene symbols unless
+specified otherwise with the \code{...} arguments.\cr
+\emph{Note}: If you set \code{method="homologene"}, you
+must either supply genes in gene symbol format (e.g. "Sox2")
+ OR set \code{standardise_genes=TRUE}.}
+    \item{\code{gene_input}}{Which aspect of \code{gene_df} to
+get gene names from:\cr
+\itemize{
+\item{\code{"rownames"} : \cr}{From row names of data.frame/matrix.}
+\item{\code{"colnames"} : \cr}{From column names of data.frame/matrix.}
+\item{\code{<column name>} : \cr}{From a column in \code{gene_df},
+ e.g. \code{"gene_names"}.}
+}}
+    \item{\code{gene_output}}{How to return genes.
+Options include:\cr
+\itemize{
+\item{\code{"rownames"} : \cr}{As row names of \code{gene_df}.}
+\item{\code{"colnames"} : \cr}{As column names of \code{gene_df}.}
+\item{\code{"columns"} : \cr}{As new columns "input_gene", "ortholog_gene"
+(and "input_gene_standard" if \code{standardise_genes=TRUE})
+in \code{gene_df}.}
+\item{\code{"dict"} : \cr}{As a dictionary (named list) where the names
+are input_gene and the values are ortholog_gene}.
+\item{\code{"dict_rev"} : \cr}{As a reversed dictionary (named list)
+where the names are ortholog_gene and the values are input_gene}.
+}}
+    \item{\code{input_species}}{Name of the input species (e.g., "mouse","fly").
+Use \link[orthogene]{map_species} to return a full list
+of available species.}
+    \item{\code{output_species}}{Name of the output species (e.g. "human","chicken").
+Use \link[orthogene]{map_species} to return a full list
+ of available species.}
+    \item{\code{agg_fun}}{Aggregation function passed to 
+ \link[orthogene]{aggregate_mapped_genes}. 
+Set to \code{NULL} to skip aggregation step (default).}
+    \item{\code{mthreshold}}{Maximum number of ortholog names per gene to show.
+Passed to \link[gprofiler2]{gorth}.
+Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}).}
+    \item{\code{method}}{R package to use for gene mapping:
+\itemize{
+\item{\code{"gprofiler"} : Slower but more species and genes.}
+\item{\code{"homologene"} : Faster but fewer species and genes.}
+\item{\code{"babelgene"} : Faster but fewer species and genes.
+Also gives consensus scores for each gene mapping based on a
+ several different data sources.}
+}}
+    \item{\code{as_sparse}}{Convert \code{gene_df} to a sparse matrix.
+Only works if \code{gene_df} is one of the following classes:\cr
+\itemize{
+\item{\code{matrix}}
+\item{\code{Matrix}}
+\item{\code{data.frame}}
+\item{\code{data.table}}
+\item{\code{tibble}}
+}
+If \code{gene_df} is a sparse matrix to begin with,
+it will be returned as a sparse matrix
+ (so long as \code{gene_output=} \code{"rownames"} or \code{"colnames"}).}
+    \item{\code{sort_rows}}{Sort \code{gene_df} rows alphanumerically.}
+    \item{\code{as_DelayedArray}}{Convert aggregated matrix to
+\link[DelayedArray]{DelayedArray}.}
+  }}
 }
 \value{
 A list containing: 
@@ -118,8 +191,7 @@ will be returned instead.
 Identify the number of orthologous genes between two species.
 }
 \examples{
-orth_fly <- orthogene::report_orthologs(
+orth_fly <- report_orthologs(
     target_species = "fly",
-    reference_species = "human"
-)
+    reference_species = "human")
 }

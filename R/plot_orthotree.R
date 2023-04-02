@@ -47,14 +47,13 @@
 #' @export
 #' @importFrom methods show
 #' @examples
-#' orthotree <- orthogene::plot_orthotree(species = c("human","monkey","mouse"),
-#'                                        scaling_factor = .3)
+#' orthotree <- plot_orthotree(species = c("human","monkey","mouse"))
 plot_orthotree <- function(tree = NULL,
                            orth_report = NULL,
                            species = NULL,
-                           method = c("homologene",
-                                      "gprofiler",
-                                      "babelgene"),
+                           method = c("babelgene",
+                                      "homologene",
+                                      "gprofiler"),
                            tree_source = "timetree",
                            non121_strategy = "drop_both_species",
                            reference_species = "human", 
@@ -80,26 +79,34 @@ plot_orthotree <- function(tree = NULL,
                                                        "Gallus gallus",
                                                        "Anolis carolinensis",
                                                        "Xenopus tropicalis",
-                                                       "Danio rerio")
+                                                       "Danio rerio"),
+                                         "Invertebrates"=
+                                             c("Drosophila melanogaster",
+                                               "Caenorhabditis elegans")
                                          ),
-                           scaling_factor = 1,
+                           scaling_factor = NULL,
                            show_plot = TRUE,
                            save_paths = c(
                                tempfile(fileext = ".ggtree.pdf"),
                                tempfile(fileext = ".ggtree.png")
                            ),
-                           width = 10, 
-                           height = 10,
+                           width = 15, 
+                           height = width,
                            mc.cores = 1,
                            verbose = TRUE){
+    # devoptera::args2vars(plot_orthotree, reassign = TRUE)
     requireNamespace("ggtree")
-    target_species <- input_species <- NULL;
     
     #### species ####
     if(is.null(species)){
-        species <- map_species(method = method)$scientific_name
-    }
-    #### orth_report ####
+        species <- map_species(method = method)$scientific_name 
+    } 
+    #### Standardise reference species ####
+    reference_species_og <- reference_species
+    reference_species <- map_species(species = reference_species,
+                                     method = method,
+                                     verbose = FALSE)
+    #### Generate orth_report ####
     if(is.null(orth_report)){ 
         orth_report <- report_orthologs(
             target_species = species, 
@@ -109,10 +116,7 @@ plot_orthotree <- function(tree = NULL,
             correct_intraspecies = TRUE,
             non121_strategy = non121_strategy,
             mc.cores = mc.cores, 
-            verbose = verbose)
-        #### Correct intra-species estimates ####  
-        orth_report[orth_report$input_species==reference_species,
-                    c("reference_percent","target_percent")] <- 100  
+            verbose = verbose)$report 
         species <- orth_report$target_species
     }
     #### tree ####
@@ -121,47 +125,57 @@ plot_orthotree <- function(tree = NULL,
                            tree_source = tree_source,
                            method = method,
                            run_map_species = c(TRUE, TRUE),
+                           show_plot = FALSE,
                            verbose = verbose)
     } else { tr <- tree} 
     #### silhouettes ####
-    uids <- gather_images(species = tr$tip.label,
+    ## The first human silhouette is a weird handprint. Skip that one.
+    which <- rep(1,length(tr$tip.map))
+    bool <- is_human(names(tr$tip.map)) 
+    if(sum(bool)>0){
+        which[bool] <- 2
+    } 
+    ## The first Celegans silhouette is huge. Skip that one.
+    bool <- names(tr$tip.map)=="Caenorhabditis elegans"
+    if(sum(bool)>0){
+        which[bool] <- 2
+    } 
+    uids <- get_silhouettes(species = names(tr$tip.map),
+                          which = which,
                           mc.cores = mc.cores,
                           verbose = verbose) 
-    #### clades ####
+    #### Make clades metadata ####
     clades <- prepare_clades(tree = tr,
                              clades = clades,
                              verbose = verbose)
-    #### metadata ####
-    if(!is.null(orth_report)){
-        d <- merge(uids, 
-                   orth_report |> 
-                       dplyr::rename(species=target_species,
-                                     input_species_original=input_species),
-                   by = "species")
-    } else {
-        d <- uids
+    #### Merge metadata ####
+    d <- plot_orthotree_metadata(orth_report = orth_report,
+                                 uids = uids,
+                                 tr = tr,
+                                 verbose = verbose)
+    #### Determine scaling factor ####
+    if(is.null(scaling_factor)){
+        scaling_factor <- 35*nrow(d)
     }
-    d <- d |> dplyr::relocate(species, .after = dplyr::last_col())
-    rownames(d) <- d$species
-    messager(nrow(d),"species remaining after metadata preparation.",
-             v=verbose)
     #### plot #### 
     p <- ggtree_plot(tr = tr,
                      d = d,
                      scaling_factor = scaling_factor,
                      clades = clades,
-                     reference_species = reference_species, 
+                     reference_species = reference_species_og, 
                      verbose = verbose)  
     #### Show plot ####
-    if(show_plot) methods::show(p) 
+    if(isTRUE(show_plot)) methods::show(p) 
     #### Save plot ####
     if(length(save_paths)>0){
         for(path in save_paths){
             dir.create(dirname(path),showWarnings = FALSE, recursive = TRUE)
             messager("Saving plot ==>",path,v=verbose)
             ggplot2::ggsave(path, p, 
-                            width = width, height = height)
+                            width = width, 
+                            height = height)
         } 
+        # file.copy(save_paths,"~/Downloads/",overwrite = TRUE)
     } 
     return(list(plot=p,
                 tree=tr,

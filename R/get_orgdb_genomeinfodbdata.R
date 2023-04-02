@@ -25,11 +25,11 @@ get_orgdb_genomeinfodbdata <- function(verbose = TRUE) {
     specData <- specData[(!genus %in% no_no_list) &
         (!species %in% no_no_list)]
     specData[, display_name := paste(genus, gsub("[(].*", "", species))]
-    specData[, scientific_name := format_species_name(display_name,
+    specData[, scientific_name := format_species(display_name,
         replace_char = "_"
     )]
-    specData[, id := format_species_name(scientific_name,
-        gs_s = TRUE,
+    specData[, id := format_species(scientific_name,
+        abbrev = TRUE,
         split_char = "_", lowercase = TRUE
     )]
     specData[, version := NA]

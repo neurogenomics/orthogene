@@ -37,18 +37,21 @@
 #' Only used if \code{age_max}, the max number , is numeric. Times are computed using
 #' \link[ape]{makeChronosCalib} and \link[ape]{chronos}. 
 #' @param show_plot Show a basic plot of the resulting tree. 
+#' @param save_dir Directory to cache full tree in. 
+#' Set to \code{NULL} to avoid using cache.
 #' @param ... Additional arguments passed to \link[ape]{makeChronosCalib}. 
 #' @inheritParams map_species
 #' 
 #' @returns A filtered tree of class "phylo" (with standardised species names).  
 #' 
 #' @export
+#' @importFrom tools R_user_dir
 #' @examples 
 #' species <- c("human","chimp","mouse")
 #' tr <- orthogene::prepare_tree(species = species)
 prepare_tree <- function(tree_source = "timetree", 
                          species = NULL,
-                         output_format = "scientific_name",
+                         output_format = "scientific_name_formatted",
                          run_map_species = c(TRUE, TRUE),
                          method = c(
                              "homologene",
@@ -58,16 +61,36 @@ prepare_tree <- function(tree_source = "timetree",
                          force_ultrametric = TRUE,
                          age_max = NULL,
                          show_plot = TRUE,
+                         save_dir = tools::R_user_dir("orthogene",
+                                                      which="cache"),
                          verbose = TRUE,
                          ...){  
-    # templateR:::source_all()
-    # templateR:::args2vars(prepare_tree)
+    # devoptera::args2vars(prepare_tree)
     
     requireNamespace("ape")
     requireNamespace("phytools")
     requireNamespace("TreeTools")
     
     method <- tolower(method)[1]
+    #### Caching function ####
+    use_cache <- function(tree_source,
+                          save_dir,
+                          verbose=TRUE){
+        if(!is.null(save_dir)){
+            tree_cache <- file.path(
+                save_dir,
+                gsub("?download=1","",basename(tree_source),fixed = TRUE))
+            if(file.exists(tree_cache)) {
+                messager("Importing cached tree.",v=verbose)
+                return(tree_cache)
+            } else {
+                utils::download.file(url = tree_source,
+                                     destfile = tree_cache)
+                return(tree_cache)
+            }
+        } 
+        return(tree_source)
+    }
     #### OmaDB tree ####
     if(tolower(tree_source) %in% c("omadb","oma")){
         requireNamespace("OmaDB")
@@ -83,11 +106,15 @@ prepare_tree <- function(tree_source = "timetree",
             "hg38/multiz100way",
             "hg38.100way.scientificNames.nh",sep="/"
             )
+        tree_source <- use_cache(tree_source = tree_source, 
+                                 save_dir = save_dir, 
+                                 verbose = verbose)
         tr <- ape::read.tree(file = tree_source)
         
     #### TimeTree.org tree ####
     } else if(grepl("timetree",tree_source,ignore.case = TRUE)){ 
         #### Get a specific version of TimeTree ####
+        
         #### >50k species #####
         if(grepl("2015",tree_source)){
             messager("Importing tree from: TimeTree2015",v=verbose)
@@ -99,20 +126,32 @@ prepare_tree <- function(tree_source = "timetree",
             tree_source <- paste("https://zenodo.org/record/7315419/files",
                                  "TimeTree%20v5%20Final.nwk?download=1",sep="/")
         }
+        #### Create/use cached file ####
+        tree_source <- use_cache(tree_source = tree_source, 
+                                 save_dir = save_dir, 
+                                 verbose = verbose)
         #### Read tree ####
         tr <- ape::read.tree(file = tree_source)
-        ## Filter early, bc mapping all 50k species would take too long.
-        species <- map_species(species = species,
-                               output_format = "scientific_name",
-                               method = method,
-                               verbose = FALSE)
-        ## Filter tree and ignore case
-        species_ <- tolower(gsub(" +","_",species))
-        ## Trim "'"
-        tr$tip.label <- trimws(tr$tip.label,whitespace = "'")
-        unmapped <- !tolower(tr$tip.label) %in% species_
+        messager("Standardising tip labels.",v=verbose)
+        ## Filter early, bc mapping all 50k species in tree would take too long.
+        species_ <- map_species(species = species,
+                                output_format = "scientific_name_formatted", 
+                                remove_subspecies_exceptions = NULL,
+                                method = method,
+                                verbose = FALSE) 
+        #### Standardise tip labels ####
+        tr$tip.label <- format_species(species = tr$tip.label, 
+                                       split_char = "_",
+                                       remove_subspecies_exceptions = NULL,
+                                       standardise_scientific = TRUE) 
+        unmapped <- !tr$tip.label %in% species_
         tr <- ape::drop.tip(phy = tr, 
                             tip = tr$tip.label[unmapped]) 
+        #### Add tip.map ####
+        
+        ## Helps us map the formatted names back to the original ones.
+        tr$tip.map <- species_
+        
     } else {
         messager("Importing tree from:",tree_source,v=verbose)
         # if(any(endsWith(tree_source,c("nh","nhx")))){
@@ -122,10 +161,10 @@ prepare_tree <- function(tree_source = "timetree",
         tr <- ape::read.tree(file = tree_source)
         # } 
     } 
-    if(!force_ultrametric){
+    if(isFALSE(force_ultrametric)){
         tr <- phytools::force.ultrametric(tr)
     } 
-    #### Find which species are in both homologene and 100-way tree ####
+    #### Find which species are in both metadata and tree ####
     if(!is.null(output_format)){
         #### Selected species ####
         if(!is.null(species) && isTRUE(run_map_species[1])){
@@ -133,6 +172,7 @@ prepare_tree <- function(tree_source = "timetree",
                      v=verbose)
             species <- map_species(species = species,
                                    output_format = output_format,
+                                   remove_subspecies_exceptions = NULL,
                                    method = method,
                                    verbose = FALSE)
         } 
@@ -143,6 +183,7 @@ prepare_tree <- function(tree_source = "timetree",
                      v=verbose)
             tip_species <- map_species(species = tr$tip.label,
                                        output_format = output_format,
+                                       remove_subspecies_exceptions = NULL,
                                        method = method, 
                                        verbose = FALSE)
             messager("--",v=verbose)
@@ -177,7 +218,7 @@ prepare_tree <- function(tree_source = "timetree",
         tr <- ape::drop.tip(
             phy = tr, 
             tip = tr$tip.label[dropped]) 
-    } 
+    }  
     #### Get root node #### 
     root_node <- TreeTools::RootNode(tr)
     #### Convert from dN/dS ratios to Millions of Years (MY) #### 
@@ -192,6 +233,8 @@ prepare_tree <- function(tree_source = "timetree",
     }
     #### Add back node labels ####
     tr <- ape::makeNodeLabel(tr) 
+    #### ggtree throws an error if node labels arent numeric... ####
+    tr$node.label <- as.numeric(gsub("Node","",tr$node.label))
     # phytools::findMRCA(tr, tips = c("Homo sapiens","Danio rerio"))
     if(show_plot){
         plot(tr, show.tip.label = TRUE, show.node.label = TRUE)

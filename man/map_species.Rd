@@ -7,15 +7,18 @@
 map_species(
   species = NULL,
   search_cols = c("display_name", "id", "scientific_name", "taxonomy_id"),
-  output_format = c("scientific_name", "id", "display_name", "taxonomy_id", "version"),
+  output_format = c("scientific_name", "id", "display_name", "taxonomy_id", "version",
+    "scientific_name_formatted"),
   method = c("homologene", "gprofiler", "babelgene"),
+  remove_subspecies = TRUE,
+  remove_subspecies_exceptions = c("Canis lupus familiaris"),
   use_local = TRUE,
   verbose = TRUE
 )
 }
 \arguments{
 \item{species}{Species query
-(e.g. "human", "homo sapiens", "hapiens", or 9606).
+(e.g. "human", "homo sapiens", "hsapiens", or 9606).
 If given a list, will iterate queries for each item.
 Set to \code{NULL} to return all species.}
 
@@ -34,6 +37,13 @@ API}.}
 Also gives consensus scores for each gene mapping based on a
  several different data sources.}
 }}
+
+\item{remove_subspecies}{Only keep the first two taxonomic levels:
+e.g. "Canis lupus familiaris" --> "Canis lupus"}
+
+\item{remove_subspecies_exceptions}{Selected species to ignore when 
+\code{remove_subspecies=TRUE}.
+e.g. "Canis lupus familiaris" --> "Canis lupus familiaris"}
 
 \item{use_local}{If \code{TRUE} \emph{default},
 \link[orthogene]{map_species}

@@ -11,12 +11,13 @@ TimeTree 5: An Expanded Resource for Species Divergence Times}
 prepare_tree(
   tree_source = "timetree",
   species = NULL,
-  output_format = "scientific_name",
+  output_format = "scientific_name_formatted",
   run_map_species = c(TRUE, TRUE),
   method = c("homologene", "gprofiler", "babelgene"),
   force_ultrametric = TRUE,
   age_max = NULL,
   show_plot = TRUE,
+  save_dir = tools::R_user_dir("orthogene", which = "cache"),
   verbose = TRUE,
   ...
 )
@@ -67,6 +68,9 @@ Only used if \code{age_max}, the max number , is numeric. Times are computed usi
 \link[ape]{makeChronosCalib} and \link[ape]{chronos}.}
 
 \item{show_plot}{Show a basic plot of the resulting tree.}
+
+\item{save_dir}{Directory to cache full tree in. 
+Set to \code{NULL} to avoid using cache.}
 
 \item{verbose}{Print messages.}
 

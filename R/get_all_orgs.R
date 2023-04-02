@@ -7,6 +7,8 @@ get_all_orgs <- function(method = c(
                          verbose = TRUE){
     taxon_id <- NULL;
     method <- tolower(method)[1]
+    
+    #### method: gprofiler ####
     if(method %in% methods_opts(gprofiler_opts = TRUE)){
         messager("Retrieving all organisms available in",
                  paste0(method,"."),v=verbose)
@@ -15,6 +17,7 @@ get_all_orgs <- function(method = c(
             verbose = verbose
         )
         orgs$source <- "gprofiler"
+    #### method: homologene ####
     } else if(method %in% methods_opts(homologene_opts = TRUE)){
         messager("Retrieving all organisms available in",
                  paste0(method,"."),v=verbose)
@@ -26,6 +29,7 @@ get_all_orgs <- function(method = c(
                            source = "homologene",
                            check.rows = FALSE, 
                            check.names = FALSE)
+    #### method: babelgene ####
     } else if(method %in% methods_opts(babelgene_opts = TRUE)){
         messager("Retrieving all organisms available in",
                  paste0(method,"."),v=verbose)
@@ -36,10 +40,12 @@ get_all_orgs <- function(method = c(
         orgs <- rbind(orgs, data.frame(taxonomy_id=9606,
                                        scientific_name="Homo sapiens",
                                        common_name="human"))
+    #### method: genomeinfodb ####
     } else if (tolower(method) == "genomeinfodb") {
         #### Load a really big organism reference ####
         orgs <- rbind(orgs, get_orgdb_genomeinfodbdata(verbose = verbose))
         orgs$source <- "genomeinfodb"
+    #### Error ####
     } else {
         messager(paste0("method='",method,"'"),
                  "not recognized by get_all_orgs.",
@@ -52,9 +58,15 @@ get_all_orgs <- function(method = c(
     }
     ##### Add shortened id #####
     if(!"id" %in% colnames(orgs) && "scientific_name" %in% colnames(orgs)){
-        orgs$id <- format_species_name(species = orgs$scientific_name,
-                                       gs_s = TRUE, 
+        orgs$id <- format_species(species = orgs$scientific_name,
+                                       abbrev = TRUE, 
                                        lowercase = TRUE)
     }
+    
+    if("scientific_name" %in% names(orgs)){
+        orgs$scientific_name_formatted <- 
+            format_species(species = orgs$scientific_name, 
+                                standardise_scientific = TRUE)
+    } 
     return(orgs)
 }

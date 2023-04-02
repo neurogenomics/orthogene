@@ -25,6 +25,17 @@ all_genes_babelgene <- function(species,
     ### Avoid confusing Biocheck
     taxon_id <- symbol <- support_n <- NULL
     
+    # counts <- dplyr::group_by(babelgene:::orthologs_df, taxon_id) |>
+    #     dplyr::summarise(identical_symbols=sum(human_symbol==symbol, na.rm = TRUE),
+    #                      percent=sum(human_symbol==symbol, na.rm = TRUE)/dplyr::n()*100) |>
+    #     dplyr::arrange(dplyr::desc(percent))
+    # counts$species_name <- orthogene::map_species(counts$taxon_id, method = "babelgene")
+    # # 
+    # counts_agr <- dplyr::group_by(babelgene:::agr_orthologs_df, species_name) |>
+    #     dplyr::summarise(identical_symbols=sum(human_symbol==species_symbol),
+    #                      percent=sum(human_symbol==species_symbol)/dplyr::n()*100) |>
+    #     dplyr::arrange(dplyr::desc(percent))
+    
     messager("Retrieving all genes using: babelgene.", v = verbose)
     if(run_map_species){
         source_id <- map_species(
@@ -69,9 +80,10 @@ all_genes_babelgene <- function(species,
     tar_genes <- subset(orths, taxon_id == source_id) |>
         dplyr::rename(taxonomy_id=taxon_id,
                       Gene.Symbol=symbol) 
-    if(min_support>0){
+    if(min_support>0 && 
+       !is_human(source_id)){
         ## When min_support=1, simply removes rows where support is NA.
-        orths <- subset(orths, support_n>=min_support)
+        tar_genes <- subset(tar_genes, support_n>=min_support)
     }
     messager("Gene table with", formatC(nrow(tar_genes), big.mark = ","),
              "rows retrieved.",

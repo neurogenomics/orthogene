@@ -91,7 +91,7 @@ aggregate_mapped_genes <- function(gene_df,
                                    verbose = TRUE) {
     
     # echoverseTemplate:::source_all(packages = "dplyr")
-    # echoverseTemplate:::args2vars(aggregate_mapped_genes)
+    # devoptera::args2vars(aggregate_mapped_genes)
     
     #### Transpose matrix first (optional) ####
     if (transpose) {

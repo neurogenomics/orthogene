@@ -2,7 +2,7 @@ test_that("plot_orthotree works", {
   
   species <- c("human","monkey","mouse")
   ### homologene ####
-  orthotree_hg <- orthogene::plot_orthotree(species=species, 
+  orthotree_hg <- orthogene::plot_orthotree(species = species, 
                                             method = "homologene")
   ### babelgene ####
   orthotree_bg <- orthogene::plot_orthotree(species = species, 
@@ -25,6 +25,6 @@ test_that("plot_orthotree works", {
     testthat::expect_true(methods::is(orthotree$clades,"data.frame"))
     testthat::expect_equal(length(species), length(orthotree$tree$tip.label))
     testthat::expect_equal(sort(unname(orthotree$tree$tip.label)),
-                           sort(c("Homo sapiens","Macaca mulatta","Mus musculus")))
+                           sort(c("homo sapiens","macaca mulatta","mus musculus")))
   } 
 })

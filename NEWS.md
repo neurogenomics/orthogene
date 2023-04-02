@@ -1,10 +1,54 @@
+# orthogene  1.5.2
+
+## New features
+
+* `map_species` 
+    - `get_all_orgs`: When `species=NULL`, now returns an extra columns called 
+        "scientific_name_formatted". 
+    - `format_species_name`: New args 
+        `remove_parentheses`, `remove_subspecies`, `remove_subspecies_exceptions`
+* `report_orthologs`
+    - Make much more efficient by only querying `ref_genes` once. 
+    - Added new internal func `report_orthologs_i` instead of recursion to make this easier.
+    - Ensure that `map` and `report` get rbound separately and returned
+        according to the `return_report` arg.
+* `format_species`
+    - Export function that was previously named `format_species_name`.
+* `all_species`: 
+    - New exported function
+    - Originally implemented a version of this in `EWCE::list_species`, 
+        but decided to extend it and export it here.
+* `get_silhouettes`
+    - Previously was internal func: `gather_images`.
+    - Now an exported function.
+* `plot_orthotree`
+    - Add "Invertebrates" to default `clades`
+    
+## Bug fixes
+
+* `drop_non121`
+    - New arg `symbol_only` to *ONLY* consider gene symbols (*not* ensemble IDs) 
+    when identifying non-121 orthologs. 
+    - This make a drastic difference in the number of 1:1 orthologs that get dropped!
+* `gather_images`
+    - Update to use newly released `rphylopic` 1.0.0 
+    which uses the new phylopic API.
+    - Add another `tryCatch` for when the SVG is available but not the png.
+* `is_human`
+    - Add "9606" and "homo sapiens sapiens" species ID to list of options.
+* `all_genes_babelgene`
+    - Don't filter by support when speices is human, 
+        because this column will always be `NA` since it's irrelevant for humans.
+* Fix unit tests:
+    - *report_orthologs* 
+
 # orthogene  1.5.1
 
 ## New features
 
 * Bumped to 1.5.1 for Bioc devel 3.17
 * Merged upstream devel.
-* Now using `rworflows` for GHA.
+* Now using `rworkflows` for GHA.
     - Removed *Dockerfile*
 * Host `orthogene` data resources on Zenodo: 
     - https://doi.org/10.5281/zenodo.7315418

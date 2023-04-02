@@ -45,6 +45,8 @@ create_background <- function(species1,
                               method = "homologene",
                               non121_strategy = "drop_both_species",
                               verbose = TRUE) { 
+    # devoptera::args2vars(create_background)
+    
     species_list <- c(species1,species2)
     gene_var <- if(as_output_species) "ortholog_gene" else "input_gene"
     if(all(species_list==output_species)){

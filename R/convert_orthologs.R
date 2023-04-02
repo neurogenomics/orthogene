@@ -148,6 +148,7 @@
 #' @importFrom dplyr select rename all_of
 #' @importFrom stats setNames complete.cases
 #' @importFrom methods as
+#' @importFrom data.table as.data.table
 #' @examples
 #' data("exp_mouse")
 #' gene_df <- convert_orthologs(
@@ -174,8 +175,7 @@ convert_orthologs <- function(gene_df,
                               sort_rows = FALSE,
                               verbose = TRUE,
                               ...) {
-    # echoverseTemplate:::source_all(packages = "dplyr")
-    # echoverseTemplate:::args2vars(convert_orthologs)
+    # devoptera::args2vars(convert_orthologs)
 
     #### Check gene_output ####
     check_gene_output(gene_output = gene_output)
@@ -224,9 +224,7 @@ convert_orthologs <- function(gene_df,
         verbose = verbose
     )
     gene_df <- check_gene_df_type_out$gene_df
-    gene_input <- check_gene_df_type_out$gene_input
-
-
+    gene_input <- check_gene_df_type_out$gene_input 
     #### Check if previously converted ####
     # If so, skip ahead.
     if (!is_converted(gene_df, verbose = verbose)) {
@@ -286,7 +284,7 @@ convert_orthologs <- function(gene_df,
         sort_rows = sort_rows,
         standardise_genes = standardise_genes,
         verbose = verbose
-    )
+    ) 
     #### Return ####
     return(gene_dat)
 }
