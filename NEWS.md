@@ -23,6 +23,8 @@
     - Now an exported function.
 * `plot_orthotree`
     - Add "Invertebrates" to default `clades`
+* Update README to showcase more functions.   
+
     
 ## Bug fixes
 

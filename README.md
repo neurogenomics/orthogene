@@ -20,7 +20,7 @@ status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.sv
 Authors: <i>Brian Schilder</i>  
 </h4>
 <h4>  
-README updated: <i>Apr-01-2023</i>  
+README updated: <i>Apr-02-2023</i>  
 </h4>
 
 # Intro
@@ -35,19 +35,25 @@ gene mappings, both within- and between-species.
 In brief, `orthogene` lets you easily:
 
 - [**`convert_orthologs`** between any two
-  species](https://neurogenomics.github.io/orthogene/articles/orthogene#convert-orthologs)
+  species.](https://neurogenomics.github.io/orthogene/articles/orthogene#convert-orthologs)
 - [**`map_species`** names onto standard taxonomic
-  ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene#map-species)  
+  ontologies.](https://neurogenomics.github.io/orthogene/articles/orthogene#map-species)  
 - [**`report_orthologs`** between any two
-  species](https://neurogenomics.github.io/orthogene/articles/orthogene#report-orthologs)
+  species.](https://neurogenomics.github.io/orthogene/articles/orthogene#report-orthologs)
 - [**`map_genes`** onto standard
   ontologies](https://neurogenomics.github.io/orthogene/articles/orthogene#map-genes)
 - [**`aggregate_mapped_genes`** in a
   matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes)  
 - [get **`all_genes`** from any
-  species](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes)
+  species.](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes)
 - [**`infer_species`** from gene
-  names](https://neurogenomics.github.io/orthogene/articles/infer_species.html)
+  names.](https://neurogenomics.github.io/orthogene/articles/infer_species.html)  
+- [**`create_background`** gene lists based one, two, or more
+  species.](https://neurogenomics.github.io/orthogene/articles/create_background.html)  
+- [**`get_silhouettes`** of each species from
+  phylopic.](https://neurogenomics.github.io/orthogene/articles/get_silhouettes.html)  
+- [**`prepare_tree`** showing evolutionary divergence across \>147,000
+  species.](https://neurogenomics.github.io/orthogene/articles/prepare_tree.html)
 
 ## Citation
 

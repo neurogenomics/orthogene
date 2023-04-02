@@ -71,26 +71,7 @@ prepare_tree <- function(tree_source = "timetree",
     requireNamespace("phytools")
     requireNamespace("TreeTools")
     
-    method <- tolower(method)[1]
-    #### Caching function ####
-    use_cache <- function(tree_source,
-                          save_dir,
-                          verbose=TRUE){
-        if(!is.null(save_dir)){
-            tree_cache <- file.path(
-                save_dir,
-                gsub("?download=1","",basename(tree_source),fixed = TRUE))
-            if(file.exists(tree_cache)) {
-                messager("Importing cached tree.",v=verbose)
-                return(tree_cache)
-            } else {
-                utils::download.file(url = tree_source,
-                                     destfile = tree_cache)
-                return(tree_cache)
-            }
-        } 
-        return(tree_source)
-    }
+    method <- tolower(method)[1] 
     #### OmaDB tree ####
     if(tolower(tree_source) %in% c("omadb","oma")){
         requireNamespace("OmaDB")
