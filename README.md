@@ -52,7 +52,8 @@ In brief, `orthogene` lets you easily:
   species.](https://neurogenomics.github.io/orthogene/articles/create_background.html)  
 - [**`get_silhouettes`** of each species from
   phylopic.](https://neurogenomics.github.io/orthogene/articles/get_silhouettes.html)  
-- [**`prepare_tree`** showing evolutionary divergence across \>147,000
+- [**`prepare_tree`** with evolutionary divergence times across
+  \>147,000
   species.](https://neurogenomics.github.io/orthogene/articles/prepare_tree.html)
 
 ## Citation
