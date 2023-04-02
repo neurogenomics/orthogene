@@ -1,10 +1,25 @@
 `orthogene`: Interspecies gene mapping
 ================
+<<<<<<< HEAD
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' title='Hex sticker for orthogene' height='300'><br>
 [![](https://img.shields.io/badge/release%20version-1.4.1-green.svg)](https://www.bioconductor.org/packages/orthogene)
 [![](https://img.shields.io/badge/download-171/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![](https://img.shields.io/badge/download-2498/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![download](http://www.bioconductor.org/shields/downloads/release/orthogene.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+=======
+<img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' height='300'><br><br>
+[![](https://img.shields.io/badge/devel%20version-1.4.1-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/release%20version-1.4.0-black.svg)](https://www.bioconductor.org/packages/orthogene)
+[![BioC
+status](http://www.bioconductor.org/shields/build/devel/bioc/orthogene.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/orthogene)
+[![platforms](http://www.bioconductor.org/images/shields/availability/all.svg)](https://bioconductor.org/packages/devel/bioc/html/orthogene.html#archives)
+[![](https://img.shields.io/badge/doi-https://doi.org/10.18129/B9.bioc.orthogene-green.svg)](https://doi.org/https://doi.org/10.18129/B9.bioc.orthogene)
+[![](https://img.shields.io/badge/download-1579/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![R build
+status](https://github.com/neurogenomics/orthogene/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
+[![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
+[![](https://app.codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://app.codecov.io/gh/neurogenomics/orthogene)
+>>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 <br>
@@ -19,8 +34,13 @@ status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.sv
 <h4>  
 Authors: <i>Brian Schilder</i>  
 </h4>
+<<<<<<< HEAD
 <h4>  
 README updated: <i>Apr-02-2023</i>  
+=======
+<h4>
+README updated: <i>Nov-12-2022</i>
+>>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
 </h4>
 
 # Intro
@@ -62,8 +82,13 @@ If you use `orthogene`, please cite:
 
 <!-- Modify this by editing the file: inst/CITATION  -->
 
+<<<<<<< HEAD
 > Brian M. Schilder, Nathan G. Skene (2022). orthogene: Interspecies
 > gene mapping. R package version 1.4.0,
+=======
+> Brian M Schilder, Nathan G. Skene (2022). orthogene: Interspecies gene
+> mapping. R package version 1.4.0,
+>>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
 > <https://doi.org/doi:10.18129/B9.bioc.orthogene>
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
@@ -266,6 +291,7 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
+<<<<<<< HEAD
     ## [1] orthogene_1.5.2
     ## 
     ## loaded via a namespace (and not attached):
@@ -330,6 +356,55 @@ utils::sessionInfo()
     ## [117] tidyr_1.3.0               gridGraphics_0.5-1       
     ## [119] stats4_4.2.1              munsell_0.5.0            
     ## [121] viridisLite_0.4.1         ggplotify_0.1.0
+=======
+    ## [1] orthogene_1.5.1
+    ## 
+    ## loaded via a namespace (and not attached):
+    ##  [1] MatrixGenerics_1.10.0     httr_1.4.4               
+    ##  [3] tidyr_1.2.1               jsonlite_1.8.3           
+    ##  [5] viridisLite_0.4.1         carData_3.0-5            
+    ##  [7] gprofiler2_0.2.1          assertthat_0.2.1         
+    ##  [9] stats4_4.2.1              BiocManager_1.30.19      
+    ## [11] rvcheck_0.2.1             highr_0.9                
+    ## [13] yulab.utils_0.0.5         yaml_2.3.6               
+    ## [15] pillar_1.8.1              backports_1.4.1          
+    ## [17] lattice_0.20-45           glue_1.6.2               
+    ## [19] digest_0.6.30             RColorBrewer_1.1-3       
+    ## [21] ggsignif_0.6.4            colorspace_2.0-3         
+    ## [23] ggfun_0.0.8               htmltools_0.5.3          
+    ## [25] Matrix_1.5-3              pkgconfig_2.0.3          
+    ## [27] babelgene_22.9            broom_1.0.1              
+    ## [29] purrr_0.3.5               patchwork_1.1.2          
+    ## [31] tidytree_0.4.1            scales_1.2.1             
+    ## [33] ggplotify_0.1.0           tibble_3.1.8             
+    ## [35] IRanges_2.32.0            generics_0.1.3           
+    ## [37] grr_0.9.5                 car_3.1-1                
+    ## [39] ggplot2_3.4.0             ggpubr_0.4.0             
+    ## [41] withr_2.5.0               BiocGenerics_0.44.0      
+    ## [43] lazyeval_0.2.2            cli_3.4.1                
+    ## [45] magrittr_2.0.3            evaluate_0.18            
+    ## [47] badger_0.2.2              fansi_1.0.3              
+    ## [49] nlme_3.1-160              rstatix_0.7.1            
+    ## [51] homologene_1.4.68.19.3.27 tools_4.2.1              
+    ## [53] data.table_1.14.4         matrixStats_0.62.0       
+    ## [55] lifecycle_1.0.3           stringr_1.4.1            
+    ## [57] S4Vectors_0.36.0          plotly_4.10.1            
+    ## [59] aplot_0.1.8               ggtree_3.6.2             
+    ## [61] munsell_0.5.0             DelayedArray_0.24.0      
+    ## [63] compiler_4.2.1            gridGraphics_0.5-1       
+    ## [65] rlang_1.0.6               grid_4.2.1               
+    ## [67] rstudioapi_0.14           htmlwidgets_1.5.4        
+    ## [69] rmarkdown_2.18            gtable_0.3.1             
+    ## [71] abind_1.4-5               DBI_1.1.3                
+    ## [73] R6_2.5.1                  knitr_1.40               
+    ## [75] dplyr_1.0.10              fastmap_1.1.0            
+    ## [77] utf8_1.2.2                rprojroot_2.0.3          
+    ## [79] treeio_1.22.0             dlstats_0.1.5            
+    ## [81] desc_1.4.2                ape_5.6-2                
+    ## [83] stringi_1.7.8             parallel_4.2.1           
+    ## [85] Rcpp_1.0.9                vctrs_0.5.0              
+    ## [87] tidyselect_1.2.0          xfun_0.34
+>>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
 
 </details>
 

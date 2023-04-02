@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # orthogene  1.5.2
 
 ## New features
@@ -69,6 +70,18 @@
 * `map_species`:
     - Add `trimws` step to remove flanking " " or "'".
     
+=======
+# orthogene  1.4.1
+
+## New features
+
+* Bump to 1.4.1 for Bioc release 3.16.
+* Update manual.
+* Use `rworkflows`.
+    - Remove *Dockerfile*
+* Add *CITATION* file.
+
+>>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
 # orthogene  1.3.4  
 
 ## Bug fixes  

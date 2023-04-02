@@ -18,7 +18,7 @@ owner <- tolower(strsplit(URL,"/")[[1]][4])
 
 `r description`
  
-In brief, `orthogene` lets you easily: 
+In brief, `orthogene` lets you easily:  
 
 - [**`convert_orthologs`** between any two species.](https://neurogenomics.github.io/orthogene/articles/orthogene#convert-orthologs) 
 - [**`map_species`** names onto standard taxonomic ontologies.](https://neurogenomics.github.io/orthogene/articles/orthogene#map-species)  

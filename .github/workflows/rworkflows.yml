@@ -4,12 +4,20 @@ name: rworkflows
     branches:
     - main
     - master
+<<<<<<< HEAD
     - RELEASE_**
+=======
+    - RELEASE_3_16
+>>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
   pull_request:
     branches:
     - main
     - master
+<<<<<<< HEAD
     - RELEASE_**
+=======
+    - RELEASE_3_16
+>>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
 jobs:
   rworkflows:
     runs-on: ${{ matrix.config.os }}
@@ -31,6 +39,15 @@ jobs:
           r: latest
           bioc: release
     steps:
+<<<<<<< HEAD
+=======
+    - if: ${{ env.ACT }}
+      name: Hack container for local development
+      run: |
+        curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+        sudo apt-get install -y nodejs 
+      shell: bash {0}
+>>>>>>> 85761351aaad43658f1e448863b65f0fa159bf18
     - uses: neurogenomics/rworkflows@master
       with:
         run_bioccheck: ${{ true }}
