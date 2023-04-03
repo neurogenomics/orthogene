@@ -43,6 +43,9 @@
     <loc>/reference/all_genes_babelgene.html</loc>
   </url>
   <url>
+    <loc>/reference/all_species.html</loc>
+  </url>
+  <url>
     <loc>/reference/check_gene_df_type.html</loc>
   </url>
   <url>
@@ -61,10 +64,13 @@
     <loc>/reference/exp_mouse_enst.html</loc>
   </url>
   <url>
-    <loc>/reference/gather_images.html</loc>
+    <loc>/reference/format_species.html</loc>
   </url>
   <url>
     <loc>/reference/get_orgdb_genomeinfodbdata.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_silhouettes.html</loc>
   </url>
   <url>
     <loc>/reference/ggtree_plot.html</loc>
@@ -125,6 +131,9 @@
   </url>
   <url>
     <loc>/reference/prepare_tree.html</loc>
+  </url>
+  <url>
+    <loc>/reference/remove_image_bg.html</loc>
   </url>
   <url>
     <loc>/reference/report_orthologs.html</loc>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.2</span>
       </span>
     </div>
 
@@ -64,35 +64,85 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.5.1" id="orthogene-151">orthogene 1.5.1<a class="anchor" aria-label="anchor" href="#orthogene-151"></a></h2>
+<h2 class="page-header" data-toc-text="1.4.2" id="orthogene-142">orthogene 1.4.2<a class="anchor" aria-label="anchor" href="#orthogene-142"></a></h2>
 <div class="section level3">
-<h3 id="new-features-1-5-1">New features<a class="anchor" aria-label="anchor" href="#new-features-1-5-1"></a></h3>
-<ul><li>Bumped to 1.5.1 for Bioc devel 3.17</li>
-<li>Merged upstream devel.</li>
-<li>Now using <code>rworflows</code> for GHA.
-<ul><li>Removed <em>Dockerfile</em>
-</li>
-</ul></li>
-<li>Host <code>orthogene</code> data resources on Zenodo:
-<ul><li><a href="https://doi.org/10.5281/zenodo.7315418" class="external-link uri">https://doi.org/10.5281/zenodo.7315418</a></li>
-</ul></li>
-<li>Upgrade TimeTree phylogeny to v5 (2022):
-<ul><li>50k+ species –&gt; 137k+ species!</li>
-</ul></li>
-<li>Replace <code>dplyr::%&gt;%</code> usage with <code>|&gt;</code>
-</li>
-<li>Add <em>CITATION</em> file</li>
-</ul></div>
-<div class="section level3">
-<h3 id="bug-fixes-1-5-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-5-1"></a></h3>
+<h3 id="new-features-1-4-2">New features<a class="anchor" aria-label="anchor" href="#new-features-1-4-2"></a></h3>
+<ul><li>Remove unnecessary <em>Suggests</em>.</li>
+<li>
+<code>map_species</code>
 <ul><li>
-<code>prepare_tree</code>:
-<ul><li>Ignore species name case and trim “’” when filtering tree.</li>
+<code>get_all_orgs</code>: When <code>species=NULL</code>, now returns an extra columns called “scientific_name_formatted”.</li>
+<li>
+<code>format_species_name</code>: New args <code>remove_parentheses</code>, <code>remove_subspecies</code>, <code>remove_subspecies_exceptions</code>
+</li>
 </ul></li>
 <li>
-<code>map_species</code>:
-<ul><li>Add <code>trimws</code> step to remove flanking ” ” or “’”.</li>
+<code>report_orthologs</code>
+<ul><li>Make much more efficient by only querying <code>ref_genes</code> once.</li>
+<li>Added new internal func <code>report_orthologs_i</code> instead of recursion to make this easier.</li>
+<li>Ensure that <code>map</code> and <code>report</code> get rbound separately and returned according to the <code>return_report</code> arg.</li>
 </ul></li>
+<li>
+<code>format_species</code>
+<ul><li>Export function that was previously named <code>format_species_name</code>.</li>
+</ul></li>
+<li>
+<code>all_species</code>:
+<ul><li>New exported function</li>
+<li>Originally implemented a version of this in <code>EWCE::list_species</code>, but decided to extend it and export it here.</li>
+</ul></li>
+<li>
+<code>get_silhouettes</code>
+<ul><li>Previously was internal func: <code>gather_images</code>.</li>
+<li>Now an exported function.</li>
+</ul></li>
+<li>
+<code>plot_orthotree</code>
+<ul><li>Add “Invertebrates” to default <code>clades</code>
+</li>
+</ul></li>
+<li>Update README to showcase more functions.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-4-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-4-2"></a></h3>
+<ul><li>
+<code>drop_non121</code>
+<ul><li>New arg <code>symbol_only</code> to <em>ONLY</em> consider gene symbols (<em>not</em> ensemble IDs) when identifying non-121 orthologs.</li>
+<li>This make a drastic difference in the number of 1:1 orthologs that get dropped!</li>
+</ul></li>
+<li>
+<code>gather_images</code>
+<ul><li>Update to use newly released <code>rphylopic</code> 1.0.0 which uses the new phylopic API.</li>
+<li>Add another <code>tryCatch</code> for when the SVG is available but not the png.</li>
+</ul></li>
+<li>
+<code>is_human</code>
+<ul><li>Add “9606” and “homo sapiens sapiens” species ID to list of options.</li>
+</ul></li>
+<li>
+<code>all_genes_babelgene</code>
+<ul><li>Don’t filter by support when speices is human, because this column will always be <code>NA</code> since it’s irrelevant for humans.</li>
+</ul></li>
+<li>Fix unit tests:
+<ul><li><em>report_orthologs</em></li>
+</ul></li>
+<li>
+<code>dMcast</code>
+<ul><li>Fix <code>stats::pass</code> –&gt; <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">stats::na.pass</a></code>. Weirdly, only a problem on Linux. Did base R change a fundamental function name?</li>
+</ul></li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.4.1" id="orthogene-141">orthogene 1.4.1<a class="anchor" aria-label="anchor" href="#orthogene-141"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-4-1">New features<a class="anchor" aria-label="anchor" href="#new-features-1-4-1"></a></h3>
+<ul><li>Bump to 1.4.1 for Bioc release 3.16.</li>
+<li>Update manual.</li>
+<li>Use <code>rworkflows</code>.
+<ul><li>Remove <em>Dockerfile</em>
+</li>
+</ul></li>
+<li>Add <em>CITATION</em> file.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -384,7 +434,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
