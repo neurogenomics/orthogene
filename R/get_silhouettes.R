@@ -73,8 +73,7 @@ get_silhouettes <- function(species,
             #### SVG info #### 
             URL <- rphylopic::get_uuid(name = s,
                                        n = which[s],
-                                       url = TRUE)[which[s]] 
-            
+                                       url = TRUE)[which[s]]  
             uid_i <- data.frame(species = s,
                                 which = which[s],
                                 svg = unname(URL),
