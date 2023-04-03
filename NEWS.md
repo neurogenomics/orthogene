@@ -2,6 +2,7 @@
 
 ## New features
 
+* Remove unncessary *Suggests*
 * `map_species` 
     - `get_all_orgs`: When `species=NULL`, now returns an extra columns called 
         "scientific_name_formatted". 
