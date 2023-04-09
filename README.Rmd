@@ -27,9 +27,9 @@ In brief, `orthogene` lets you easily:
 - [**`aggregate_mapped_genes`** in a matrix.](https://neurogenomics.github.io/orthogene/articles/orthogene#aggregate-mapped-genes)  
 - [get **`all_genes`** from any species.](https://neurogenomics.github.io/orthogene/articles/orthogene#get-all-genes) 
 - [**`infer_species`** from gene names.](https://neurogenomics.github.io/orthogene/articles/infer_species.html)    
-- [**`create_background`** gene lists based one, two, or more species.](https://neurogenomics.github.io/orthogene/articles/create_background.html)    
-- [**`get_silhouettes`** of each species from phylopic.](https://neurogenomics.github.io/orthogene/articles/get_silhouettes.html)    
-- [**`prepare_tree`** with evolutionary divergence times across >147,000 species.](https://neurogenomics.github.io/orthogene/articles/prepare_tree.html)    
+- [**`create_background`** gene lists based one, two, or more species.](https://neurogenomics.github.io/orthogene/reference/create_background.html)    
+- [**`get_silhouettes`** of each species from phylopic.](https://neurogenomics.github.io/orthogene/reference/get_silhouettes.html)    
+- [**`prepare_tree`** with evolutionary divergence times across >147,000 species.](https://neurogenomics.github.io/orthogene/reference/prepare_tree.html)    
 
 ## Citation
  

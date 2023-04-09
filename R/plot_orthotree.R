@@ -136,7 +136,7 @@ plot_orthotree <- function(tree = NULL,
         which[bool] <- 2
     } 
     ## The first Celegans silhouette is huge. Skip that one.
-    bool <- names(tr$tip.map)=="Caenorhabditis elegans"
+    bool <- tolower(names(tr$tip.map))=="caenorhabditis elegans"
     if(sum(bool)>0){
         which[bool] <- 2
     } 

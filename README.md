@@ -1,9 +1,9 @@
 `orthogene`: Interspecies gene mapping
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' title='Hex sticker for orthogene' height='300'><br>
-[![](https://img.shields.io/badge/release%20version-1.4.1-green.svg)](https://www.bioconductor.org/packages/orthogene)
-[![](https://img.shields.io/badge/download-171/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
-[![](https://img.shields.io/badge/download-2498/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/release%20version-1.4.2-green.svg)](https://www.bioconductor.org/packages/orthogene)
+[![](https://img.shields.io/badge/download-271/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-2533/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![download](http://www.bioconductor.org/shields/downloads/release/orthogene.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
@@ -20,7 +20,7 @@ status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.sv
 Authors: <i>Brian Schilder</i>  
 </h4>
 <h4>  
-README updated: <i>Apr-02-2023</i>  
+README updated: <i>Apr-09-2023</i>  
 </h4>
 
 # Intro
@@ -49,12 +49,12 @@ In brief, `orthogene` lets you easily:
 - [**`infer_species`** from gene
   names.](https://neurogenomics.github.io/orthogene/articles/infer_species.html)  
 - [**`create_background`** gene lists based one, two, or more
-  species.](https://neurogenomics.github.io/orthogene/articles/create_background.html)  
+  species.](https://neurogenomics.github.io/orthogene/reference/create_background.html)  
 - [**`get_silhouettes`** of each species from
-  phylopic.](https://neurogenomics.github.io/orthogene/articles/get_silhouettes.html)  
+  phylopic.](https://neurogenomics.github.io/orthogene/reference/get_silhouettes.html)  
 - [**`prepare_tree`** with evolutionary divergence times across
   \>147,000
-  species.](https://neurogenomics.github.io/orthogene/articles/prepare_tree.html)
+  species.](https://neurogenomics.github.io/orthogene/reference/prepare_tree.html)
 
 ## Citation
 
