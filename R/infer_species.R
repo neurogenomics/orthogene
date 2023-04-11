@@ -48,12 +48,7 @@ infer_species <- function(gene_df,
     method <- tolower(method[1])
     #### Get some species ####
     if(all(is.null(test_species))){
-        test_species <- c("human",
-                          "monkey",
-                          "rat",
-                          "mouse",
-                          "zebrafish",
-                          "fly")
+        test_species <- eval(formals(infer_species)$test_species)
         messager("Using default test_species:\n",
                 paste("-",test_species,collapse = "\n "))
     }

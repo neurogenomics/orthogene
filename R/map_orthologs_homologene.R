@@ -30,6 +30,7 @@ map_orthologs_homologene <- function(genes,
         output_format = "taxonomy_id",
         verbose = verbose
     )
+    if(source_id==target_id) return(NULL)
     gene_map <- homologene::homologene(
         genes = genes,
         inTax = source_id,

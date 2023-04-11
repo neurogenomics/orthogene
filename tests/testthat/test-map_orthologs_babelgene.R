@@ -94,5 +94,5 @@ test_that("map_orthologs_babelgene works", {
         input_species = "human",
         output_species = "human"
     )
-    testthat::expect_equal(nrow(gene_map1), nrow(gene_map3))
+    testthat::expect_null(gene_map3)
 })

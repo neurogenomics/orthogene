@@ -53,6 +53,7 @@ map_orthologs_gprofiler <- function(genes,
         output_format = "id",
         verbose = verbose
     )
+    if(source_organism==target_organism) return(NULL)
     gene_map <- gprofiler2::gorth(
         query = genes,
         ## organism must be in "mmusculus" format

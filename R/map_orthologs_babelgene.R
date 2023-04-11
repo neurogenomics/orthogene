@@ -22,8 +22,8 @@ map_orthologs_babelgene <- function(genes,
                                     verbose = TRUE,
                                     ...) {
     # Avoid confusing checks
-    symbol <- human_symbol <- ensembl <- human_ensembl <- Gene.Symbol <- 
-        taxonomy_id <- entrez <- taxon_id <- support <- support_n <- NULL
+    human_symbol <- ensembl <- human_ensembl <- Gene.Symbol <- 
+        taxonomy_id <- entrez <- support <- support_n <- NULL
 
     source_id <- map_species(
         species = input_species, 
@@ -41,6 +41,7 @@ map_orthologs_babelgene <- function(genes,
         source_id = source_id,
         target_id = target_id
     )
+    if(source_id==target_id) return(NULL)
     #### Return input genes ####
     if (all(is_human(source_id), is_human(target_id))) {
         messager("input_species==output_species.",

@@ -41,7 +41,7 @@ map_orthologs <- function(genes,
         v = verbose
     )
     #### Standardise gene names first ####
-    if (standardise_genes) {
+    if (isTRUE(standardise_genes)) {
         messager("Standardising gene names first.", v = verbose)
         syn_map <- map_genes(
             genes = genes,
@@ -85,8 +85,15 @@ map_orthologs <- function(genes,
             ...
         )
     }
+    #### Check is already in the same species ####
+    if(isFALSE(standardise_genes) &&
+       is.null(gene_map)){
+        messager("input_species already formatted as output species.",
+                 "Returning input data directly.",v=verbose)
+        return(NULL)
+    }
     #### Add back in original gene names ####
-    if (standardise_genes && exists("syn_map")) {
+    if (isTRUE(standardise_genes) && exists("syn_map")) {
         gene_map <- add_synonyms(
             gene_map = gene_map,
             syn_map = syn_map

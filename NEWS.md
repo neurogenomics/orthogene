@@ -1,3 +1,11 @@
+# orthogene  1.5.3
+
+## Bug fixes
+
+* `convert_orthologs`
+    - Now returns original data when `input_species`==`output` species 
+    (after performing method-specific species mapping) AND `standardise_genes==FALSE`.
+
 # orthogene  1.5.2
 
 ## New features
@@ -26,7 +34,6 @@
     - Add "Invertebrates" to default `clades`
 * Update README to showcase more functions.   
 
-    
 ## Bug fixes
 
 * `drop_non121`

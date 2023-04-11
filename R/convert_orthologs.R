@@ -216,7 +216,7 @@ convert_orthologs <- function(gene_df,
     gene_output <- check_rownames_args_out$gene_output
     drop_nonorths <- check_rownames_args_out$drop_nonorths
     non121_strategy <- check_rownames_args_out$non121_strategy
-    as_sparse <- check_rownames_args_out$as_sparse
+    as_sparse <- check_rownames_args_out$as_sparse 
     #### Standardise input data ####
     check_gene_df_type_out <- check_gene_df_type(
         gene_df = gene_df,
@@ -245,6 +245,8 @@ convert_orthologs <- function(gene_df,
             verbose = verbose,
             ...
         )
+        #### Return original data is already converted ####
+        if(is.null(gene_map)) return(gene_df)
     } else {
         messager(
             "Detected that gene_df was previously converted to orthologs.\n",
@@ -256,7 +258,7 @@ convert_orthologs <- function(gene_df,
     }
 
     #### Drop non-orthologs ####
-    if (drop_nonorths) {
+    if (isTRUE(drop_nonorths)) {
         gene_map <- drop_nonorth_genes(
             gene_map = gene_map,
             output_species = output_species,
