@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.3</span>
       </span>
     </div>
 
@@ -64,10 +64,21 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.4.2" id="orthogene-142">orthogene 1.4.2<a class="anchor" aria-label="anchor" href="#orthogene-142"></a></h2>
+<h2 class="page-header" data-toc-text="1.5.3" id="orthogene-153">orthogene 1.5.3<a class="anchor" aria-label="anchor" href="#orthogene-153"></a></h2>
 <div class="section level3">
-<h3 id="new-features-1-4-2">New features<a class="anchor" aria-label="anchor" href="#new-features-1-4-2"></a></h3>
-<ul><li>Remove unnecessary <em>Suggests</em>.</li>
+<h3 id="bug-fixes-1-5-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-5-3"></a></h3>
+<ul><li>
+<code>convert_orthologs</code>
+<ul><li>Now returns original data when <code>input_species</code>==<code>output</code> species (after performing method-specific species mapping) AND <code>standardise_genes==FALSE</code>.</li>
+</ul></li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.5.2" id="orthogene-152">orthogene 1.5.2<a class="anchor" aria-label="anchor" href="#orthogene-152"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-5-2">New features<a class="anchor" aria-label="anchor" href="#new-features-1-5-2"></a></h3>
+<ul><li>Remove unnecessary <em>Suggests</em>
+</li>
 <li>
 <code>map_species</code>
 <ul><li>
@@ -104,7 +115,7 @@
 <li>Update README to showcase more functions.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-1-4-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-4-2"></a></h3>
+<h3 id="bug-fixes-1-5-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-5-2"></a></h3>
 <ul><li>
 <code>drop_non121</code>
 <ul><li>New arg <code>symbol_only</code> to <em>ONLY</em> consider gene symbols (<em>not</em> ensemble IDs) when identifying non-121 orthologs.</li>
@@ -133,16 +144,35 @@
 </ul></div>
 </div>
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.4.1" id="orthogene-141">orthogene 1.4.1<a class="anchor" aria-label="anchor" href="#orthogene-141"></a></h2>
+<h2 class="page-header" data-toc-text="1.5.1" id="orthogene-151">orthogene 1.5.1<a class="anchor" aria-label="anchor" href="#orthogene-151"></a></h2>
 <div class="section level3">
-<h3 id="new-features-1-4-1">New features<a class="anchor" aria-label="anchor" href="#new-features-1-4-1"></a></h3>
-<ul><li>Bump to 1.4.1 for Bioc release 3.16.</li>
-<li>Update manual.</li>
-<li>Use <code>rworkflows</code>.
-<ul><li>Remove <em>Dockerfile</em>
+<h3 id="new-features-1-5-1">New features<a class="anchor" aria-label="anchor" href="#new-features-1-5-1"></a></h3>
+<ul><li>Bumped to 1.5.1 for Bioc devel 3.17</li>
+<li>Merged upstream devel.</li>
+<li>Now using <code>rworkflows</code> for GHA.
+<ul><li>Removed <em>Dockerfile</em>
 </li>
 </ul></li>
-<li>Add <em>CITATION</em> file.</li>
+<li>Host <code>orthogene</code> data resources on Zenodo:
+<ul><li><a href="https://doi.org/10.5281/zenodo.7315418" class="external-link uri">https://doi.org/10.5281/zenodo.7315418</a></li>
+</ul></li>
+<li>Upgrade TimeTree phylogeny to v5 (2022):
+<ul><li>50k+ species –&gt; 137k+ species!</li>
+</ul></li>
+<li>Replace <code>dplyr::%&gt;%</code> usage with <code>|&gt;</code>
+</li>
+<li>Add <em>CITATION</em> file</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-5-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-5-1"></a></h3>
+<ul><li>
+<code>prepare_tree</code>:
+<ul><li>Ignore species name case and trim “’” when filtering tree.</li>
+</ul></li>
+<li>
+<code>map_species</code>:
+<ul><li>Add <code>trimws</code> step to remove flanking ” ” or “’”.</li>
+</ul></li>
 </ul></div>
 </div>
     <div class="section level2">
