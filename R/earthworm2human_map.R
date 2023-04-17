@@ -23,7 +23,7 @@
 #' @keywords internal
 #' @import data.table
 #' @importFrom tools R_user_dir
-earthworm2human_map <- function(evalue_threshold = 1e-10,
+earthworm2human_map <- function(evalue_threshold = NULL,
                                 save_dir = tools::R_user_dir("orthogene",
                                                              which="cache")){  
     evalue <- NULL;
