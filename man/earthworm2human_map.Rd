@@ -5,7 +5,7 @@
 \title{Earthworm to human map}
 \usage{
 earthworm2human_map(
-  evalue_threshold = 1e-10,
+  evalue_threshold = NULL,
   save_dir = tools::R_user_dir("orthogene", which = "cache")
 )
 }
