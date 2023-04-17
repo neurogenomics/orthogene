@@ -1,5 +1,12 @@
 # orthogene  1.5.3
 
+## New features
+
+* `convert_orthologs`
+    - Can now take a user-supplied gene_map to use instead of gprofiler/homologene/babelgene.
+    - Lets user take advantage of all of the many:many ortholog mapping functions for organisms
+    not covered in any of the databases (eg. earthworm).
+
 ## Bug fixes
 
 * `convert_orthologs`

@@ -136,6 +136,7 @@
 #' \href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
 #'  here}.
 #' @inheritParams aggregate_mapped_genes
+#' @inheritParams many2many_rows
 #'
 #' @return \code{gene_df} with  orthologs converted to the
 #' \code{output_species}.\cr
@@ -173,6 +174,11 @@ convert_orthologs <- function(gene_df,
                               as_sparse = FALSE,
                               as_DelayedArray = FALSE,
                               sort_rows = FALSE,
+                              #### Used only when gene_map supplied ####
+                              gene_map = NULL,
+                              input_col = "input_gene",
+                              output_col = "ortholog_gene",
+                              
                               verbose = TRUE,
                               ...) {
     # devoptera::args2vars(convert_orthologs)
@@ -242,6 +248,10 @@ convert_orthologs <- function(gene_df,
             standardise_genes = standardise_genes,
             method = method,
             mthreshold = mthreshold,
+            #### Used only gene_map supplied ####
+            gene_map = gene_map,
+            input_col = input_col,
+            output_col = output_col,
             verbose = verbose,
             ...
         )

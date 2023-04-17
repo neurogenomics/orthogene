@@ -130,16 +130,9 @@ aggregate_mapped_genes <- function(gene_df,
         } 
     }  
     #### Check input_col/output_col ####
-    if (!input_col %in% colnames(gene_map)) {
-        stop_msg <- paste(paste0("input_col=",paste0("'",input_col,"'")),
-                          "not in gene_map column names.")
-        stop(stop_msg)
-    }     
-    if (!output_col %in% colnames(gene_map)) {
-        stop_msg2 <- paste(paste0("output_col=",paste0("'",output_col,"'")),
-                           "not in gene_map column names.")
-        stop(stop_msg2)
-    }      
+    check_gene_map(gene_map = gene_map, 
+                   input_col = input_col,
+                   output_col = output_col)    
     output_genes <- gene_map[[output_col]]
     #### Check if numbers of UNIQUE old/new genes are equal ####
     ## If so, just rename rows and exit early. 

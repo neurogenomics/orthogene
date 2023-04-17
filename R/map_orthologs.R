@@ -12,6 +12,7 @@
 #'  and will be automatically converted to
 #'   standardised HGNC symbol format.
 #' @inheritParams convert_orthologs
+#' @inheritParams aggregate_mapped_genes
 #' @inheritParams gprofiler2::gorth
 #'
 #' @return Ortholog map \code{data.frame} with at
@@ -22,8 +23,7 @@
 #' data("exp_mouse")
 #' gene_map <- map_orthologs(
 #'     genes = rownames(exp_mouse),
-#'     input_species = "mouse"
-#' )
+#'     input_species = "mouse")
 map_orthologs <- function(genes,
                           standardise_genes = FALSE,
                           input_species,
@@ -32,14 +32,19 @@ map_orthologs <- function(genes,
                                      "homologene",
                                      "babelgene"),
                           mthreshold = Inf,
+                          #### Used only when gene_map supplied ####
+                          gene_map = NULL,
+                          input_col = "input_gene",
+                          output_col = "ortholog_gene",
                           verbose = TRUE,
                           ...) {
     
     method <- tolower(method)[1]
+    if(!is.null(gene_map)){
+        method <- "user-supplied gene_map"
+    }
     messager("Converting", input_species, "==>", output_species,
-        "orthologs using:", method,
-        v = verbose
-    )
+             "orthologs using:", method, v = verbose)
     #### Standardise gene names first ####
     if (isTRUE(standardise_genes)) {
         messager("Standardising gene names first.", v = verbose)
@@ -52,6 +57,15 @@ map_orthologs <- function(genes,
         genes <- syn_map$name
     }
     #### Select mapping method ####
+    #### User-supplied mapping ####
+    if(!is.null(gene_map)){ 
+        gene_map <- map_orthologs_custom(gene_map = gene_map,
+                                         input_species = input_species,
+                                         output_species = output_species, 
+                                         input_col = input_col,
+                                         output_col = output_col, 
+                                         verbose = verbose)
+    }
     # Both methods will return a dataframe with at least the columns
     # "input_gene" and "ortholog_gene"
     #### gprofiler ####
