@@ -11,9 +11,7 @@ map_orthologs_custom <- function(gene_map,
                                  output_species, 
                                  input_col,
                                  output_col,
-                                 verbose = TRUE) {  
-    
-    if(input_species==output_species) return(NULL)
+                                 verbose = TRUE) {   
     gene_map <- data.table::as.data.table(gene_map)
     #### Check input_col/output_col ####
     check_gene_map(gene_map = gene_map, 

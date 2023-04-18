@@ -12,6 +12,10 @@
 * `convert_orthologs`
     - Now returns original data when `input_species`==`output` species 
     (after performing method-specific species mapping) AND `standardise_genes==FALSE`.
+* `add_synonyms`
+    - When `syn_map` is `NULL`, will use the `gene_map` instead.
+* `map_orthologs_custom`
+    - Remove `if(input_species==output_species) return(NULL)`
 
 # orthogene  1.5.2
 
