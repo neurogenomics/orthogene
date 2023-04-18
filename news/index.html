@@ -79,6 +79,15 @@
 <code>convert_orthologs</code>
 <ul><li>Now returns original data when <code>input_species</code>==<code>output</code> species (after performing method-specific species mapping) AND <code>standardise_genes==FALSE</code>.</li>
 </ul></li>
+<li>
+<code>add_synonyms</code>
+<ul><li>When <code>syn_map</code> is <code>NULL</code>, will use the <code>gene_map</code> instead.</li>
+</ul></li>
+<li>
+<code>map_orthologs_custom</code>
+<ul><li>Remove <code>if(input_species==output_species) return(NULL)</code>
+</li>
+</ul></li>
 </ul></div>
 </div>
     <div class="section level2">
