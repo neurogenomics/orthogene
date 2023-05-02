@@ -16,6 +16,8 @@
     - When `syn_map` is `NULL`, will use the `gene_map` instead.
 * `map_orthologs_custom`
     - Remove `if(input_species==output_species) return(NULL)`
+* `drop_non121`
+    - Don't run grouped slicing when "input_gene","ortholog_gene" are the only cols.
 
 # orthogene  1.5.2
 

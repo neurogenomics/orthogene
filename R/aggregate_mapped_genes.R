@@ -94,11 +94,11 @@ aggregate_mapped_genes <- function(gene_df,
     # devoptera::args2vars(aggregate_mapped_genes)
     
     #### Transpose matrix first (optional) ####
-    if (transpose) {
+    if (isTRUE(transpose)) {
         gene_df <- Matrix::t(gene_df)
     } 
     og_dim <- dim(gene_df)
-    ### Create gene_map if non provided #### 
+    ### Create gene_map if none provided #### 
     input_genes <- rownames(gene_df)
     if (is.null(gene_map)) { 
         #### Translate species ####

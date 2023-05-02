@@ -12,7 +12,11 @@ drop_non121 <- function(gene_map,
         if("support_n" %in% names(gene_map)){
             data.table::setorderv(gene_map,"support_n",-1)
         }
-        gene_map <- gene_map[,.SD[1],by=c("input_gene","ortholog_gene")] 
+        ### Don't run this step if they're the only 2 cols.
+        ## otherwise drop to 0 rows.
+        if(!all(names(gene_map) %in% c("input_gene","ortholog_gene"))){
+            gene_map <- gene_map[,.SD[1],by=c("input_gene","ortholog_gene")]    
+        } 
     } 
     # Drop not just the extra rows (duplicates)
     # but ALL instances of genes that appear in more than 1 row.
