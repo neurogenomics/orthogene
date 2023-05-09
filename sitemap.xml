@@ -148,6 +148,9 @@
     <loc>/reference/run_benchmark.html</loc>
   </url>
   <url>
+    <loc>/reference/set_gprofiler.html</loc>
+  </url>
+  <url>
     <loc>/reference/taxa_id_dict.html</loc>
   </url>
 </urlset>
