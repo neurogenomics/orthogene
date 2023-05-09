@@ -7,6 +7,9 @@
     - Lets user take advantage of all of the many:many ortholog mapping functions for organisms
     not covered in any of the databases (eg. earthworm).
 * New helper function: `set_gprofiler` (to use beta version)
+* `map_genes`
+    - Can now translate planarian gene synonyms 
+    using subfunction: `map_genes_planosphere`.
 
 ## Bug fixes
 

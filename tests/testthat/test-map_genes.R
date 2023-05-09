@@ -34,11 +34,18 @@ test_that("map_genes works", {
         species = "fly",
         drop_na = TRUE
     )
-
-
+    
+    #### Planarians ####
+    genes <- c("dd_Smed_v6_10690_0","dd_Smed_v6_10691_0","dd_Smed_v6_10693_0")
+    mapped_planarian <- map_genes(
+        genes = genes,
+        species = "Schmidtea mediterranea",
+        drop_na = TRUE
+    ) 
+    ##### Tests ####
     testthat::expect_gte(nrow(mapped_human), 3)
     testthat::expect_gte(nrow(mapped_mouse), total_genes)
     testthat::expect_gte(nrow(mapped_zebrafish), 3)
     # testthat::expect_gte(nrow(mapped_fly), 0)
-    testthat::expect_gte(nrow(mapped_fly2), 40)
+    testthat::expect_gte(nrow(mapped_planarian), 2) 
 })

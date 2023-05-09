@@ -46,34 +46,42 @@ map_genes <- function(genes,
                       run_map_species = TRUE,
                       verbose = TRUE) {
     
-    if(run_map_species){
+    if(isTRUE(run_map_species)){
         organism <- map_species(
             species = species,
             method = "gprofiler",
             output_format = "id",
             verbose = verbose
         )
-    } else {organism <- species}
-    
-    target <- gconvert_target_opts(target = target, 
-                                   species = species)
-    
-    syn_map <- gprofiler2::gconvert(
-        query = genes,
-        ## organism must be in "mmusculus" format
-        organism = unname(organism),
-        target = target,
-        mthreshold = mthreshold,
-        filter_na = drop_na,
-        numeric_ns = numeric_ns
-    )
-    if (drop_na) {
+    } else {organism <- species} 
+    #### Special case: planarians ####
+    if(grepl("^scmedi",organism)){
+        syn_map <- map_genes_planosphere(genes = genes,  
+                                         verbose = verbose)
+        
+    } else {
+    #### All other species ####
+        target <- gconvert_target_opts(target = target, 
+                                       species = species) 
+        syn_map <- gprofiler2::gconvert(
+            query = genes,
+            ## organism must be in "mmusculus" format
+            organism = unname(organism),
+            target = target,
+            mthreshold = mthreshold,
+            filter_na = drop_na,
+            numeric_ns = numeric_ns
+        )
+    }
+    #### Drop NAs ####
+    if (isTRUE(drop_na)) {
         syn_map <- remove_all_nas(
             dat = syn_map,
             col_name = "name",
             verbose = verbose
         )
     }
+    #### Report ####
     n_genes <- length(genes)
     mapped_genes <- syn_map$target[
         (!is.na(syn_map$input)) & 
@@ -87,5 +95,6 @@ map_genes <- function(genes,
         "genes mapped.",
         v = verbose
     )
+    #### Return ####
     return(syn_map)
 }
