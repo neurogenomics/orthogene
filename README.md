@@ -1,14 +1,14 @@
 `orthogene`: Interspecies gene mapping
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' title='Hex sticker for orthogene' height='300'><br>
-[![](https://img.shields.io/badge/release%20version-1.4.1-green.svg)](https://www.bioconductor.org/packages/orthogene)
-[![](https://img.shields.io/badge/download-171/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
-[![](https://img.shields.io/badge/download-2498/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/release%20version-1.4.2-green.svg)](https://www.bioconductor.org/packages/orthogene)
+[![](https://img.shields.io/badge/download-222/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-3320/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![download](http://www.bioconductor.org/shields/downloads/release/orthogene.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 <br>
-[![](https://img.shields.io/badge/devel%20version-1.5.2-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.6.1-black.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/github/languages/code-size/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 <br> [![R build
@@ -20,7 +20,7 @@ status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.sv
 Authors: <i>Brian Schilder</i>  
 </h4>
 <h4>  
-README updated: <i>Apr-02-2023</i>  
+README updated: <i>Jul-13-2023</i>  
 </h4>
 
 # Intro
@@ -208,8 +208,6 @@ gene_df <- orthogene::convert_orthologs(gene_df = exp_mouse,
 
     ## Setting ortholog_gene to rownames.
 
-    ## Loading required namespace: DelayedArray
-
     ## 
     ## =========== REPORT SUMMARY ===========
 
@@ -266,70 +264,68 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_1.5.2
+    ## [1] orthogene_1.6.1
     ## 
     ## loaded via a namespace (and not attached):
-    ##   [1] colorspace_2.1-0          ggtree_3.6.2             
-    ##   [3] grr_0.9.5                 ggsignif_0.6.4           
-    ##   [5] rprojroot_2.0.3           aplot_0.1.10             
-    ##   [7] httpcode_0.3.0            rstudioapi_0.14          
-    ##   [9] ggpubr_0.6.0              rworkflows_0.99.8        
-    ##  [11] fauxpas_0.5.0             DT_0.27                  
-    ##  [13] gh_1.4.0                  bit64_4.0.5              
-    ##  [15] fansi_1.0.4               xml2_1.3.3               
-    ##  [17] cachem_1.0.7              knitr_1.42               
-    ##  [19] jsonlite_1.8.4            broom_1.0.4              
-    ##  [21] dbplyr_2.3.2              graph_1.76.0             
-    ##  [23] BiocManager_1.30.20       readr_2.1.4              
-    ##  [25] compiler_4.2.1            httr_1.4.5               
-    ##  [27] rvcheck_0.2.1             backports_1.4.1          
-    ##  [29] Matrix_1.5-3              fastmap_1.1.1            
-    ##  [31] lazyeval_0.2.2            cli_3.6.1                
-    ##  [33] htmltools_0.5.4           tools_4.2.1              
-    ##  [35] igraph_1.4.1              gtable_0.3.3             
-    ##  [37] glue_1.6.2                dplyr_1.1.1              
-    ##  [39] rappdirs_0.3.3            Rcpp_1.0.10              
-    ##  [41] carData_3.0-5             Biobase_2.58.0           
-    ##  [43] vctrs_0.6.1               crul_1.3                 
-    ##  [45] babelgene_22.9            ape_5.7-1                
-    ##  [47] nlme_3.1-162              xfun_0.37                
-    ##  [49] stringr_1.5.0             rvest_1.0.3              
-    ##  [51] lifecycle_1.0.3           renv_0.17.2              
-    ##  [53] dlstats_0.1.6             rstatix_0.7.2            
-    ##  [55] XML_3.99-0.14             rorcid_0.7.0             
-    ##  [57] scales_1.2.1              BiocPkgTools_1.16.1      
-    ##  [59] hms_1.1.3                 MatrixGenerics_1.10.0    
-    ##  [61] parallel_4.2.1            RBGL_1.74.0              
-    ##  [63] gprofiler2_0.2.1          RColorBrewer_1.1-3       
-    ##  [65] yaml_2.3.7                curl_5.0.0               
-    ##  [67] memoise_2.0.1             ggplot2_3.4.1            
-    ##  [69] ggfun_0.0.9               yulab.utils_0.0.6        
-    ##  [71] stringi_1.7.12            RSQLite_2.3.0            
-    ##  [73] S4Vectors_0.36.2          desc_1.4.2               
-    ##  [75] tidytree_0.4.2            BiocGenerics_0.44.0      
-    ##  [77] filelock_1.0.2            matrixStats_0.63.0       
-    ##  [79] rlang_1.1.0               pkgconfig_2.0.3          
-    ##  [81] bitops_1.0-7              evaluate_0.20            
-    ##  [83] lattice_0.20-45           purrr_1.0.1              
-    ##  [85] treeio_1.23.1             patchwork_1.1.2          
-    ##  [87] htmlwidgets_1.6.2         bit_4.0.5                
-    ##  [89] tidyselect_1.2.0          here_1.0.1               
-    ##  [91] magrittr_2.0.3            R6_2.5.1                 
-    ##  [93] IRanges_2.32.0            generics_0.1.3           
-    ##  [95] RUnit_0.4.32              DelayedArray_0.24.0      
-    ##  [97] DBI_1.1.3                 pillar_1.9.0             
-    ##  [99] whisker_0.4.1             withr_2.5.0              
-    ## [101] biocViews_1.66.3          abind_1.4-5              
-    ## [103] RCurl_1.98-1.10           tibble_3.2.1             
-    ## [105] homologene_1.4.68.19.3.27 car_3.1-1                
-    ## [107] badger_0.2.3              utf8_1.2.3               
-    ## [109] BiocFileCache_2.6.1       plotly_4.10.1            
-    ## [111] tzdb_0.3.0                rmarkdown_2.20.1         
-    ## [113] grid_4.2.1                data.table_1.14.8        
-    ## [115] blob_1.2.4                digest_0.6.31            
-    ## [117] tidyr_1.3.0               gridGraphics_0.5-1       
-    ## [119] stats4_4.2.1              munsell_0.5.0            
-    ## [121] viridisLite_0.4.1         ggplotify_0.1.0
+    ##   [1] nlme_3.1-162              bitops_1.0-7             
+    ##   [3] ggtree_3.6.2              bit64_4.0.5              
+    ##   [5] filelock_1.0.2            RColorBrewer_1.1-3       
+    ##   [7] BiocPkgTools_1.16.1       httr_1.4.6               
+    ##   [9] rprojroot_2.0.3           gh_1.4.0                 
+    ##  [11] tools_4.2.1               backports_1.4.1          
+    ##  [13] utf8_1.2.3                R6_2.5.1                 
+    ##  [15] DT_0.28                   lazyeval_0.2.2           
+    ##  [17] DBI_1.1.3                 BiocGenerics_0.44.0      
+    ##  [19] colorspace_2.1-0          withr_2.5.0              
+    ##  [21] tidyselect_1.2.0          bit_4.0.5                
+    ##  [23] curl_5.0.0                compiler_4.2.1           
+    ##  [25] graph_1.76.0              cli_3.6.1                
+    ##  [27] rvest_1.0.3               Biobase_2.58.0           
+    ##  [29] xml2_1.3.4                plotly_4.10.2            
+    ##  [31] desc_1.4.2                scales_1.2.1             
+    ##  [33] readr_2.1.4               RBGL_1.74.0              
+    ##  [35] rappdirs_0.3.3            stringr_1.5.0            
+    ##  [37] digest_0.6.31             yulab.utils_0.0.6        
+    ##  [39] rmarkdown_2.22            rorcid_0.7.0             
+    ##  [41] pkgconfig_2.0.3           htmltools_0.5.5          
+    ##  [43] dbplyr_2.3.2              fastmap_1.1.1            
+    ##  [45] htmlwidgets_1.6.2         rlang_1.1.1              
+    ##  [47] rstudioapi_0.14           httpcode_0.3.0           
+    ##  [49] RSQLite_2.3.1             badger_0.2.3             
+    ##  [51] gridGraphics_0.5-1        generics_0.1.3           
+    ##  [53] jsonlite_1.8.4            dplyr_1.1.2              
+    ##  [55] car_3.1-2                 RCurl_1.98-1.12          
+    ##  [57] homologene_1.4.68.19.3.27 magrittr_2.0.3           
+    ##  [59] ggplotify_0.1.0           patchwork_1.1.2          
+    ##  [61] fauxpas_0.5.2             Matrix_1.5-4.1           
+    ##  [63] Rcpp_1.0.10               munsell_0.5.0            
+    ##  [65] fansi_1.0.4               ape_5.7-1                
+    ##  [67] abind_1.4-5               babelgene_22.9           
+    ##  [69] lifecycle_1.0.3           stringi_1.7.12           
+    ##  [71] whisker_0.4.1             yaml_2.3.7               
+    ##  [73] carData_3.0-5             biocViews_1.66.3         
+    ##  [75] BiocFileCache_2.6.1       grid_4.2.1               
+    ##  [77] blob_1.2.4                parallel_4.2.1           
+    ##  [79] lattice_0.21-8            hms_1.1.3                
+    ##  [81] knitr_1.43                pillar_1.9.0             
+    ##  [83] igraph_1.4.3              ggpubr_0.6.0             
+    ##  [85] RUnit_0.4.32              ggsignif_0.6.4           
+    ##  [87] rworkflows_0.99.9         stats4_4.2.1             
+    ##  [89] gprofiler2_0.2.1          crul_1.4.0               
+    ##  [91] XML_3.99-0.14             glue_1.6.2               
+    ##  [93] evaluate_0.21             ggfun_0.0.9              
+    ##  [95] data.table_1.14.8         renv_0.17.3              
+    ##  [97] BiocManager_1.30.20       treeio_1.23.1            
+    ##  [99] vctrs_0.6.2               tzdb_0.4.0               
+    ## [101] grr_0.9.5                 gtable_0.3.3             
+    ## [103] purrr_1.0.1               tidyr_1.3.0              
+    ## [105] cachem_1.0.8              ggplot2_3.4.2            
+    ## [107] xfun_0.39                 broom_1.0.4              
+    ## [109] tidytree_0.4.2            rstatix_0.7.2            
+    ## [111] viridisLite_0.4.2         dlstats_0.1.7            
+    ## [113] tibble_3.2.1              aplot_0.1.10             
+    ## [115] rvcheck_0.2.1             memoise_2.0.1            
+    ## [117] here_1.0.1
 
 </details>
 
