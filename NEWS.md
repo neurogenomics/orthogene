@@ -1,3 +1,15 @@
+# orthogene  1.6.1
+
+## Bug fixes
+
+* `add_columns`
+    - Handle both vectors and columns.
+* `sort_rows_func`
+    - Handle both vectors and columns.
+* `filter_gene_df`
+    - Avoid coercing single-col dataframe into vector.
+    - Flagged in #34
+
 # orthogene  1.5.2
 
 ## New features

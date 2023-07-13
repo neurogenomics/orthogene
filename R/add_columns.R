@@ -8,7 +8,11 @@ add_columns <- function(gene_df2,
 
     #### Add ortholog_gene col ####
     messager("Adding input_gene col to gene_df.", v = verbose)
-    gene_df2$input_gene <- input_dict[genes2]
+    if(is.list(gene_df2)){
+        gene_df2 <- data.frame(input_gene=input_dict[genes2])
+    } else {
+        gene_df2$input_gene <- input_dict[genes2]
+    } 
     #### Add input_gene_standard col ####
     if (standardise_genes) {
         messager("Adding input_gene_standard col to gene_df.", v = verbose)

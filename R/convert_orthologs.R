@@ -256,7 +256,7 @@ convert_orthologs <- function(gene_df,
     }
 
     #### Drop non-orthologs ####
-    if (drop_nonorths) {
+    if (isTRUE(drop_nonorths)) {
         gene_map <- drop_nonorth_genes(
             gene_map = gene_map,
             output_species = output_species,

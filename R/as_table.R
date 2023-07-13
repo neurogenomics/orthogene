@@ -49,7 +49,7 @@ as_table <- function(gene_input,
                     drop_nonorths = drop_nonorths,
                     verbose = verbose
                 )
-    if (strategy_valid) { 
+    if (isTRUE(strategy_valid)) { 
         #### Aggregate/expand matrix ####
         ## Can now handle 1:1, many:1, 1:many, or many:many.
         gene_df2 <- aggregate_mapped_genes(gene_df = gene_df2,

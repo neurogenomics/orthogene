@@ -1,5 +1,4 @@
-report_gene_map <- function(gene_df2,
-                            n_input_genes,
+report_gene_map <- function(n_input_genes,
                             n_output_genes,
                             report_dropped = TRUE,
                             report_remaining = TRUE,
