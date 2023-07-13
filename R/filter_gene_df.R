@@ -6,13 +6,13 @@ filter_gene_df <- function(gene_input,
     messager("Filtering gene_df with gene_map", v = verbose)
     #### Subset by columns ####
     if (tolower(gene_input) %in% gene_input_opts(colnames_opts = TRUE)) {
-        gene_df2 <- gene_df[, genes %in% gene_map$input_gene]
+        gene_df2 <- gene_df[, genes %in% gene_map$input_gene,drop=FALSE]
     } else if (tolower(gene_input) %in% gene_input_opts(rownames_opts = TRUE) |
         gene_input %in% gene_input_opts(
             gene_df = gene_df,
             columns_opts = TRUE
         )) {
-        gene_df2 <- gene_df[genes %in% gene_map$input_gene, ]
+        gene_df2 <- gene_df[genes %in% gene_map$input_gene,,drop=FALSE]
     } else {
         stop_msg <- paste0(
             "gene_input='", gene_input,

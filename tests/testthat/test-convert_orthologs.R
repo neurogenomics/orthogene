@@ -96,7 +96,7 @@ test_that("convert_orthologs works", {
         method = method
     )
     testthat::expect_equal(methods::is(gene_df_converted, "data.frame"), TRUE)
-    testthat::expect_equal(has_gene_cols(gene_df_converted), 3)
+    testthat::expect_equal(has_gene_cols(gene_df_converted), 2)
 
     #### Test returning as dict ####
     # tabular input

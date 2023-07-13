@@ -1,6 +1,24 @@
 # orthogene  1.7.1
 
+## New features
+
+* `remove_all_nas`
+    - Can handle multiple cols.
+
 ## Bug fixes
+
+* `add_columns`
+    - Handle both vectors and columns.
+* `sort_rows_func`
+    - Handle both vectors and columns.
+* `filter_gene_df`
+    - Avoid coercing single-col dataframe into vector.
+    - Flagged in #34
+* Fix `test-report_orthologs`
+    - Recognize either Gene.symbol or input_gene cols 
+        depending on when ortholog conversion was done.
+* Fix `test-convert_orthologs`
+    - Line 99 test had wrong number of cols.
 
 # orthogene  1.7.0
 
