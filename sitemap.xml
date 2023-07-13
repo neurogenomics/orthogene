@@ -58,9 +58,6 @@
     <loc>/reference/dMcast.html</loc>
   </url>
   <url>
-    <loc>/reference/earthworm2human_map.html</loc>
-  </url>
-  <url>
     <loc>/reference/exp_mouse.html</loc>
   </url>
   <url>
@@ -109,9 +106,6 @@
     <loc>/reference/map_orthologs_babelgene.html</loc>
   </url>
   <url>
-    <loc>/reference/map_orthologs_custom.html</loc>
-  </url>
-  <url>
     <loc>/reference/map_orthologs_gprofiler.html</loc>
   </url>
   <url>
@@ -146,9 +140,6 @@
   </url>
   <url>
     <loc>/reference/run_benchmark.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_gprofiler.html</loc>
   </url>
   <url>
     <loc>/reference/taxa_id_dict.html</loc>

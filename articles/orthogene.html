@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
       </span>
     </div>
 
@@ -85,11 +85,15 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>orthogene: Getting Started</h1>
-                        <h4 data-toc-skip class="author"><h4> ¶ Author:
-<i>Brian M. Schilder</i> ¶ </h4></h4>
+                        <h4 data-toc-skip class="author"><h4>
+<br>
+Author: <i>Brian M. Schilder</i><br>
+</h4></h4>
             
-            <h4 data-toc-skip class="date"><h4> ¶ Most recent update:
-<i>May-09-2023</i> ¶ </h4></h4>
+            <h4 data-toc-skip class="date"><h4>
+<br>
+Most recent update: <i>Jul-13-2023</i><br>
+</h4></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/vignettes/orthogene.Rmd" class="external-link"><code>vignettes/orthogene.Rmd</code></a></small>
       <div class="hidden name"><code>orthogene.Rmd</code></div>
@@ -136,9 +140,9 @@ in a matrix.</a><br>
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
 <span><span class="co"># orthogene is only available on Bioconductor&gt;=3.14</span></span>
-<span><span class="kw">if</span><span class="op">(</span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/version.html" class="external-link">version</a></span><span class="op">(</span><span class="op">)</span><span class="op">&lt;</span><span class="st">"3.14"</span><span class="op">)</span> <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"3.14"</span><span class="op">)</span></span>
+<span><span class="kw">if</span><span class="op">(</span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/version.html" class="external-link">version</a></span><span class="op">(</span><span class="op">)</span><span class="op">&lt;</span><span class="st">"3.14"</span><span class="op">)</span> <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"3.14"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"orthogene"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"orthogene"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/neurogenomics/orthogene" class="external-link">orthogene</a></span><span class="op">)</span></span>
 <span></span>
@@ -239,14 +243,13 @@ function: <code>?orthogene:::many2many_rows</code></p>
 <pre><code><span><span class="co">## Dropping 56 genes that have multiple ortholog_gene per input_gene (1:many).</span></span></code></pre>
 <pre><code><span><span class="co">## Filtering gene_df with gene_map</span></span></code></pre>
 <pre><code><span><span class="co">## Setting ortholog_gene to rownames.</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required namespace: DelayedArray</span></span></code></pre>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## =========== REPORT SUMMARY ===========</span></span></code></pre>
 <pre><code><span><span class="co">## Total genes dropped after convert_orthologs :</span></span>
 <span><span class="co">##    2,016 / 15,259 (13%)</span></span></code></pre>
 <pre><code><span><span class="co">## Total genes remaining after convert_orthologs :</span></span>
 <span><span class="co">##    13,243 / 15,259 (87%)</span></span></code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gene_df</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -345,7 +348,7 @@ use <code>map_species</code> under the hood, so you don’t have to worry
 about getting species names exactly right.</p>
 <p>You can check the full list of available species by simply running
 <code><a href="../reference/map_species.html">map_species()</a></code> with no arguments, or checking <a href="https://biit.cs.ut.ee/gprofiler/page/organism-list" class="external-link">here</a>.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/map_species.html">map_species</a></span><span class="op">(</span>species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"human"</span>,<span class="fl">9544</span>,<span class="st">"mus musculus"</span>,</span>
 <span>                                              <span class="st">"fruit fly"</span>,<span class="st">"Celegans"</span><span class="op">)</span>, </span>
 <span>                                  output_format <span class="op">=</span> <span class="st">"scientific_name"</span><span class="op">)</span></span></code></pre></div>
@@ -362,7 +365,7 @@ about getting species names exactly right.</p>
 <pre><code><span><span class="co">## 1 organism identified from search: Drosophila melanogaster</span></span></code></pre>
 <pre><code><span><span class="co">## Mapping species name: Celegans</span></span></code></pre>
 <pre><code><span><span class="co">## 1 organism identified from search: Caenorhabditis elegans</span></span></code></pre>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                     human                      9544              mus musculus </span></span>
 <span><span class="co">##            "Homo sapiens"          "Macaca mulatta"            "Mus musculus" </span></span>
@@ -376,7 +379,7 @@ about getting species names exactly right.</p>
 gene mappings from one species to another.</p>
 <p><a href="https://neurogenomics.github.io/orthogene/reference/report_orthologs.html" class="external-link"><code>ortholog_report</code></a>
 generates a report that tells you this information genome-wide.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">orth_zeb</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/report_orthologs.html">report_orthologs</a></span><span class="op">(</span>target_species <span class="op">=</span> <span class="st">"zebrafish"</span>,</span>
 <span>                                        reference_species <span class="op">=</span> <span class="st">"human"</span>,</span>
 <span>                                        method_all_genes <span class="op">=</span> <span class="va">method</span>,</span>
@@ -433,28 +436,20 @@ generates a report that tells you this information genome-wide.</p>
 <span><span class="co">## =========== REPORT SUMMARY ===========</span></span></code></pre>
 <pre><code><span><span class="co">## 10,557 / 20,895 (50.52%) target_species genes remain after ortholog conversion.</span></span></code></pre>
 <pre><code><span><span class="co">## 10,557 / 19,129 (55.19%) reference_species genes remain after ortholog conversion.</span></span></code></pre>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">orth_zeb</span><span class="op">$</span><span class="va">map</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="12%">
-<col width="13%">
-<col width="16%">
-<col width="3%">
-<col width="7%">
-<col width="11%">
-<col width="11%">
-<col width="10%">
-<col width="12%">
+<col width="19%">
+<col width="20%">
+<col width="25%">
+<col width="15%">
+<col width="19%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">input_species</th>
 <th align="left">target_species</th>
 <th align="left">reference_species</th>
-<th align="right">HID</th>
-<th align="right">Gene.ID</th>
-<th align="left">Gene.Symbol</th>
-<th align="right">taxonomy_id</th>
 <th align="left">input_gene</th>
 <th align="left">ortholog_gene</th>
 </tr></thead>
@@ -463,10 +458,6 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">zebrafish</td>
 <td align="left">danio rerio</td>
 <td align="left">homo sapiens</td>
-<td align="right">3</td>
-<td align="right">406283</td>
-<td align="left">acadm</td>
-<td align="right">7955</td>
 <td align="left">acadm</td>
 <td align="left">ACADM</td>
 </tr>
@@ -474,10 +465,6 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">zebrafish</td>
 <td align="left">danio rerio</td>
 <td align="left">homo sapiens</td>
-<td align="right">5</td>
-<td align="right">573723</td>
-<td align="left">acadvl</td>
-<td align="right">7955</td>
 <td align="left">acadvl</td>
 <td align="left">ACADVL</td>
 </tr>
@@ -485,10 +472,6 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">zebrafish</td>
 <td align="left">danio rerio</td>
 <td align="left">homo sapiens</td>
-<td align="right">6</td>
-<td align="right">445290</td>
-<td align="left">acat1</td>
-<td align="right">7955</td>
 <td align="left">acat1</td>
 <td align="left">ACAT1</td>
 </tr>
@@ -496,10 +479,6 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">zebrafish</td>
 <td align="left">danio rerio</td>
 <td align="left">homo sapiens</td>
-<td align="right">7</td>
-<td align="right">30615</td>
-<td align="left">acvr1l</td>
-<td align="right">7955</td>
 <td align="left">acvr1l</td>
 <td align="left">ACVR1</td>
 </tr>
@@ -507,10 +486,6 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">zebrafish</td>
 <td align="left">danio rerio</td>
 <td align="left">homo sapiens</td>
-<td align="right">12</td>
-<td align="right">334431</td>
-<td align="left">adsl</td>
-<td align="right">7955</td>
 <td align="left">adsl</td>
 <td align="left">ADSL</td>
 </tr>
@@ -518,16 +493,12 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">zebrafish</td>
 <td align="left">danio rerio</td>
 <td align="left">homo sapiens</td>
-<td align="right">13</td>
-<td align="right">566517</td>
-<td align="left">aga</td>
-<td align="right">7955</td>
 <td align="left">aga</td>
 <td align="left">AGA</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">orth_zeb</span><span class="op">$</span><span class="va">report</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
@@ -570,7 +541,7 @@ finds matching <em>within-species</em> synonyms across a wide variety of
 gene naming conventions (HGNC, Ensembl, RefSeq, UniProt, etc.) and
 returns a table with standardised gene symbols (or whatever output
 format you prefer).</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">genes</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Klf4"</span>, <span class="st">"Sox2"</span>, <span class="st">"TSPAN12"</span>,<span class="st">"NM_173007"</span>,<span class="st">"Q8BKT6"</span>,<span class="fl">9999</span>,</span>
 <span>             <span class="st">"ENSMUSG00000012396"</span>,<span class="st">"ENSMUSG00000074637"</span><span class="op">)</span></span>
 <span><span class="va">mapped_genes</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/map_genes.html">map_genes</a></span><span class="op">(</span>genes <span class="op">=</span> <span class="va">genes</span>,</span>
@@ -582,7 +553,7 @@ format you prefer).</p>
 <pre><code><span><span class="co">## Common name mapping found for mouse</span></span></code></pre>
 <pre><code><span><span class="co">## 1 organism identified from search: mmusculus</span></span></code></pre>
 <pre><code><span><span class="co">## 7 / 8 (87.5%) genes mapped.</span></span></code></pre>
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mapped_genes</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -682,7 +653,7 @@ or <code>"max"</code>.</li>
 </ol>
 <p>Note, this only works when the input data (<code>gene_df</code>) is a
 sparse or dense matrix, and the genes are row names.</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"exp_mouse_enst"</span><span class="op">)</span> </span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">exp_mouse_enst</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
@@ -769,7 +740,7 @@ sparse or dense matrix, and the genes are row names.</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">exp_agg</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/aggregate_mapped_genes.html">aggregate_mapped_genes</a></span><span class="op">(</span>gene_df<span class="op">=</span><span class="va">exp_mouse_enst</span>,</span>
 <span>                                             input_species<span class="op">=</span><span class="st">"mouse"</span>, </span>
 <span>                                             agg_fun <span class="op">=</span> <span class="st">"sum"</span><span class="op">)</span></span></code></pre></div>
@@ -780,11 +751,10 @@ sparse or dense matrix, and the genes are row names.</p>
 <pre><code><span><span class="co">## 1 organism identified from search: mmusculus</span></span></code></pre>
 <pre><code><span><span class="co">## 482 / 482 (100%) genes mapped.</span></span></code></pre>
 <pre><code><span><span class="co">## Aggregating rows using: monocle3</span></span></code></pre>
-<pre><code><span><span class="co">## Converting obj to sparseMatrix.</span></span></code></pre>
 <pre><code><span><span class="co">## Matrix aggregated:</span></span>
 <span><span class="co">##   - Input: 482 x 7 </span></span>
 <span><span class="co">##   - Output: 92 x 7</span></span></code></pre>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">exp_agg</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
@@ -876,7 +846,7 @@ sparse or dense matrix, and the genes are row names.</p>
 </h3>
 <p>You can also quickly get all known genes from the genome of a given
 species with <a href="https://neurogenomics.github.io/orthogene/reference/all_genes.html" class="external-link"><code>all_genes</code></a>.</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">genome_mouse</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/all_genes.html">all_genes</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, </span>
 <span>                                     method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Retrieving all genes using: homologene.</span></span></code></pre>
@@ -886,7 +856,7 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 <pre><code><span><span class="co">## 1 organism identified from search: 10090</span></span></code></pre>
 <pre><code><span><span class="co">## Gene table with 21,207 rows retrieved.</span></span></code></pre>
 <pre><code><span><span class="co">## Returning all 21,207 genes from mouse.</span></span></code></pre>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genome_mouse</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -946,9 +916,9 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<details><div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<details><div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## R version 4.3.0 (2023-04-21)</span></span>
+<pre><code><span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
 <span><span class="co">## Running under: Ubuntu 22.04.2 LTS</span></span>
 <span><span class="co">## </span></span>
@@ -971,57 +941,52 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] orthogene_1.5.3  BiocStyle_2.29.0</span></span>
+<span><span class="co">## [1] orthogene_1.6.1  BiocStyle_2.29.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] tidyselect_1.2.0          viridisLite_0.4.1        </span></span>
-<span><span class="co">##  [3] dplyr_1.1.2               bitops_1.0-7             </span></span>
-<span><span class="co">##  [5] RCurl_1.98-1.12           fastmap_1.1.1            </span></span>
-<span><span class="co">##  [7] lazyeval_0.2.2            homologene_1.4.68.19.3.27</span></span>
-<span><span class="co">##  [9] digest_0.6.31             lifecycle_1.0.3          </span></span>
-<span><span class="co">## [11] tidytree_0.4.2            magrittr_2.0.3           </span></span>
-<span><span class="co">## [13] compiler_4.3.0            rlang_1.1.1              </span></span>
-<span><span class="co">## [15] sass_0.4.6                tools_4.3.0              </span></span>
-<span><span class="co">## [17] utf8_1.2.3                yaml_2.3.7               </span></span>
-<span><span class="co">## [19] data.table_1.14.8         knitr_1.42               </span></span>
-<span><span class="co">## [21] ggsignif_0.6.4            S4Arrays_1.1.1           </span></span>
-<span><span class="co">## [23] htmlwidgets_1.6.2         DelayedArray_0.27.1      </span></span>
-<span><span class="co">## [25] aplot_0.1.10              abind_1.4-5              </span></span>
-<span><span class="co">## [27] babelgene_22.9            withr_2.5.0              </span></span>
-<span><span class="co">## [29] purrr_1.0.1               BiocGenerics_0.47.0      </span></span>
-<span><span class="co">## [31] desc_1.4.2                grid_4.3.0               </span></span>
-<span><span class="co">## [33] stats4_4.3.0              fansi_1.0.4              </span></span>
-<span><span class="co">## [35] ggpubr_0.6.0              colorspace_2.1-0         </span></span>
-<span><span class="co">## [37] ggplot2_3.4.2             scales_1.2.1             </span></span>
-<span><span class="co">## [39] cli_3.6.1                 crayon_1.5.2             </span></span>
-<span><span class="co">## [41] rmarkdown_2.21            ragg_1.2.5               </span></span>
-<span><span class="co">## [43] treeio_1.25.0             generics_0.1.3           </span></span>
-<span><span class="co">## [45] ggtree_3.9.0              httr_1.4.5               </span></span>
-<span><span class="co">## [47] gprofiler2_0.2.1          ape_5.7-1                </span></span>
-<span><span class="co">## [49] cachem_1.0.8              stringr_1.5.0            </span></span>
-<span><span class="co">## [51] parallel_4.3.0            ggplotify_0.1.0          </span></span>
-<span><span class="co">## [53] BiocManager_1.30.20       matrixStats_0.63.0       </span></span>
-<span><span class="co">## [55] vctrs_0.6.2               yulab.utils_0.0.6        </span></span>
-<span><span class="co">## [57] Matrix_1.5-4              jsonlite_1.8.4           </span></span>
-<span><span class="co">## [59] carData_3.0-5             bookdown_0.33            </span></span>
-<span><span class="co">## [61] car_3.1-2                 IRanges_2.35.0           </span></span>
-<span><span class="co">## [63] gridGraphics_0.5-1        patchwork_1.1.2          </span></span>
-<span><span class="co">## [65] S4Vectors_0.39.0          rstatix_0.7.2            </span></span>
-<span><span class="co">## [67] systemfonts_1.0.4         plotly_4.10.1            </span></span>
-<span><span class="co">## [69] grr_0.9.5                 tidyr_1.3.0              </span></span>
-<span><span class="co">## [71] jquerylib_0.1.4           glue_1.6.2               </span></span>
-<span><span class="co">## [73] pkgdown_2.0.7             stringi_1.7.12           </span></span>
-<span><span class="co">## [75] gtable_0.3.3              munsell_0.5.0            </span></span>
-<span><span class="co">## [77] tibble_3.2.1              pillar_1.9.0             </span></span>
-<span><span class="co">## [79] htmltools_0.5.5           R6_2.5.1                 </span></span>
-<span><span class="co">## [81] textshaping_0.3.6         rprojroot_2.0.3          </span></span>
-<span><span class="co">## [83] evaluate_0.20             lattice_0.21-8           </span></span>
-<span><span class="co">## [85] backports_1.4.1           memoise_2.0.1            </span></span>
-<span><span class="co">## [87] broom_1.0.4               ggfun_0.0.9              </span></span>
-<span><span class="co">## [89] bslib_0.4.2               Rcpp_1.0.10              </span></span>
-<span><span class="co">## [91] nlme_3.1-162              xfun_0.39                </span></span>
-<span><span class="co">## [93] fs_1.6.2                  MatrixGenerics_1.13.0    </span></span>
-<span><span class="co">## [95] pkgconfig_2.0.3</span></span></code></pre>
+<span><span class="co">##  [1] gtable_0.3.3              babelgene_22.9           </span></span>
+<span><span class="co">##  [3] xfun_0.39                 bslib_0.5.0              </span></span>
+<span><span class="co">##  [5] ggplot2_3.4.2             htmlwidgets_1.6.2        </span></span>
+<span><span class="co">##  [7] rstatix_0.7.2             lattice_0.21-8           </span></span>
+<span><span class="co">##  [9] bitops_1.0-7              yulab.utils_0.0.6        </span></span>
+<span><span class="co">## [11] vctrs_0.6.3               tools_4.3.1              </span></span>
+<span><span class="co">## [13] generics_0.1.3            parallel_4.3.1           </span></span>
+<span><span class="co">## [15] tibble_3.2.1              fansi_1.0.4              </span></span>
+<span><span class="co">## [17] pkgconfig_2.0.3           Matrix_1.6-0             </span></span>
+<span><span class="co">## [19] data.table_1.14.8         homologene_1.4.68.19.3.27</span></span>
+<span><span class="co">## [21] ggplotify_0.1.1           desc_1.4.2               </span></span>
+<span><span class="co">## [23] lifecycle_1.0.3           compiler_4.3.1           </span></span>
+<span><span class="co">## [25] stringr_1.5.0             treeio_1.25.1            </span></span>
+<span><span class="co">## [27] textshaping_0.3.6         munsell_0.5.0            </span></span>
+<span><span class="co">## [29] carData_3.0-5             ggtree_3.9.0             </span></span>
+<span><span class="co">## [31] gprofiler2_0.2.2          ggfun_0.1.1              </span></span>
+<span><span class="co">## [33] htmltools_0.5.5           sass_0.4.6               </span></span>
+<span><span class="co">## [35] RCurl_1.98-1.12           lazyeval_0.2.2           </span></span>
+<span><span class="co">## [37] yaml_2.3.7                plotly_4.10.2            </span></span>
+<span><span class="co">## [39] pillar_1.9.0              pkgdown_2.0.7            </span></span>
+<span><span class="co">## [41] car_3.1-2                 ggpubr_0.6.0             </span></span>
+<span><span class="co">## [43] jquerylib_0.1.4           tidyr_1.3.0              </span></span>
+<span><span class="co">## [45] cachem_1.0.8              grr_0.9.5                </span></span>
+<span><span class="co">## [47] abind_1.4-5               nlme_3.1-162             </span></span>
+<span><span class="co">## [49] tidyselect_1.2.0          aplot_0.1.10             </span></span>
+<span><span class="co">## [51] digest_0.6.33             stringi_1.7.12           </span></span>
+<span><span class="co">## [53] dplyr_1.1.2               purrr_1.0.1              </span></span>
+<span><span class="co">## [55] bookdown_0.34             rprojroot_2.0.3          </span></span>
+<span><span class="co">## [57] fastmap_1.1.1             grid_4.3.1               </span></span>
+<span><span class="co">## [59] colorspace_2.1-0          cli_3.6.1                </span></span>
+<span><span class="co">## [61] magrittr_2.0.3            patchwork_1.1.2          </span></span>
+<span><span class="co">## [63] utf8_1.2.3                broom_1.0.5              </span></span>
+<span><span class="co">## [65] ape_5.7-1                 withr_2.5.0              </span></span>
+<span><span class="co">## [67] scales_1.2.1              backports_1.4.1          </span></span>
+<span><span class="co">## [69] httr_1.4.6                rmarkdown_2.23           </span></span>
+<span><span class="co">## [71] ggsignif_0.6.4            ragg_1.2.5               </span></span>
+<span><span class="co">## [73] memoise_2.0.1             evaluate_0.21            </span></span>
+<span><span class="co">## [75] knitr_1.43                viridisLite_0.4.2        </span></span>
+<span><span class="co">## [77] gridGraphics_0.5-1        rlang_1.1.1              </span></span>
+<span><span class="co">## [79] Rcpp_1.0.11               tidytree_0.4.2           </span></span>
+<span><span class="co">## [81] glue_1.6.2                BiocManager_1.30.21      </span></span>
+<span><span class="co">## [83] jsonlite_1.8.7            R6_2.5.1                 </span></span>
+<span><span class="co">## [85] systemfonts_1.0.4         fs_1.6.2</span></span></code></pre>
 </details><p><br></p>
 </div>
   </div>

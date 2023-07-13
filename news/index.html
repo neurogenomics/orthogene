@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
       </span>
     </div>
 
@@ -64,34 +64,34 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.5.3" id="orthogene-153">orthogene 1.5.3<a class="anchor" aria-label="anchor" href="#orthogene-153"></a></h2>
+<h2 class="page-header" data-toc-text="1.6.1" id="orthogene-161">orthogene 1.6.1<a class="anchor" aria-label="anchor" href="#orthogene-161"></a></h2>
 <div class="section level3">
-<h3 id="new-features-1-5-3">New features<a class="anchor" aria-label="anchor" href="#new-features-1-5-3"></a></h3>
+<h3 id="new-features-1-6-1">New features<a class="anchor" aria-label="anchor" href="#new-features-1-6-1"></a></h3>
 <ul><li>
-<code>convert_orthologs</code>
-<ul><li>Can now take a user-supplied gene_map to use instead of gprofiler/homologene/babelgene.</li>
-<li>Lets user take advantage of all of the many:many ortholog mapping functions for organisms not covered in any of the databases (eg. earthworm).</li>
+<code>remove_all_nas</code>
+<ul><li>Can handle multiple cols.</li>
 </ul></li>
-<li>New helper function: <code>set_gprofiler</code> (to use beta version)</li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-1-5-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-5-3"></a></h3>
+<h3 id="bug-fixes-1-6-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-6-1"></a></h3>
 <ul><li>
-<code>convert_orthologs</code>
-<ul><li>Now returns original data when <code>input_species</code>==<code>output</code> species (after performing method-specific species mapping) AND <code>standardise_genes==FALSE</code>.</li>
+<code>add_columns</code>
+<ul><li>Handle both vectors and columns.</li>
 </ul></li>
 <li>
-<code>add_synonyms</code>
-<ul><li>When <code>syn_map</code> is <code>NULL</code>, will use the <code>gene_map</code> instead.</li>
+<code>sort_rows_func</code>
+<ul><li>Handle both vectors and columns.</li>
 </ul></li>
 <li>
-<code>map_orthologs_custom</code>
-<ul><li>Remove <code>if(input_species==output_species) return(NULL)</code>
-</li>
+<code>filter_gene_df</code>
+<ul><li>Avoid coercing single-col dataframe into vector.</li>
+<li>Flagged in <a href="https://github.com/neurogenomics/orthogene/issues/34" class="external-link">#34</a></li>
 </ul></li>
-<li>
-<code>drop_non121</code>
-<ul><li>Don’t run grouped slicing when “input_gene”,“ortholog_gene” are the only cols.</li>
+<li>Fix <code>test-report_orthologs</code>
+<ul><li>Recognize either Gene.symbol or input_gene cols depending on when ortholog conversion was done.</li>
+</ul></li>
+<li>Fix <code>test-convert_orthologs</code>
+<ul><li>Line 99 test had wrong number of cols.</li>
 </ul></li>
 </ul></div>
 </div>
