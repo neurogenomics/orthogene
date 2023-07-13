@@ -29,6 +29,7 @@ map_genes_planosphere <- function(genes,
         "smed_20140614.mapping.rosettastone.2020.txt")
     f <- file.path(save_dir,basename(URL))
     if(!file.exists(f)){
+        dir.create(save_dir,showWarnings = FALSE, recursive = TRUE)
         utils::download.file(url = URL, destfile = f)
     } 
     pmap <- data.table::fread(f, key = "seq_id") 

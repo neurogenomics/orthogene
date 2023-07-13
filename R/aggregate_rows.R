@@ -67,11 +67,12 @@ aggregate_rows <- function(X,
     X_agg <- X_agg[(rownames(X_agg) != "NA") & (!is.na(rownames(X_agg))), ]
 
     #### Change matrix class ####
-    if (!any(methods::is(X_agg, "matrix"), methods::is(X_agg, "Matrix"))) {
-        X_agg <- as.matrix(X_agg)
-    }
+    # if (!any(methods::is(X_agg, "matrix"), methods::is(X_agg, "Matrix"))) {
+    #     X_agg <- as.matrix(X_agg)
+    # }
     if (as_sparse) {
-        X_agg <- to_sparse(X_agg)
+        X_agg <- to_sparse(gene_df2 = X_agg, 
+                           verbose = verbose)
     }
     if (as_DelayedArray) {
         X_agg <- as_delayed_array(X_agg, 
