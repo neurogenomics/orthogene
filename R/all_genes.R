@@ -28,6 +28,9 @@ all_genes <- function(species,
                       run_map_species = TRUE,
                       verbose = TRUE,
                       ...) {
+    
+    # devoptera::args2vars(all_genes)
+    
     method <- tolower(method)[1]
     if (methods_opts(method = method, gprofiler_opts = TRUE)) {
         #### Query gprofiler ####
@@ -67,7 +70,7 @@ all_genes <- function(species,
         )
     }
     ### Clean genes ####
-    if(ensure_filter_nas){
+    if(isTRUE(ensure_filter_nas)){
         tar_genes <- remove_all_nas(
             dat = tar_genes,
             col_name = "Gene.Symbol",

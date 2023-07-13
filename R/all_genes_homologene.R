@@ -6,7 +6,7 @@ all_genes_homologene <- function(species,
     Taxonomy <- NULL
 
     messager("Retrieving all genes using: homologene.", v = verbose)
-    if(run_map_species){
+    if(isTRUE(run_map_species)){
         species <- map_species(
             species = species,
             output_format = "taxonomy_id", 

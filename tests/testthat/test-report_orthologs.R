@@ -1,7 +1,9 @@
 test_that("report_orthologs works", {
     
     n_genes <- function(dat) {
-        length(unique(dat$map$Gene.Symbol))
+        cols <- c("input_gene","Gene.Symbol")
+        col <- cols[cols %in% names(dat$map)]
+        length(unique(dat$map[[col]]))
     }
     
     run_tests <- function(method,
