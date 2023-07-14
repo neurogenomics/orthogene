@@ -41,8 +41,7 @@ map_genes_planosphere <- function(genes,
             tmp <- file.path(save_dir,file) 
             piggyback::pb_download(file = file,
                                    repo = "neurogenomics/orthogene",
-                                   dest = save_dir)
-            get_data_check(tmp = tmp)  
+                                   dest = save_dir) 
             tmp
         })
     } 
