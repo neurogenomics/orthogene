@@ -34,8 +34,7 @@ map_genes_planosphere <- function(genes,
             #### Try direct from source ####
             utils::download.file(url = URL, destfile = f)  
             f
-        }, error = function(e){
-            message(e)
+        }, error = function(e){ 
             #### Try from piggyback ####
             requireNamespace("piggyback")
             file <- "smed_20140614.mapping.rosettastone.2020.txt.gz"
