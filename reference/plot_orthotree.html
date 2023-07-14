@@ -89,6 +89,7 @@ describing how many orthologous genes each species shares with the
 <span>    <span class="st">"Gallus gallus"</span>, <span class="st">"Anolis carolinensis"</span>, <span class="st">"Xenopus tropicalis"</span>, <span class="st">"Danio rerio"</span><span class="op">)</span>,</span>
 <span>    Invertebrates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Drosophila melanogaster"</span>, </span>
 <span>     <span class="st">"Caenorhabditis elegans"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  clades_rotate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  scaling_factor <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  show_plot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  save_paths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".ggtree.pdf"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".ggtree.png"</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -186,8 +187,15 @@ Return only the most "popular" interspecies ortholog mappings.
 
 
 <dt>clades</dt>
-<dd><p>A named list of clades each containing list fo species
-to define the respective clade using <a href="https://rdrr.io/pkg/tidytree/man/MRCA.html" class="external-link">MRCA</a>.</p></dd>
+<dd><p>A named list of clades each containing 
+a character vector of species used to define the respective clade 
+using <a href="https://rdrr.io/pkg/tidytree/man/MRCA.html" class="external-link">MRCA</a>.</p></dd>
+
+
+<dt>clades_rotate</dt>
+<dd><p>A list of clades to rotate (via <a href="https://rdrr.io/pkg/ape/man/rotate.html" class="external-link">rotate</a>), 
+each containing a character vector of species used to define the respective
+ clade using <a href="https://rdrr.io/pkg/tidytree/man/MRCA.html" class="external-link">MRCA</a>.</p></dd>
 
 
 <dt>scaling_factor</dt>
@@ -377,8 +385,8 @@ to define the respective clade using <a href="https://rdrr.io/pkg/tidytree/man/M
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Warning: Each clade in `clades` must contain a vector of at least 1 species. Omitting clade: Invertebrates</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 3 species remaining after metadata preparation.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Creating ggtree plot.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmp68jVEN/file183e28e80486.ggtree.pdf</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmp68jVEN/file183e7f10270c.ggtree.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmp7pIai1/file9cb1b761529.ggtree.pdf</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmp7pIai1/file9cb17ef440.ggtree.png</span>
 <span class="r-plt img"><img src="plot_orthotree-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
