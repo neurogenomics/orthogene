@@ -24,6 +24,7 @@ plot_orthotree(
     "Gallus gallus", "Anolis carolinensis", "Xenopus tropicalis", "Danio rerio"),
     Invertebrates = c("Drosophila melanogaster", 
      "Caenorhabditis elegans")),
+  clades_rotate = list(),
   scaling_factor = NULL,
   show_plot = TRUE,
   save_paths = c(tempfile(fileext = ".ggtree.pdf"), tempfile(fileext = ".ggtree.png")),
@@ -106,8 +107,13 @@ Return only the most "popular" interspecies ortholog mappings.
 
 \item{reference_species}{Reference species.}
 
-\item{clades}{A named list of clades each containing list fo species
-to define the respective clade using \link[ggtree]{MRCA}.}
+\item{clades}{A named list of clades each containing 
+a character vector of species used to define the respective clade 
+using \link[ggtree]{MRCA}.}
+
+\item{clades_rotate}{A list of clades to rotate (via \link[ape]{rotate}), 
+each containing a character vector of species used to define the respective
+ clade using \link[ggtree]{MRCA}.}
 
 \item{scaling_factor}{How much to scale y-axis parameters (e.g. offset) by.}
 

@@ -4,6 +4,9 @@
 
 * `remove_all_nas`
     - Can handle multiple cols.
+* `plot_orthotree`
+    - New arg `clades_rotate`
+    - New func: `rotate_clades`
 
 ## Bug fixes
 

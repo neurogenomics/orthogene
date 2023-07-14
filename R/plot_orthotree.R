@@ -14,8 +14,12 @@
 #'  If \code{NULL}, then all species from the given database (\code{method}) 
 #'  will be included (via \link[orthogene]{map_species}), 
 #'  so long as they also exist in the \code{tree}. 
-#' @param clades A named list of clades each containing list fo species
-#'  to define the respective clade using \link[ggtree]{MRCA}. 
+#' @param clades A named list of clades each containing 
+#' a character vector of species used to define the respective clade 
+#' using \link[ggtree]{MRCA}. 
+#' @param clades_rotate A list of clades to rotate (via \link[ape]{rotate}), 
+#' each containing a character vector of species used to define the respective
+#'  clade using \link[ggtree]{MRCA}. 
 #' @param show_plot Whether to print the final tree plot.
 #' @param save_paths Paths to save plot to.
 #' @param height Saved plot height.
@@ -84,6 +88,7 @@ plot_orthotree <- function(tree = NULL,
                                              c("Drosophila melanogaster",
                                                "Caenorhabditis elegans")
                                          ),
+                           clades_rotate = list(),
                            scaling_factor = NULL,
                            show_plot = TRUE,
                            save_paths = c(
@@ -128,22 +133,24 @@ plot_orthotree <- function(tree = NULL,
                            show_plot = FALSE,
                            verbose = verbose)
     } else { tr <- tree} 
+    #### Rotate clades ####
+    tr <- rotate_clades(tr = tr,
+                        clades = clades_rotate) 
     #### silhouettes ####
     ## The first human silhouette is a weird handprint. Skip that one.
     which <- rep(1,length(tr$tip.map))
-    bool <- is_human(names(tr$tip.map)) 
-    if(sum(bool)>0){
-        which[bool] <- 2
-    } 
-    ## The first Celegans silhouette is huge. Skip that one.
-    bool <- tolower(names(tr$tip.map))=="caenorhabditis elegans"
-    if(sum(bool)>0){
-        which[bool] <- 2
+    for(s in c("homo sapiens","caenorhabditis elegans",
+               "rattus norvegicus","ornithorhynchus anatinus",
+               "felis catus")){
+        bool <- tolower(names(tr$tip.map))==s
+        if(sum(bool)>0){
+            which[bool] <- 2
+        } 
     } 
     uids <- get_silhouettes(species = names(tr$tip.map),
-                          which = which,
-                          mc.cores = mc.cores,
-                          verbose = verbose) 
+                            which = which,
+                            mc.cores = mc.cores,
+                            verbose = verbose) 
     #### Make clades metadata ####
     clades <- prepare_clades(tree = tr,
                              clades = clades,
@@ -157,13 +164,13 @@ plot_orthotree <- function(tree = NULL,
     if(is.null(scaling_factor)){
         scaling_factor <- 35*nrow(d)
     }
-    #### plot #### 
+    #### plot ####
     p <- ggtree_plot(tr = tr,
                      d = d,
                      scaling_factor = scaling_factor,
                      clades = clades,
                      reference_species = reference_species_og, 
-                     verbose = verbose)  
+                     verbose = verbose)
     #### Show plot ####
     if(isTRUE(show_plot)) methods::show(p) 
     #### Save plot ####

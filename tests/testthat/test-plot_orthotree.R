@@ -2,13 +2,13 @@ test_that("plot_orthotree works", {
   
   species <- c("human","monkey","mouse")
   ### homologene ####
-  orthotree_hg <- orthogene::plot_orthotree(species = species, 
-                                            method = "homologene")
+  orthotree_hg <- plot_orthotree(species = species, 
+                                 method = "homologene")
   ### babelgene ####
-  orthotree_bg <- orthogene::plot_orthotree(species = species, 
-                                             # save_paths = c("~/Desktop/ggtree.pdf",
-                                             #                "~/Desktop/ggtree.png")
-                                             method = "babelgene")
+  orthotree_bg <- plot_orthotree(species = species, 
+                                 # save_paths = c("~/Desktop/ggtree.pdf",
+                                 #                "~/Desktop/ggtree.png")
+                                 method = "babelgene")
   #### gprofiler ####
   ## Omitting this test because it takes a verrrry long time
   # orthotree_gp <- orthogene::plot_orthotree(species = species,
