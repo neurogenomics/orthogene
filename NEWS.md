@@ -19,6 +19,8 @@
         depending on when ortholog conversion was done.
 * Fix `test-convert_orthologs`
     - Line 99 test had wrong number of cols.
+* `map_genes_planosphere`
+    - Add backup download strategy.
 
 # orthogene  1.7.0
 

@@ -46,6 +46,5 @@ test_that("map_genes works", {
     testthat::expect_gte(nrow(mapped_human), 3)
     testthat::expect_gte(nrow(mapped_mouse), total_genes)
     testthat::expect_gte(nrow(mapped_zebrafish), 3)
-    # testthat::expect_gte(nrow(mapped_fly), 0)
     testthat::expect_gte(nrow(mapped_planarian), 2) 
 })

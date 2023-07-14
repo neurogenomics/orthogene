@@ -30,7 +30,21 @@ map_genes_planosphere <- function(genes,
     f <- file.path(save_dir,basename(URL))
     if(!file.exists(f)){
         dir.create(save_dir,showWarnings = FALSE, recursive = TRUE)
-        utils::download.file(url = URL, destfile = f)
+        f <- tryCatch({
+            #### Try direct from source ####
+            utils::download.file(url = URL, destfile = f)  
+            f
+        }, error = function(){
+            #### Try from piggyback ####
+            requireNamespace("piggyback")
+            file <- "smed_20140614.mapping.rosettastone.2020.txt.gz"
+            tmp <- file.path(save_dir,file) 
+            piggyback::pb_download(file = file,
+                                   repo = "neurogenomics/orthogene",
+                                   dest = save_dir)
+            get_data_check(tmp = tmp)  
+            tmp
+        })
     } 
     pmap <- data.table::fread(f, key = "seq_id") 
     #### Get mappings ####
