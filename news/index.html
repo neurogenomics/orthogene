@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
       </span>
     </div>
 
@@ -64,16 +64,16 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.6.1" id="orthogene-161">orthogene 1.6.1<a class="anchor" aria-label="anchor" href="#orthogene-161"></a></h2>
+<h2 class="page-header" data-toc-text="1.7.1" id="orthogene-171">orthogene 1.7.1<a class="anchor" aria-label="anchor" href="#orthogene-171"></a></h2>
 <div class="section level3">
-<h3 id="new-features-1-6-1">New features<a class="anchor" aria-label="anchor" href="#new-features-1-6-1"></a></h3>
+<h3 id="new-features-1-7-1">New features<a class="anchor" aria-label="anchor" href="#new-features-1-7-1"></a></h3>
 <ul><li>
 <code>remove_all_nas</code>
 <ul><li>Can handle multiple cols.</li>
 </ul></li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-1-6-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-6-1"></a></h3>
+<h3 id="bug-fixes-1-7-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-7-1"></a></h3>
 <ul><li>
 <code>add_columns</code>
 <ul><li>Handle both vectors and columns.</li>
@@ -92,6 +92,53 @@
 </ul></li>
 <li>Fix <code>test-convert_orthologs</code>
 <ul><li>Line 99 test had wrong number of cols.</li>
+</ul></li>
+<li>
+<code>map_genes_planosphere</code>
+<ul><li>Add backup download strategy.</li>
+</ul></li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.7.0" id="orthogene-170">orthogene 1.7.0<a class="anchor" aria-label="anchor" href="#orthogene-170"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-7-0">New features<a class="anchor" aria-label="anchor" href="#new-features-1-7-0"></a></h3>
+<ul><li>Bump version.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.5.3" id="orthogene-153">orthogene 1.5.3<a class="anchor" aria-label="anchor" href="#orthogene-153"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-5-3">New features<a class="anchor" aria-label="anchor" href="#new-features-1-5-3"></a></h3>
+<ul><li>
+<code>convert_orthologs</code>
+<ul><li>Can now take a user-supplied gene_map to use instead of gprofiler/homologene/babelgene.</li>
+<li>Lets user take advantage of all of the many:many ortholog mapping functions for organisms not covered in any of the databases (eg. earthworm).</li>
+</ul></li>
+<li>New helper function: <code>set_gprofiler</code> (to use beta version)</li>
+<li>
+<code>map_genes</code>
+<ul><li>Can now translate planarian gene synonyms using subfunction: <code>map_genes_planosphere</code>.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-5-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-5-3"></a></h3>
+<ul><li>
+<code>convert_orthologs</code>
+<ul><li>Now returns original data when <code>input_species</code>==<code>output</code> species (after performing method-specific species mapping) AND <code>standardise_genes==FALSE</code>.</li>
+</ul></li>
+<li>
+<code>add_synonyms</code>
+<ul><li>When <code>syn_map</code> is <code>NULL</code>, will use the <code>gene_map</code> instead.</li>
+</ul></li>
+<li>
+<code>map_orthologs_custom</code>
+<ul><li>Remove <code>if(input_species==output_species) return(NULL)</code>
+</li>
+</ul></li>
+<li>
+<code>drop_non121</code>
+<ul><li>Don’t run grouped slicing when “input_gene”,“ortholog_gene” are the only cols.</li>
 </ul></li>
 </ul></div>
 </div>

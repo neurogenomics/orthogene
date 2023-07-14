@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ Author: <i>Brian M. Schilder</i><br>
             
             <h4 data-toc-skip class="date"><h4>
 <br>
-Most recent update: <i>Jul-13-2023</i><br>
+Most recent update: <i>Jul-14-2023</i><br>
 </h4></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/vignettes/orthogene.Rmd" class="external-link"><code>vignettes/orthogene.Rmd</code></a></small>
@@ -751,10 +751,11 @@ sparse or dense matrix, and the genes are row names.</p>
 <pre><code><span><span class="co">## 1 organism identified from search: mmusculus</span></span></code></pre>
 <pre><code><span><span class="co">## 482 / 482 (100%) genes mapped.</span></span></code></pre>
 <pre><code><span><span class="co">## Aggregating rows using: monocle3</span></span></code></pre>
+<pre><code><span><span class="co">## Converting obj to sparseMatrix.</span></span></code></pre>
 <pre><code><span><span class="co">## Matrix aggregated:</span></span>
 <span><span class="co">##   - Input: 482 x 7 </span></span>
 <span><span class="co">##   - Output: 92 x 7</span></span></code></pre>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">exp_agg</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
@@ -846,7 +847,7 @@ sparse or dense matrix, and the genes are row names.</p>
 </h3>
 <p>You can also quickly get all known genes from the genome of a given
 species with <a href="https://neurogenomics.github.io/orthogene/reference/all_genes.html" class="external-link"><code>all_genes</code></a>.</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">genome_mouse</span> <span class="op">&lt;-</span> <span class="fu">orthogene</span><span class="fu">::</span><span class="fu"><a href="../reference/all_genes.html">all_genes</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, </span>
 <span>                                     method <span class="op">=</span> <span class="va">method</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Retrieving all genes using: homologene.</span></span></code></pre>
@@ -856,7 +857,7 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 <pre><code><span><span class="co">## 1 organism identified from search: 10090</span></span></code></pre>
 <pre><code><span><span class="co">## Gene table with 21,207 rows retrieved.</span></span></code></pre>
 <pre><code><span><span class="co">## Returning all 21,207 genes from mouse.</span></span></code></pre>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genome_mouse</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -916,7 +917,7 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<details><div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<details><div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
@@ -941,7 +942,7 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] orthogene_1.6.1  BiocStyle_2.29.0</span></span>
+<span><span class="co">## [1] orthogene_1.7.1  BiocStyle_2.29.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
 <span><span class="co">##  [1] gtable_0.3.3              babelgene_22.9           </span></span>
