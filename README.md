@@ -2,25 +2,25 @@
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' title='Hex sticker for orthogene' height='300'><br>
 [![](https://img.shields.io/badge/release%20version-1.4.2-green.svg)](https://www.bioconductor.org/packages/orthogene)
-[![](https://img.shields.io/badge/download-222/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
-[![](https://img.shields.io/badge/download-3320/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-304/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-3771/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![download](http://www.bioconductor.org/shields/downloads/release/orthogene.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 <br>
-[![](https://img.shields.io/badge/devel%20version-1.7.1-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.7.2-black.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/github/languages/code-size/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 <br> [![R build
 status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.svg)](https://github.com/neurogenomics/orthogene/actions)
-[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://codecov.io/gh/neurogenomics/orthogene)
+[![](https://codecov.io/gh/neurogenomics/orthogene/branch/main/graph/badge.svg)](https://app.codecov.io/gh/neurogenomics/orthogene)
 <br>
 <a href='https://app.codecov.io/gh/neurogenomics/orthogene/tree/main' target='_blank'><img src='https://codecov.io/gh/neurogenomics/orthogene/branch/main/graphs/icicle.svg' title='Codecov icicle graph' width='200' height='50' style='vertical-align: top;'></a>  
 <h4>  
 Authors: <i>Brian Schilder</i>  
 </h4>
 <h4>  
-README updated: <i>Jul-14-2023</i>  
+README updated: <i>Aug-30-2023</i>  
 </h4>
 
 # Intro
@@ -308,9 +308,9 @@ utils::sessionInfo()
     ##  [77] blob_1.2.4                parallel_4.2.1           
     ##  [79] lattice_0.21-8            hms_1.1.3                
     ##  [81] knitr_1.43                pillar_1.9.0             
-    ##  [83] igraph_1.4.3              ggpubr_0.6.0             
+    ##  [83] igraph_1.5.0.1            ggpubr_0.6.0             
     ##  [85] RUnit_0.4.32              ggsignif_0.6.4           
-    ##  [87] rworkflows_0.99.9         stats4_4.2.1             
+    ##  [87] rworkflows_0.99.12        stats4_4.2.1             
     ##  [89] gprofiler2_0.2.1          crul_1.4.0               
     ##  [91] XML_3.99-0.14             glue_1.6.2               
     ##  [93] evaluate_0.21             ggfun_0.0.9              

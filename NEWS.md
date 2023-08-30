@@ -1,3 +1,9 @@
+# orthogene  1.7.2
+
+## Bug fixes
+
+* 
+
 # orthogene  1.7.1
 
 ## New features
