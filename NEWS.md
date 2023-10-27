@@ -2,7 +2,8 @@
 
 ## Bug fixes
 
-* Catch case where no genes are found in the species in `map_genes()`
+* Catch case where no genes are found in the species in `map_genes()` & test 
+  case added.
 
 # orthogene  1.7.3
 

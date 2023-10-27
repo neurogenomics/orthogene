@@ -58,4 +58,14 @@ test_that("map_genes works", {
     testthat::expect_gte(nrow(mapped_human), 3)
     testthat::expect_gte(nrow(mapped_mouse), total_genes)
     testthat::expect_gte(nrow(mapped_zebrafish), 3)
+    
+    #### Test where genes aren't found in species ####
+    #should return NULL not fail
+    genes <- c("a",'list','of','fake','genes')
+    spec_hits <- map_genes(
+      genes = genes,
+      species = 'yeast',
+      drop_na = TRUE,
+      verbose = FALSE)$name
+    testthat::expect_null(spec_hits)
 })
