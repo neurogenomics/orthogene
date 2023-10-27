@@ -8,6 +8,7 @@ common_species_names_dict <- function(species = NULL,
                   "taxonomy_id"=2) 
     type_select <- type_dict[[type]]
     #### dictionary ####
+    #taxonomy IDs taken from NCBI Taxonomy browser
     dict <- list(
         "human" = c("Homo sapiens",9606),
         "humans" = c("Homo sapiens",9606),
@@ -45,7 +46,8 @@ common_species_names_dict <- function(species = NULL,
         "worms" = c("Caenorhabditis elegans",6239),
         "earthworm" = c("Eisenia andrei",168636),
         "earthworms" = c("Eisenia andrei",168636),
-        "rice" = c("Oryza sativa",4530)
+        "rice" = c("Oryza sativa",4530),
+        "yeast" = c("Saccharomyces cerevisiae",4932)
     )
     #### Return entire dict if NULL ####
     if (is.null(species)) {
