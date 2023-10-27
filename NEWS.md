@@ -1,3 +1,9 @@
+# orthogene  1.7.3
+
+## New features
+
+* Added yeast (_Saccharomyces cerevisiae_) as a valid taxonomy choice.
+
 # orthogene  1.7.2
 
 ## Bug fixes
