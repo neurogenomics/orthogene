@@ -1,3 +1,10 @@
+# orthogene 1.9.1
+
+## New features
+
+* Bump version for Bioc 3.19.
+* Use GHCR instead of Dockerhub, update vignette accordingly.
+
 # orthogene  1.7.3
 
 ## New features

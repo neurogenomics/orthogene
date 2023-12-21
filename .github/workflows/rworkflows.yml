@@ -26,7 +26,7 @@ jobs:
           bioc: devel
           r: auto
           cont: ghcr.io/bioconductor/bioconductor_docker:devel
-          rspm: https://packagemanager.rstudio.com/cran/__linux__/latest/release
+          rspm: ~
         - os: macOS-latest
           bioc: release
           r: auto
