@@ -74,7 +74,9 @@ map_genes <- function(genes,
         )
     }
     #### Drop NAs ####
-    if (isTRUE(drop_na)) {
+    # !is.null(syn_map) catches where no hit genes are found in the species
+    # otherwise map_genes() will give an error rather than returning NULL
+    if (isTRUE(drop_na) && !is.null(syn_map)) {
         syn_map <- remove_all_nas(
             dat = syn_map,
             col_name = "name",

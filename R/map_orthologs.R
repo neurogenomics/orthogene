@@ -56,48 +56,51 @@ map_orthologs <- function(genes,
         )
         genes <- syn_map$name
     }
-    #### Select mapping method ####
-    #### User-supplied mapping ####
-    if(!is.null(gene_map)){ 
-        gene_map <- map_orthologs_custom(gene_map = gene_map,
-                                         input_species = input_species,
-                                         output_species = output_species, 
-                                         input_col = input_col,
-                                         output_col = output_col, 
-                                         verbose = verbose)
-    }
-    # Both methods will return a dataframe with at least the columns
-    # "input_gene" and "ortholog_gene"
-    #### gprofiler ####
-    if (methods_opts(method = method, gprofiler_opts = TRUE)) {
-        gene_map <- map_orthologs_gprofiler(
-            genes = genes,
-            input_species = input_species,
-            output_species = output_species,
-            mthreshold = mthreshold,
-            verbose = verbose,
-            ...
-        )
-    }
-    #### homologene ####
-    if (methods_opts(method = method, homologene_opts = TRUE)) {
-        gene_map <- map_orthologs_homologene(
-            genes = genes,
-            input_species = input_species,
-            output_species = output_species,
-            verbose = verbose,
-            ...
-        )
-    }
-    #### babelgene ####
-    if (methods_opts(method = method, babelgene_opts = TRUE)) {
-        gene_map <- map_orthologs_babelgene(
-            genes = genes,
-            input_species = input_species,
-            output_species = output_species,
-            verbose = verbose,
-            ...
-        )
+    #deal with case where no genes found for species
+    if(!is.null(genes)){
+      #### Select mapping method ####
+      #### User-supplied mapping ####
+      if(!is.null(gene_map)){ 
+          gene_map <- map_orthologs_custom(gene_map = gene_map,
+                                           input_species = input_species,
+                                           output_species = output_species, 
+                                           input_col = input_col,
+                                           output_col = output_col, 
+                                           verbose = verbose)
+      }
+      # Both methods will return a dataframe with at least the columns
+      # "input_gene" and "ortholog_gene"
+      #### gprofiler ####
+      if (methods_opts(method = method, gprofiler_opts = TRUE)) {
+          gene_map <- map_orthologs_gprofiler(
+              genes = genes,
+              input_species = input_species,
+              output_species = output_species,
+              mthreshold = mthreshold,
+              verbose = verbose,
+              ...
+          )
+      }
+      #### homologene ####
+      if (methods_opts(method = method, homologene_opts = TRUE)) {
+          gene_map <- map_orthologs_homologene(
+              genes = genes,
+              input_species = input_species,
+              output_species = output_species,
+              verbose = verbose,
+              ...
+          )
+      }
+      #### babelgene ####
+      if (methods_opts(method = method, babelgene_opts = TRUE)) {
+          gene_map <- map_orthologs_babelgene(
+              genes = genes,
+              input_species = input_species,
+              output_species = output_species,
+              verbose = verbose,
+              ...
+          )
+      }
     }
     #### Check is already in the same species ####
     if(isFALSE(standardise_genes) &&

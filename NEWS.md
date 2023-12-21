@@ -5,6 +5,11 @@
 * Bump version for Bioc 3.19.
 * Use GHCR instead of Dockerhub, update vignette accordingly.
 
+## Bug fixes
+
+* Catch case where no genes are found in the species in `map_genes()` & test 
+  case added.
+
 # orthogene  1.7.3
 
 ## New features
