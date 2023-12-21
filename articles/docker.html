@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.9.1</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ Authors: <i>Brian Schilder</i><br>
             
             <h4 data-toc-skip class="date"><h4>
 <br>
-Vignette updated: <i>Aug-30-2023</i><br>
+Vignette updated: <i>Dec-21-2023</i><br>
 </h4></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/HEAD/vignettes/docker.Rmd" class="external-link"><code>vignettes/docker.Rmd</code></a></small>
@@ -103,15 +103,11 @@ Vignette updated: <i>Aug-30-2023</i><br>
     
     
 <div class="section level2">
-<h2 id="dockerhub">DockerHub<a class="anchor" aria-label="anchor" href="#dockerhub"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>orthogene is now available via <a href="https://hub.docker.com/repository/docker/neurogenomicslab/orthogene" class="external-link">DockerHub</a>
-as a containerised environment with Rstudio and all necessary
-dependencies pre-installed.</p>
-<div class="section level3">
-<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h3>
-</div>
+<p>orthogene is now available via <a href="https://ghcr.io/ghcr.io/neurogenomics/orthogene" class="external-link">ghcr.io</a> as a
+containerised environment with Rstudio and all necessary dependencies
+pre-installed.</p>
 <div class="section level3">
 <h3 id="method-1-via-docker">Method 1: via Docker<a class="anchor" aria-label="anchor" href="#method-1-via-docker"></a>
 </h3>
@@ -119,7 +115,7 @@ dependencies pre-installed.</p>
 Docker</a> if you have not already.</p>
 <p>Create an image of the <a href="https://www.docker.com/" class="external-link">Docker</a>
 container in command line:</p>
-<pre><code>docker pull neurogenomicslab/orthogene</code></pre>
+<pre><code>docker pull ghcr.io/neurogenomics/orthogene</code></pre>
 <p>Once the image has been created, you can launch it with:</p>
 <pre><code>docker run \
   -d \
@@ -127,8 +123,8 @@ container in command line:</p>
   -e PASSWORD="&lt;your_password&gt;" \
   -v ~/Desktop:/Desktop \
   -v /Volumes:/Volumes \
-  -p 8787:8787 \
-  neurogenomicslab/orthogene</code></pre>
+  -p 8900:8787 \
+  ghcr.io/neurogenomics/orthogene</code></pre>
 <div class="section level4">
 <h4 id="notes">NOTES<a class="anchor" aria-label="anchor" href="#notes"></a>
 </h4>
@@ -144,8 +140,8 @@ line session.<br>
 </li>
 <li>The username will be <em>“rstudio”</em> by default.<br>
 </li>
-<li>Optionally, you can also install the <a href="https://www.docker.com/products/docker-desktop" class="external-link">Docker Desktop</a>
-to easily manage your containers.</li>
+<li>Optionally, you can also install the <a href="https://www.docker.com/products/docker-desktop/" class="external-link">Docker
+Desktop</a> to easily manage your containers.</li>
 </ul>
 </div>
 </div>
@@ -153,24 +149,26 @@ to easily manage your containers.</li>
 <h3 id="method-2-via-singularity">Method 2: via Singularity<a class="anchor" aria-label="anchor" href="#method-2-via-singularity"></a>
 </h3>
 <p>If you are using a system that does not allow Docker (as is the case
-for many institutional computing clusters), you can instead <a href="https://sylabs.io/guides/2.6/user-guide/singularity_and_docker.html" class="external-link">install
+for many institutional computing clusters), you can instead <a href="https://docs.sylabs.io/guides/2.6/user-guide/singularity_and_docker.html" class="external-link">install
 Docker images via Singularity</a>.</p>
-<pre><code>singularity pull docker://neurogenomicslab/orthogene</code></pre>
+<pre><code>singularity pull docker://ghcr.io/neurogenomics/orthogene</code></pre>
+<p>For troubleshooting, see the <a href="https://docs.sylabs.io/guides/latest/user-guide/singularity_and_docker.html#github-container-registry" class="external-link">Singularity
+documentation</a>.</p>
 </div>
-<div class="section level3">
-<h3 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
-</h3>
+</div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>Finally, launch the containerised Rstudio by entering the following
-URL in any web browser: <em><a href="http://localhost:8787/" class="external-link uri">http://localhost:8787/</a></em></p>
+URL in any web browser: <em><a href="http://localhost:8900/" class="external-link uri">http://localhost:8900/</a></em></p>
 <p>Login using the credentials set during the Installation steps.</p>
-</div>
 </div>
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
 <details><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>
+<pre><code><span><span class="co">## R version 4.3.2 (2023-10-31)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
 <span><span class="co">## Running under: Ubuntu 22.04.3 LTS</span></span>
 <span><span class="co">## </span></span>
@@ -193,51 +191,50 @@ URL in any web browser: <em><a href="http://localhost:8787/" class="external-lin
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] orthogene_1.7.2  BiocStyle_2.29.1</span></span>
+<span><span class="co">## [1] orthogene_1.9.1  BiocStyle_2.30.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
 <span><span class="co">##  [1] gtable_0.3.4              babelgene_22.9           </span></span>
-<span><span class="co">##  [3] xfun_0.40                 bslib_0.5.1              </span></span>
-<span><span class="co">##  [5] ggplot2_3.4.3             htmlwidgets_1.6.2        </span></span>
-<span><span class="co">##  [7] rstatix_0.7.2             lattice_0.21-8           </span></span>
-<span><span class="co">##  [9] vctrs_0.6.3               tools_4.3.1              </span></span>
-<span><span class="co">## [11] generics_0.1.3            yulab.utils_0.0.8        </span></span>
-<span><span class="co">## [13] parallel_4.3.1            tibble_3.2.1             </span></span>
-<span><span class="co">## [15] fansi_1.0.4               pkgconfig_2.0.3          </span></span>
-<span><span class="co">## [17] Matrix_1.6-1              ggplotify_0.1.2          </span></span>
-<span><span class="co">## [19] data.table_1.14.8         homologene_1.4.68.19.3.27</span></span>
-<span><span class="co">## [21] desc_1.4.2                lifecycle_1.0.3          </span></span>
-<span><span class="co">## [23] compiler_4.3.1            stringr_1.5.0            </span></span>
-<span><span class="co">## [25] treeio_1.25.4             textshaping_0.3.6        </span></span>
+<span><span class="co">##  [3] xfun_0.41                 bslib_0.6.1              </span></span>
+<span><span class="co">##  [5] ggplot2_3.4.4             htmlwidgets_1.6.4        </span></span>
+<span><span class="co">##  [7] rstatix_0.7.2             lattice_0.22-5           </span></span>
+<span><span class="co">##  [9] vctrs_0.6.5               tools_4.3.2              </span></span>
+<span><span class="co">## [11] generics_0.1.3            yulab.utils_0.1.1        </span></span>
+<span><span class="co">## [13] parallel_4.3.2            tibble_3.2.1             </span></span>
+<span><span class="co">## [15] fansi_1.0.6               pkgconfig_2.0.3          </span></span>
+<span><span class="co">## [17] Matrix_1.6-1.1            ggplotify_0.1.2          </span></span>
+<span><span class="co">## [19] data.table_1.14.10        homologene_1.4.68.19.3.27</span></span>
+<span><span class="co">## [21] desc_1.4.3                lifecycle_1.0.4          </span></span>
+<span><span class="co">## [23] compiler_4.3.2            stringr_1.5.1            </span></span>
+<span><span class="co">## [25] treeio_1.26.0             textshaping_0.3.7        </span></span>
 <span><span class="co">## [27] munsell_0.5.0             carData_3.0-5            </span></span>
-<span><span class="co">## [29] ggtree_3.9.1              gprofiler2_0.2.2         </span></span>
-<span><span class="co">## [31] ggfun_0.1.2               htmltools_0.5.6          </span></span>
-<span><span class="co">## [33] sass_0.4.7                yaml_2.3.7               </span></span>
-<span><span class="co">## [35] lazyeval_0.2.2            plotly_4.10.2            </span></span>
+<span><span class="co">## [29] ggtree_3.10.0             gprofiler2_0.2.2         </span></span>
+<span><span class="co">## [31] ggfun_0.1.3               htmltools_0.5.7          </span></span>
+<span><span class="co">## [33] sass_0.4.8                yaml_2.3.8               </span></span>
+<span><span class="co">## [35] lazyeval_0.2.2            plotly_4.10.3            </span></span>
 <span><span class="co">## [37] pillar_1.9.0              pkgdown_2.0.7            </span></span>
 <span><span class="co">## [39] car_3.1-2                 ggpubr_0.6.0             </span></span>
 <span><span class="co">## [41] jquerylib_0.1.4           tidyr_1.3.0              </span></span>
 <span><span class="co">## [43] cachem_1.0.8              grr_0.9.5                </span></span>
 <span><span class="co">## [45] abind_1.4-5               nlme_3.1-163             </span></span>
-<span><span class="co">## [47] tidyselect_1.2.0          aplot_0.2.0              </span></span>
-<span><span class="co">## [49] digest_0.6.33             stringi_1.7.12           </span></span>
-<span><span class="co">## [51] dplyr_1.1.2               purrr_1.0.2              </span></span>
-<span><span class="co">## [53] bookdown_0.35             rprojroot_2.0.3          </span></span>
-<span><span class="co">## [55] fastmap_1.1.1             grid_4.3.1               </span></span>
-<span><span class="co">## [57] colorspace_2.1-0          cli_3.6.1                </span></span>
-<span><span class="co">## [59] magrittr_2.0.3            patchwork_1.1.3          </span></span>
-<span><span class="co">## [61] utf8_1.2.3                broom_1.0.5              </span></span>
-<span><span class="co">## [63] ape_5.7-1                 scales_1.2.1             </span></span>
-<span><span class="co">## [65] backports_1.4.1           httr_1.4.7               </span></span>
-<span><span class="co">## [67] rmarkdown_2.24            ggsignif_0.6.4           </span></span>
-<span><span class="co">## [69] ragg_1.2.5                memoise_2.0.1            </span></span>
-<span><span class="co">## [71] evaluate_0.21             knitr_1.43               </span></span>
-<span><span class="co">## [73] viridisLite_0.4.2         gridGraphics_0.5-1       </span></span>
-<span><span class="co">## [75] rlang_1.1.1               Rcpp_1.0.11              </span></span>
-<span><span class="co">## [77] glue_1.6.2                tidytree_0.4.5           </span></span>
-<span><span class="co">## [79] BiocManager_1.30.22       jsonlite_1.8.7           </span></span>
-<span><span class="co">## [81] R6_2.5.1                  systemfonts_1.0.4        </span></span>
-<span><span class="co">## [83] fs_1.6.3</span></span></code></pre>
+<span><span class="co">## [47] tidyselect_1.2.0          aplot_0.2.2              </span></span>
+<span><span class="co">## [49] digest_0.6.33             stringi_1.8.3            </span></span>
+<span><span class="co">## [51] dplyr_1.1.4               purrr_1.0.2              </span></span>
+<span><span class="co">## [53] bookdown_0.37             fastmap_1.1.1            </span></span>
+<span><span class="co">## [55] grid_4.3.2                colorspace_2.1-0         </span></span>
+<span><span class="co">## [57] cli_3.6.2                 magrittr_2.0.3           </span></span>
+<span><span class="co">## [59] patchwork_1.1.3           utf8_1.2.4               </span></span>
+<span><span class="co">## [61] broom_1.0.5               ape_5.7-1                </span></span>
+<span><span class="co">## [63] scales_1.3.0              backports_1.4.1          </span></span>
+<span><span class="co">## [65] httr_1.4.7                rmarkdown_2.25           </span></span>
+<span><span class="co">## [67] ggsignif_0.6.4            ragg_1.2.6               </span></span>
+<span><span class="co">## [69] memoise_2.0.1             evaluate_0.23            </span></span>
+<span><span class="co">## [71] knitr_1.45                viridisLite_0.4.2        </span></span>
+<span><span class="co">## [73] gridGraphics_0.5-1        rlang_1.1.2              </span></span>
+<span><span class="co">## [75] Rcpp_1.0.11               glue_1.6.2               </span></span>
+<span><span class="co">## [77] tidytree_0.4.6            BiocManager_1.30.22      </span></span>
+<span><span class="co">## [79] jsonlite_1.8.8            R6_2.5.1                 </span></span>
+<span><span class="co">## [81] systemfonts_1.0.5         fs_1.6.3</span></span></code></pre>
 </details><p><br></p>
 </div>
   </div>
