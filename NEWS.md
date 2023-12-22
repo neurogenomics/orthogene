@@ -4,6 +4,7 @@
 
 * Bump version for Bioc 3.19.
 * Use GHCR instead of Dockerhub, update vignette accordingly.
+* Increase code coverage.
 
 ## Bug fixes
 

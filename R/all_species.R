@@ -17,7 +17,7 @@
 #' @examples
 #' species_dt <- all_species()
 all_species <- function(method = NULL,
-                         verbose = TRUE) {
+                        verbose = TRUE) {
     if(is.null(method)){
         method <- eval(formals(map_species)$method)
     }

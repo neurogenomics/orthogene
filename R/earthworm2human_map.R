@@ -30,12 +30,15 @@ earthworm2human_map <- function(evalue_threshold = NULL,
     requireNamespace("piggyback")
     
     file <- "ea_to_hu.csv.gz"
-    dir.create(save_dir,showWarnings = FALSE, recursive = TRUE)
     tmp <- file.path(save_dir,file) 
-    piggyback::pb_download(file = file,
-                           repo = "neurogenomics/orthogene",
-                           dest = save_dir)
-    get_data_check(tmp = tmp) 
+    if(!file.exists(tmp)){
+        dir.create(save_dir,showWarnings = FALSE, recursive = TRUE)
+        piggyback::pb_download(file = file,
+                               repo = "neurogenomics/orthogene",
+                               dest = save_dir, 
+                               tag = "v1.1.1")
+        get_data_check(tmp = tmp) 
+    }
     gene_map <- data.table::fread(tmp)
     #### Filter evalue #### 
     if(!is.null(evalue_threshold)){

@@ -15,11 +15,12 @@
 get_orgdb_genomeinfodbdata <- function(verbose = TRUE) {
     # Avoid confusing biocheck
     scientific_name <- display_name <- genus <- NULL
-    species <- id <- version <- ..keep_cols <- NULL
+    species <- id <- version <- NULL
 
     messager("Preparing organisms reference from: GenomeInfoDb", v = verbose)
     requireNamespace("GenomeInfoDbData")
-    utils::data("specData")
+    utils::data("specData",package = "GenomeInfoDbData")
+    specData <- data.table::as.data.table(get("specData"))
     #### Remove NAs ####
     no_no_list <- c("environmental", "unclassified", NA)
     specData <- specData[(!genus %in% no_no_list) &
@@ -38,6 +39,6 @@ get_orgdb_genomeinfodbdata <- function(verbose = TRUE) {
         "display_name", "id",
         "scientific_name", "taxonomy_id", "version"
     )
-    specData <- unique(specData[, ..keep_cols])
+    specData <- unique(specData[, keep_cols, with=FALSE])
     return(specData)
 }

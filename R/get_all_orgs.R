@@ -43,7 +43,7 @@ get_all_orgs <- function(method = c(
     #### method: genomeinfodb ####
     } else if (tolower(method) == "genomeinfodb") {
         #### Load a really big organism reference ####
-        orgs <- rbind(orgs, get_orgdb_genomeinfodbdata(verbose = verbose))
+        orgs <- get_orgdb_genomeinfodbdata(verbose = verbose)
         orgs$source <- "genomeinfodb"
     #### Error ####
     } else {
