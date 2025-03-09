@@ -51,7 +51,9 @@
 #' @export
 #' @importFrom methods show
 #' @examples
+#' if(require("ape")){
 #' orthotree <- plot_orthotree(species = c("human","monkey","mouse"))
+#' }
 plot_orthotree <- function(tree = NULL,
                            orth_report = NULL,
                            species = NULL,

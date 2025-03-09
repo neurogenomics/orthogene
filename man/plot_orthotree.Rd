@@ -150,5 +150,7 @@ describing how many orthologous genes each species shares with the
  \code{reference_species} ("human" by default).
 }
 \examples{
+if(require("ape")){
 orthotree <- plot_orthotree(species = c("human","monkey","mouse"))
+}
 }
