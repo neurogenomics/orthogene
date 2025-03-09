@@ -6,9 +6,7 @@
 #'
 #' @return \code{data.table} with benchmark results
 #' @param species Species names.
-#' @param benchmark_homologene Benchmark method "homologene".
-#' @param benchmark_gprofiler Benchmark method "gprofiler".
-#' @param benchmark_babelgene Benchmark method "babelgene".
+#' @param method_list A list of ortholog conversion methods to benchmark.
 #' @param run_convert_orthologs Benchmark
 #'  \link[orthogene]{convert_orthologs} function.
 #' @param remove_failed_times In instances where

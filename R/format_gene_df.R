@@ -36,7 +36,7 @@ format_gene_df <- function(gene_df,
         #### Report ####
         report_gene_map(
             n_input_genes = length(unique(genes)),
-            n_output_genes = length(unique(dict)),
+            n_output_genes = length(unique(names(dict))),
             verbose = verbose
         )
         return(dict)
@@ -56,10 +56,10 @@ format_gene_df <- function(gene_df,
             as_DelayedArray = as_DelayedArray,
             verbose = verbose
         )
-        #### Report ####
+        #### Report #### 
         report_gene_map(
             n_input_genes = length(unique(genes)),
-            n_output_genes = nrow(gene_df2),
+            n_output_genes = length(unique(gene_map$input_gene)),
             verbose = verbose
         )
         return(gene_df2)

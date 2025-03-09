@@ -199,4 +199,20 @@ test_that("convert_orthologs works", {
     testthat::expect_true(orthogene:::is_delayed_array(gene_mat_da))
     testthat::expect_equal(has_gene_cols(gene_mat_da), 0)
     testthat::expect_gte(nrow(gene_mat_da), 13000)
+    
+    
+    #### Example edge case from https://github.com/neurogenomics/orthogene/issues/41 ####
+    allrats_sigs <- data.frame(
+        NOG=c("ENSRNOG00000000047","ENSRNOG00000000047","ENSRNOG00000000047",
+              "ENSRNOG00000000047","ENSRNOG00000000073", "ENSRNOG00000000073",
+              "ENSRNOG00000000075","ENSRNOG00000000075"))
+    orthologs <- orthogene::convert_orthologs(gene_df = allrats_sigs,
+                                           gene_input = "NOG",
+                                           gene_output = "columns",
+                                           standardise_genes = TRUE,
+                                           input_species = "rat",
+                                           output_species = "human")
+    testthat::expect_equal(methods::is(orthologs, "data.frame"), TRUE)
+    testthat::expect_equal(length(unique(orthologs$input_gene)), 
+                           length(unique(allrats_sigs$NOG)))
 })

@@ -87,6 +87,8 @@ Optionally, if \code{output_format} is not \code{NULL}, species names from
  using \link[orthogene]{map_species}.
 }
 \examples{
-species <- c("human","chimp","mouse")
-tr <- orthogene::prepare_tree(species = species)
+if(require("ape")){
+ species <- c("human","chimp","mouse")
+ tr <- orthogene::prepare_tree(species = species)
+} 
 }

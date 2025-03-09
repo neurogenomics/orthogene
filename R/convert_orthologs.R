@@ -181,8 +181,13 @@ convert_orthologs <- function(gene_df,
                               
                               verbose = TRUE,
                               ...) {
-    # devoptera::args2vars(convert_orthologs)
-
+    #### Check boolean args ####
+    check_bool_args(
+        standardise_genes = standardise_genes,
+        drop_nonorths = drop_nonorths,
+        as_sparse = as_sparse,
+        as_DelayedArray = as_DelayedArray,
+        sort_rows = sort_rows)
     #### Check gene_output ####
     check_gene_output(gene_output = gene_output)
     #### Check one2one_strategy is a valid option ####

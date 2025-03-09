@@ -47,8 +47,10 @@
 #' @export
 #' @importFrom tools R_user_dir
 #' @examples 
-#' species <- c("human","chimp","mouse")
-#' tr <- orthogene::prepare_tree(species = species)
+#' if(require("ape")){
+#'  species <- c("human","chimp","mouse")
+#'  tr <- orthogene::prepare_tree(species = species)
+#' } 
 prepare_tree <- function(tree_source = "timetree", 
                          species = NULL,
                          output_format = "scientific_name_formatted",

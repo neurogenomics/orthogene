@@ -17,6 +17,8 @@ run_benchmark(
 \arguments{
 \item{species}{Species names.}
 
+\item{method_list}{A list of ortholog conversion methods to benchmark.}
+
 \item{run_convert_orthologs}{Benchmark
 \link[orthogene]{convert_orthologs} function.}
 
@@ -28,12 +30,6 @@ no genes were returned, set time to \code{NA}.}
 \item{mc.cores}{Number of cores to parallelise species across.}
 
 \item{verbose}{Print messages.}
-
-\item{benchmark_homologene}{Benchmark method "homologene".}
-
-\item{benchmark_gprofiler}{Benchmark method "gprofiler".}
-
-\item{benchmark_babelgene}{Benchmark method "babelgene".}
 }
 \value{
 \code{data.table} with benchmark results

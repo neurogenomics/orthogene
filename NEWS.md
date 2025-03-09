@@ -1,3 +1,13 @@
+# orthogene 1.13.0
+
+## New features
+* `check_bool_args`: Add check that boolean args are boolean, to avoid issues like https://github.com/neurogenomics/orthogene/issues/41
+* Warn instead of Error when not all Suggests are installed: https://github.com/neurogenomics/orthogene/issues/40
+
+## Bug fixes
+* `format_gene_df`: Fix report so that the minimum number of dropped genes is 0 (not negative number), 
+ and the percentage of retained genes is <=100.
+
 # orthogene 1.9.1
 
 ## New features
