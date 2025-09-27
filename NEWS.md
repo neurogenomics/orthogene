@@ -1,3 +1,10 @@
+# orthogene 1.15
+
+## Bug fixes
+
+* Update ggplot2 facet calls to avoid deprecation errors.
+* Fix all roxygen note warnings.
+
 # orthogene 1.14.01
 
 ## Bug fixes
