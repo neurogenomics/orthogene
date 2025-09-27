@@ -1,6 +1,6 @@
 #' Plot a phylogenetic tree
 #' 
-#' Plot a phylogenetic tree with ggtree and metadata from
+#' Plot a phylogenetic tree with \pkg{ggtree} and metadata from
 #'  \link[orthogene]{report_orthologs}.
 #' @param tr Tree.
 #' @param d Metadata
@@ -19,9 +19,7 @@ ggtree_plot <- function(tr,
                         clades = NULL,
                         clades_palette = NULL,
                         reference_species = NULL, 
-                        verbose = TRUE){
-    # devoptera::args2vars(ggtree_plot)
-    
+                        verbose = TRUE){  
     requireNamespace("ggtree")
     ## ggimage is required but only listed as a Suggest in ggtree 
     ## for some reason.

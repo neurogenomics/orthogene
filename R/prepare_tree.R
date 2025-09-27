@@ -9,7 +9,7 @@
 #' TimeTree 5: An Expanded Resource for Species Divergence Times}
 #' 
 #' @param tree_source Can be one of the following:
-#' \itemize{
+#' \describe{
 #' \item{"timetree2022":\cr}{Import and prune the
 #' \href{https://doi.org/10.1093/molbev/msac174}{
 #' TimeTree >147k species} phylogenetic tree. Can also simply type "timetree".}

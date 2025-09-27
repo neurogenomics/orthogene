@@ -5,55 +5,53 @@
 #' @param target_species Target species.
 #' @param reference_species Reference species.
 #'
-#' @param method_all_genes R package to to use in
-#' \link[orthogene]{all_genes} step:
-#' \itemize{
-#' \item{\code{"gprofiler"} : Slower but more species and genes.}
-#' \item{\code{"homologene"} : Faster but fewer species and genes.}
-#' \item{\code{"babelgene"} : Faster but fewer species and genes.
-#' Also gives consensus scores for each gene mapping based on a
-#'  several different data sources.}
-#' }
+#' @param method_all_genes Package to use in the
+#'   \link[orthogene]{all_genes} step:
+#'   \describe{
+#'     \item{\code{"gprofiler"}}{Slower, but covers more species and genes.}
+#'     \item{\code{"homologene"}}{Faster, but covers fewer species and genes.}
+#'     \item{\code{"babelgene"}}{Faster, fewer species/genes; also provides
+#'       consensus scores for each mapping from multiple data sources.}
+#'   }
 #'
-#' @param method_convert_orthologs R package to to use in
-#' \link[orthogene]{convert_orthologs} step:
-#' \itemize{
-#' \item{\code{"gprofiler"} : Slower but more species and genes.}
-#' \item{\code{"homologene"} : Faster but fewer species and genes.}
-#' \item{\code{"babelgene"} : Faster but fewer species and genes.
-#' Also gives consensus scores for each gene mapping based on a
-#'  several different data sources.}
-#' }
+#' @param method_convert_orthologs Package to use in the
+#'   \link[orthogene]{convert_orthologs} step:
+#'   \describe{
+#'     \item{\code{"gprofiler"}}{Slower, but covers more species and genes.}
+#'     \item{\code{"homologene"}}{Faster, but covers fewer species and genes.}
+#'     \item{\code{"babelgene"}}{Faster, fewer species/genes; also provides
+#'       consensus scores for each mapping from multiple data sources.}
+#'   }
 #'
-#' @param return_report Return just the ortholog mapping
-#' between two species (\code{FALSE}) or return both the
-#'  ortholog mapping as well a \code{data.frame}
-#'  of the report statistics (\code{TRUE}).
+#' @param return_report If \code{FALSE}, return only the ortholog mapping
+#'   between the two species. If \code{TRUE}, return both the ortholog mapping
+#'   and a \code{data.frame} of report statistics.
 #' @param round_digits Number of digits to round to when printing percentages.
-#' @param mc.cores Number of cores to parallelise each
-#'  \code{target_species} with. 
-#' @param ref_genes A table of all genes for the \code{reference_species}.
-#' If \code{NULL} (default), this will automatically be created 
-#' using \link[orthogene]{all_genes}.
+#' @param mc.cores Number of cores to parallelize across \code{target_species}.
+#' @param ref_genes A table of all genes for \code{reference_species}.
+#'   If \code{NULL} (default), this is created via
+#'   \link[orthogene]{all_genes}.
 #' @inheritParams convert_orthologs
 #' @inheritDotParams convert_orthologs
 #'
-#' @returns A list containing: 
-#' \itemize{
-#' \item{map : }{A table of inter-species gene mappings.}
-#' \item{report : }{A list of aggregate orthology report statistics.}
+#' @return
+#' A list containing:
+#' \describe{
+#'   \item{map}{A table of inter-species gene mappings.}
+#'   \item{report}{A list of aggregate orthology report statistics.}
 #' }
-#' If >1 \code{target_species} are provided, then a table of 
-#' aggregated \code{report} statistics concatenated across species 
-#' will be returned instead. 
+#' If more than one \code{target_species} is provided, the function returns a
+#' table of aggregated \code{report} statistics concatenated across species.
+#'
 #' @export
 #' @importFrom dplyr n_distinct
-#' @importFrom data.table rbindlist setcolorder :=
+#' @importFrom data.table rbindlist setcolorder `:=`
 #' @importFrom parallel mclapply
 #' @examples
 #' orth_fly <- report_orthologs(
-#'     target_species = "fly",
-#'     reference_species = "human")
+#'   target_species = "fly",
+#'   reference_species = "human"
+#' ) 
 report_orthologs <- function(target_species = "mouse",
                              reference_species = "human",
                              standardise_genes = FALSE,

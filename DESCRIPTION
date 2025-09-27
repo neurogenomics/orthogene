@@ -1,7 +1,7 @@
 Package: orthogene
 Type: Package
 Title: Interspecies gene mapping 
-Version: 1.13.01
+Version: 1.14.01
 Authors@R:
     c( 
      person(given = "Brian",
@@ -63,7 +63,7 @@ Suggests:
     TreeTools,
     ggimage,
     OmaDB
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Encoding: UTF-8
 Config/testthat/edition: 3
 Config/rcmdcheck/_R_CHECK_FORCE_SUGGESTS_: false

@@ -19,7 +19,7 @@ plot_benchmark_scatter <- function(bench_res,
                                    show_plot = TRUE) {
     
     # Avoid confusing Biocheck
-    genes <- time <- method <- NULL
+    test <- genes <- time <- method <- NULL
     
     requireNamespace("ggplot2")
     if (remove_failed_times) {
@@ -40,8 +40,9 @@ plot_benchmark_scatter <- function(bench_res,
         ) +
         ggplot2::scale_fill_manual(values = fill_colors, drop = FALSE) +
         ggplot2::scale_color_manual(values = fill_colors, drop = FALSE) +
-        ggplot2::facet_grid(
-            facets = method ~ test,
+        ggplot2::facet_grid( 
+            rows=ggplot2::vars(method),
+            cols=ggplot2::vars(test),
             scales = "free"
         ) +
         ggplot2::labs(y = "time (seconds)") +

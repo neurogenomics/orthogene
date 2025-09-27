@@ -14,9 +14,9 @@ Null
 }
 \description{
 Set the default URL for gprofiler API queries.
-\itemize{
-\item{default: }{http://biit.cs.ut.ee/gprofiler}
-\item{bea: http://biit.cs.ut.ee/gprofiler_beta}
+\describe{
+\item{default}{http://biit.cs.ut.ee/gprofiler}
+\item{bea|}{http://biit.cs.ut.ee/gprofiler_beta}
 }
 }
 \keyword{internal}

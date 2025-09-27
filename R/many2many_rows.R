@@ -8,7 +8,7 @@
 #' using standard aggregation functions,
 #' since they all require many:1 scenarios.\cr
 #' Internally, this is done as follows:
-#' \enumerate{
+#' \itemize{
 #' \item{Identify genes that appear more than once
 #'  in \code{gene_map[[input_col]]}.}
 #' \item{For each gene identified, split its row into multiple
@@ -25,7 +25,7 @@
 #'  (as is the case with most other aggregation methods). } 
 #' \item{Map rownames of the expanded matrix onto the orthologous gene names
 #' from \code{gene_map$ortholog_gene}.}
-#' \item{[Optional] : When \code{aggregate_orthologs=TRUE}, 
+#' \item{[Optional] When \code{aggregate_orthologs=TRUE}, 
 #' aggregate rows of the expanded/mapped matrix 
 #' such that there will only be 1 row per ortholog gene, 
 #' using \link[orthogene]{aggregate_rows}. 

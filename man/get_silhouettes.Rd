@@ -51,7 +51,7 @@ across multiple cores.}
 }
 \value{
 data.frame with:
-\itemize{
+\describe{
 \item{input_species : }{Species name (input).}
 \item{species : }{Species name (standardised).}
 \item{uid : }{Species UID.} 

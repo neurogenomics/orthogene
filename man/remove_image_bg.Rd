@@ -22,7 +22,7 @@ remove_image_bg(
 \arguments{
 \item{path}{a file, url, or raster object or bitmap array}
 
-\item{color}{a valid \href{https://www.imagemagick.org/Magick++/Color.html}{color string} such as
+\item{color}{a valid \href{https://imagemagick.org/Magick++/Color.html}{color string} such as
 \code{"navyblue"} or \code{"#000080"}. Use \code{"none"} for transparency.}
 
 \item{fuzz}{relative color distance (value between 0 and 100) to be considered similar

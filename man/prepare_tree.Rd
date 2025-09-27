@@ -24,7 +24,7 @@ prepare_tree(
 }
 \arguments{
 \item{tree_source}{Can be one of the following:
-\itemize{
+\describe{
 \item{"timetree2022":\cr}{Import and prune the
 \href{https://doi.org/10.1093/molbev/msac174}{
 TimeTree >147k species} phylogenetic tree. Can also simply type "timetree".}
@@ -51,11 +51,11 @@ from a local or remote URL using \link[ape]{read.tree}.}
 \link[orthogene]{map_species}.}
 
 \item{method}{R package to use for gene mapping:
-\itemize{
-\item{\code{"gprofiler"} : Slower but more species and genes.}
-\item{\code{"homologene"} : Faster but fewer species and genes.}
-\item{\code{"babelgene"} : Faster but fewer species and genes.
-Also gives consensus scores for each gene mapping based on a
+\describe{
+ \item{\code{"gprofiler"}}{Slower but more species and genes.}
+ \item{\code{"homologene"}}{Faster but fewer species and genes.}
+ \item{\code{"babelgene"}}{Faster but fewer species and genes.
+ Also gives consensus scores for each gene mapping based on a
  several different data sources.}
 }}
 

@@ -10,10 +10,10 @@
 #'  If \code{test_species} is set to one of the following options, 
 #'  it will automatically pull all species from that respective package and 
 #'  test against each of them:  
-#'  \itemize{
-#'  \item{"homologene" : }{20+ species (default)}
-#'  \item{"gprofiler" : }{700+ species}
-#'  \item{"babelgene" : }{19 species}
+#'  \describe{
+#'  \item{"homologene"}{20+ species (default)}
+#'  \item{"gprofiler"}{700+ species}
+#'  \item{"babelgene"}{19 species}
 #'  }  
 #' @param make_plot Make a plot of the results.
 #' @param show_plot Print the plot of the results.

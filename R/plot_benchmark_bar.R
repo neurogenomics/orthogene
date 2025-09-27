@@ -48,7 +48,8 @@ plot_benchmark_bar <- function(bench_res,
             position = ggplot2::position_dodge(width = .9),
             size = 3, show.legend = FALSE
         ) +
-        ggplot2::facet_grid(facets = test ~ ., scales = "free") +
+        ggplot2::facet_grid(rows =  ggplot2::vars(test), 
+                            scales = "free") +
         ggplot2::labs(title = "Run time by method", x = NULL, y = "time (seconds)") +
         ggplot2::theme_bw() +
         ggplot2::theme(
@@ -74,7 +75,8 @@ plot_benchmark_bar <- function(bench_res,
             position = ggplot2::position_dodge(width = .9),
             size = 3, show.legend = FALSE
         ) +
-        ggplot2::facet_grid(facets = test ~ ., scales = "free") +
+        ggplot2::facet_grid(rows = ggplot2::vars(test), 
+                            scales = "free") +
         ggplot2::labs(title = "Genes retrieved by method") +
         ggplot2::theme_bw() +
         ggplot2::theme(

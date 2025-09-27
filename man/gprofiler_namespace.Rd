@@ -17,5 +17,5 @@ gProfiler site}
 }
 }
 \description{
-Available namespaces used by link[gprofiler2]{gconvert}.
+Available namespaces used by \link[gprofiler2]{gconvert}.
 }

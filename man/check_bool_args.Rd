@@ -24,11 +24,11 @@ in the \code{output_species}.}
 \item{as_sparse}{Convert \code{gene_df} to a sparse matrix.
 Only works if \code{gene_df} is one of the following classes:\cr
 \itemize{
-\item{\code{matrix}}
-\item{\code{Matrix}}
-\item{\code{data.frame}}
-\item{\code{data.table}}
-\item{\code{tibble}}
+ \item{\code{matrix}}
+ \item{\code{Matrix}}
+ \item{\code{data.frame}}
+ \item{\code{data.table}}
+ \item{\code{tibble}}
 }
 If \code{gene_df} is a sparse matrix to begin with,
 it will be returned as a sparse matrix

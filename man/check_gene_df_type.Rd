@@ -11,11 +11,11 @@ check_gene_df_type(gene_df, gene_input, verbose = TRUE)
 (see \code{gene_input} for options on how
 the genes can be stored within the object).\cr
 Can be one of the following formats:\cr
-\itemize{
-\item{\code{matrix} : \cr}{A sparse or dense matrix.}
-\item{\code{data.frame} : \cr}{A \code{data.frame},
+\describe{
+\item{\code{matrix}}{A sparse or dense matrix.}
+\item{\code{data.frame}}{A \code{data.frame},
  \code{data.table}. or \code{tibble}.}
-\item{code{list} : \cr}{A \code{list} or character \code{vector}.}
+\item{\code{list}}{A \code{list} or character \code{vector}.}
 }
 Genes, transcripts, proteins, SNPs, or genomic ranges
  can be provided in any format
@@ -28,10 +28,10 @@ must either supply genes in gene symbol format (e.g. "Sox2")
 
 \item{gene_input}{Which aspect of \code{gene_df} to
 get gene names from:\cr
-\itemize{
-\item{\code{"rownames"} : \cr}{From row names of data.frame/matrix.}
-\item{\code{"colnames"} : \cr}{From column names of data.frame/matrix.}
-\item{\code{<column name>} : \cr}{From a column in \code{gene_df},
+\describe{
+\item{\code{"rownames"}}{From row names of data.frame/matrix.}
+\item{\code{"colnames"}}{From column names of data.frame/matrix.}
+\item{\code{<column name>}}{From a column in \code{gene_df},
  e.g. \code{"gene_names"}.}
 }}
 

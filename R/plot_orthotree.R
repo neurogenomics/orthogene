@@ -36,7 +36,7 @@
 #' ggtree tutorial}
 #' 
 #' @returns A list containing:  
-#' \itemize{
+#' \describe{
 #' \item{plot : }{Annotated ggtree object.}
 #' \item{tree : }{The pruned, standardised phylogenetic tree used in the plot.}
 #' \item{orth_report : }{Ortholog reports for each \code{species} against

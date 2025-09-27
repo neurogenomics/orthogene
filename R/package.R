@@ -10,7 +10,7 @@
 #' 1:1 gene orthologs from any other species.
 #'
 #' @source
-#' \itemize{
+#' \describe{
 #' \item{\href{https://github.com/neurogenomics/orthogene}{GitHub} : }{
 #' Source code and Issues submission.}
 #' \item{\href{https://bschilder.github.io/BMSchilder/}{Author Site} : }{

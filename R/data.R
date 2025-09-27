@@ -77,7 +77,7 @@ NULL
 #' \link[gprofiler2]{gconvert} namespaces
 #'
 #' @description
-#' Available namespaces used by link[gprofiler2]{gconvert}. 
+#' Available namespaces used by \link[gprofiler2]{gconvert}. 
 #' @source \href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{
 #' gProfiler site}
 #' @format \code{data.frame}
