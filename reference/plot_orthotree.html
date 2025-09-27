@@ -19,7 +19,7 @@ describing how many orthologous genes each species shares with the
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.01</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.02</span>
       </span>
     </div>
 
@@ -287,7 +287,9 @@ each containing a character vector of species used to define the respective
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://github.com/emmanuelparadis/ape" class="external-link">"ape"</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
-<span class="r-in"><span><span class="va">orthotree</span> <span class="op">&lt;-</span> <span class="fu">plot_orthotree</span><span class="op">(</span>species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"human"</span>,<span class="st">"monkey"</span>,<span class="st">"mouse"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">orthotree</span> <span class="op">&lt;-</span> <span class="fu">plot_orthotree</span><span class="op">(</span>species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"human"</span>,<span class="st">"monkey"</span>,<span class="st">"mouse"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: ape</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Gathering ortholog reports.</span>
@@ -435,25 +437,9 @@ each containing a character vector of species used to define the respective
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Creating ggtree plot.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Found more than one class "phylo" in cache; using the first, from namespace 'tidytree'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Also defined by ‘TreeTools’</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">ggtree</span> package.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/YuLab-SMU/ggtree/issues&gt;</span>.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Arguments in `...` must be used.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Problematic argument:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> override.aes = list(size = 0.5)</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you misspell an argument name?</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>In `margin()`, the argument `t` should have length 1, not length 4.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Argument get(s) truncated to length 1.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>In `margin()`, the argument `t` should have length 1, not length 4.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Argument get(s) truncated to length 1.</span>
 <span class="r-plt img"><img src="plot_orthotree-1.png" alt="" width="700" height="433"></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/RtmpwdjWH9/file343b1d02ab74.ggtree.pdf</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/RtmpwdjWH9/file343b25f5f78d.ggtree.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmpd8OOqx/file1fc910ab03b3.ggtree.pdf</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmpd8OOqx/file1fc91fa5e52a.ggtree.png</span>
 </code></pre></div>
     </div>
   </div>
