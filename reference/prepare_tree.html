@@ -21,7 +21,7 @@ Optionally, if output_format is not NULL, species names from
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.01</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.01</span>
       </span>
     </div>
 
@@ -102,22 +102,33 @@ TimeTree 5: An Expanded Resource for Species Divergence Times</a></p>
 
 
 <dl><dt id="arg-tree-source">tree_source<a class="anchor" aria-label="anchor" href="#arg-tree-source"></a></dt>
-<dd><p>Can be one of the following:</p><ul><li><p>"timetree2022":<br>Import and prune the
+<dd><p>Can be one of the following:</p><dl><dt>"timetree2022":<br></dt>
+<dd><p>Import and prune the
 <a href="https://doi.org/10.1093/molbev/msac174" class="external-link">
-TimeTree &gt;147k species</a> phylogenetic tree. Can also simply type "timetree".</p></li>
-<li><p>"timetree2015":<br>Import and prune the
+TimeTree &gt;147k species</a> phylogenetic tree. Can also simply type "timetree".</p></dd>
+
+<dt>"timetree2015":<br></dt>
+<dd><p>Import and prune the
 <a href="http://www.timetree.org/public/data/TimetreeOfLife2015.nwk" class="external-link">
-TimeTree &gt;50k species</a> phylogenetic tree.</p></li>
-<li><p>"OmaDB":<br>Construct a tree from <a href="omabrowser.org">OMA</a>
+TimeTree &gt;50k species</a> phylogenetic tree.</p></dd>
+
+<dt>"OmaDB":<br></dt>
+<dd><p>Construct a tree from <a href="omabrowser.org">OMA</a>
 (Orthologous Matrix browser) via the <a href="https://rdrr.io/pkg/OmaDB/man/getTaxonomy.html" class="external-link">getTaxonomy</a> function.
 <em>NOTE: </em> Does not contain branch lengths,
- and therefore may have limited utility.</p></li>
-<li><p>"UCSC":<br>Import and prune the
+ and therefore may have limited utility.</p></dd>
+
+<dt>"UCSC":<br></dt>
+<dd><p>Import and prune the
 <a href="https://hgdownload.soe.ucsc.edu/goldenPath/hg38/multiz100way/" class="external-link">
-UCSC 100-way alignment</a> phylogenetic tree (hg38 version).</p></li>
-<li><p>"&lt;path&gt;":<br>Read a tree from a newick text file
-from a local or remote URL using <a href="https://rdrr.io/pkg/ape/man/read.tree.html" class="external-link">read.tree</a>.</p></li>
-</ul></dd>
+UCSC 100-way alignment</a> phylogenetic tree (hg38 version).</p></dd>
+
+<dt>"&lt;path&gt;":<br></dt>
+<dd><p>Read a tree from a newick text file
+from a local or remote URL using <a href="https://rdrr.io/pkg/ape/man/read.tree.html" class="external-link">read.tree</a>.</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-species">species<a class="anchor" aria-label="anchor" href="#arg-species"></a></dt>
@@ -135,12 +146,19 @@ from a local or remote URL using <a href="https://rdrr.io/pkg/ape/man/read.tree.
 
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
-<dd><p>R package to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
-<li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
-<li><p><code>"babelgene"</code> : Faster but fewer species and genes.
-Also gives consensus scores for each gene mapping based on a
- several different data sources.</p></li>
-</ul></dd>
+<dd><p>R package to use for gene mapping:</p><dl><dt><code>"gprofiler"</code></dt>
+<dd><p>Slower but more species and genes.</p></dd>
+
+ <dt><code>"homologene"</code></dt>
+<dd><p>Faster but fewer species and genes.</p></dd>
+
+ <dt><code>"babelgene"</code></dt>
+<dd><p>Faster but fewer species and genes.
+ Also gives consensus scores for each gene mapping based on a
+ several different data sources.</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-force-ultrametric">force_ultrametric<a class="anchor" aria-label="anchor" href="#arg-force-ultrametric"></a></dt>
@@ -207,7 +225,7 @@ Set to <code>NULL</code> to avoid using cache.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>

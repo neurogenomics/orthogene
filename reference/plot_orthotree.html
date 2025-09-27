@@ -19,7 +19,7 @@ describing how many orthologous genes each species shares with the
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13.01</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.01</span>
       </span>
     </div>
 
@@ -129,59 +129,84 @@ so long as they also exist in the <code>tree</code>.</p></dd>
 
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
-<dd><p>R package to use for gene mapping:</p><ul><li><p><code>"gprofiler"</code> : Slower but more species and genes.</p></li>
-<li><p><code>"homologene"</code> : Faster but fewer species and genes.</p></li>
-<li><p><code>"babelgene"</code> : Faster but fewer species and genes.
-Also gives consensus scores for each gene mapping based on a
- several different data sources.</p></li>
-</ul></dd>
+<dd><p>R package to use for gene mapping:</p><dl><dt><code>"gprofiler"</code></dt>
+<dd><p>Slower but more species and genes.</p></dd>
+
+ <dt><code>"homologene"</code></dt>
+<dd><p>Faster but fewer species and genes.</p></dd>
+
+ <dt><code>"babelgene"</code></dt>
+<dd><p>Faster but fewer species and genes.
+ Also gives consensus scores for each gene mapping based on a
+ several different data sources.</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-tree-source">tree_source<a class="anchor" aria-label="anchor" href="#arg-tree-source"></a></dt>
-<dd><p>Can be one of the following:</p><ul><li><p>"timetree2022":<br>Import and prune the
+<dd><p>Can be one of the following:</p><dl><dt>"timetree2022":<br></dt>
+<dd><p>Import and prune the
 <a href="https://doi.org/10.1093/molbev/msac174" class="external-link">
-TimeTree &gt;147k species</a> phylogenetic tree. Can also simply type "timetree".</p></li>
-<li><p>"timetree2015":<br>Import and prune the
+TimeTree &gt;147k species</a> phylogenetic tree. Can also simply type "timetree".</p></dd>
+
+<dt>"timetree2015":<br></dt>
+<dd><p>Import and prune the
 <a href="http://www.timetree.org/public/data/TimetreeOfLife2015.nwk" class="external-link">
-TimeTree &gt;50k species</a> phylogenetic tree.</p></li>
-<li><p>"OmaDB":<br>Construct a tree from <a href="omabrowser.org">OMA</a>
+TimeTree &gt;50k species</a> phylogenetic tree.</p></dd>
+
+<dt>"OmaDB":<br></dt>
+<dd><p>Construct a tree from <a href="omabrowser.org">OMA</a>
 (Orthologous Matrix browser) via the <a href="https://rdrr.io/pkg/OmaDB/man/getTaxonomy.html" class="external-link">getTaxonomy</a> function.
 <em>NOTE: </em> Does not contain branch lengths,
- and therefore may have limited utility.</p></li>
-<li><p>"UCSC":<br>Import and prune the
+ and therefore may have limited utility.</p></dd>
+
+<dt>"UCSC":<br></dt>
+<dd><p>Import and prune the
 <a href="https://hgdownload.soe.ucsc.edu/goldenPath/hg38/multiz100way/" class="external-link">
-UCSC 100-way alignment</a> phylogenetic tree (hg38 version).</p></li>
-<li><p>"&lt;path&gt;":<br>Read a tree from a newick text file
-from a local or remote URL using <a href="https://rdrr.io/pkg/ape/man/read.tree.html" class="external-link">read.tree</a>.</p></li>
-</ul></dd>
+UCSC 100-way alignment</a> phylogenetic tree (hg38 version).</p></dd>
+
+<dt>"&lt;path&gt;":<br></dt>
+<dd><p>Read a tree from a newick text file
+from a local or remote URL using <a href="https://rdrr.io/pkg/ape/man/read.tree.html" class="external-link">read.tree</a>.</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-non-strategy">non121_strategy<a class="anchor" aria-label="anchor" href="#arg-non-strategy"></a></dt>
 <dd><p>How to handle genes that don't have
 1:1 mappings between <code>input_species</code>:<code>output_species</code>.
-Options include:<br></p><ul><li><p><code>"drop_both_species" or "dbs" or 1</code> : <br>
-Drop genes that have duplicate
-mappings in either the <code>input_species</code> or <code>output_species</code> <br>
-(<em>DEFAULT</em>).</p></li>
-<li><p><code>"drop_input_species" or "dis" or 2</code> : <br>
-Only drop genes that have duplicate
-mappings in the <code>input_species</code>.</p></li>
-<li><p><code>"drop_output_species" or "dos" or 3</code> : <br>
-Only drop genes that have duplicate
-mappings in the <code>output_species</code>.</p></li>
-<li><p><code>"keep_both_species" or "kbs" or 4</code> : <br>
-Keep all genes regardless of whether
-they have duplicate mappings in either species.</p></li>
-<li><p><code>"keep_popular" or "kp" or 5</code> : <br>
-Return only the most "popular" interspecies ortholog mappings.
+Options include:<br></p><dl><dt><code>"drop_both_species" or "dbs" or 1</code></dt>
+<dd><p>Drop genes that have duplicate
+mappings in either the <code>input_species</code> or <code>output_species</code>
+(<em>DEFAULT</em>).</p></dd>
+
+<dt><code>"drop_input_species" or "dis" or 2</code></dt>
+<dd><p>Only drop genes that have duplicate
+mappings in the <code>input_species</code>.</p></dd>
+
+<dt><code>"drop_output_species" or "dos" or 3</code></dt>
+<dd><p>Only drop genes that have duplicate
+mappings in the <code>output_species</code>.</p></dd>
+
+<dt><code>"keep_both_species" or "kbs" or 4</code></dt>
+<dd><p>Keep all genes regardless of whether
+they have duplicate mappings in either species.</p></dd>
+
+<dt><code>"keep_popular" or "kp" or 5</code></dt>
+<dd><p>Return only the most "popular" interspecies ortholog mappings.
  This procedure tends to yield a greater number of returned genes
- but at the cost of many of them not being true biological 1:1 orthologs.</p></li>
-<li><p><code>"sum","mean","median","min" or "max"</code> : <br>
- When <code>gene_df</code> is a matrix and <code>gene_output="rownames"</code>,
+ but at the cost of many of them not being true biological 1:1 orthologs.</p></dd>
+
+ <dt><code>"sum","mean","median","min" or "max"</code></dt>
+<dd><p>When <code>gene_df</code> is a matrix and <code>gene_output="rownames"</code>,
   these options will aggregate many-to-one gene mappings
   (<code>input_species</code>-to-<code>output_species</code>)
-  after dropping any duplicate genes in the <code>output_species</code>.</p></li>
-</ul></dd>
+  after dropping any duplicate genes in the <code>output_species</code>.</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-reference-species">reference_species<a class="anchor" aria-label="anchor" href="#arg-reference-species"></a></dt>
@@ -230,17 +255,34 @@ each containing a character vector of species used to define the respective
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list containing:</p><ul><li><p>plot : Annotated ggtree object.</p></li>
-<li><p>tree : The pruned, standardised phylogenetic tree used in the plot.</p></li>
-<li><p>orth_report : Ortholog reports for each <code>species</code> against
- the <code>reference_species</code>.</p></li>
-<li><p>metadata : Metadata used in the plot,
- including silhouette PNG ids from <a href="http://phylopic.org/" class="external-link">phylopic</a>.</p></li>
-<li><p>clades : Metadata used for highlighting clades.</p></li>
-<li><p>method : <code>method</code> used.</p></li>
-<li><p>reference_species : <code>reference_species</code> used.</p></li>
-<li><p>save_paths : <code>save_paths</code> to plot.</p></li>
-</ul></div>
+    <p>A list containing:</p><dl><dt>plot : </dt>
+<dd><p>Annotated ggtree object.</p></dd>
+
+<dt>tree : </dt>
+<dd><p>The pruned, standardised phylogenetic tree used in the plot.</p></dd>
+
+<dt>orth_report : </dt>
+<dd><p>Ortholog reports for each <code>species</code> against
+ the <code>reference_species</code></p></dd>
+.
+<dt>metadata : </dt>
+<dd><p>Metadata used in the plot,
+ including silhouette PNG ids from <a href="http://phylopic.org/" class="external-link">phylopic</a>.</p></dd>
+
+<dt>clades : </dt>
+<dd><p>Metadata used for highlighting clades.</p></dd>
+
+<dt>method : </dt>
+<dd><p><code>method</code> used.</p></dd>
+
+<dt>reference_species : </dt>
+<dd><p><code>reference_species</code> used.</p></dd>
+
+<dt>save_paths : </dt>
+<dd><p><code>save_paths</code> to plot.</p></dd>
+
+
+</dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -393,9 +435,25 @@ each containing a character vector of species used to define the respective
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Creating ggtree plot.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Found more than one class "phylo" in cache; using the first, from namespace 'tidytree'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Also defined by ‘TreeTools’</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">ggtree</span> package.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/YuLab-SMU/ggtree/issues&gt;</span>.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Arguments in `...` must be used.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Problematic argument:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> override.aes = list(size = 0.5)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you misspell an argument name?</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>In `margin()`, the argument `t` should have length 1, not length 4.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Argument get(s) truncated to length 1.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>In `margin()`, the argument `t` should have length 1, not length 4.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Argument get(s) truncated to length 1.</span>
 <span class="r-plt img"><img src="plot_orthotree-1.png" alt="" width="700" height="433"></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/RtmpIlPRkd/file39f131ca169d.ggtree.pdf</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/RtmpIlPRkd/file39f13f26b3fd.ggtree.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/RtmpwdjWH9/file343b1d02ab74.ggtree.pdf</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/RtmpwdjWH9/file343b25f5f78d.ggtree.png</span>
 </code></pre></div>
     </div>
   </div>
@@ -410,7 +468,7 @@ each containing a character vector of species used to define the respective
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>
