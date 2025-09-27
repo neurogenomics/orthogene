@@ -3,13 +3,18 @@ test_that("plot_orthotree works", {
   if(require("ape")){
       species <- c("human","monkey","mouse")
       ### homologene ####
-      orthotree_hg <- plot_orthotree(species = species, 
-                                     method = "homologene")
+      suppressWarnings( # ggtree is not fixing their warnings, which get passed onto me
+          orthotree_hg <- plot_orthotree(species = species, 
+                                         method = "homologene")
+      )
+      
       ### babelgene ####
-      orthotree_bg <- plot_orthotree(species = species, 
-                                     # save_paths = c("~/Desktop/ggtree.pdf",
-                                     #                "~/Desktop/ggtree.png")
-                                     method = "babelgene")
+      suppressWarnings( # ggtree is not fixing their warnings, which get passed onto me
+          orthotree_bg <- plot_orthotree(species = species, 
+                                         # save_paths = c("~/Desktop/ggtree.pdf",
+                                         #                "~/Desktop/ggtree.png")
+                                         method = "babelgene")
+      )
       #### gprofiler ####
       ## Omitting this test because it takes a verrrry long time
       # orthotree_gp <- orthogene::plot_orthotree(species = species,

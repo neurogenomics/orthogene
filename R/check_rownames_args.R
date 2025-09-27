@@ -20,17 +20,17 @@ check_rownames_args <- function(gene_output,
         non121_strategy <- non121_strategy_opts(
             non121_strategy = non121_strategy
         )
-        if (isFALSE(as_sparse) &&
+        if (isTRUE(as_sparse) &&
             (!non121_strategy %in% c("dbs", "kp", agg_opts))
             ) {
             messager("WARNING:",
                 "In order to set gene_output='rownames'",
                 paste0("while non121_strategy='",non121_strategy,"',"),
-                "must convert gene_df into a sparse matrix.",
-                "Setting as_sparse=TRUE.",
+                "must convert gene_df into a data.frame.",
+                "Setting as_sparse=FALSE",
                 v = verbose
             )
-            as_sparse <- TRUE
+            as_sparse <- FALSE
         }
     }
     return(list(

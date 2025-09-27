@@ -215,4 +215,59 @@ test_that("convert_orthologs works", {
     testthat::expect_equal(methods::is(orthologs, "data.frame"), TRUE)
     testthat::expect_equal(length(unique(orthologs$input_gene)), 
                            length(unique(allrats_sigs$NOG)))
+    
+    
+    #### Example edge case from https://github.com/neurogenomics/orthogene/issues/46 ####
+    gene_list <- c('PATJ','IRX5','KCNK17','MACF1','NKX6-3','CALCOCO2','IL17REL','SCD5','ERAP2','GCG')
+    # Works
+    m2m <- orthogene::convert_orthologs(gene_df = gene_list,
+                                 input_species = "human",
+                                 output_species = "mouse", 
+                                 as_sparse=FALSE,
+                                 method = 'babelgene') 
+    testthat::expect_equal(methods::is(m2m, "data.frame"), TRUE)
+    testthat::expect_true(all(m2m$input_gene %in% gene_list))
+    
+    # Works
+    m2m <- orthogene::convert_orthologs(gene_df = gene_list,
+                                        input_species = "human",
+                                        output_species = "mouse", 
+                                        as_sparse=FALSE,
+                                        method = 'gprofiler') 
+    testthat::expect_equal(methods::is(m2m, "data.frame"), TRUE)
+    testthat::expect_true(all(m2m$input_gene %in% gene_list))
+    
+    
+    # Works
+    m2m <- orthogene::convert_orthologs(gene_df = gene_list,
+                                        input_species = "human",
+                                        output_species = "mouse", 
+                                        non121_strategy = "keep_both_species",
+                                        gene_output="columns",
+                                        as_sparse=FALSE,
+                                        method = 'babelgene') 
+    testthat::expect_equal(methods::is(m2m, "data.frame"), TRUE)
+    testthat::expect_true(all(m2m$input_gene %in% gene_list))
+    
+    
+    # Works
+    m2m <- orthogene::convert_orthologs(gene_df = gene_list,
+                                        input_species = "human",
+                                        output_species = "mouse", 
+                                        non121_strategy = "keep_both_species",
+                                        gene_output="rownames",
+                                        as_sparse=TRUE,
+                                        method = 'babelgene') 
+    testthat::expect_equal(methods::is(m2m, "data.frame"), TRUE)
+    testthat::expect_true(all(m2m$input_gene %in% gene_list))
+    
+    
+    #### Check for incorrect method ####
+    testthat::expect_error(
+        orthogene::convert_orthologs(gene_df = gene_list,
+                                     method = 'typooo') 
+    )
+    
+    
+    
 })

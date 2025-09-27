@@ -31,7 +31,7 @@ ggtree_plot(
 \link[ggplot2]{ggplot} object.
 }
 \description{
-Plot a phylogenetic tree with ggtree and metadata from
+Plot a phylogenetic tree with \pkg{ggtree} and metadata from
  \link[orthogene]{report_orthologs}.
 }
 \keyword{internal}

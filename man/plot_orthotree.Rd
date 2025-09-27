@@ -151,6 +151,8 @@ describing how many orthologous genes each species shares with the
 }
 \examples{
 if(require("ape")){
-orthotree <- plot_orthotree(species = c("human","monkey","mouse"))
+ suppressWarnings(
+  orthotree <- plot_orthotree(species = c("human","monkey","mouse"))
+ )
 }
 }

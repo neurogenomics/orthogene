@@ -21,7 +21,7 @@ test_that("check_rownames_args works", {
         non121_strategy = "kbs",
         as_sparse = FALSE
     )
-    testthat::expect_equal(out$as_sparse, TRUE)
+    testthat::expect_equal(out$as_sparse, FALSE)
 
     testthat::expect_error(
         out <- orthogene:::check_rownames_args(

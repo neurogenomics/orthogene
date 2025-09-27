@@ -132,9 +132,9 @@ Options include:\cr
 (and "input_gene_standard" if \code{standardise_genes=TRUE})
 in \code{gene_df}.}
 \item{\code{"dict"}}{As a dictionary (named list) where the names
-are input_gene and the values are ortholog_gene}.
+are input_gene and the values are ortholog_gene.}
 \item{\code{"dict_rev"}}{As a reversed dictionary (named list)
-where the names are ortholog_gene and the values are input_gene}.
+where the names are ortholog_gene and the values are input_gene.}
 }}
     \item{\code{input_species}}{Name of the input species (e.g., "mouse","fly").
 Use \link[orthogene]{map_species} to return a full list

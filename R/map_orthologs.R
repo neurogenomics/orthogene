@@ -56,6 +56,7 @@ map_orthologs <- function(genes,
         )
         genes <- syn_map$name
     }
+    
     #deal with case where no genes found for species
     if(!is.null(genes)){
       #### Select mapping method ####
@@ -67,11 +68,10 @@ map_orthologs <- function(genes,
                                            input_col = input_col,
                                            output_col = output_col, 
                                            verbose = verbose)
-      }
-      # Both methods will return a dataframe with at least the columns
-      # "input_gene" and "ortholog_gene"
-      #### gprofiler ####
-      if (methods_opts(method = method, gprofiler_opts = TRUE)) {
+      } else if (methods_opts(method = method, gprofiler_opts = TRUE)) {
+          # Both methods will return a dataframe with at least the columns
+          # "input_gene" and "ortholog_gene"
+          #### gprofiler ####
           gene_map <- map_orthologs_gprofiler(
               genes = genes,
               input_species = input_species,
@@ -80,9 +80,8 @@ map_orthologs <- function(genes,
               verbose = verbose,
               ...
           )
-      }
-      #### homologene ####
-      if (methods_opts(method = method, homologene_opts = TRUE)) {
+      } else if (methods_opts(method = method, homologene_opts = TRUE)) {
+          #### homologene ####
           gene_map <- map_orthologs_homologene(
               genes = genes,
               input_species = input_species,
@@ -90,9 +89,8 @@ map_orthologs <- function(genes,
               verbose = verbose,
               ...
           )
-      }
-      #### babelgene ####
-      if (methods_opts(method = method, babelgene_opts = TRUE)) {
+      } else if (methods_opts(method = method, babelgene_opts = TRUE)) {
+          #### babelgene ####
           gene_map <- map_orthologs_babelgene(
               genes = genes,
               input_species = input_species,
@@ -100,6 +98,15 @@ map_orthologs <- function(genes,
               verbose = verbose,
               ...
           )
+      } else {
+          stop(paste0("method='", method, "' not recognised."),
+                   "Must be one of:\n ",
+                   paste("-", c(
+                       paste(methods_opts(gprofiler_opts = TRUE), collapse = " | "),
+                       paste(methods_opts(homologene_opts  = TRUE), collapse = " | "),
+                       paste(methods_opts(babelgene_opts = TRUE), collapse = " | ")
+                   ),  collapse = "\n "))
+           
       }
     }
     #### Check is already in the same species ####
