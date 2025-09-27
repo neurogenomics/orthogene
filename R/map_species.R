@@ -56,8 +56,7 @@ map_species <- function(species = NULL,
                         remove_subspecies_exceptions = 
                             c("Canis lupus familiaris"),
                         use_local = TRUE, 
-                        verbose = TRUE) {
-    # devoptera::args2vars(map_species) 
+                        verbose = TRUE) { 
     . <- NULL;
 
     #### Load organism reference ####

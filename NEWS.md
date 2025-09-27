@@ -2,11 +2,12 @@
 
 ## Bug fixes
 
-* Fix 
+* Fix #46
 
 ## New features
 
 * Disable blank Issues
+* Update inst/orthogene manual
 
 # orthogene 1.15.01
 
