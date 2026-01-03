@@ -5,6 +5,7 @@
 * Remove `grr` dep as it's now deprecated #47 
 * Add `usage`/`returns` sections to `gprofiler_orgs` and `gprofiler_namespace` 
     to avoid "WARNING: Empty or missing \value sections found in man page(s)"
+* `test-map_genes.R`: Fix planarian tests.
 
 # orthogene 1.15.02
 
