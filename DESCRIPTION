@@ -44,7 +44,8 @@ Imports:
     DelayedArray,
     repmis, 
     ggtree,
-    tools
+    tools,
+    magrittr
 Suggests: 
     rworkflows, 
     remotes,

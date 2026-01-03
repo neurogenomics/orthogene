@@ -11,10 +11,11 @@
 #' @importFrom methods is
 #' @importFrom Matrix Matrix t
 #' @importFrom stats as.formula
+#' @importFrom magrittr extract
 #' @source 
 #' \code{ 
 #' x <- Matrix::rsparsematrix(nrow = 1000, ncol = 2000, density = .10)
-#' groupings <- rep(c("A","B"),nrow(X)/2)
+#' groupings <- rep(c("A","B"),nrow(x)/2)
 #' X2 <- orthogene:::aggregate_rows_monocle3(x = x, groupings=groupings)
 #' }
 aggregate_rows_monocle3 <- function(x,
@@ -42,7 +43,7 @@ aggregate_rows_monocle3 <- function(x,
     if (fun == "mean") {
         result <- result / as.numeric(table(groupings)[rownames(result)])
     }
-    attr(result, "crosswalk") <- extract(groupings, match(
+    attr(result, "crosswalk") <- magrittr::extract(groupings, match(
         rownames(result),
         groupings2$A
     ))
