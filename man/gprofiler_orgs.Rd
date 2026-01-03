@@ -23,9 +23,6 @@
   overwrite = TRUE, internal=TRUE) 
 }
 }
-\usage{
-data("gprofiler_orgs")
-}
 \value{
 \code{data.frame}
 }

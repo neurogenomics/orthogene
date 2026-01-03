@@ -16,9 +16,6 @@ gProfiler site}
  gprofiler_namespace <- data.table::fread(path)  
 }
 }
-\usage{
-data("gprofiler_namespace")
-}
 \value{
 \code{data.frame}
 }
