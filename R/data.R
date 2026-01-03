@@ -55,7 +55,6 @@
 #' \href{https://biit.cs.ut.ee/gprofiler/api/util/organisms_list}{API}.
 #' Used as a backup if API is not available.
 #' @source \href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler site}
-#' @format \code{data.frame}
 #' @source  
 #' \code{
 #' # NOTE!: Must run usethis::use_data for all internal data at once.
@@ -70,6 +69,9 @@
 #'  usethis::use_data(gprofiler_orgs,gprofiler_namespace,
 #'   overwrite = TRUE, internal=TRUE) 
 #' } 
+#' @format \code{data.frame}
+#' @returns \code{data.frame}
+#' @usage data("gprofiler_orgs")
 #' @name gprofiler_orgs
 NULL
 
@@ -80,12 +82,14 @@ NULL
 #' Available namespaces used by \link[gprofiler2]{gconvert}. 
 #' @source \href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{
 #' gProfiler site}
-#' @format \code{data.frame}
 #' @source 
 #' \code{
 #'  #### Manually-prepared CSV ####
 #'  path <- "inst/extdata/gprofiler_namespace.csv.gz"
 #'  gprofiler_namespace <- data.table::fread(path)  
 #' }
+#' @format \code{data.frame}
+#' @returns \code{data.frame}
+#' @usage data("gprofiler_namespace")
 #' @name gprofiler_namespace
 NULL

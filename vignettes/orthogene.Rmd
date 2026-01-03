@@ -32,7 +32,7 @@ In brief, `orthogene` lets you easily:
 
 # Installation
 
-```{r, eval=FALSE}
+```{r installs, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
      install.packages("BiocManager")
 # orthogene is only available on Bioconductor>=3.14
@@ -163,7 +163,7 @@ knitr::kable(head(mapped_genes))
 
 Note, this only works when the input data (`gene_df`) is a sparse or dense matrix, and the genes are row names. 
 
-```{r}
+```{r aggregate_mapped_genes}
 data("exp_mouse_enst") 
 knitr::kable(tail(as.matrix(exp_mouse_enst)))
 

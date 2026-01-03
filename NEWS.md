@@ -1,3 +1,11 @@
+# orthogene 1.16.1
+
+## Bug fixes
+
+* Remove `grr` dep as it's now deprecated #47 
+* Add `usage`/`returns` sections to `gprofiler_orgs` and `gprofiler_namespace` 
+    to avoid "WARNING: Empty or missing \value sections found in man page(s)"
+
 # orthogene 1.15.02
 
 ## Bug fixes

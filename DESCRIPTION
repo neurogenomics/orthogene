@@ -1,12 +1,12 @@
 Package: orthogene
 Type: Package
 Title: Interspecies gene mapping  
-Version: 1.16.0
+Version: 1.16.1
 Authors@R:
     c( 
      person(given = "Brian",
            family = "Schilder",
-           role = c("cre"),
+           role = c("cre","fnd"),
            email = "brian_schilder@alumni.brown.edu",
            comment = c(ORCID = "0000-0001-5949-2191"))
     )      
@@ -21,7 +21,7 @@ Description:
 URL: https://github.com/neurogenomics/orthogene 
 BugReports: https://github.com/neurogenomics/orthogene/issues 
 License: GPL-3
-Depends: R (>= 4.1)
+Depends: R (>= 4.5.0)
 VignetteBuilder: knitr
 biocViews:
     Genetics, ComparativeGenomics, Preprocessing, 
@@ -42,7 +42,6 @@ Imports:
     ggpubr,
     patchwork,
     DelayedArray,
-    grr, 
     repmis, 
     ggtree,
     tools

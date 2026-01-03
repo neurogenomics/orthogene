@@ -23,6 +23,12 @@
   overwrite = TRUE, internal=TRUE) 
 }
 }
+\usage{
+data("gprofiler_orgs")
+}
+\value{
+\code{data.frame}
+}
 \description{
 Organism for which gene references are available via
 \href{https://biit.cs.ut.ee/gprofiler/gost}{gProfiler}

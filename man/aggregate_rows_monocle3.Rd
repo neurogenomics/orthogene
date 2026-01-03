@@ -5,9 +5,9 @@
 \title{Aggregate rows: monocle3}
 \source{
 \code{ 
-X <- Matrix::rsparsematrix(nrow = 1000, ncol = 2000, density = .10)
+x <- Matrix::rsparsematrix(nrow = 1000, ncol = 2000, density = .10)
 groupings <- rep(c("A","B"),nrow(X)/2)
-X2 <- orthogene:::aggregate_rows_monocle3(x = X, groupings=groupings)
+X2 <- orthogene:::aggregate_rows_monocle3(x = x, groupings=groupings)
 }
 }
 \usage{

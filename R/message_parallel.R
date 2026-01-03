@@ -2,5 +2,5 @@
 #' @return A message
 #' @keywords internal
 message_parallel <- function(...) {
-    system(sprintf('echo "%s"', paste0(..., collapse = "")))
+    system2(sprintf('echo "%s"', paste0(..., collapse = "")))
 }

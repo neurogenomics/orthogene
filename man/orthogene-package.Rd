@@ -33,6 +33,6 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Brian Schilder \email{brian_schilder@alumni.brown.edu} (\href{https://orcid.org/0000-0001-5949-2191}{ORCID})
+\strong{Maintainer}: Brian Schilder \email{brian_schilder@alumni.brown.edu} (\href{https://orcid.org/0000-0001-5949-2191}{ORCID}) [funder]
 
 }

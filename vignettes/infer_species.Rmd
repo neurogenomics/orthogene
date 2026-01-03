@@ -12,7 +12,7 @@ vignette: >
   
 # Installation
 
-```{r, eval=FALSE}
+```{r installs, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
      install.packages("BiocManager") 
 # orthogene is only available on Bioconductor>=3.14
@@ -58,7 +58,7 @@ be automatically be mapped and standardised using `map_species`.
 
 ### Infer the species
 
-```{r}
+```{r infer_species}
 matches <- orthogene::infer_species(gene_df = exp_mouse, 
                                     method = method)
 ```
@@ -69,7 +69,7 @@ matches <- orthogene::infer_species(gene_df = exp_mouse,
 
 To create an example dataset, turn the gene names into rat genes.
 
-```{r}
+```{r convert_orthologs}
 exp_rat <- orthogene::convert_orthologs(gene_df = exp_mouse, 
                                         input_species = "mouse", 
                                         output_species = "rat",
@@ -78,7 +78,7 @@ exp_rat <- orthogene::convert_orthologs(gene_df = exp_mouse,
 
 ### Infer the species  
 
-```{r}
+```{r infer_species2}
 matches <- orthogene::infer_species(gene_df = exp_rat, 
                                     method = method)
 ```
@@ -89,7 +89,7 @@ matches <- orthogene::infer_species(gene_df = exp_rat,
 
 To create an example dataset, turn the gene names into human genes.
 
-```{r}
+```{r convert_orthologs2}
 exp_human <- orthogene::convert_orthologs(gene_df = exp_mouse, 
                                           input_species = "mouse", 
                                           output_species = "human",
@@ -98,7 +98,7 @@ exp_human <- orthogene::convert_orthologs(gene_df = exp_mouse,
 
 ### Infer the species  
 
-```{r}
+```{r infer_species3}
 matches <- orthogene::infer_species(gene_df = exp_human, 
                                     method = method)
 ```
@@ -113,7 +113,7 @@ in that particular R package.
 For example, by setting `test_species="homologene"` we automatically test for 
 % gene matches in each of the 20+ species available in `homologene`.
 
-```{r}
+```{r infer_species4}
 matches <- orthogene::infer_species(gene_df = exp_human, 
                                     test_species = method, 
                                     method = method)
