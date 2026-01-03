@@ -71,7 +71,6 @@
 #' } 
 #' @format \code{data.frame}
 #' @returns \code{data.frame}
-#' @usage data("gprofiler_orgs")
 #' @name gprofiler_orgs
 NULL
 
@@ -90,6 +89,5 @@ NULL
 #' }
 #' @format \code{data.frame}
 #' @returns \code{data.frame}
-#' @usage data("gprofiler_namespace")
 #' @name gprofiler_namespace
 NULL
