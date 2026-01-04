@@ -55,7 +55,7 @@ map_genes <- function(genes,
         )
     } else {organism <- species} 
     #### Special case: planarians ####
-    if(grepl("^scmedi",organism)){
+    if(grepl("^scmedi|^schmidtea",organism, ignore.case = TRUE)){
         syn_map <- map_genes_planosphere(genes = genes,  
                                          verbose = verbose)
         
