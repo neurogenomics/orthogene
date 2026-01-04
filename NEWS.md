@@ -6,7 +6,7 @@
 * Add `usage`/`returns` sections to `gprofiler_orgs` and `gprofiler_namespace` 
     to avoid "WARNING: Empty or missing \value sections found in man page(s)"
 * *Error: invalid version specification ‘1.17.1 ’*: 
-    Remove extra space in description to avoid `rworkflows::use_badges` error.
+    Remove extra space in description to avoid `rworkflows::use_badges` error. 
 
 # orthogene 1.15.02
 
