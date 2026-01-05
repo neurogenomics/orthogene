@@ -1,14 +1,14 @@
 `orthogene`: Interspecies gene mapping
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' title='Hex sticker for orthogene' height='300'><br>
-[![](https://img.shields.io/badge/release%20version-1.12.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
-[![](https://img.shields.io/badge/download-406/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
-[![](https://img.shields.io/badge/download-10181/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/release%20version-1.16.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
+[![](https://img.shields.io/badge/download-755/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-17027/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![download](http://www.bioconductor.org/shields/downloads/release/orthogene.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 <br>
-[![](https://img.shields.io/badge/devel%20version-1.13.01-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.17.1-black.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/github/languages/code-size/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 <br> [![R build
@@ -20,7 +20,7 @@ status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.sv
 Authors: <i>Brian Schilder</i>  
 </h4>
 <h4>  
-README updated: <i>Mar-09-2025</i>  
+README updated: <i>Jan-04-2026</i>  
 </h4>
 
 # Intro
@@ -249,13 +249,13 @@ for the full vignette.
 utils::sessionInfo()
 ```
 
-    ## R version 4.4.2 (2024-10-31)
+    ## R version 4.5.1 (2025-06-13)
     ## Platform: aarch64-apple-darwin20
-    ## Running under: macOS Sequoia 15.3.1
+    ## Running under: macOS Tahoe 26.1
     ## 
     ## Matrix products: default
-    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
-    ## LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRblas.0.dylib 
+    ## LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
     ## 
     ## locale:
     ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -267,49 +267,53 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_1.13.0
+    ## [1] orthogene_1.17.1
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] gtable_0.3.6              babelgene_22.9           
-    ##  [3] xfun_0.51                 ggplot2_3.5.1            
-    ##  [5] htmlwidgets_1.6.4         rstatix_0.7.2            
-    ##  [7] lattice_0.22-6            vctrs_0.6.5              
-    ##  [9] tools_4.4.2               generics_0.1.3           
-    ## [11] yulab.utils_0.2.0         parallel_4.4.2           
-    ## [13] tibble_3.2.1              pkgconfig_2.0.3          
-    ## [15] Matrix_1.7-1              data.table_1.17.0        
-    ## [17] homologene_1.4.68.19.3.27 ggplotify_0.1.2          
-    ## [19] RColorBrewer_1.1-3        desc_1.4.3               
-    ## [21] lifecycle_1.0.4           farver_2.1.2             
-    ## [23] compiler_4.4.2            treeio_1.30.0            
-    ## [25] dlstats_0.1.7             munsell_0.5.1            
-    ## [27] carData_3.0-5             ggtree_3.14.0            
-    ## [29] gprofiler2_0.2.3          ggfun_0.1.8              
-    ## [31] htmltools_0.5.8.1         yaml_2.3.10              
-    ## [33] lazyeval_0.2.2            plotly_4.10.4            
-    ## [35] Formula_1.2-5             pillar_1.10.1            
-    ## [37] car_3.1-3                 ggpubr_0.6.0             
-    ## [39] tidyr_1.3.1               grr_0.9.5                
-    ## [41] abind_1.4-8               nlme_3.1-166             
-    ## [43] tidyselect_1.2.1          aplot_0.2.5              
-    ## [45] digest_0.6.37             dplyr_1.1.4              
-    ## [47] purrr_1.0.4               rprojroot_2.0.4          
-    ## [49] fastmap_1.2.0             grid_4.4.2               
-    ## [51] here_1.0.1                colorspace_2.1-1         
-    ## [53] cli_3.6.4                 magrittr_2.0.3           
-    ## [55] patchwork_1.3.0           broom_1.0.7              
-    ## [57] ape_5.8-1                 withr_3.0.2              
-    ## [59] scales_1.3.0              backports_1.5.0          
-    ## [61] httr_1.4.7                rmarkdown_2.29           
-    ## [63] rvcheck_0.2.1             ggsignif_0.6.4           
-    ## [65] evaluate_1.0.3            knitr_1.49               
-    ## [67] rworkflows_1.0.6          viridisLite_0.4.2        
-    ## [69] gridGraphics_0.5-1        rlang_1.1.5              
-    ## [71] Rcpp_1.0.14               glue_1.8.0               
-    ## [73] tidytree_0.4.6            BiocManager_1.30.25      
-    ## [75] renv_1.1.2                rstudioapi_0.17.1        
-    ## [77] jsonlite_1.9.1            R6_2.6.1                 
-    ## [79] badger_0.2.4              fs_1.6.5
+    ##  [3] xfun_0.55                 ggplot2_4.0.1            
+    ##  [5] htmlwidgets_1.6.4         rstatix_0.7.3            
+    ##  [7] lattice_0.22-7            vctrs_0.6.5              
+    ##  [9] tools_4.5.1               generics_0.1.4           
+    ## [11] yulab.utils_0.2.3         parallel_4.5.1           
+    ## [13] tibble_3.3.0              pkgconfig_2.0.3          
+    ## [15] Matrix_1.7-4              ggplotify_0.1.3          
+    ## [17] data.table_1.18.0         homologene_1.4.68.19.3.27
+    ## [19] RColorBrewer_1.1-3        S7_0.2.1                 
+    ## [21] desc_1.4.3                lifecycle_1.0.4          
+    ## [23] compiler_4.5.1            farver_2.1.2             
+    ## [25] treeio_1.34.0             dlstats_0.1.7            
+    ## [27] carData_3.0-5             ggtree_4.0.3             
+    ## [29] gprofiler2_0.2.4          fontLiberation_0.1.0     
+    ## [31] fontquiver_0.2.1          ggfun_0.2.0              
+    ## [33] htmltools_0.5.9           yaml_2.3.12              
+    ## [35] lazyeval_0.2.2            plotly_4.11.0            
+    ## [37] Formula_1.2-5             pillar_1.11.1            
+    ## [39] car_3.1-3                 ggpubr_0.6.2             
+    ## [41] tidyr_1.3.2               abind_1.4-8              
+    ## [43] fontBitstreamVera_0.1.1   nlme_3.1-168             
+    ## [45] tidyselect_1.2.1          aplot_0.2.9              
+    ## [47] digest_0.6.39             dplyr_1.1.4              
+    ## [49] purrr_1.2.0               rprojroot_2.1.1          
+    ## [51] fastmap_1.2.0             grid_4.5.1               
+    ## [53] here_1.0.2                cli_3.6.5                
+    ## [55] magrittr_2.0.4            patchwork_1.3.2          
+    ## [57] dichromat_2.0-0.1         broom_1.0.11             
+    ## [59] ape_5.8-1                 withr_3.0.2              
+    ## [61] gdtools_0.4.4             scales_1.4.0             
+    ## [63] backports_1.5.0           rappdirs_0.3.3           
+    ## [65] httr_1.4.7                rmarkdown_2.30           
+    ## [67] rvcheck_0.2.1             otel_0.2.0               
+    ## [69] ggsignif_0.6.4            evaluate_1.0.5           
+    ## [71] knitr_1.51                rworkflows_1.0.8         
+    ## [73] viridisLite_0.4.2         gridGraphics_0.5-1       
+    ## [75] rlang_1.1.6               ggiraph_0.9.2            
+    ## [77] Rcpp_1.1.0                glue_1.8.0               
+    ## [79] tidytree_0.4.6            BiocManager_1.30.27      
+    ## [81] renv_1.1.5                rstudioapi_0.17.1        
+    ## [83] jsonlite_2.0.0            R6_2.6.1                 
+    ## [85] badger_0.2.5              systemfonts_1.3.1        
+    ## [87] fs_1.6.6
 
 </details>
 

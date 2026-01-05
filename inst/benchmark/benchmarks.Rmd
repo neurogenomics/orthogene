@@ -7,8 +7,8 @@ editor_options:
   chunk_output_type: inline
 vignette: >
   %\VignetteIndexEntry{benchmarks}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r, include = FALSE}
@@ -60,8 +60,7 @@ species <- c(human="H sapiens",
              worm = "C elegans",
              rice = "O sativa"
              )
-species_mapped <- map_species(species = species) |> `names<-`(names(species))
-
+species_mapped <- map_species(species = names(species)) 
 ```
 
 
@@ -82,10 +81,10 @@ we'll not run the full benchmark and instead provide some pre-computed results.
 
 
 ```{r, eval=FALSE} 
-bench_res <- orthogene:::run_benchmark(species_mapped = species_mapped[c("human","mouse","fly")], 
+bench_res <- orthogene:::run_benchmark(species = species_mapped, 
                                        run_convert_orthologs = TRUE, 
-                                       mc.cores = 10) 
-# write.csv(bench_res, here::here("inst/benchmark/bench_res_example.csv"), row.names = FALSE)
+                                       save_path = here::here("inst/benchmark/bench_res_example.csv"),
+                                       mc.cores = 1) 
 ```
 
 ## Print results 
@@ -117,6 +116,11 @@ For each method, plot the relationship between number of genes returned and run 
 ```{r}
 bench_scatterplot <- orthogene:::plot_benchmark_scatter(bench_res = bench_res)
 # ggsave(here::here("inst/benchmark/bench_scatterplot.pdf"),bench_scatterplot)
+```
+
+
+```{r}
+orthogene::plot_orthotree()
 ```
 
 
