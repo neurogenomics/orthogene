@@ -3,7 +3,7 @@
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' title='Hex sticker for orthogene' height='300'><br>
 [![](https://img.shields.io/badge/release%20version-1.16.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
 [![](https://img.shields.io/badge/download-755/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
-[![](https://img.shields.io/badge/download-17027/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-17076/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![download](http://www.bioconductor.org/shields/downloads/release/orthogene.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
@@ -20,7 +20,7 @@ status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.sv
 Authors: <i>Brian Schilder</i>  
 </h4>
 <h4>  
-README updated: <i>Jan-04-2026</i>  
+README updated: <i>Jan-06-2026</i>  
 </h4>
 
 # Intro
@@ -267,7 +267,7 @@ utils::sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] orthogene_1.17.1
+    ## [1] orthogene_1.17.2
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] gtable_0.3.6              babelgene_22.9           

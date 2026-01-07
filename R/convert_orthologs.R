@@ -181,6 +181,8 @@ convert_orthologs <- function(gene_df,
                               
                               verbose = TRUE,
                               ...) {
+    start2 <- Sys.time()
+    
     #### Check boolean args ####
     check_bool_args(
         standardise_genes = standardise_genes,
@@ -261,7 +263,11 @@ convert_orthologs <- function(gene_df,
             ...
         )
         #### Return original data is already converted ####
-        if(is.null(gene_map)) return(gene_df)
+        if(is.null(gene_map)) {
+            messager("Input is already the same species. Returning input.",
+                     v=verbose)
+            return(gene_df)
+        }
     } else {
         messager(
             "Detected that gene_df was previously converted to orthologs.\n",
@@ -302,6 +308,10 @@ convert_orthologs <- function(gene_df,
         standardise_genes = standardise_genes,
         verbose = verbose
     ) 
+    
+    time2 <- as.numeric(difftime(Sys.time(), start2, units = "secs"))
+    if(is.data.frame(gene_dat)) gene_dat$time <- time2
+    
     #### Return ####
     return(gene_dat)
 }

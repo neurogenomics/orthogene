@@ -11,52 +11,41 @@ map_orthologs_gprofiler(
   filter_na = FALSE,
   mthreshold = Inf,
   verbose = TRUE,
-  ...
+  ...,
+  chunked = TRUE,
+  chunk_size = 20000,
+  retry = 3,
+  retry_backoff = 1,
+  n_cores = 1
 )
 }
 \arguments{
 \item{genes}{Gene list.}
 
-\item{input_species}{Name of the input species (e.g., "mouse","fly").
-Use \link[orthogene]{map_species} to return a full list
-of available species.}
+\item{input_species}{Input species.}
 
-\item{output_species}{Name of the output species (e.g. "human","chicken").
-Use \link[orthogene]{map_species} to return a full list
- of available species.}
+\item{output_species}{Output species. Default "human".}
 
-\item{filter_na}{Logical indicating whether to
-filter out results without a corresponding target name.
-(\emph{DEFAULT} is \code{FALSE}, so that \code{NA}s
-can be handled by \pkg{orthogene}).}
+\item{filter_na}{Logical indicating whether to filter out results without a corresponding target name.}
 
-\item{mthreshold}{Maximum number of ortholog names per gene to show.
-Passed to \link[gprofiler2]{gorth}.
-Only used when \code{method="gprofiler"} (\emph{DEFAULT : }\code{Inf}).}
+\item{mthreshold}{Maximum number of ortholog names per gene to show.}
 
-\item{verbose}{Print messages.}
+\item{verbose}{Logical; print progress.}
 
-\item{...}{Additional arguments to be passed to
-\link[gprofiler2]{gorth}.}
+\item{...}{Additional arguments passed to \link[gprofiler2]{gorth}.}
+
+\item{chunked}{Logical; if TRUE, query g:Profiler in chunks and rbind results.}
+
+\item{chunk_size}{Integer; number of genes per chunk when chunked=TRUE.}
+
+\item{retry}{Integer; number of attempts per chunk (>=1). Only used when chunked=TRUE.}
+
+\item{retry_backoff}{Numeric; base backoff (seconds). Sleep = retry_backoff * attempt.}
 }
 \value{
 Ortholog map \code{data.frame}
 }
 \description{
-Map orthologs from one species to another
-using \link[gprofiler2]{gorth}.
-}
-\details{
-"\code{mthreshold} is used to set the maximum number
-of ortholog names per gene to show. This is useful to handle
- the problem of having many orthologs per gene
- (most of them uninformative). The function tries to
-  find the most informative by selecting the most popular ones."\cr
-~ From
-\href{https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html}{
- \code{gprofiler2} vignette}\cr
-
-Available namespaces for the \code{numeric_ns} argument can be found
-\href{https://biit.cs.ut.ee/gprofiler/page/namespaces-list}{here}.
+Map orthologs from one species to another using \link[gprofiler2]{gorth}.
 }
 \keyword{internal}

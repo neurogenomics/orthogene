@@ -9,6 +9,7 @@ all_genes(
   method = c("gprofiler", "homologene", "babelgene"),
   ensure_filter_nas = FALSE,
   run_map_species = TRUE,
+  force = FALSE,
   verbose = TRUE,
   ...
 )
@@ -31,6 +32,8 @@ genes that are \code{NA}s of any kind.}
 
 \item{run_map_species}{Standardise \code{species} names with 
 \link[orthogene]{map_species} first (Default: \code{TRUE}).}
+
+\item{force}{Force a new files to be generated even if a cached one exists.}
 
 \item{verbose}{Print messages.}
 

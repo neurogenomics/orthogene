@@ -1,73 +1,127 @@
 "","species","method","test","time","genes"
-"1","Homo sapiens","homologene","all_genes()",0.219056129455566,19129
-"2","Homo sapiens","homologene","convert_orthologs()",0.011268138885498,0
-"3","Homo sapiens","gprofiler","all_genes()",9.59975385665894,41081
-"4","Homo sapiens","gprofiler","convert_orthologs()",0.0305280685424805,0
-"5","Homo sapiens","babelgene","all_genes()",1.88387417793274,20205
-"6","Homo sapiens","babelgene","convert_orthologs()",0.0138719081878662,0
-"7","Pan troglodytes","homologene","all_genes()",0.0158200263977051,18703
-"8","Pan troglodytes","homologene","convert_orthologs()",0.266664981842041,17185
-"9","Pan troglodytes","gprofiler","all_genes()",3.2522189617157,25165
-"10","Pan troglodytes","gprofiler","convert_orthologs()",798.387992858887,17430
-"11","Pan troglodytes","babelgene","all_genes()",1.1297287940979,18726
-"12","Pan troglodytes","babelgene","convert_orthologs()",1.15945196151733,17576
-"13","Macaca mulatta","homologene","all_genes()",0.0415151119232178,16816
-"14","Macaca mulatta","homologene","convert_orthologs()",0.233458042144775,15077
-"15","Macaca mulatta","gprofiler","all_genes()",5.14326000213623,28588
-"16","Macaca mulatta","gprofiler","convert_orthologs()",1337.27263998985,0
-"17","Macaca mulatta","babelgene","all_genes()",4.53153896331787,18148
-"18","Macaca mulatta","babelgene","convert_orthologs()",3.61054396629333,16459
-"19","Mus musculus","homologene","all_genes()",0.0685319900512695,21207
-"20","Mus musculus","homologene","convert_orthologs()",0.182971000671387,16482
-"21","Mus musculus","gprofiler","all_genes()",9.38235712051392,77885
-"22","Mus musculus","gprofiler","convert_orthologs()",23.2432901859283,17010
-"23","Mus musculus","babelgene","all_genes()",2.11515307426453,20074
-"24","Mus musculus","babelgene","convert_orthologs()",1.38746905326843,15314
-"25","Rattus norvegicus","homologene","all_genes()",0.0413229465484619,20616
-"26","Rattus norvegicus","homologene","convert_orthologs()",0.169542074203491,15803
-"27","Rattus norvegicus","gprofiler","all_genes()",3.72290301322937,29861
-"28","Rattus norvegicus","gprofiler","convert_orthologs()",14.5212957859039,15784
-"29","Rattus norvegicus","babelgene","all_genes()",1.34140205383301,18817
-"30","Rattus norvegicus","babelgene","convert_orthologs()",2.35212397575378,15769
-"31","Canis lupus familiaris","homologene","all_genes()",0.0396490097045898,18117
-"32","Canis lupus familiaris","homologene","convert_orthologs()",0.149979114532471,16020
-"33","Canis lupus familiaris","gprofiler","all_genes()",4.85096979141235,28642
-"34","Canis lupus familiaris","gprofiler","convert_orthologs()",416.973222017288,15976
-"35","Canis lupus familiaris","babelgene","all_genes()",1.3845009803772,17234
-"36","Canis lupus familiaris","babelgene","convert_orthologs()",1.08292508125305,16233
-"37","Bos taurus","homologene","all_genes()",0.0333709716796875,18796
-"38","Bos taurus","homologene","convert_orthologs()",0.211590051651001,15876
-"39","Bos taurus","gprofiler","all_genes()",4.47056412696838,27533
-"40","Bos taurus","gprofiler","convert_orthologs()",266.242400169373,16050
-"41","Bos taurus","babelgene","all_genes()",2.9294741153717,18318
-"42","Bos taurus","babelgene","convert_orthologs()",2.69108295440674,16078
-"43","Gallus gallus","homologene","all_genes()",0.0304079055786133,14594
-"44","Gallus gallus","homologene","convert_orthologs()",0.14665699005127,12004
-"45","Gallus gallus","gprofiler","all_genes()",3.54612994194031,27496
-"46","Gallus gallus","gprofiler","convert_orthologs()",11.307541847229,12113
-"47","Gallus gallus","babelgene","all_genes()",0.884816884994507,13343
-"48","Gallus gallus","babelgene","convert_orthologs()",1.0233690738678,12525
-"49","Danio rerio","homologene","all_genes()",0.832418918609619,20895
-"50","Danio rerio","homologene","convert_orthologs()",0.111834049224854,10557
-"51","Danio rerio","gprofiler","all_genes()",4.72567391395569,29306
-"52","Danio rerio","gprofiler","convert_orthologs()",862.795794010162,9826
-"53","Danio rerio","babelgene","all_genes()",6.60316205024719,19780
-"54","Danio rerio","babelgene","convert_orthologs()",4.94913697242737,7860
-"55","Drosophila melanogaster","homologene","all_genes()",0.0388221740722656,8436
-"56","Drosophila melanogaster","homologene","convert_orthologs()",0.167821884155273,4058
-"57","Drosophila melanogaster","gprofiler","all_genes()",1.15897393226624,4605
-"58","Drosophila melanogaster","gprofiler","convert_orthologs()",2.57474613189697,650
-"59","Drosophila melanogaster","babelgene","all_genes()",3.54786014556885,8469
-"60","Drosophila melanogaster","babelgene","convert_orthologs()",3.74017810821533,3276
-"61","Caenorhabditis elegans","homologene","all_genes()",0.0238199234008789,7545
-"62","Caenorhabditis elegans","homologene","convert_orthologs()",0.0952239036560059,2872
-"63","Caenorhabditis elegans","gprofiler","all_genes()",1.27502298355103,6022
-"64","Caenorhabditis elegans","gprofiler","convert_orthologs()",4.90930485725403,288
-"65","Caenorhabditis elegans","babelgene","all_genes()",6.46691989898682,7719
-"66","Caenorhabditis elegans","babelgene","convert_orthologs()",3.27152800559998,2694
-"67","Oryza sativa","homologene","all_genes()",0.0571720600128174,16106
-"68","Oryza sativa","homologene","convert_orthologs()",0.493162155151367,1706
-"69","Oryza sativa","gprofiler","all_genes()",5.00999784469604,37974
-"70","Oryza sativa","gprofiler","convert_orthologs()",19.5844008922577,0
-"71","Oryza sativa","babelgene","all_genes()",8.74299597740173,0
-"72","Oryza sativa","babelgene","convert_orthologs()",0.0592610836029053,0
+"1","Homo sapiens","homologene","all_genes()",0.0116879940032959,19129
+"2","Homo sapiens","homologene","convert_orthologs()",0.0128269195556641,19129
+"3","Homo sapiens","gprofiler","all_genes()",10.3549358844757,41081
+"4","Homo sapiens","gprofiler","convert_orthologs()",0.0324769020080566,41081
+"5","Homo sapiens","babelgene","all_genes()",1.65087580680847,20205
+"6","Homo sapiens","babelgene","convert_orthologs()",0.0152997970581055,20205
+"7","Pan troglodytes","homologene","all_genes()",0.00599288940429688,18703
+"8","Pan troglodytes","homologene","convert_orthologs()",0.379678964614868,17185
+"9","Pan troglodytes","gprofiler","all_genes()",3.09968304634094,25165
+"10","Pan troglodytes","gprofiler","convert_orthologs()",9.00821805000305,17430
+"11","Pan troglodytes","babelgene","all_genes()",0.859869956970215,18726
+"12","Pan troglodytes","babelgene","convert_orthologs()",0.0859169960021973,16921
+"13","Macaca mulatta","homologene","all_genes()",0.00580191612243652,16816
+"14","Macaca mulatta","homologene","convert_orthologs()",0.123218059539795,15077
+"15","Macaca mulatta","gprofiler","all_genes()",3.97884702682495,28588
+"16","Macaca mulatta","gprofiler","convert_orthologs()",10.0851418972015,17111
+"17","Macaca mulatta","babelgene","all_genes()",1.075847864151,18148
+"18","Macaca mulatta","babelgene","convert_orthologs()",0.155423879623413,16242
+"19","Canis lupus familiaris","homologene","all_genes()",0.0067448616027832,18117
+"20","Canis lupus familiaris","homologene","convert_orthologs()",0.123427867889404,16020
+"21","Canis lupus familiaris","gprofiler","all_genes()",5.2319221496582,28642
+"22","Canis lupus familiaris","gprofiler","convert_orthologs()",10.0846190452576,15976
+"23","Canis lupus familiaris","babelgene","all_genes()",1.11822915077209,17234
+"24","Canis lupus familiaris","babelgene","convert_orthologs()",0.0942730903625488,15967
+"25","Bos taurus","homologene","all_genes()",0.00577521324157715,18796
+"26","Bos taurus","homologene","convert_orthologs()",0.208426952362061,15876
+"27","Bos taurus","gprofiler","all_genes()",3.94439220428467,27533
+"28","Bos taurus","gprofiler","convert_orthologs()",8.74038791656494,16050
+"29","Bos taurus","babelgene","all_genes()",0.970880031585693,18318
+"30","Bos taurus","babelgene","convert_orthologs()",0.0849480628967285,15613
+"31","Mus musculus","homologene","all_genes()",0.0059051513671875,21207
+"32","Mus musculus","homologene","convert_orthologs()",0.372503042221069,16482
+"33","Mus musculus","gprofiler","all_genes()",6.92360591888428,77885
+"34","Mus musculus","gprofiler","convert_orthologs()",19.9755311012268,17010
+"35","Mus musculus","babelgene","all_genes()",1.1740710735321,20074
+"36","Mus musculus","babelgene","convert_orthologs()",0.187256097793579,15227
+"37","Rattus norvegicus","homologene","all_genes()",0.00728702545166016,20616
+"38","Rattus norvegicus","homologene","convert_orthologs()",0.128198862075806,15803
+"39","Rattus norvegicus","gprofiler","all_genes()",3.19174194335938,29861
+"40","Rattus norvegicus","gprofiler","convert_orthologs()",10.3938100337982,15784
+"41","Rattus norvegicus","babelgene","all_genes()",1.07493209838867,18817
+"42","Rattus norvegicus","babelgene","convert_orthologs()",0.115534067153931,15722
+"43","Gallus gallus","homologene","all_genes()",0.00581908226013184,14594
+"44","Gallus gallus","homologene","convert_orthologs()",0.11358380317688,12004
+"45","Gallus gallus","gprofiler","all_genes()",3.80158305168152,27496
+"46","Gallus gallus","gprofiler","convert_orthologs()",8.60017704963684,12113
+"47","Gallus gallus","babelgene","all_genes()",0.93704080581665,13343
+"48","Gallus gallus","babelgene","convert_orthologs()",0.113585948944092,12162
+"49","Xenopus (Silurana) tropicalis","homologene","all_genes()",0.00602293014526367,18382
+"50","Xenopus (Silurana) tropicalis","homologene","convert_orthologs()",0.112049102783203,12123
+"51","Xenopus (Silurana) tropicalis","gprofiler","all_genes()",3.11411285400391,22684
+"52","Xenopus (Silurana) tropicalis","gprofiler","convert_orthologs()",8.27171897888184,12185
+"53","Xenopus (Silurana) tropicalis","babelgene","all_genes()",0.794480800628662,15094
+"54","Xenopus (Silurana) tropicalis","babelgene","convert_orthologs()",0.0847921371459961,10280
+"55","Danio rerio","homologene","all_genes()",0.258069038391113,20895
+"56","Danio rerio","homologene","convert_orthologs()",0.109564065933228,10557
+"57","Danio rerio","gprofiler","all_genes()",4.44615006446838,29306
+"58","Danio rerio","gprofiler","convert_orthologs()",11.068195104599,9826
+"59","Danio rerio","babelgene","all_genes()",1.13828492164612,19780
+"60","Danio rerio","babelgene","convert_orthologs()",0.0913188457489014,7817
+"61","Drosophila melanogaster","homologene","all_genes()",0.0049431324005127,8436
+"62","Drosophila melanogaster","homologene","convert_orthologs()",0.092864990234375,4058
+"63","Drosophila melanogaster","gprofiler","all_genes()",1.06812381744385,4605
+"64","Drosophila melanogaster","gprofiler","convert_orthologs()",2.37397789955139,650
+"65","Drosophila melanogaster","babelgene","all_genes()",0.773444890975952,8469
+"66","Drosophila melanogaster","babelgene","convert_orthologs()",0.107388973236084,3259
+"67","Anopheles gambiae","homologene","all_genes()",0.00540709495544434,8428
+"68","Anopheles gambiae","homologene","convert_orthologs()",0.0746591091156006,4019
+"69","Anopheles gambiae","gprofiler","all_genes()",0.707639932632446,1085
+"70","Anopheles gambiae","gprofiler","convert_orthologs()",NA,NA
+"71","Anopheles gambiae","babelgene","all_genes()",NA,NA
+"72","Anopheles gambiae","babelgene","convert_orthologs()",NA,NA
+"73","Caenorhabditis elegans","homologene","all_genes()",0.00518512725830078,7545
+"74","Caenorhabditis elegans","homologene","convert_orthologs()",0.0752739906311035,2872
+"75","Caenorhabditis elegans","gprofiler","all_genes()",1.26793003082275,6022
+"76","Caenorhabditis elegans","gprofiler","convert_orthologs()",3.1980459690094,288
+"77","Caenorhabditis elegans","babelgene","all_genes()",1.00388693809509,7719
+"78","Caenorhabditis elegans","babelgene","convert_orthologs()",0.0689480304718018,2679
+"79","Arabidopsis thaliana","homologene","all_genes()",0.00577902793884277,19013
+"80","Arabidopsis thaliana","homologene","convert_orthologs()",0.145412921905518,1591
+"81","Arabidopsis thaliana","gprofiler","all_genes()",3.54310321807861,32299
+"82","Arabidopsis thaliana","gprofiler","convert_orthologs()",NA,NA
+"83","Arabidopsis thaliana","babelgene","all_genes()",NA,NA
+"84","Arabidopsis thaliana","babelgene","convert_orthologs()",NA,NA
+"85","Oryza sativa","homologene","all_genes()",0.00584006309509277,16106
+"86","Oryza sativa","homologene","convert_orthologs()",0.0960497856140137,1706
+"87","Oryza sativa","gprofiler","all_genes()",3.30609202384949,37974
+"88","Oryza sativa","gprofiler","convert_orthologs()",NA,NA
+"89","Oryza sativa","babelgene","all_genes()",NA,NA
+"90","Oryza sativa","babelgene","convert_orthologs()",NA,NA
+"91","Saccharomyces cerevisiae","homologene","all_genes()",0.00506401062011719,4579
+"92","Saccharomyces cerevisiae","homologene","convert_orthologs()",0.0896029472351074,1164
+"93","Saccharomyces cerevisiae","gprofiler","all_genes()",0.732592105865479,434
+"94","Saccharomyces cerevisiae","gprofiler","convert_orthologs()",0.831827878952026,90
+"95","Saccharomyces cerevisiae","babelgene","all_genes()",0.860620975494385,2914
+"96","Saccharomyces cerevisiae","babelgene","convert_orthologs()",0.0526487827301025,1512
+"97","Schizosaccharomyces pombe","homologene","all_genes()",0.00476908683776855,3018
+"98","Schizosaccharomyces pombe","homologene","convert_orthologs()",0.101644039154053,1284
+"99","Schizosaccharomyces pombe","gprofiler","all_genes()",NA,NA
+"100","Schizosaccharomyces pombe","gprofiler","convert_orthologs()",NA,NA
+"101","Schizosaccharomyces pombe","babelgene","all_genes()",1.04568386077881,3033
+"102","Schizosaccharomyces pombe","babelgene","convert_orthologs()",0.0575029850006104,1658
+"103","Kluyveromyces lactis","homologene","all_genes()",0.00534486770629883,4283
+"104","Kluyveromyces lactis","homologene","convert_orthologs()",0.116364002227783,1229
+"105","Kluyveromyces lactis","gprofiler","all_genes()",NA,NA
+"106","Kluyveromyces lactis","gprofiler","convert_orthologs()",NA,NA
+"107","Kluyveromyces lactis","babelgene","all_genes()",NA,NA
+"108","Kluyveromyces lactis","babelgene","convert_orthologs()",NA,NA
+"109","Eremothecium gossypii","homologene","all_genes()",0.00519800186157227,3874
+"110","Eremothecium gossypii","homologene","convert_orthologs()",0.0923879146575928,1193
+"111","Eremothecium gossypii","gprofiler","all_genes()",NA,NA
+"112","Eremothecium gossypii","gprofiler","convert_orthologs()",NA,NA
+"113","Eremothecium gossypii","babelgene","all_genes()",NA,NA
+"114","Eremothecium gossypii","babelgene","convert_orthologs()",NA,NA
+"115","Neurospora crassa","homologene","all_genes()",0.00530600547790527,5807
+"116","Neurospora crassa","homologene","convert_orthologs()",0.0996420383453369,1497
+"117","Neurospora crassa","gprofiler","all_genes()",NA,NA
+"118","Neurospora crassa","gprofiler","convert_orthologs()",NA,NA
+"119","Neurospora crassa","babelgene","all_genes()",NA,NA
+"120","Neurospora crassa","babelgene","convert_orthologs()",NA,NA
+"121","Magnaporthe oryzae","homologene","all_genes()",0.00524210929870605,6598
+"122","Magnaporthe oryzae","homologene","convert_orthologs()",0.0979440212249756,1561
+"123","Magnaporthe oryzae","gprofiler","all_genes()",NA,NA
+"124","Magnaporthe oryzae","gprofiler","convert_orthologs()",NA,NA
+"125","Magnaporthe oryzae","babelgene","all_genes()",NA,NA
+"126","Magnaporthe oryzae","babelgene","convert_orthologs()",NA,NA

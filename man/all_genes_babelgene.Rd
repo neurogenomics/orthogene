@@ -11,9 +11,10 @@ babelgene::orthologs_df version differences}
 all_genes_babelgene(
   species,
   run_map_species = TRUE,
-  save_dir = tools::R_user_dir("orthogene", which = "cache"),
+  save_dir = cache_dir(),
   use_old = FALSE,
   min_support = 1,
+  force = FALSE,
   verbose = TRUE
 )
 }
@@ -28,6 +29,8 @@ Will first be standardised with \code{map_species}.}
 
 \item{use_old}{Use an old version of \code{babelgene::orthologs_df} 
 (stored on GitHub Releases) for consistency.}
+
+\item{force}{Force a new files to be generated even if a cached one exists.}
 
 \item{verbose}{Print messages.}
 }

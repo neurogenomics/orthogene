@@ -12,14 +12,13 @@
 #' 
 #' @returns All genes.
 #' 
-#' @keywords internal
-#' @importFrom tools R_user_dir
+#' @keywords internal 
 all_genes_babelgene <- function(species,
                                 run_map_species = TRUE,
-                                save_dir = tools::R_user_dir("orthogene",
-                                                             which="cache"),
+                                save_dir = cache_dir(),
                                 use_old = FALSE,
                                 min_support = 1,
+                                force = FALSE,
                                 verbose = TRUE) {
     
     ### Avoid confusing Biocheck
@@ -36,6 +35,8 @@ all_genes_babelgene <- function(species,
     #                      percent=sum(human_symbol==species_symbol)/dplyr::n()*100) |>
     #     dplyr::arrange(dplyr::desc(percent))
     
+    start1 <- Sys.time()
+    
     messager("Retrieving all genes using: babelgene.", v = verbose)
     if(run_map_species){
         source_id <- map_species(
@@ -45,6 +46,20 @@ all_genes_babelgene <- function(species,
             verbose = verbose
         )
     } else {source_id <- species}
+    
+    
+    save_path <- get_cache_save_path(fn="all_genes",
+                                     species=source_id,
+                                     method="babelgene")
+    
+    if (file.exists(save_path) && isFALSE(force)){
+        messager("Using cached file:",save_path)
+        tar_genes <- data.table::fread(save_path) 
+        return (tar_genes)
+    }
+    
+    
+    
     #### Retrieve updated local version included with babelgene ####
     if(isFALSE(use_old)){ 
         messager("Preparing babelgene::orthologs_df.",v=verbose)
@@ -89,5 +104,12 @@ all_genes_babelgene <- function(species,
              "rows retrieved.",
              v = verbose
     )
+    
+    tar_genes$time <- as.numeric(difftime(Sys.time(), start1, units = "secs")) 
+    
+    ### Cache file ###
+    messager("Caching file -->",save_path, v=verbose) 
+    data.table::fwrite(tar_genes, file = save_path, sep=",")
+    
     return(tar_genes)
 }

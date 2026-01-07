@@ -44,8 +44,7 @@
 #' 
 #' @returns A filtered tree of class "phylo" (with standardised species names).  
 #' 
-#' @export
-#' @importFrom tools R_user_dir
+#' @export 
 #' @examples 
 #' if(require("ape")){
 #'  species <- c("human","chimp","mouse")
@@ -63,8 +62,7 @@ prepare_tree <- function(tree_source = "timetree",
                          force_ultrametric = TRUE,
                          age_max = NULL,
                          show_plot = TRUE,
-                         save_dir = tools::R_user_dir("orthogene",
-                                                      which="cache"),
+                         save_dir = cache_dir(),
                          verbose = TRUE,
                          ...){  
     # devoptera::args2vars(prepare_tree)

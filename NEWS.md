@@ -1,3 +1,14 @@
+# orthogene 1.17.2
+
+## New features
+
+* `all_genes`: enable method/species-specific caching.
+* `run_benchmark_once`: enable caching
+* `cache_dir()`: new function for consistency
+* `map_orthologs_gprofiler`: BIG upgrade! Can now rapidly query large gene 
+    lists via batching and parallelzation without server-side timeout errors.
+* Improve test coverage.
+
 # orthogene 1.16.1
 
 ## Bug fixes

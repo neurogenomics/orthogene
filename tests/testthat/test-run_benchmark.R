@@ -10,6 +10,7 @@ test_that("run_benchmark works", {
         species = "fruit fly",
         method_list = method_list,
         run_convert_orthologs = TRUE,
+        force = 2,
         mc.cores = 1
     )
      

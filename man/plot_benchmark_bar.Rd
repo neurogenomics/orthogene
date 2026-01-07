@@ -4,13 +4,23 @@
 \alias{plot_benchmark_bar}
 \title{Plot benchmark: bar}
 \usage{
-plot_benchmark_bar(bench_res, remove_failed_times = FALSE, show_plot = TRUE)
+plot_benchmark_bar(
+  bench_res,
+  remove_failed_times = TRUE,
+  point_size = 2,
+  point_mult = 1,
+  show_plot = TRUE
+)
 }
 \arguments{
 \item{bench_res}{Results from}
 
 \item{remove_failed_times}{In instances where
 no genes were returned, set time to \code{NA}.}
+
+\item{point_size}{Size of the shape above each bar.}
+
+\item{point_mult}{Multiplier to place the point above the bar.}
 
 \item{show_plot}{Print plot.}
 }

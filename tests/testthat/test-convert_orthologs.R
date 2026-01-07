@@ -269,5 +269,24 @@ test_that("convert_orthologs works", {
     )
     
     
+    #### Run with user-provided gene_map (triggers map_orthologs_custom) #### 
+    data("exp_mouse")
+    
+    genes <- rownames(exp_mouse)[seq(100)]
+    gene_map <- map_orthologs(
+        genes = genes,
+        input_species = "mouse")
+    
+    gene_dict <- convert_orthologs(
+        gene_df = genes,
+        input_species = "mouse",
+        gene_output = "dict",
+        method = "homologene",
+        gene_map = gene_map
+    )
+    testthat::expect_equal(methods::is(gene_dict, "character"), TRUE)
+    testthat::expect_equal(methods::is(names(gene_dict), "character"), TRUE)
+    testthat::expect_equal(methods::is(unname(gene_dict), "character"), TRUE)
+    testthat::expect_equal(methods::is(gene_dict, "vector"), TRUE)
     
 })

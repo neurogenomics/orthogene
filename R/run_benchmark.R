@@ -12,6 +12,10 @@
 #' @param remove_failed_times In instances where
 #' no genes were returned, set time to \code{NA}.
 #' @param save_path Path to save results to.
+#' @param force Force regeneration of files even if cached files exist.
+#' Set to TRUE or 1 to just force regenerating the \code{convert_orthologs} step.
+#' Set to 2 to force regenerating both the \code{convert_orthologs} and 
+#' \code{all_genes} steps.
 #' @param mc.cores Number of cores to parallelise species across.
 #' @param verbose Print messages.
 #'
@@ -27,6 +31,7 @@ run_benchmark <- function(species,
                           remove_failed_times = FALSE,
                           save_path = tempfile(fileext = ".csv"),
                           mc.cores = 1,
+                          force = FALSE,
                           verbose = TRUE) {
 
 
@@ -39,10 +44,11 @@ run_benchmark <- function(species,
             message_parallel("\n==== ", spec, " ====\n")
             res <- lapply(method_list, function(m){
                 message_parallel("\n------- Benchmarking ",m," -------\n")
-                res_tmp <- run_benchmark_once(
+                run_benchmark_once(
                     species = spec,
                     run_convert_orthologs = run_convert_orthologs,
                     method = m,
+                    force = force,
                     verbose = verbose
                 )
             })  |> data.table::rbindlist()

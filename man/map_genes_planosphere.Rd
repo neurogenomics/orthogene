@@ -14,7 +14,7 @@ map_genes_planosphere(
   genes,
   output_format = "SMESG_dd_Smes_v2",
   drop_duplicates = TRUE,
-  save_dir = tools::R_user_dir("orthogene", which = "cache"),
+  save_dir = cache_dir(),
   verbose = TRUE
 )
 }

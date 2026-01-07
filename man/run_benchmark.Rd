@@ -11,6 +11,7 @@ run_benchmark(
   remove_failed_times = FALSE,
   save_path = tempfile(fileext = ".csv"),
   mc.cores = 1,
+  force = FALSE,
   verbose = TRUE
 )
 }
@@ -28,6 +29,11 @@ no genes were returned, set time to \code{NA}.}
 \item{save_path}{Path to save results to.}
 
 \item{mc.cores}{Number of cores to parallelise species across.}
+
+\item{force}{Force regeneration of files even if cached files exist.
+Set to TRUE or 1 to just force regenerating the \code{convert_orthologs} step.
+Set to 2 to force regenerating both the \code{convert_orthologs} and 
+\code{all_genes} steps.}
 
 \item{verbose}{Print messages.}
 }

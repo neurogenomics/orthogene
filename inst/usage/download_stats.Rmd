@@ -1,0 +1,55 @@
+---
+title: "usage_stats"
+output: html_document
+date: "2026-01-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Get reverse dependencies
+
+```{r reveps}
+library(devtools)
+reverse_dependencies <- revdep(pkg = "orthogene", bioconductor = TRUE)
+print(reverse_dependencies)
+```
+
+## Get download stats
+
+```{r}
+dat <- data.table::fread("https://bioconductor.org/packages/stats/bioc/orthogene/orthogene_stats.tab")
+```
+
+```{r}
+library(ggplot2)
+
+plot_dat <- dat[Month!="all"]
+plot_dat[,date:=data.table::as.IDate(paste0(Year,"-",Month,"-01"), format = "%Y-%b-%d")]
+
+
+g1 <- ggplot(plot_dat, aes(x=date, y=Nb_of_distinct_IPs)) +
+    geom_col() +
+    theme_bw() +
+    labs(y="Unique IP downloads",
+         title="orthogene: Bioconductor downloads")
+
+g2 <- ggplot(plot_dat, aes(x=date, y=Nb_of_downloads)) +
+    geom_col() +
+    theme_bw() +
+    labs(y="Downloads")
+
+g <- patchwork::wrap_plots(g1,g2, ncol=1)
+
+print(g)
+
+
+ggplot2::ggsave(filename = here::here("inst/usage/downloads.pdf"), g)
+```
+
+
+```{r}
+session_info()
+```
+

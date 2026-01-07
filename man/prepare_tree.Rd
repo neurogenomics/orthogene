@@ -17,7 +17,7 @@ prepare_tree(
   force_ultrametric = TRUE,
   age_max = NULL,
   show_plot = TRUE,
-  save_dir = tools::R_user_dir("orthogene", which = "cache"),
+  save_dir = cache_dir(),
   verbose = TRUE,
   ...
 )

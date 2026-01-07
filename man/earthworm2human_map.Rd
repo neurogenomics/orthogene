@@ -4,10 +4,7 @@
 \alias{earthworm2human_map}
 \title{Earthworm to human map}
 \usage{
-earthworm2human_map(
-  evalue_threshold = NULL,
-  save_dir = tools::R_user_dir("orthogene", which = "cache")
-)
+earthworm2human_map(evalue_threshold = NULL, save_dir = cache_dir())
 }
 \arguments{
 \item{evalue_threshold}{Only include mappings with an E-value

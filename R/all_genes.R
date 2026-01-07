@@ -11,11 +11,12 @@
 #' genes that are \code{NA}s of any kind.
 #' @param run_map_species Standardise \code{species} names with 
 #' \link[orthogene]{map_species} first (Default: \code{TRUE}).  
+#' @param force Force a new files to be generated even if a cached one exists.
 #' @inheritParams convert_orthologs
 #'
 #' @returns Table with all gene symbols
 #'  from the given \code{species}.
-#'  
+#' @importFrom data.table fread fwrite 
 #' @export
 #' @examples
 #' genome_mouse <- all_genes(species = "mouse")
@@ -25,15 +26,20 @@ all_genes <- function(species,
                                  "homologene",
                                  "babelgene"),
                       ensure_filter_nas = FALSE,
-                      run_map_species = TRUE,
+                      run_map_species = TRUE, 
+                      force = FALSE,
                       verbose = TRUE,
                       ...) {
+    
+    ### Select one method ###
     method <- tolower(method)[1]
+ 
     if (methods_opts(method = method, gprofiler_opts = TRUE)) {
         #### Query gprofiler ####
         tar_genes <- all_genes_gprofiler(
             species = species,
             run_map_species = run_map_species,
+            force = force,
             verbose = verbose,
             ...
         )
@@ -42,6 +48,7 @@ all_genes <- function(species,
         tar_genes <- all_genes_homologene( 
             species = species,
             run_map_species = run_map_species,
+            force = force,
             verbose = verbose
         )
     } else if (methods_opts(method = method, babelgene_opts = TRUE)) {
@@ -49,23 +56,27 @@ all_genes <- function(species,
         tar_genes <- all_genes_babelgene(
             species = species,
             run_map_species = run_map_species,
+            force = force,
             verbose = verbose
         )
     } else {
         messager(paste0("method='",method,"' not recognised."),
                  "Must be one of:\n",
                  paste("-",c("gprofiler", 
-                         "homologene",
-                         "babelgene"), collapse = "\n "))
+                             "homologene",
+                             "babelgene"), collapse = "\n "))
         messager("Setting method='gprofiler' by default.",v=verbose)
         #### Query gprofiler ####
         tar_genes <- all_genes_gprofiler(
             species = species,
             run_map_species = run_map_species,
+            force = force,
             verbose = verbose,
             ...
         )
-    }
+    }  
+    
+    
     ### Clean genes ####
     if(ensure_filter_nas){
         tar_genes <- remove_all_nas(
@@ -74,10 +85,11 @@ all_genes <- function(species,
             verbose = verbose
         )
     } 
+    
     #### Report ####
     messager("Returning all", formatC(nrow(tar_genes), big.mark = ","),
         "genes from", paste0(species, "."),
         v = verbose
     )
     return(tar_genes)
-}
+} 

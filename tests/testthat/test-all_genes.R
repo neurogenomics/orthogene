@@ -1,24 +1,30 @@
 test_that("all_genes works", {
+    
     n_genes <- function(dat) {
         length(unique(dat$Gene.Symbol))
     }
+    
     ##### Test function ####
-    run_tests <- function(method) {
+    run_tests <- function(method, force=FALSE) {
         genome_human <- all_genes(
             species = "human",
-            method = method
+            method = method,
+            force = force
         )
         genome_mouse <- all_genes(
             species = "mouse",
-            method = method
+            method = method,
+            force = force
         )
         genome_zebrafish <- all_genes(
             species = "zebrafish",
-            method = method
+            method = method,
+            force = force
         )
         genome_fly <- all_genes(
             species = "fly",
-            method = method
+            method = method,
+            force = force
         )
         #### Test human ####
         expected_human <- if (method == "gprofiler") 35000 else 19000
@@ -51,5 +57,5 @@ test_that("all_genes works", {
     ##### gprofiler tests ####
     # run_tests(method = "gprofiler") # Takes a long time currently (hacky)
     ##### homologene tests ####
-    run_tests(method = "homologene")
+    run_tests(method = "homologene", force=TRUE)
 })
