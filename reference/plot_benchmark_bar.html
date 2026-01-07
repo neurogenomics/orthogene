@@ -18,7 +18,7 @@ function tests."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.2</span>
       </span>
     </div>
 
@@ -71,7 +71,13 @@ function tests.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_benchmark_bar</span><span class="op">(</span><span class="va">bench_res</span>, remove_failed_times <span class="op">=</span> <span class="cn">FALSE</span>, show_plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_benchmark_bar</span><span class="op">(</span></span>
+<span>  <span class="va">bench_res</span>,</span>
+<span>  remove_failed_times <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  point_size <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  point_mult <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  show_plot <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -85,6 +91,14 @@ function tests.</p>
 <dt id="arg-remove-failed-times">remove_failed_times<a class="anchor" aria-label="anchor" href="#arg-remove-failed-times"></a></dt>
 <dd><p>In instances where
 no genes were returned, set time to <code>NA</code>.</p></dd>
+
+
+<dt id="arg-point-size">point_size<a class="anchor" aria-label="anchor" href="#arg-point-size"></a></dt>
+<dd><p>Size of the shape above each bar.</p></dd>
+
+
+<dt id="arg-point-mult">point_mult<a class="anchor" aria-label="anchor" href="#arg-point-mult"></a></dt>
+<dd><p>Multiplier to place the point above the bar.</p></dd>
 
 
 <dt id="arg-show-plot">show_plot<a class="anchor" aria-label="anchor" href="#arg-show-plot"></a></dt>

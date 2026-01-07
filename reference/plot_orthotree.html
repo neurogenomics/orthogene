@@ -19,7 +19,7 @@ describing how many orthologous genes each species shares with the
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.2</span>
       </span>
     </div>
 
@@ -297,15 +297,13 @@ each containing a character vector of species used to define the respective
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in babelgene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: Homo sapiens</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 9606</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing babelgene::orthologs_df.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 20,492 rows retrieved.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /github/home/.cache/R/orthogene/all_genes-9606-babelgene.csv.gz</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 20,492 genes from Homo sapiens.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all genes using: babelgene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in babelgene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: Homo sapiens</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 9606</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing babelgene::orthologs_df.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 20,492 rows retrieved.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /github/home/.cache/R/orthogene/all_genes-9606-babelgene.csv.gz</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 20,492 genes from Homo sapiens.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -317,13 +315,12 @@ each containing a character vector of species used to define the respective
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: monkey</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for monkey</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 9544</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing babelgene::orthologs_df.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 20,402 rows retrieved.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /github/home/.cache/R/orthogene/all_genes-9544-babelgene.csv.gz</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 20,402 genes from monkey.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing gene_df.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> data.frame format detected.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> data.table format detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from Gene.Symbol.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 20,402 genes extracted.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting monkey ==&gt; Homo sapiens orthologs using: babelgene</span>
@@ -338,44 +335,40 @@ each containing a character vector of species used to define the respective
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in babelgene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: Macaca mulatta</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 9544</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing babelgene::orthologs_df.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 20,402 rows retrieved.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /github/home/.cache/R/orthogene/all_genes-9544-babelgene.csv.gz</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without orthologs in Homo sapiens.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from input_gene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 20,402 genes extracted.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 561 NAs of all kinds from input_gene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from ortholog_gene.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 19,841 genes extracted.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 107 NAs of all kinds from ortholog_gene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 20,402 genes extracted.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without 1:1 orthologs.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 1,371 genes that have multiple input_gene per ortholog_gene (many:1).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 1,000 genes that have multiple ortholog_gene per input_gene (1:many).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 1,920 genes that have multiple input_gene per ortholog_gene (many:1).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 1,357 genes that have multiple ortholog_gene per input_gene (1:many).</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Filtering gene_df with gene_map</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Adding input_gene col to gene_df.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Adding ortholog_gene col to gene_df.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> =========== REPORT SUMMARY ===========</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Total genes dropped after convert_orthologs :</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>    1,690 / 18,149 (9.3%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    1,907 / 18,149 (11%)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Total genes remaining after convert_orthologs :</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>    16,459 / 18,149 (91%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    16,242 / 18,149 (89%)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> =========== REPORT SUMMARY ===========</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 16,459 / 18,149 (90.69%) target_species genes remain after ortholog conversion.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 16,459 / 20,206 (81.46%) reference_species genes remain after ortholog conversion.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 16,242 / 18,149 (89.49%) target_species genes remain after ortholog conversion.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 16,242 / 20,206 (80.38%) reference_species genes remain after ortholog conversion.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all genes using: babelgene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in babelgene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: mouse</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Common name mapping found for mouse</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 10090</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing babelgene::orthologs_df.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 29,651 rows retrieved.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /github/home/.cache/R/orthogene/all_genes-10090-babelgene.csv.gz</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Returning all 29,651 genes from mouse.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing gene_df.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> data.frame format detected.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> data.table format detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from Gene.Symbol.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 29,651 genes extracted.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting mouse ==&gt; Homo sapiens orthologs using: babelgene</span>
@@ -390,32 +383,29 @@ each containing a character vector of species used to define the respective
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Retrieving all organisms available in babelgene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Mapping species name: Mus musculus</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1 organism identified from search: 10090</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing babelgene::orthologs_df.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Gene table with 29,651 rows retrieved.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /github/home/.cache/R/orthogene/all_genes-10090-babelgene.csv.gz</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without orthologs in Homo sapiens.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from input_gene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 29,651 genes extracted.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 37 NAs of all kinds from input_gene.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting genes from ortholog_gene.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 29,614 genes extracted.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 146 NAs of all kinds from ortholog_gene.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 29,651 genes extracted.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Checking for genes without 1:1 orthologs.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 9,286 genes that have multiple input_gene per ortholog_gene (many:1).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 10,297 genes that have multiple ortholog_gene per input_gene (1:many).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 9,436 genes that have multiple input_gene per ortholog_gene (many:1).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropping 10,451 genes that have multiple ortholog_gene per input_gene (1:many).</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Filtering gene_df with gene_map</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Adding input_gene col to gene_df.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Adding ortholog_gene col to gene_df.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> =========== REPORT SUMMARY ===========</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Total genes dropped after convert_orthologs :</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>    4,761 / 20,075 (24%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    4,848 / 20,075 (24%)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Total genes remaining after convert_orthologs :</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>    15,314 / 20,075 (76%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    15,227 / 20,075 (76%)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> =========== REPORT SUMMARY ===========</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 15,314 / 20,075 (76.28%) target_species genes remain after ortholog conversion.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 15,314 / 20,206 (75.79%) reference_species genes remain after ortholog conversion.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 15,227 / 20,075 (75.85%) target_species genes remain after ortholog conversion.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 15,227 / 20,206 (75.36%) reference_species genes remain after ortholog conversion.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: phytools</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: TreeTools</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Registered S3 method overwritten by 'TreeTools':</span>
@@ -438,8 +428,8 @@ each containing a character vector of species used to define the respective
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Found more than one class "phylo" in cache; using the first, from namespace 'tidytree'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Also defined by ‘TreeTools’</span>
 <span class="r-plt img"><img src="plot_orthotree-1.png" alt="" width="700" height="433"></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmpl1cc3b/file1f19f3cde11.ggtree.pdf</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmpl1cc3b/file1f191d9e158c.ggtree.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmp7lZwVI/file246823e9f317.ggtree.pdf</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving plot ==&gt; /tmp/Rtmp7lZwVI/file246839b1d646.ggtree.png</span>
 </code></pre></div>
     </div>
   </div>

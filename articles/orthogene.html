@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.2</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ Author: <i>Brian M. Schilder</i><br>
             
             <h4 data-toc-skip class="date"><h4>
 <br>
-Most recent update: <i>Jan-05-2026</i><br>
+Most recent update: <i>Jan-07-2026</i><br>
 </h4></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/neurogenomics/orthogene/blob/main/vignettes/orthogene.Rmd" class="external-link"><code>vignettes/orthogene.Rmd</code></a></small>
@@ -389,19 +389,19 @@ generates a report that tells you this information genome-wide.</p>
 <pre><code><span><span class="co">## Mapping species name: human</span></span></code></pre>
 <pre><code><span><span class="co">## Common name mapping found for human</span></span></code></pre>
 <pre><code><span><span class="co">## 1 organism identified from search: 9606</span></span></code></pre>
-<pre><code><span><span class="co">## Gene table with 19,129 rows retrieved.</span></span></code></pre>
+<pre><code><span><span class="co">## Using cached file: /github/home/.cache/R/orthogene/all_genes-9606-homologene.csv.gz</span></span></code></pre>
 <pre><code><span><span class="co">## Returning all 19,129 genes from human.</span></span></code></pre>
 <pre><code><span><span class="co">## Retrieving all genes using: homologene.</span></span></code></pre>
 <pre><code><span><span class="co">## Retrieving all organisms available in homologene.</span></span></code></pre>
 <pre><code><span><span class="co">## Mapping species name: zebrafish</span></span></code></pre>
 <pre><code><span><span class="co">## Common name mapping found for zebrafish</span></span></code></pre>
 <pre><code><span><span class="co">## 1 organism identified from search: 7955</span></span></code></pre>
-<pre><code><span><span class="co">## Gene table with 20,897 rows retrieved.</span></span></code></pre>
+<pre><code><span><span class="co">## Using cached file: /github/home/.cache/R/orthogene/all_genes-7955-homologene.csv.gz</span></span></code></pre>
 <pre><code><span><span class="co">## Returning all 20,897 genes from zebrafish.</span></span></code></pre>
 <pre><code><span><span class="co">## --</span></span>
 <span><span class="co">## --</span></span></code></pre>
 <pre><code><span><span class="co">## Preparing gene_df.</span></span></code></pre>
-<pre><code><span><span class="co">## data.frame format detected.</span></span></code></pre>
+<pre><code><span><span class="co">## data.table format detected.</span></span></code></pre>
 <pre><code><span><span class="co">## Extracting genes from Gene.Symbol.</span></span></code></pre>
 <pre><code><span><span class="co">## 20,897 genes extracted.</span></span></code></pre>
 <pre><code><span><span class="co">## Converting zebrafish ==&gt; human orthologs using: homologene</span></span></code></pre>
@@ -439,11 +439,12 @@ generates a report that tells you this information genome-wide.</p>
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">orth_zeb</span><span class="op">$</span><span class="va">map</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="19%">
-<col width="20%">
-<col width="25%">
-<col width="15%">
-<col width="19%">
+<col width="17%">
+<col width="18%">
+<col width="21%">
+<col width="13%">
+<col width="17%">
+<col width="12%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">input_species</th>
@@ -451,6 +452,7 @@ generates a report that tells you this information genome-wide.</p>
 <th align="left">reference_species</th>
 <th align="left">input_gene</th>
 <th align="left">ortholog_gene</th>
+<th align="right">time</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -459,6 +461,7 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">homo sapiens</td>
 <td align="left">acadm</td>
 <td align="left">ACADM</td>
+<td align="right">0.2304859</td>
 </tr>
 <tr class="even">
 <td align="left">zebrafish</td>
@@ -466,6 +469,7 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">homo sapiens</td>
 <td align="left">acadvl</td>
 <td align="left">ACADVL</td>
+<td align="right">0.2304859</td>
 </tr>
 <tr class="odd">
 <td align="left">zebrafish</td>
@@ -473,6 +477,7 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">homo sapiens</td>
 <td align="left">acat1</td>
 <td align="left">ACAT1</td>
+<td align="right">0.2304859</td>
 </tr>
 <tr class="even">
 <td align="left">zebrafish</td>
@@ -480,6 +485,7 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">homo sapiens</td>
 <td align="left">acvr1l</td>
 <td align="left">ACVR1</td>
+<td align="right">0.2304859</td>
 </tr>
 <tr class="odd">
 <td align="left">zebrafish</td>
@@ -487,6 +493,7 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">homo sapiens</td>
 <td align="left">adsl</td>
 <td align="left">ADSL</td>
+<td align="right">0.2304859</td>
 </tr>
 <tr class="even">
 <td align="left">zebrafish</td>
@@ -494,6 +501,7 @@ generates a report that tells you this information genome-wide.</p>
 <td align="left">homo sapiens</td>
 <td align="left">aga</td>
 <td align="left">AGA</td>
+<td align="right">0.2304859</td>
 </tr>
 </tbody>
 </table>
@@ -854,60 +862,60 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 <pre><code><span><span class="co">## Mapping species name: mouse</span></span></code></pre>
 <pre><code><span><span class="co">## Common name mapping found for mouse</span></span></code></pre>
 <pre><code><span><span class="co">## 1 organism identified from search: 10090</span></span></code></pre>
-<pre><code><span><span class="co">## Gene table with 21,207 rows retrieved.</span></span></code></pre>
+<pre><code><span><span class="co">## Using cached file: /github/home/.cache/R/orthogene/all_genes-10090-homologene.csv.gz</span></span></code></pre>
 <pre><code><span><span class="co">## Returning all 21,207 genes from mouse.</span></span></code></pre>
 <div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genome_mouse</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="left"></th>
 <th align="right">HID</th>
 <th align="right">Gene.ID</th>
 <th align="left">Gene.Symbol</th>
 <th align="right">taxonomy_id</th>
+<th align="right">time</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">6</td>
 <td align="right">3</td>
 <td align="right">11364</td>
 <td align="left">Acadm</td>
 <td align="right">10090</td>
+<td align="right">0.0160241</td>
 </tr>
 <tr class="even">
-<td align="left">18</td>
 <td align="right">5</td>
 <td align="right">11370</td>
 <td align="left">Acadvl</td>
 <td align="right">10090</td>
+<td align="right">0.0160241</td>
 </tr>
 <tr class="odd">
-<td align="left">29</td>
 <td align="right">6</td>
 <td align="right">110446</td>
 <td align="left">Acat1</td>
 <td align="right">10090</td>
+<td align="right">0.0160241</td>
 </tr>
 <tr class="even">
-<td align="left">52</td>
 <td align="right">7</td>
 <td align="right">11477</td>
 <td align="left">Acvr1</td>
 <td align="right">10090</td>
+<td align="right">0.0160241</td>
 </tr>
 <tr class="odd">
-<td align="left">64</td>
 <td align="right">9</td>
 <td align="right">20391</td>
 <td align="left">Sgca</td>
 <td align="right">10090</td>
+<td align="right">0.0160241</td>
 </tr>
 <tr class="even">
-<td align="left">71</td>
 <td align="right">12</td>
 <td align="right">11564</td>
 <td align="left">Adsl</td>
 <td align="right">10090</td>
+<td align="right">0.0160241</td>
 </tr>
 </tbody>
 </table>
@@ -918,7 +926,7 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 </h2>
 <details><div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## R Under development (unstable) (2025-12-31 r89265)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-01-03 r89269)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.3 LTS</span></span>
 <span><span class="co">## </span></span>
@@ -941,54 +949,55 @@ species with <a href="https://neurogenomics.github.io/orthogene/reference/all_ge
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] orthogene_1.17.1 BiocStyle_2.39.0</span></span>
+<span><span class="co">## [1] orthogene_1.17.2 BiocStyle_2.39.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
 <span><span class="co">##  [1] ggiraph_0.9.2             tidyselect_1.2.1         </span></span>
 <span><span class="co">##  [3] viridisLite_0.4.2         dplyr_1.1.4              </span></span>
-<span><span class="co">##  [5] farver_2.1.2              S7_0.2.1                 </span></span>
-<span><span class="co">##  [7] bitops_1.0-9              fastmap_1.2.0            </span></span>
-<span><span class="co">##  [9] lazyeval_0.2.2            RCurl_1.98-1.17          </span></span>
-<span><span class="co">## [11] homologene_1.4.68.19.3.27 fontquiver_0.2.1         </span></span>
-<span><span class="co">## [13] digest_0.6.39             lifecycle_1.0.4          </span></span>
-<span><span class="co">## [15] tidytree_0.4.6            magrittr_2.0.4           </span></span>
-<span><span class="co">## [17] compiler_4.6.0            rlang_1.1.6              </span></span>
-<span><span class="co">## [19] sass_0.4.10               tools_4.6.0              </span></span>
-<span><span class="co">## [21] yaml_2.3.12               data.table_1.18.0        </span></span>
-<span><span class="co">## [23] knitr_1.51                ggsignif_0.6.4           </span></span>
-<span><span class="co">## [25] htmlwidgets_1.6.4         curl_7.0.0               </span></span>
-<span><span class="co">## [27] RColorBrewer_1.1-3        aplot_0.2.9              </span></span>
-<span><span class="co">## [29] abind_1.4-8               babelgene_22.9           </span></span>
-<span><span class="co">## [31] withr_3.0.2               purrr_1.2.0              </span></span>
-<span><span class="co">## [33] desc_1.4.3                grid_4.6.0               </span></span>
-<span><span class="co">## [35] ggpubr_0.6.2              gdtools_0.4.4            </span></span>
-<span><span class="co">## [37] ggplot2_4.0.1             scales_1.4.0             </span></span>
-<span><span class="co">## [39] cli_3.6.5                 rmarkdown_2.30           </span></span>
-<span><span class="co">## [41] ragg_1.5.0                treeio_1.35.0            </span></span>
-<span><span class="co">## [43] generics_0.1.4            otel_0.2.0               </span></span>
-<span><span class="co">## [45] ggtree_4.1.1              httr_1.4.7               </span></span>
-<span><span class="co">## [47] gprofiler2_0.2.4          ape_5.8-1                </span></span>
-<span><span class="co">## [49] cachem_1.1.0              parallel_4.6.0           </span></span>
-<span><span class="co">## [51] ggplotify_0.1.3           BiocManager_1.30.27      </span></span>
-<span><span class="co">## [53] yulab.utils_0.2.3         vctrs_0.6.5              </span></span>
-<span><span class="co">## [55] Matrix_1.7-4              jsonlite_2.0.0           </span></span>
-<span><span class="co">## [57] fontBitstreamVera_0.1.1   carData_3.0-5            </span></span>
-<span><span class="co">## [59] bookdown_0.46             car_3.1-3                </span></span>
-<span><span class="co">## [61] gridGraphics_0.5-1        patchwork_1.3.2          </span></span>
-<span><span class="co">## [63] rstatix_0.7.3             Formula_1.2-5            </span></span>
-<span><span class="co">## [65] systemfonts_1.3.1         plotly_4.11.0            </span></span>
-<span><span class="co">## [67] tidyr_1.3.2               jquerylib_0.1.4          </span></span>
-<span><span class="co">## [69] glue_1.8.0                pkgdown_2.2.0            </span></span>
-<span><span class="co">## [71] gtable_0.3.6              tibble_3.3.0             </span></span>
-<span><span class="co">## [73] pillar_1.11.1             rappdirs_0.3.3           </span></span>
-<span><span class="co">## [75] htmltools_0.5.9           R6_2.6.1                 </span></span>
-<span><span class="co">## [77] textshaping_1.0.4         evaluate_1.0.5           </span></span>
-<span><span class="co">## [79] lattice_0.22-7            backports_1.5.0          </span></span>
-<span><span class="co">## [81] broom_1.0.11              ggfun_0.2.0              </span></span>
-<span><span class="co">## [83] fontLiberation_0.1.0      bslib_0.9.0              </span></span>
-<span><span class="co">## [85] Rcpp_1.1.0.8.1            nlme_3.1-168             </span></span>
-<span><span class="co">## [87] xfun_0.55                 fs_1.6.6                 </span></span>
-<span><span class="co">## [89] pkgconfig_2.0.3</span></span></code></pre>
+<span><span class="co">##  [5] farver_2.1.2              bitops_1.0-9             </span></span>
+<span><span class="co">##  [7] R.utils_2.13.0            S7_0.2.1                 </span></span>
+<span><span class="co">##  [9] RCurl_1.98-1.17           fastmap_1.2.0            </span></span>
+<span><span class="co">## [11] lazyeval_0.2.2            homologene_1.4.68.19.3.27</span></span>
+<span><span class="co">## [13] fontquiver_0.2.1          digest_0.6.39            </span></span>
+<span><span class="co">## [15] lifecycle_1.0.4           tidytree_0.4.6           </span></span>
+<span><span class="co">## [17] magrittr_2.0.4            compiler_4.6.0           </span></span>
+<span><span class="co">## [19] rlang_1.1.6               sass_0.4.10              </span></span>
+<span><span class="co">## [21] tools_4.6.0               yaml_2.3.12              </span></span>
+<span><span class="co">## [23] data.table_1.18.0         knitr_1.51               </span></span>
+<span><span class="co">## [25] ggsignif_0.6.4            htmlwidgets_1.6.4        </span></span>
+<span><span class="co">## [27] curl_7.0.0                RColorBrewer_1.1-3       </span></span>
+<span><span class="co">## [29] aplot_0.2.9               abind_1.4-8              </span></span>
+<span><span class="co">## [31] babelgene_22.9            withr_3.0.2              </span></span>
+<span><span class="co">## [33] purrr_1.2.0               desc_1.4.3               </span></span>
+<span><span class="co">## [35] R.oo_1.27.1               grid_4.6.0               </span></span>
+<span><span class="co">## [37] ggpubr_0.6.2              gdtools_0.4.4            </span></span>
+<span><span class="co">## [39] ggplot2_4.0.1             scales_1.4.0             </span></span>
+<span><span class="co">## [41] cli_3.6.5                 rmarkdown_2.30           </span></span>
+<span><span class="co">## [43] ragg_1.5.0                treeio_1.35.0            </span></span>
+<span><span class="co">## [45] generics_0.1.4            otel_0.2.0               </span></span>
+<span><span class="co">## [47] ggtree_4.1.1              httr_1.4.7               </span></span>
+<span><span class="co">## [49] gprofiler2_0.2.4          ape_5.8-1                </span></span>
+<span><span class="co">## [51] cachem_1.1.0              parallel_4.6.0           </span></span>
+<span><span class="co">## [53] ggplotify_0.1.3           BiocManager_1.30.27      </span></span>
+<span><span class="co">## [55] yulab.utils_0.2.3         vctrs_0.6.5              </span></span>
+<span><span class="co">## [57] Matrix_1.7-4              jsonlite_2.0.0           </span></span>
+<span><span class="co">## [59] fontBitstreamVera_0.1.1   carData_3.0-5            </span></span>
+<span><span class="co">## [61] bookdown_0.46             car_3.1-3                </span></span>
+<span><span class="co">## [63] gridGraphics_0.5-1        patchwork_1.3.2          </span></span>
+<span><span class="co">## [65] rstatix_0.7.3             Formula_1.2-5            </span></span>
+<span><span class="co">## [67] systemfonts_1.3.1         plotly_4.11.0            </span></span>
+<span><span class="co">## [69] tidyr_1.3.2               jquerylib_0.1.4          </span></span>
+<span><span class="co">## [71] glue_1.8.0                pkgdown_2.2.0            </span></span>
+<span><span class="co">## [73] gtable_0.3.6              tibble_3.3.0             </span></span>
+<span><span class="co">## [75] pillar_1.11.1             rappdirs_0.3.3           </span></span>
+<span><span class="co">## [77] htmltools_0.5.9           R6_2.6.1                 </span></span>
+<span><span class="co">## [79] textshaping_1.0.4         evaluate_1.0.5           </span></span>
+<span><span class="co">## [81] lattice_0.22-7            R.methodsS3_1.8.2        </span></span>
+<span><span class="co">## [83] backports_1.5.0           broom_1.0.11             </span></span>
+<span><span class="co">## [85] ggfun_0.2.0               fontLiberation_0.1.0     </span></span>
+<span><span class="co">## [87] bslib_0.9.0               Rcpp_1.1.0.8.1           </span></span>
+<span><span class="co">## [89] nlme_3.1-168              xfun_0.55                </span></span>
+<span><span class="co">## [91] fs_1.6.6                  pkgconfig_2.0.3</span></span></code></pre>
 </details><p><br></p>
 </div>
   </div>

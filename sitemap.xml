@@ -14,6 +14,7 @@
 <url><loc>/reference/all_genes.html</loc></url>
 <url><loc>/reference/all_genes_babelgene.html</loc></url>
 <url><loc>/reference/all_species.html</loc></url>
+<url><loc>/reference/cache_dir.html</loc></url>
 <url><loc>/reference/check_bool_args.html</loc></url>
 <url><loc>/reference/check_gene_df_type.html</loc></url>
 <url><loc>/reference/convert_orthologs.html</loc></url>
@@ -23,6 +24,7 @@
 <url><loc>/reference/exp_mouse.html</loc></url>
 <url><loc>/reference/exp_mouse_enst.html</loc></url>
 <url><loc>/reference/format_species.html</loc></url>
+<url><loc>/reference/get_cache_save_path.html</loc></url>
 <url><loc>/reference/get_orgdb_genomeinfodbdata.html</loc></url>
 <url><loc>/reference/get_silhouettes.html</loc></url>
 <url><loc>/reference/ggtree_plot.html</loc></url>
@@ -50,7 +52,6 @@
 <url><loc>/reference/remove_image_bg.html</loc></url>
 <url><loc>/reference/report_orthologs.html</loc></url>
 <url><loc>/reference/run_benchmark.html</loc></url>
-<url><loc>/reference/set_gprofiler.html</loc></url>
 <url><loc>/reference/taxa_id_dict.html</loc></url>
 </urlset>
 
