@@ -1,6 +1,6 @@
 Package: orthogene
 Type: Package
-Title: Interspecies gene mapping  
+Title: Gene mapping made easy  
 Version: 1.17.2
 Authors@R:
     c( 

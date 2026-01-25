@@ -1,4 +1,4 @@
-`orthogene`: easy gene mapping within and across hundreds of species
+`orthogene`: gene mapping made easy
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' title='Hex sticker for orthogene' height='300'><br>
 [![](https://img.shields.io/badge/release%20version-1.16.1-green.svg)](https://www.bioconductor.org/packages/orthogene)

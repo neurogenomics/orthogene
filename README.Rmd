@@ -1,5 +1,5 @@
 ---
-title: "`orthogene`: easy gene mapping within and across hundreds of species"  
+title: "`orthogene`: gene mapping made easy"  
 author: "`r rworkflows::use_badges(branch='main', add_bioc_release = TRUE, add_bioc_download_month = TRUE, add_bioc_download_rank = TRUE, add_bioc_download_total = TRUE)`" 
 date: "<h4>README updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
 output:
