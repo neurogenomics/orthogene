@@ -1,14 +1,14 @@
-`orthogene`: Interspecies gene mapping
+`orthogene`: easy gene mapping within and across hundreds of species
 ================
 <img src='https://github.com/neurogenomics/orthogene/raw/main/inst/hex/hex.png' title='Hex sticker for orthogene' height='300'><br>
-[![](https://img.shields.io/badge/release%20version-1.16.0-green.svg)](https://www.bioconductor.org/packages/orthogene)
+[![](https://img.shields.io/badge/release%20version-1.16.1-green.svg)](https://www.bioconductor.org/packages/orthogene)
 [![](https://img.shields.io/badge/download-755/month-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
-[![](https://img.shields.io/badge/download-17076/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
+[![](https://img.shields.io/badge/download-17575/total-green.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![download](http://www.bioconductor.org/shields/downloads/release/orthogene.svg)](https://bioconductor.org/packages/stats/bioc/orthogene)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 <br>
-[![](https://img.shields.io/badge/devel%20version-1.17.1-black.svg)](https://github.com/neurogenomics/orthogene)
+[![](https://img.shields.io/badge/devel%20version-1.17.2-black.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/github/languages/code-size/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene)
 [![](https://img.shields.io/github/last-commit/neurogenomics/orthogene.svg)](https://github.com/neurogenomics/orthogene/commits/main)
 <br> [![R build
@@ -20,7 +20,7 @@ status](https://github.com/neurogenomics/orthogene/workflows/rworkflows/badge.sv
 Authors: <i>Brian Schilder</i>  
 </h4>
 <h4>  
-README updated: <i>Jan-06-2026</i>  
+README updated: <i>Jan-25-2026</i>  
 </h4>
 
 # Intro
@@ -62,9 +62,9 @@ If you use `orthogene`, please cite:
 
 <!-- Modify this by editing the file: inst/CITATION  -->
 
-> Brian M. Schilder, Nathan G. Skene (2022). orthogene: Interspecies
-> gene mapping. R package version 1.4.0,
-> <https://doi.org/doi:10.18129/B9.bioc.orthogene>
+> Brian M. Schilder, Alan E. Murphy, Nathan G. Skene (2026). orthogene:
+> a Bioconductor package to easily map genes within and across hundreds
+> of species. bioRxiv, <https://doi.org/10.64898/2026.01.17.700094>
 
 ## [Documentation website](https://neurogenomics.github.io/orthogene/)
 
@@ -273,17 +273,17 @@ utils::sessionInfo()
     ##  [1] gtable_0.3.6              babelgene_22.9           
     ##  [3] xfun_0.55                 ggplot2_4.0.1            
     ##  [5] htmlwidgets_1.6.4         rstatix_0.7.3            
-    ##  [7] lattice_0.22-7            vctrs_0.6.5              
+    ##  [7] lattice_0.22-7            vctrs_0.7.0              
     ##  [9] tools_4.5.1               generics_0.1.4           
     ## [11] yulab.utils_0.2.3         parallel_4.5.1           
-    ## [13] tibble_3.3.0              pkgconfig_2.0.3          
+    ## [13] tibble_3.3.1              pkgconfig_2.0.3          
     ## [15] Matrix_1.7-4              ggplotify_0.1.3          
     ## [17] data.table_1.18.0         homologene_1.4.68.19.3.27
     ## [19] RColorBrewer_1.1-3        S7_0.2.1                 
-    ## [21] desc_1.4.3                lifecycle_1.0.4          
+    ## [21] desc_1.4.3                lifecycle_1.0.5          
     ## [23] compiler_4.5.1            farver_2.1.2             
     ## [25] treeio_1.34.0             dlstats_0.1.7            
-    ## [27] carData_3.0-5             ggtree_4.0.3             
+    ## [27] carData_3.0-5             ggtree_4.0.4             
     ## [29] gprofiler2_0.2.4          fontLiberation_0.1.0     
     ## [31] fontquiver_0.2.1          ggfun_0.2.0              
     ## [33] htmltools_0.5.9           yaml_2.3.12              
@@ -294,23 +294,23 @@ utils::sessionInfo()
     ## [43] fontBitstreamVera_0.1.1   nlme_3.1-168             
     ## [45] tidyselect_1.2.1          aplot_0.2.9              
     ## [47] digest_0.6.39             dplyr_1.1.4              
-    ## [49] purrr_1.2.0               rprojroot_2.1.1          
+    ## [49] purrr_1.2.1               rprojroot_2.1.1          
     ## [51] fastmap_1.2.0             grid_4.5.1               
     ## [53] here_1.0.2                cli_3.6.5                
     ## [55] magrittr_2.0.4            patchwork_1.3.2          
     ## [57] dichromat_2.0-0.1         broom_1.0.11             
     ## [59] ape_5.8-1                 withr_3.0.2              
     ## [61] gdtools_0.4.4             scales_1.4.0             
-    ## [63] backports_1.5.0           rappdirs_0.3.3           
+    ## [63] backports_1.5.0           rappdirs_0.3.4           
     ## [65] httr_1.4.7                rmarkdown_2.30           
     ## [67] rvcheck_0.2.1             otel_0.2.0               
     ## [69] ggsignif_0.6.4            evaluate_1.0.5           
     ## [71] knitr_1.51                rworkflows_1.0.8         
     ## [73] viridisLite_0.4.2         gridGraphics_0.5-1       
-    ## [75] rlang_1.1.6               ggiraph_0.9.2            
-    ## [77] Rcpp_1.1.0                glue_1.8.0               
+    ## [75] rlang_1.1.7               ggiraph_0.9.2            
+    ## [77] Rcpp_1.1.1                glue_1.8.0               
     ## [79] tidytree_0.4.6            BiocManager_1.30.27      
-    ## [81] renv_1.1.5                rstudioapi_0.17.1        
+    ## [81] renv_1.1.6                rstudioapi_0.18.0        
     ## [83] jsonlite_2.0.0            R6_2.6.1                 
     ## [85] badger_0.2.5              systemfonts_1.3.1        
     ## [87] fs_1.6.6

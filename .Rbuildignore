@@ -1,3 +1,4 @@
+*inst/hex/*\.tif
 Icon?
 ^.*\.Rproj$
 ^\.Rproj\.user$
