@@ -1,7 +1,7 @@
 Package: orthogene
 Type: Package
 Title: Gene mapping made easy  
-Version: 1.17.3
+Version: 1.17.4
 Authors@R:
     c( 
      person(given = "Brian",

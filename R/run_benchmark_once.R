@@ -30,10 +30,13 @@ run_benchmark_once <- function(species,
             ) 
         },
         error = function(e) {
-            message(e) 
+            ## Pass conditionMessage() rather than the condition itself —
+            ## message(<condition>) re-signals the condition, which testthat's
+            ## calling handlers then treat as a test error, escaping tryCatch.
+            message("all_genes() failed: ", conditionMessage(e))
             NA
         }
-    ) 
+    )
     if (is.data.frame(gene_map1)){
         time1 <- gene_map1$time[1]
     } else {
@@ -78,7 +81,9 @@ run_benchmark_once <- function(species,
                 )
             },
             error = function(e) {
-                message(e)
+                ## See comment above: message(<condition>) re-signals the
+                ## condition and escapes tryCatch under testthat.
+                message("convert_orthologs() failed: ", conditionMessage(e))
                 NA
             }
         )

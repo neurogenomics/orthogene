@@ -1,3 +1,16 @@
+# orthogene 1.17.4
+
+## Bug fixes
+
+* `run_benchmark_once()`: replace `message(e)` with
+    `message(conditionMessage(e))` inside the `tryCatch` error handlers.
+    Passing a condition object to `message()` re-signals it, and under
+    testthat's calling handlers an error condition signaled this way escapes
+    the `tryCatch` and is reported as a test failure — even though
+    `tryCatch` did catch it. This caused `test-run_benchmark` to fail on
+    GitHub Actions whenever the g:Profiler API returned malformed JSON, even
+    though `run_benchmark_once()` was supposed to record `NA` and move on.
+
 # orthogene 1.17.3
 
 ## Bug fixes
