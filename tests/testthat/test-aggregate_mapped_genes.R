@@ -46,13 +46,14 @@ test_that("aggregate_mapped_genes works", {
     
     
     #### Aggregate: method="stats": without supplied gene_map ####
-    exp_da <- orthogene:::as_delayed_array(exp_mouse) 
+    exp_da <- orthogene:::as_delayed_array(exp_mouse)
     agg_exp <- orthogene::aggregate_mapped_genes(
-        gene_df = exp_da, 
+        gene_df = exp_da,
         input_species = "mouse",
         output_species = "human",
         agg_fun = "sum",
         agg_method = "stats",
+        method = "homologene",
     )
     testthat::expect_lte(nrow(agg_exp), nrow(exp_da))
     testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp)) 

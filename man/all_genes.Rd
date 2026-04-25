@@ -60,6 +60,6 @@ References \link[homologene]{homologeneData} or
 \link[gprofiler2]{gconvert}.
 }
 \examples{
-genome_mouse <- all_genes(species = "mouse")
-genome_human <- all_genes(species = "human")
+genome_mouse <- all_genes(species = "mouse", method = "homologene")
+genome_human <- all_genes(species = "human", method = "homologene")
 }

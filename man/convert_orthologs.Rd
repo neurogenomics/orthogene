@@ -202,6 +202,7 @@ return a full list of available organisms.
 data("exp_mouse")
 gene_df <- convert_orthologs(
     gene_df = exp_mouse,
-    input_species = "mouse"
+    input_species = "mouse",
+    method = "homologene"
 )
 }

@@ -1,3 +1,25 @@
+# orthogene 1.17.3
+
+## Bug fixes
+
+* Make examples of `convert_orthologs()`, `map_orthologs()`, and `all_genes()`
+    use `method = "homologene"` so they don't depend on the g:Profiler API.
+    The remote g:Profiler service has been intermittently returning JSON with
+    literal `NaN` tokens, which `jsonlite` cannot parse, causing the
+    Bioconductor `R CMD check` for examples to fail.
+* Tests that incidentally exercised the default g:Profiler path
+    (`test-aggregate_mapped_genes`, `test-convert_orthologs`,
+    `test-infer_species`) now request `method = "homologene"` explicitly.
+* Tests that intentionally cover the g:Profiler backend
+    (`test-all_genes_gprofiler`, the `method = "gprofiler"` block in
+    `test-convert_orthologs`) now skip gracefully with a clear message when
+    the API is unavailable, rather than halting the whole suite.
+* `test-run_benchmark`: aggregate `mean()` checks now use `na.rm = TRUE` so
+    a transient g:Profiler failure doesn't NA-poison the benchmark assertions.
+* `test-infer_species`: tolerate ties in `top_match` so that when two species
+    are equally well-matched (e.g. human and monkey via babelgene), the test
+    passes as long as the expected species is among them.
+
 # orthogene 1.17.2
 
 ## New features

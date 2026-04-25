@@ -5,7 +5,11 @@ test_that("infer_species works", {
     exp1 <- exp_mouse[seq(1,200),]
     test <- function(matches,
                      target_species){
-        testthat::expect_true(matches$top_match %in% target_species)
+        ## When multiple species tie for the top percent_match,
+        ## infer_species() returns all of them in `top_match`. The test passes
+        ## as long as the expected species is among them.
+        testthat::expect_true(any(as.character(matches$top_match) %in%
+                                  target_species))
         testthat::expect_true(methods::is(matches$data,"data.frame"))
         testthat::expect_true(methods::is(matches$plot,"gg"))
     }
@@ -30,9 +34,10 @@ test_that("infer_species works", {
         test(matches = matches, 
              target_species = c("mouse","Mus musculus"))
         #### Human list ####
-        exp2 <- orthogene::convert_orthologs(gene_df = exp1, 
-                                             input_species = "mouse", 
+        exp2 <- orthogene::convert_orthologs(gene_df = exp1,
+                                             input_species = "mouse",
                                              output_species = "human",
+                                             method = "homologene",
                                              verbose = FALSE)
         orthogene:::messager("===== human tests =====",v=verbose)
         matches <- orthogene::infer_species(
