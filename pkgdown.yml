@@ -1,8 +1,8 @@
-pandoc: 3.8.3
+pandoc: 3.9.0.2
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   docker: docker.html
   infer_species: infer_species.html
   orthogene: orthogene.html
-last_built: 2026-01-25T18:01Z
+last_built: 2026-04-25T21:19Z

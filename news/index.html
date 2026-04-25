@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.4</span>
       </span>
     </div>
 
@@ -63,6 +63,27 @@
       <small>Source: <a href="https://github.com/neurogenomics/orthogene/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.17.4" id="orthogene-1174">orthogene 1.17.4<a class="anchor" aria-label="anchor" href="#orthogene-1174"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-1-17-4">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-17-4"></a></h3>
+<ul><li>
+<code>run_benchmark_once()</code>: replace <code>message(e)</code> with <code>message(conditionMessage(e))</code> inside the <code>tryCatch</code> error handlers. Passing a condition object to <code><a href="https://rdrr.io/r/base/message.html" class="external-link">message()</a></code> re-signals it, and under testthat’s calling handlers an error condition signaled this way escapes the <code>tryCatch</code> and is reported as a test failure — even though <code>tryCatch</code> did catch it. This caused <code>test-run_benchmark</code> to fail on GitHub Actions whenever the g:Profiler API returned malformed JSON, even though <code>run_benchmark_once()</code> was supposed to record <code>NA</code> and move on.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.17.3" id="orthogene-1173">orthogene 1.17.3<a class="anchor" aria-label="anchor" href="#orthogene-1173"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-1-17-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-17-3"></a></h3>
+<ul><li>Make examples of <code><a href="../reference/convert_orthologs.html">convert_orthologs()</a></code>, <code><a href="../reference/map_orthologs.html">map_orthologs()</a></code>, and <code><a href="../reference/all_genes.html">all_genes()</a></code> use <code>method = "homologene"</code> so they don’t depend on the g:Profiler API. The remote g:Profiler service has been intermittently returning JSON with literal <code>NaN</code> tokens, which <code>jsonlite</code> cannot parse, causing the Bioconductor <code>R CMD check</code> for examples to fail.</li>
+<li>Tests that incidentally exercised the default g:Profiler path (<code>test-aggregate_mapped_genes</code>, <code>test-convert_orthologs</code>, <code>test-infer_species</code>) now request <code>method = "homologene"</code> explicitly.</li>
+<li>Tests that intentionally cover the g:Profiler backend (<code>test-all_genes_gprofiler</code>, the <code>method = "gprofiler"</code> block in <code>test-convert_orthologs</code>) now skip gracefully with a clear message when the API is unavailable, rather than halting the whole suite.</li>
+<li>
+<code>test-run_benchmark</code>: aggregate <code><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean()</a></code> checks now use <code>na.rm = TRUE</code> so a transient g:Profiler failure doesn’t NA-poison the benchmark assertions.</li>
+<li>
+<code>test-infer_species</code>: tolerate ties in <code>top_match</code> so that when two species are equally well-matched (e.g. human and monkey via babelgene), the test passes as long as the expected species is among them.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.17.2" id="orthogene-1172">orthogene 1.17.2<a class="anchor" aria-label="anchor" href="#orthogene-1172"></a></h2>
 <div class="section level3">
