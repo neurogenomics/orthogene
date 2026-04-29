@@ -74,12 +74,6 @@ test_that("map_orthologs_gprofiler validates chunk_size", {
 
 test_that("map_orthologs_gprofiler non-chunked mode works", {
 
-    skip_if_offline <- function() {
-        if (!nzchar(Sys.getenv("NOT_CRAN")) &&
-            !curl::has_internet()) testthat::skip("no internet")
-    }
-    skip_if_offline()
-
     res <- tryCatch(
         orthogene:::map_orthologs_gprofiler(
             genes = c("Sox2", "Klf4", "Pou5f1"),
@@ -101,12 +95,6 @@ test_that("map_orthologs_gprofiler non-chunked mode works", {
 })
 
 test_that("map_orthologs_gprofiler chunked-serial path returns same result with small chunk_size", {
-
-    skip_if_offline <- function() {
-        if (!nzchar(Sys.getenv("NOT_CRAN")) &&
-            !curl::has_internet()) testthat::skip("no internet")
-    }
-    skip_if_offline()
 
     res <- tryCatch(
         orthogene:::map_orthologs_gprofiler(
@@ -134,12 +122,6 @@ test_that("map_orthologs_gprofiler chunked-parallel path runs", {
     ## fork-vs-PSOCK distinction may interact badly with R CMD check
     ## sandboxing on the small CI runners.
     testthat::skip_on_os("windows")
-
-    skip_if_offline <- function() {
-        if (!nzchar(Sys.getenv("NOT_CRAN")) &&
-            !curl::has_internet()) testthat::skip("no internet")
-    }
-    skip_if_offline()
 
     res <- tryCatch(
         orthogene:::map_orthologs_gprofiler(
