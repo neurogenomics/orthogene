@@ -46,13 +46,18 @@ test_that("map_genes works", {
         )
     },
     error=function(e){
-        message(e)
+        ## message(<condition>) re-signals the condition; under testthat's
+        ## calling handlers an error condition signaled this way escapes
+        ## tryCatch as a test failure. Use conditionMessage() to print plain
+        ## text instead. Avoids spurious failures when the planosphere
+        ## mapping file fails to download (e.g. on Windows CI).
+        message("map_genes(planarian) failed: ", conditionMessage(e))
         NULL
     }
     )
     if(!is.null(mapped_planarian)){
-        testthat::expect_gte(nrow(mapped_planarian), 2) 
-    } 
+        testthat::expect_gte(nrow(mapped_planarian), 2)
+    }
     
     ##### Tests ####
     testthat::expect_gte(nrow(mapped_human), 3)
