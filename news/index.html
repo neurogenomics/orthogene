@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.3</span>
       </span>
     </div>
 
@@ -63,6 +63,33 @@
       <small>Source: <a href="https://github.com/neurogenomics/orthogene/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.19.3" id="orthogene-1193">orthogene 1.19.3<a class="anchor" aria-label="anchor" href="#orthogene-1193"></a></h2>
+<div class="section level3">
+<h3 id="test-coverage-1-19-3">Test coverage<a class="anchor" aria-label="anchor" href="#test-coverage-1-19-3"></a></h3>
+<ul><li>Lifted overall test coverage from ~84% to ~92% by adding ~370 new assertions across 7 new test files and 4 expanded ones. New tests cover:
+<ul><li>
+<code>check_species_babelgene</code>, <code>check_agg_args</code>, <code>check_keep_popular</code>, <code>check_sparseMatrix</code>, <code>check_gene_map</code>, <code>check_gene_df_type</code>, <code>check_gene_output</code>, <code>check_bool_args</code>, <code>check_agg_opts</code> (helper validation functions);</li>
+<li>
+<code>map_orthologs_gprofiler</code> non-chunked, chunked-serial, and chunked-parallel paths plus null/empty-input and same-source/target early returns and <code>chunk_size</code> validation;</li>
+<li>
+<code>prepare_tree</code> local-newick <code>else</code>-branch and <code>age_max</code> calibration paths;</li>
+<li>
+<code>aggregate_mapped_genes</code> <code>transpose=TRUE</code>, within-species, <code>sort_rows</code>, <code>as_integers</code>, and the early-exit “rename only” branch;</li>
+<li>
+<code>infer_species</code> <code>test_species=NULL</code> defaults and method-as-test_species expansion plus <code>make_plot=FALSE</code>;</li>
+<li>
+<code>create_background</code> <code>use_intersect=FALSE</code> (union), user-supplied <code>bg</code>, and within-species fast path;</li>
+<li>
+<code>run_benchmark_once</code> cache-hit, <code>run_convert_orthologs=FALSE</code>, and within-species (<code>is_human</code>) branches;</li>
+<li>
+<code>aggregate_rows_monocle3</code> <code>mean</code> and <code>count</code> aggregation;</li>
+<li>
+<code>rotate_clades</code>, <code>is_gha</code>, <code>load_rda</code>, <code>cache_dir</code>, <code>gconvert_target_opts</code>, <code>non121_strategy_opts</code>, <code>is_human</code>, <code>is_matrix</code>/<code>is_sparse_matrix</code>, <code>is_converted</code>, <code>add_rowcol_names</code>, <code>messager</code>, <code>format_species</code>, <code>methods_opts</code>, <code>gene_input_opts</code>/<code>gene_output_opts</code>, <code>invert_dictionary</code>, and <code>get_orgdb_gprofiler</code> (use-local + use-remote) paths;</li>
+<li>Error/skip paths in <code>filter_gene_df</code>, <code>aggregate_rows</code>, <code>map_orthologs</code>, <code>all_genes</code>, and <code>many2many_rows</code> (aggregate_orthologs=FALSE).</li>
+</ul></li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.19.2" id="orthogene-1192">orthogene 1.19.2<a class="anchor" aria-label="anchor" href="#orthogene-1192"></a></h2>
 <div class="section level3">
