@@ -104,6 +104,5 @@ and \code{drop_nonorths}.
 data("exp_mouse")
 gene_map <- map_orthologs(
     genes = rownames(exp_mouse),
-    input_species = "mouse",
-    method = "homologene")
+    input_species = "mouse")
 }

@@ -154,8 +154,7 @@
 #' data("exp_mouse")
 #' gene_df <- convert_orthologs(
 #'     gene_df = exp_mouse,
-#'     input_species = "mouse",
-#'     method = "homologene"
+#'     input_species = "mouse"
 #' )
 convert_orthologs <- function(gene_df,
                               gene_input = "rownames",

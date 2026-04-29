@@ -53,7 +53,6 @@ test_that("aggregate_mapped_genes works", {
         output_species = "human",
         agg_fun = "sum",
         agg_method = "stats",
-        method = "homologene",
     )
     testthat::expect_lte(nrow(agg_exp), nrow(exp_da))
     testthat::expect_true(orthogene:::is_sparse_matrix(agg_exp)) 

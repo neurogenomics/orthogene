@@ -23,8 +23,7 @@
 #' data("exp_mouse")
 #' gene_map <- map_orthologs(
 #'     genes = rownames(exp_mouse),
-#'     input_species = "mouse",
-#'     method = "homologene")
+#'     input_species = "mouse")
 map_orthologs <- function(genes,
                           standardise_genes = FALSE,
                           input_species,

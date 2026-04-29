@@ -1,3 +1,23 @@
+# orthogene 1.19.1
+
+## Bug fixes
+
+* Revert the g:Profiler workarounds shipped in 1.17.3. Upstream (g:Profiler)
+    confirmed and fixed the API regression that was returning literal `NaN`
+    in JSON responses; unmatched genes are once again returned as `"N/A"`.
+    Examples and tests that test the default ortholog-mapping path now
+    exercise g:Profiler honestly again — no `method = "homologene"`
+    workarounds, no skip-on-error wrappers around explicit g:Profiler tests.
+    The point of these tests is to *catch* an API regression, not to mask it.
+* Kept from 1.17.4: `run_benchmark_once()`'s `message(conditionMessage(e))`
+    fix — `message(e)` re-signals condition objects, which under testthat's
+    calling handlers escapes `tryCatch` as a test failure. Unrelated to the
+    g:Profiler API issue and remains a real bug.
+* Kept from 1.17.3: `test-infer_species` tolerates ties in `top_match`. When
+    two species (e.g. human and monkey via babelgene) tie at the top
+    `percent_match`, `infer_species()` returns both; the test now passes as
+    long as the expected species is among them.
+
 # orthogene 1.17.4
 
 ## Bug fixes

@@ -19,8 +19,8 @@
 #' @importFrom data.table fread fwrite 
 #' @export
 #' @examples
-#' genome_mouse <- all_genes(species = "mouse", method = "homologene")
-#' genome_human <- all_genes(species = "human", method = "homologene")
+#' genome_mouse <- all_genes(species = "mouse")
+#' genome_human <- all_genes(species = "human")
 all_genes <- function(species,
                       method = c("gprofiler", 
                                  "homologene",

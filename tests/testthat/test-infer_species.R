@@ -37,7 +37,6 @@ test_that("infer_species works", {
         exp2 <- orthogene::convert_orthologs(gene_df = exp1,
                                              input_species = "mouse",
                                              output_species = "human",
-                                             method = "homologene",
                                              verbose = FALSE)
         orthogene:::messager("===== human tests =====",v=verbose)
         matches <- orthogene::infer_species(
