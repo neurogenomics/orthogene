@@ -1,3 +1,17 @@
+# orthogene 1.19.2
+
+## Bug fixes
+
+* `test-map_genes`: replace `message(e)` with `message(conditionMessage(e))`
+    in the planarian (Schmidtea mediterranea) tryCatch error handler. Same
+    pattern as the 1.17.4 fix to `run_benchmark_once()`: passing a condition
+    object to `message()` re-signals it, and under testthat's calling
+    handlers an error condition signaled this way escapes the `tryCatch`
+    and is reported as a test failure. This caused `test-map_genes` to fail
+    on the GitHub Actions Windows runner whenever the planosphere mapping
+    file failed to download. Same fix has been backported to RELEASE_3_23
+    as 1.18.1.
+
 # orthogene 1.19.1
 
 ## Bug fixes
