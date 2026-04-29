@@ -1,3 +1,37 @@
+# orthogene 1.19.3
+
+## Test coverage
+
+* Lifted overall test coverage from ~84% to ~92% by adding ~370 new
+    assertions across 7 new test files and 4 expanded ones. New tests cover:
+    * `check_species_babelgene`, `check_agg_args`, `check_keep_popular`,
+        `check_sparseMatrix`, `check_gene_map`, `check_gene_df_type`,
+        `check_gene_output`, `check_bool_args`, `check_agg_opts` (helper
+        validation functions);
+    * `map_orthologs_gprofiler` non-chunked, chunked-serial, and
+        chunked-parallel paths plus null/empty-input and same-source/target
+        early returns and `chunk_size` validation;
+    * `prepare_tree` local-newick `else`-branch and `age_max` calibration
+        paths;
+    * `aggregate_mapped_genes` `transpose=TRUE`, within-species, `sort_rows`,
+        `as_integers`, and the early-exit "rename only" branch;
+    * `infer_species` `test_species=NULL` defaults and method-as-test_species
+        expansion plus `make_plot=FALSE`;
+    * `create_background` `use_intersect=FALSE` (union), user-supplied `bg`,
+        and within-species fast path;
+    * `run_benchmark_once` cache-hit, `run_convert_orthologs=FALSE`, and
+        within-species (`is_human`) branches;
+    * `aggregate_rows_monocle3` `mean` and `count` aggregation;
+    * `rotate_clades`, `is_gha`, `load_rda`, `cache_dir`,
+        `gconvert_target_opts`, `non121_strategy_opts`, `is_human`,
+        `is_matrix`/`is_sparse_matrix`, `is_converted`, `add_rowcol_names`,
+        `messager`, `format_species`, `methods_opts`,
+        `gene_input_opts`/`gene_output_opts`, `invert_dictionary`, and
+        `get_orgdb_gprofiler` (use-local + use-remote) paths;
+    * Error/skip paths in `filter_gene_df`, `aggregate_rows`,
+        `map_orthologs`, `all_genes`, and `many2many_rows`
+        (aggregate_orthologs=FALSE).
+
 # orthogene 1.19.2
 
 ## Bug fixes

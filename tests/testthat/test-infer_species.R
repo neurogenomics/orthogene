@@ -51,3 +51,47 @@ test_that("infer_species works", {
     # run_tests(method = "gprofiler") ## Slowest
     run_tests(method = "babelgene") ## Slow-ish
 })
+
+test_that("infer_species accepts test_species=NULL (defaults branch)", {
+
+    set.seed(1)
+    data("exp_mouse")
+    matches <- orthogene::infer_species(
+        gene_df = rownames(exp_mouse)[seq_len(50)],
+        test_species = NULL,
+        method = "homologene",
+        show_plot = FALSE,
+        verbose = FALSE
+    )
+    testthat::expect_true(is.character(as.character(matches$top_match)))
+    testthat::expect_true(is.data.frame(matches$data))
+})
+
+test_that("infer_species expands a method-as-test_species into all species", {
+
+    set.seed(1)
+    data("exp_mouse")
+    matches <- orthogene::infer_species(
+        gene_df = rownames(exp_mouse)[seq_len(50)],
+        test_species = "homologene",     # branch: pulls all homologene species
+        method = "homologene",
+        show_plot = FALSE,
+        verbose = FALSE
+    )
+    testthat::expect_true(is.data.frame(matches$data))
+    ## With ~20 homologene species, the data table should have many rows
+    testthat::expect_gte(nrow(matches$data), 10)
+})
+
+test_that("infer_species can disable plot construction", {
+
+    set.seed(1)
+    data("exp_mouse")
+    matches <- orthogene::infer_species(
+        gene_df = rownames(exp_mouse)[seq_len(50)],
+        method = "homologene",
+        make_plot = FALSE,
+        verbose = FALSE
+    )
+    testthat::expect_null(matches$plot)
+})
