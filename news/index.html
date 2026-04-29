@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orthogene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.1</span>
       </span>
     </div>
 
@@ -63,6 +63,15 @@
       <small>Source: <a href="https://github.com/neurogenomics/orthogene/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.19.1" id="orthogene-1191">orthogene 1.19.1<a class="anchor" aria-label="anchor" href="#orthogene-1191"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-1-19-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-19-1"></a></h3>
+<ul><li>Revert the g:Profiler workarounds shipped in 1.17.3. Upstream (g:Profiler) confirmed and fixed the API regression that was returning literal <code>NaN</code> in JSON responses; unmatched genes are once again returned as <code>"N/A"</code>. Examples and tests that test the default ortholog-mapping path now exercise g:Profiler honestly again — no <code>method = "homologene"</code> workarounds, no skip-on-error wrappers around explicit g:Profiler tests. The point of these tests is to <em>catch</em> an API regression, not to mask it.</li>
+<li>Kept from 1.17.4: <code>run_benchmark_once()</code>’s <code>message(conditionMessage(e))</code> fix — <code>message(e)</code> re-signals condition objects, which under testthat’s calling handlers escapes <code>tryCatch</code> as a test failure. Unrelated to the g:Profiler API issue and remains a real bug.</li>
+<li>Kept from 1.17.3: <code>test-infer_species</code> tolerates ties in <code>top_match</code>. When two species (e.g. human and monkey via babelgene) tie at the top <code>percent_match</code>, <code><a href="../reference/infer_species.html">infer_species()</a></code> returns both; the test now passes as long as the expected species is among them.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.17.4" id="orthogene-1174">orthogene 1.17.4<a class="anchor" aria-label="anchor" href="#orthogene-1174"></a></h2>
 <div class="section level3">
